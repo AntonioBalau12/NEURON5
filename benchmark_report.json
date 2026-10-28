@@ -1,0 +1,142 @@
+{
+  "test_query_count": 1565,
+  "paraphrase_query_count": 1463,
+  "graph_only": {
+    "mode": "graph",
+    "query_count": 1565,
+    "recall_at_1": 0.1112,
+    "recall_at_3": 0.1924,
+    "recall_at_5": 0.2237,
+    "recall_at_10": 0.2507,
+    "mrr_at_10": 0.2799,
+    "coverage": 0.3431,
+    "mean_latency_ms": 1.254,
+    "p95_latency_ms": 1.973,
+    "build_seconds": 13.7492,
+    "peak_ram_mb": 8.03
+  },
+  "bm25_only": {
+    "mode": "bm25",
+    "query_count": 1565,
+    "recall_at_1": 0.3402,
+    "recall_at_3": 0.5902,
+    "recall_at_5": 0.6876,
+    "recall_at_10": 0.811,
+    "mrr_at_10": 0.827,
+    "coverage": 1,
+    "mean_latency_ms": 3.314,
+    "p95_latency_ms": 4.149,
+    "build_seconds": 15.2457,
+    "peak_ram_mb": 5.18
+  },
+  "hybrid": {
+    "mode": "hybrid",
+    "query_count": 1565,
+    "recall_at_1": 0.3493,
+    "recall_at_3": 0.6093,
+    "recall_at_5": 0.712,
+    "recall_at_10": 0.8271,
+    "mrr_at_10": 0.8465,
+    "coverage": 1,
+    "mean_latency_ms": 5.039,
+    "p95_latency_ms": 6.914,
+    "build_seconds": 28.9948,
+    "peak_ram_mb": 13.21
+  },
+  "paraphrase_comparison": {
+    "graph_recall_at_5": 0.2239,
+    "bm25_recall_at_5": 0.6763,
+    "hybrid_recall_at_5": 0.6986,
+    "graph_mrr_at_10": 0.2853,
+    "bm25_mrr_at_10": 0.828,
+    "hybrid_mrr_at_10": 0.8466
+  },
+  "incorrect_claims_evaluation": {
+    "candidate_retrieval_recall_at_5": 0.6,
+    "safety_abstention_rate": 1.0
+  },
+  "section_4_factual_diagnostics": [
+    {
+      "claim": "Holdan joined Hooly on January 12, 2026.",
+      "description": "Holdan joined true date",
+      "top_retrieved_id": "p-1",
+      "top_retrieved_text": "Holdan started at Hooly on 12 January 2026.",
+      "top_bm25_score": 46.909,
+      "retrieval_method": "hybrid",
+      "verification_status": "VERIFIED_SUPPORT",
+      "expected_status": "VERIFIED_SUPPORT",
+      "verification_reason": "all atomic facts have independent support",
+      "correctly_abstained_or_verified": true
+    },
+    {
+      "claim": "Holdan started working at Hooly on January 12, 2026.",
+      "description": "Holdan paraphrase",
+      "top_retrieved_id": "p-1",
+      "top_retrieved_text": "Holdan started at Hooly on 12 January 2026.",
+      "top_bm25_score": 52.301,
+      "retrieval_method": "bm25",
+      "verification_status": "VERIFIED_SUPPORT",
+      "expected_status": "VERIFIED_SUPPORT",
+      "verification_reason": "all atomic facts have independent support",
+      "correctly_abstained_or_verified": true
+    },
+    {
+      "claim": "Holdan joined Hooly on January 13, 2026.",
+      "description": "Holdan incorrect date",
+      "top_retrieved_id": "p-1",
+      "top_retrieved_text": "Holdan started at Hooly on 12 January 2026.",
+      "top_bm25_score": 35.765,
+      "retrieval_method": "hybrid",
+      "verification_status": "UNKNOWN",
+      "expected_status": "UNKNOWN",
+      "verification_reason": "retrieved evidence cannot verify claim without ambiguity",
+      "correctly_abstained_or_verified": true
+    },
+    {
+      "claim": "Dinesh started working at Hooly on January 12, 2026.",
+      "description": "Dinesh unrelated subject",
+      "top_retrieved_id": "p-1",
+      "top_retrieved_text": "Holdan started at Hooly on 12 January 2026.",
+      "top_bm25_score": 38.048,
+      "retrieval_method": "bm25",
+      "verification_status": "UNKNOWN",
+      "expected_status": "UNKNOWN",
+      "verification_reason": "retrieved evidence cannot verify claim without ambiguity",
+      "correctly_abstained_or_verified": true
+    },
+    {
+      "claim": "Holdan left Hooly on January 12, 2026.",
+      "description": "Holdan unrelated attribute",
+      "top_retrieved_id": "p-1",
+      "top_retrieved_text": "Holdan started at Hooly on 12 January 2026.",
+      "top_bm25_score": 39.521,
+      "retrieval_method": "bm25",
+      "verification_status": "UNKNOWN",
+      "expected_status": "UNKNOWN",
+      "verification_reason": "retrieved evidence cannot verify claim without ambiguity",
+      "correctly_abstained_or_verified": true
+    },
+    {
+      "claim": "Alpha has 500 customers.",
+      "description": "Incorrect numeric claim",
+      "top_retrieved_id": "p-271",
+      "top_retrieved_text": "Rooms that hold 500 participants",
+      "top_bm25_score": 13.822,
+      "retrieval_method": "bm25",
+      "verification_status": "UNKNOWN",
+      "expected_status": "UNKNOWN",
+      "verification_reason": "retrieved evidence cannot verify claim without ambiguity",
+      "correctly_abstained_or_verified": true
+    }
+  ],
+  "runtime_projection_18k_claims": {
+    "graph_only_seconds": 22.57,
+    "bm25_only_seconds": 59.65,
+    "hybrid_seconds": 90.7,
+    "ram_budget_mib": 6144,
+    "peak_ram_used_mib": 13.21,
+    "ram_headroom_percent": 99.78,
+    "time_budget_seconds": 1800,
+    "time_budget_used_percent": 5.04
+  }
+}
