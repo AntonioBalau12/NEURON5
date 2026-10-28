@@ -9,121 +9,126 @@
   "rows": 1897,
   "source_sha256": "c996f5477ce27d80fd5bf15d7cd8b737b295b2d31841b190bbcf661bd832d75f",
   "split_counts": {
-    "train": 1110,
-    "validation": 567,
-    "test": 220
+    "train": 1328,
+    "validation": 379,
+    "test": 190
   },
   "label_counts": {
     "train": {
-      "true": 933,
-      "false": 150,
+      "true": 1107,
+      "false": 194,
       "unsure": 27
     },
     "validation": {
-      "true": 457,
-      "unsure": 8,
-      "false": 102
+      "true": 316,
+      "false": 55,
+      "unsure": 8
     },
     "test": {
-      "true": 191,
-      "false": 25,
+      "true": 158,
+      "false": 28,
       "unsure": 4
     }
   },
-  "group_count": 278,
-  "largest_group_rows": 526,
-  "group_size_p95": 12,
+  "group_count": 1183,
+  "largest_group_rows": 13,
+  "group_size_p95": 4,
   "grouping_edges": {
     "identical_fact_signature": 713,
-    "shared_subject_attribute_history": 1888,
     "normalized_text_duplicate": 27,
     "near_duplicate_char_trigram_jaccard_ge_0_90": 32,
     "near_duplicate_pairs": 32
   },
   "group_leakage_check": "zero grouped connected components cross splits",
-  "same_subject_attribute_history_cross_split": 0,
+  "same_subject_attribute_history_cross_split": 165,
+  "same_subject_attribute_history_cross_fold": 335,
   "cv_folds": {
     "count": 10,
     "train_rows_by_fold": [
-      199,
-      222,
-      193,
-      82,
-      183,
-      17,
-      178,
-      13,
-      12,
-      11
+      127,
+      125,
+      133,
+      141,
+      133,
+      145,
+      129,
+      135,
+      130,
+      130
     ],
     "label_counts_by_fold": {
       "0": {
-        "true": 165,
-        "false": 30,
-        "unsure": 4
+        "true": 108,
+        "false": 16,
+        "unsure": 3
       },
       "1": {
-        "false": 20,
-        "true": 198,
-        "unsure": 4
+        "true": 88,
+        "unsure": 1,
+        "false": 36
       },
       "2": {
-        "true": 159,
-        "false": 30,
-        "unsure": 4
+        "true": 116,
+        "false": 14,
+        "unsure": 3
       },
       "3": {
-        "true": 67,
-        "false": 9,
-        "unsure": 6
+        "true": 117,
+        "false": 19,
+        "unsure": 5
       },
       "4": {
-        "true": 152,
-        "unsure": 5,
-        "false": 26
+        "true": 111,
+        "false": 17,
+        "unsure": 5
       },
       "5": {
-        "true": 16,
-        "false": 1
+        "true": 128,
+        "false": 17
       },
       "6": {
-        "true": 143,
-        "unsure": 4,
-        "false": 31
+        "true": 101,
+        "false": 24,
+        "unsure": 4
       },
       "7": {
-        "true": 10,
-        "false": 3
+        "true": 118,
+        "false": 14,
+        "unsure": 3
       },
       "8": {
-        "true": 12
+        "true": 109,
+        "false": 19,
+        "unsure": 2
       },
       "9": {
-        "true": 11
+        "true": 111,
+        "false": 18,
+        "unsure": 1
       }
     },
     "group_leakage_check": "zero grouped connected components cross folds"
   },
   "split_date_ranges": {
     "train": {
-      "min": "2025-10-10",
+      "min": "2025-10-07",
       "max": "2026-10-28"
     },
     "validation": {
       "min": "2025-10-07",
-      "max": "2026-10-26"
+      "max": "2026-10-27"
     },
     "test": {
-      "min": "2025-10-19",
-      "max": "2026-10-21"
+      "min": "2025-10-07",
+      "max": "2026-10-24"
     }
   },
   "notes": [
-    "practice form was used only for fact/history grouping and was not used as a model feature",
-    "all rows sharing any subject-attribute history are joined into a single group; groups are indivisible",
+    "practice form was used only for duplicate grouping and leakage audit and was not used as a model feature",
+    "duplicate text, near-duplicate text, and identical fact signatures are grouped; broad subject-attribute histories are audited separately because joining every row in a history creates giant groups that make target splits and 10-fold CV unusable",
     "near-duplicate text is grouped at character-trigram Jaccard >= 0.90 after candidate generation",
     "date is not used to stratify the random split; chronological ranges are reported for temporal-leakage review",
-    "the outer split balances class counts and target 80/20 sizes greedily at the group level; group sizes can cause deviation",
+    "the outer split balances class counts and target 70/20/10 sizes greedily at the group level; group sizes can cause deviation",
     "the 10 grouped CV folds use outer training rows only; the outer test remains outside model selection",
     "evidence from labeled rows is not used to construct features in this shared split"
   ]

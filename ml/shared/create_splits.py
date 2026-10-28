@@ -10,6 +10,9 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import numpy as np
+from sklearn.model_selection import StratifiedGroupKFold
+
 ROOT = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
 SEED = 42
@@ -76,39 +79,22 @@ def assign_groups(group_members, labels):
 
 
 def assign_folds(group_members, labels, train_indices, n_splits=10):
-    """Seeded greedy stratification of indivisible leakage groups into CV folds."""
-    rng = random.Random(SEED)
-    train_set = set(train_indices)
-    total = Counter(labels[i] for i in train_indices)
-    targets = {c: total[c] / n_splits for c in LABELS}
+    """Seeded stratified grouped folds, keeping every indivisible group intact."""
+    train_indices = np.asarray(train_indices, dtype=int)
+    train_y = np.asarray([labels[i] for i in train_indices])
+    row_group = {i: gid for gid, members in group_members.items() for i in members}
+    train_groups = np.asarray([row_group[int(i)] for i in train_indices])
+    splitter = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=SEED)
+    assignment = {}
     fold_rows = [0] * n_splits
     fold_labels = [Counter() for _ in range(n_splits)]
-    groups = []
-    for gid, members in group_members.items():
-        chosen = [i for i in members if i in train_set]
-        if chosen: groups.append((gid, chosen, Counter(labels[i] for i in chosen), rng.random()))
-    groups.sort(key=lambda x: (-len(x[1]), x[3]))
-    assignment = {}
-    target_size = len(train_indices) / n_splits
-    # Seed every fold once before optimizing the remaining allocation. This is
-    # essential when a few dominant classes/groups make empty folds look cheap.
-    for fold, (gid, members, counts, _) in enumerate(groups[:n_splits]):
-        assignment[gid] = fold
-        fold_rows[fold] += len(members)
-        fold_labels[fold].update(counts)
-    for gid, members, counts, _ in groups[n_splits:]:
-        def cost(fold):
-            score = 0.1 * ((fold_rows[fold] + len(members) - target_size) / max(target_size, 1)) ** 2
-            for label in LABELS:
-                target = max(targets[label], 1)
-                score += ((fold_labels[fold][label] + counts[label] - targets[label]) / target) ** 2
-            return score
-        chosen = min(range(n_splits), key=lambda f: (cost(f), fold_rows[f], f))
-        assignment[gid] = chosen
-        fold_rows[chosen] += len(members)
-        fold_labels[chosen].update(counts)
+    for fold, (_, valid_rel) in enumerate(splitter.split(np.zeros(len(train_y)), train_y, train_groups)):
+        for rel in valid_rel:
+            row_index = int(train_indices[rel])
+            assignment[row_group[row_index]] = fold
+            fold_rows[fold] += 1
+            fold_labels[fold][labels[row_index]] += 1
     return assignment, fold_rows, fold_labels
-
 
 def main():
     source = ROOT / "data" / "practice.csv"
@@ -116,7 +102,7 @@ def main():
     if not rows or not {"id", "text", "date", "label", "form"}.issubset(rows[0]):
         raise ValueError("practice.csv lacks required id/text/date/label/form columns")
     if len({r["id"] for r in rows}) != len(rows): raise ValueError("input row IDs are not unique")
-    uf = UF(len(rows)); reasons = Counter(); text_seen = {}; signature_seen = {}; history_seen = {}
+    uf = UF(len(rows)); reasons = Counter(); text_seen = {}; signature_seen = {}; history_seen = defaultdict(list)
     normalized = [norm(r["text"]) for r in rows]
     for i, row in enumerate(rows):
         if normalized[i] in text_seen: uf.union(i, text_seen[normalized[i]]); reasons["normalized_text_duplicate"] += 1
@@ -129,8 +115,7 @@ def main():
         for fact in facts:
             if not isinstance(fact, dict): continue
             key = (str(fact.get("subject", "")).casefold(), str(fact.get("attribute", "")))
-            if key in history_seen: uf.union(i, history_seen[key]); reasons["shared_subject_attribute_history"] += 1
-            else: history_seen[key] = i
+            history_seen[key].append(i)
 
     # Candidate generation by shared character trigrams, then high Jaccard.
     # This is grouping-only metadata; it does not enter model features.
@@ -162,6 +147,10 @@ def main():
     row_splits = [assignment[group_for_row[i]] for i in range(len(rows))]
     train_indices = [i for i, split in enumerate(row_splits) if split == "train"]
     fold_for_group, fold_sizes, fold_labels = assign_folds(by_root, labels, train_indices)
+    history_split_crossings = sum(1 for members in history_seen.values()
+                                  if len({row_splits[i] for i in members}) > 1)
+    history_cv_crossings = sum(1 for members in history_seen.values()
+                               if len({fold_for_group[group_for_row[i]] for i in members if row_splits[i] == "train"}) > 1)
 
     OUT.mkdir(parents=True, exist_ok=True)
     csv_path = OUT / "splits.csv"
@@ -180,14 +169,15 @@ def main():
              "group_size_p95": sorted(map(len, by_root.values()))[int(0.95 * (len(by_root)-1))],
              "grouping_edges": {**dict(reasons), "near_duplicate_pairs": near_count},
              "group_leakage_check": "zero grouped connected components cross splits",
-             "same_subject_attribute_history_cross_split": 0,
+             "same_subject_attribute_history_cross_split": history_split_crossings,
+             "same_subject_attribute_history_cross_fold": history_cv_crossings,
               "cv_folds": {"count": 10, "train_rows_by_fold": fold_sizes,
                            "label_counts_by_fold": {str(i): dict(c) for i, c in enumerate(fold_labels)},
                            "group_leakage_check": "zero grouped connected components cross folds"},
              "split_date_ranges": {s: {"min": min(r["date"] for r, sp in zip(rows, row_splits) if sp == s),
                                        "max": max(r["date"] for r, sp in zip(rows, row_splits) if sp == s)} for s in RATIOS},
-             "notes": ["practice form was used only for fact/history grouping and was not used as a model feature",
-                       "all rows sharing any subject-attribute history are joined into a single group; groups are indivisible",
+             "notes": ["practice form was used only for duplicate grouping and leakage audit and was not used as a model feature",
+                       "duplicate text, near-duplicate text, and identical fact signatures are grouped; broad subject-attribute histories are audited separately because joining every row in a history creates giant groups that make target splits and 10-fold CV unusable",
                        "near-duplicate text is grouped at character-trigram Jaccard >= 0.90 after candidate generation",
                        "date is not used to stratify the random split; chronological ranges are reported for temporal-leakage review",
                         "the outer split balances class counts and target 70/20/10 sizes greedily at the group level; group sizes can cause deviation",
@@ -198,14 +188,10 @@ def main():
         "# Shared 70/20/10 split and 10-fold CV\n\n"
         "`splits.csv` maps every practice row ID exactly once to `train`, `validation`, or `test` (seed 42), with a group-stratified 70/20/10 outer split. "
         "`cv10_folds.csv` maps each outer-train row ID to one of 10 grouped folds; rotate one fold as validation and use the other nine for training. "
-        "The outer test rows are excluded from CV and should be evaluated once after model selection. The split and folds use greedy assignment of indivisible connected groups. "
-        "Group edges join normalized duplicate text, identical canonical fact signatures, every shared subject/attribute history, "
-        "and character-trigram near duplicates with Jaccard similarity at least 0.90. This prevents repeated claims and known "
-        "temporal histories from crossing partitions. Gold forms are used only for grouping and audit, never as inference features.\n\n"
-        "Group edges join normalized duplicate text, identical canonical fact signatures, every shared subject/attribute history, and character-trigram near duplicates at Jaccard >= 0.90. Gold forms are used only for grouping and audit, never as inference features. The assignment balances TRUE/FALSE/UNSURE counts and total row counts against the target ratios. A large connected history "
-        "can make exact ratios impossible; actual counts and date ranges are recorded in `splitting_audit.json`. Date ranges are "
-        "audited rather than used to force chronological partitions, because chronological and shared-history constraints can conflict. "
-        "Any temporal generalization claim must therefore be reported separately. Training-only evidence is not used in the split.\n\n"
+        "The outer test rows are excluded from CV and should be evaluated once after model selection. The split and folds use greedy assignment of indivisible groups. "
+        "Groups join normalized duplicate text, identical canonical fact signatures, and character-trigram near duplicates with Jaccard >= 0.90. "
+        "Broad subject/attribute histories are audited separately instead of grouped: joining every claim sharing a history creates giant components and makes the requested partitions unusable. `splitting_audit.json` reports history overlap across outer partitions and CV folds; temporal generalization should be interpreted with this leakage in mind. Gold forms are used only for duplicate grouping and audit, never as inference features.\n\n"
+        "The assignment balances TRUE/FALSE/UNSURE counts and total row counts against the target ratios. Date ranges are audited rather than used to force chronological partitions. Training-only evidence is not used in the split.\n\n"
         "Reproduce with `python ml/shared/create_splits.py`. The manifest has columns `id,split`; the fold file has columns `id,fold`.\n", encoding="utf-8")
     print(json.dumps(audit, indent=2))
 
