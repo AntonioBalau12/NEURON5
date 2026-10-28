@@ -39,6 +39,33 @@ from textcheck import Names
 IMMUTABLE_EVENT_DATE_ATTRS = {"joined", "founded", "launched", "released", "opened", "announced", "published", "date", "beta_date",
                               "beta_opened", "general_availability_date", "stable_release", "training_data_cutoff"}
 
+# definitive / structural attributes: hardware specs, corporate milestones, governance appointments, fixed tier capabilities
+HARDWARE_SPECS = {
+    'battery_capacity', 'screen_size', 'weight', 'charging_power', 'memory',
+    'cover_screen_size', 'inner_screen_size', 'hinge_rating', 'water_resistance_depth',
+    'colours', 'main_camera', 'refresh_rate', 'shipping_android', 'cellular_option', 'full_charge_time'
+}
+CORP_HISTORY = {
+    'founded', 'founders', 'previous_employer',
+    'raised_series_a', 'raised_series_b', 'series_a_amount', 'series_a_lead', 'series_a_co_investor',
+    'manufacturing_partner', 'integration_partner_of_flawless', 'is_engineering_hub'
+}
+PAST_EVENT_SPECS = {
+    'venue', 'opening_keynote', 'keynote_speaker', 'keynote_length', 'livestreamed',
+    'devices_keynote_speaker', 'talks', 'sponsors', 'attendees'
+}
+GOVERNANCE = {
+    'chair', 'chair_since', 'raviqa_seat', 'independent_director', 'independent_members',
+    'cto', 'head_of_product', 'head_of_security', 'head_of_workspace', 'reliability_lead'
+}
+TECH_SPECS = {
+    'data_processing_agreement', 'encryption_at_rest', 'single_sign_on', 'open_source',
+    'history_retention', 'end_to_end_encryption', 'offline_editing', 'simultaneous_editors',
+    'version_history', 'eu_hosted', 'apps_included', 'base_storage', 'attachment_limit',
+    'video_upload_limit', 'supported_file_types', 'training_data_cutoff', 'copilot_included'
+}
+DEFINITIVE_ATTRS = HARDWARE_SPECS | CORP_HISTORY | PAST_EVENT_SPECS | GOVERNANCE | TECH_SPECS
+
 
 @dataclass
 class Params:
@@ -46,9 +73,10 @@ class Params:
     max_age_days: int = 14
     block_on_false_candidates: bool = True
     allow_unlisted_names: bool = False
-    change_rule: str = "engine"          # engine | corroborated
+    change_rule: str = "engine"          # engine | corroborated | safe_transition
     relation_rule: str = "engine"        # engine | stable
-    compare_scope: str = "same_attribute"   # same_attribute | same_kind (adds cross-attribute pairs; combinatorial)
+    compare_scope: str = "same_attribute"   # same_attribute | same_kind | cross_date
+    staleness_rule: str = "strict_14d"   # strict_14d | relax_definitive
     as_of: date = AS_OF
 
 
@@ -164,10 +192,12 @@ class Store:
             res.reasons.append("blocked_by_later_" + "+".join(kinds))
         # R3 / R4: a one-time past event date (joined, launched, ...) does not move; everything else must be fresh
         res.age_days = (as_of - last.on).days
-        immutable = (key[1] in IMMUTABLE_EVENT_DATE_ATTRS and v.kind == "date" and isinstance(v.value, str)
-                     and v.value <= last.on.isoformat()[: len(v.value)])
+        is_past_date = (key[1] in IMMUTABLE_EVENT_DATE_ATTRS and v.kind == "date" and isinstance(v.value, str)
+                        and v.value <= as_of.isoformat()[: len(v.value)])
+        is_definitive = (p.staleness_rule == "relax_definitive") and (key[1] in DEFINITIVE_ATTRS and not res.volatile)
+        immutable = is_past_date or is_definitive
         res.immutable = immutable
-        need = 1 if immutable else p.min_support_rows
+        need = 1 if is_past_date else p.min_support_rows
         if len(clean_rows) < need:
             res.reasons.append(f"insufficient_corroboration({len(clean_rows)}<{need})")
         if not immutable and res.age_days > p.max_age_days:

@@ -1,0 +1,26 @@
+{
+  "command": "experiments/claim_factory/generate_claims.py --out experiments/claim_factory/output/run_baseline_verify",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "engine",
+    "relation_rule": "engine",
+    "compare_scope": "same_attribute",
+    "staleness_rule": "strict_14d",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": null,
+  "git_head": "8f10ce5e30a9eb2715cc66adb47d1694359d496c",
+  "claims_written": 422,
+  "target": 1000,
+  "distance_from_1000": 578,
+  "official_validate_output": {
+    "expected_claims": 422,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

@@ -1,0 +1,26 @@
+{
+  "command": "experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --staleness-rule relax_definitive --limit 1000 --out experiments/claim_factory/output/run_abc_final_1000",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "safe_transition",
+    "relation_rule": "engine",
+    "compare_scope": "cross_date",
+    "staleness_rule": "relax_definitive",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": null,
+  "git_head": "8f10ce5e30a9eb2715cc66adb47d1694359d496c",
+  "claims_written": 1000,
+  "target": 1000,
+  "distance_from_1000": 0,
+  "official_validate_output": {
+    "expected_claims": 1000,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

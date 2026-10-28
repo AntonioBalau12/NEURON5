@@ -1,0 +1,211 @@
+Hype or Truth Hooly The Challenge The Claims The Starter Rules Submission Fork the Starter Hooly The Challenge The Claims The Starter Rules Submission Fork the Starter 
+Every call is checked against the truth. 
+
+Hype or Truth 
+
+Build a system that tells hype from truth, labels rows about Hooly, and generates 1,000 new claims of its own. 
+Fork the Starter How It Works 
+
+The challenge, by the numbers. 
+
+about 18,000 
+
+Rows to classify. Your system gets rows about Hooly with no labels, only when we run it. It must decide whether each statement is true, false, or impossible to determine. 
+True False Unsure 
+1,000 
+
+New claims to generate. Your system must write exactly 1,000 original claims by connecting facts from Hooly's universe. Every single one must be true. 
+All 1,000 must be true 
+0.5–1.0 
+
+Confidence in every call. Every true or false label and every generated claim needs a confidence score. A guess is 0.5. Complete certainty is 1.0. Unsure labels carry no confidence score. 
+0.5 · guess 1.0 · certain 
+
+Welcome to Hooly. 
+
+Hooly is a fictional company built for this challenge. Its name nods to Hooli from Silicon Valley , while its products borrow real Google product names and place them in an entirely fictional universe. 
+
+That universe spans a year of documents, web pages, social posts, presentations, and press releases. Prices change. People join and leave. Events happen. Dates matter. Some sources even contradict the truth. 
+
+Your job is to figure out what the evidence actually supports. 
+
+A few things you'll find in the dataset 
+7 October 2025 
+Hooly AI Pro: €49 per month, or €490 a year. 
+On that date True 1 April 2026 
+Hooly AI Pro: €59 per month, or €590 a year. 
+On that date True 10 June 2026 
+Gavin: Gemini speaks 40 languages, which is more than any competitor. 
+The claim is wrong False 20 January 2026 
+Hooly runs at €1 million a year 
+Not enough evidence Unsure 
+
+The source material is your entire world. Don't rely on the live web or facts a pretrained model happens to know. A claim is only as reliable as the evidence in Hooly's universe. 
+
+Two jobs. One system. 
+
+Your system has two responsibilities, and both matter. 
+
+Classify the rows 
+
+Take every unlabelled row and assign one of three labels: 
+True: the statement is true on its date. 
+
+False: the statement contradicts the truth on its date. 
+
+Unsure: the available evidence isn't enough to decide. 
+Every true or false decision needs a confidence score between 0.5 and 1.0. 
+
+Generate new claims 
+
+Write exactly 1,000 new, structured claims about Hooly, connecting information across the universe. No claim may copy a row of the input word for word. Every generated claim must be true and original. 
+
+How you build the system is up to you. How well it handles the evidence is what counts. 
+Explore the Starter 
+
+From evidence to verdict 
+
+Reads 
+Rows about Hooly 
+Your system A new claim · compare 
+Hooly Workspace costs more than Hooly AI Pro. 
+Confidence 0.9 True The judge checks it against the truth 
+The truth confirms the relationship: Workspace costs €199 per month, while AI Pro costs €59. 
+
+Confidence is part of the answer. 
+
+Your system must communicate how confident it is. 
+
+Every true or false label and every generated claim needs a confidence from 0.5 to 1.0. 
+1.0 Certain 
+Your system has strong evidence for its answer. 
+0.75 Fairly sure 
+The evidence supports the answer, but some uncertainty remains. 
+0.5 A guess 
+Your system is making its least-confident possible call. 
+
+An unsure label has no confidence score. 
+
+Five ways to make a claim. 
+
+Generated claims must use one of five supported types. Each type represents a different way of expressing information from the source material. 
+fact A direct statement about a subject. 
+Hooly AI Pro costs €59 per month. 
+compare A comparison between two subjects or values. 
+Hooly Workspace costs more than Hooly AI Pro. 
+change A statement describing how something changed over time. 
+Hooly AI Pro went from €49 per month to €59 per month. 
+at_event A fact tied to a specific event. 
+Hooly Gemini spoke 12 languages at Hooly I/O 2026. 
+relation A fact about whoever a link names, such as the CTO of Hooly. 
+The CTO of Hooly joined on 1 July 2026. 
+
+Every claim must be true. Every claim must be new. Submit exactly 1,000. Only the first 1,000 will be judged. 
+
+Everything you need to get started. 
+
+The challenge resources become public at 09:00 on 28 October 2026. 
+The practice dataset Rows with known true, false, or unsure labels, alongside the facts they state. Use these to build and test your system. The lexicon A reference for every subject, its aliases, attributes, and associated events. The contract The technical specification: what your system receives, how it runs, and what it must return. The sample Twenty new, unlabelled rows added to the starter at 09:00 on 29 October. Use them to test your final setup. The checker A tool that runs your system the way we will and checks its output table's format. 
+You can practise on the provided rows. During evaluation, your system will process approximately 20,000 rows. 
+Fork the Starter 
+
+The rules of the arena. 
+
+Build it your way, but play by the rules. 
+
+Allowed Any architecture Choose your approach, model design, algorithms, and implementation. 
+
+Allowed LLMs during development Use LLMs to help you build the system and to generate material it learns from. 
+
+Not allowed An LLM as the system itself Your submitted system may not be an LLM. 
+
+Required Work in your fork Fork the public starter repository and develop your solution there. Your work must be traceable through your fork. 
+
+Required A working frontend Your submission must include a frontend that presents your architecture as a diagram and runs your system live. 
+
+The final countdown. 
+
+Everything comes down to one submission deadline. Make sure your system is ready before the clock runs out. 
+
+09:00 · 29 October The sample goes live. 
+Twenty new, unlabelled rows are added to the starter repository. 
+
+Before 11:00 · 29 October Open your pull request. 
+Submit one pull request per team, named after your team. It must contain your Dockerfile and everything needed to start your frontend. 
+
+11:00 · 29 October Submission closes. 
+Submit a video showing your frontend running your system on the sample. 
+
+Your pull request is now frozen. Any push or closure after 11:00 disqualifies your team. 
+
+After 11:00 The systems go to work. 
+We run every team's system offline against approximately 20,000 rows. Each run has a maximum of 30 minutes. 
+
+17:00 · 29 October The final. 
+The finalists pitch on stage. 
+
+Under the hood. 
+
+Every team's system is run once, after submissions close, using a single Docker image built from the Dockerfile at the root of its repository. 
+
+The build process has network access. The actual run does not. 
+
+The execution limits 
+
+3 GiB Docker image, maximum 
+
+6 GiB Memory 
+
+30 minutes Runtime 
+
+2 CPUs 
+
+None Network access during execution 
+
+3 GiB Docker image, maximum 
+
+6 GiB Memory 
+
+30 minutes Runtime 
+
+2 CPUs 
+
+None Network access during execution 
+
+What your system receives 
+
+Approximately 20,000 rows. The practice rows retain their known labels; the remaining rows are unlabelled. 
+
+What your system must return 
+
+One CSV table containing a label for every unlabelled row and exactly 1,000 newly generated claims. 
+
+What gets evaluated 
+
+The table written to disk when the run ends. Make sure your output is complete, valid, and saved in the expected format. 
+
+The output format 
+
+Column Classification row Generated claim 
+
+id The original row ID A new, unique ID 
+
+type Empty fact, compare, change, at_event, or relation 
+
+text Empty The claim, written as one sentence 
+
+form Empty The structured claim 
+
+label true, false, or unsure true 
+
+confidence 0.5–1.0; empty if unsure 0.5–1.0 
+
+Your system has the evidence. The rules are clear. Now make the call. 
+Fork the Starter 
+
+Hype or Truth 
+
+QA DNA's challenge for the NEXXT AI Hackathon · 28–29 October 2026. 
+Fork the Starter Present This Page (P) 
+Made by 
+Automated QA testing for software teams. qadna.co Software and AI development by senior engineers from the team behind QA DNA. aidna.software Hooly The Challenge The Claims The Starter Rules Submission Starter Repository © 2026 QA DNA. Hooly is fictional. Its product names are used fictitiously. 

@@ -1,0 +1,26 @@
+{
+  "command": "experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --out experiments/claim_factory/output/run_ab_safe",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "safe_transition",
+    "relation_rule": "engine",
+    "compare_scope": "cross_date",
+    "staleness_rule": "strict_14d",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": null,
+  "git_head": "8f10ce5e30a9eb2715cc66adb47d1694359d496c",
+  "claims_written": 968,
+  "target": 1000,
+  "distance_from_1000": 32,
+  "official_validate_output": {
+    "expected_claims": 968,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

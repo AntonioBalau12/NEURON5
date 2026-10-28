@@ -70,7 +70,7 @@ def reverify(store: Store, ctype: str, form: dict, p: Params) -> list[str]:
     elif ctype == "change":
         status, _ = store.engine_status("change", form)
         if status != EvidenceState.VERIFIED_SUPPORT.value:
-            if p.change_rule != "corroborated":
+            if p.change_rule not in ("corroborated", "safe_transition"):
                 out.append("engine_change_candidate_only")
             else:
                 k = key(form["subject"], form["attribute"])
@@ -237,15 +237,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--claims", required=True)
     ap.add_argument("--provenance", default=None)
     ap.add_argument("--report", default=None)
-    ap.add_argument("--change-rule", default="engine", choices=["engine", "corroborated"])
+    ap.add_argument("--change-rule", default="engine", choices=["engine", "corroborated", "safe_transition"])
     ap.add_argument("--relation-rule", default="engine", choices=["engine", "stable"])
+    ap.add_argument("--staleness-rule", default="strict_14d", choices=["strict_14d", "relax_definitive"])
     ap.add_argument("--max-age-days", type=int, default=14)
     ap.add_argument("--min-support-rows", type=int, default=1)
     ap.add_argument("--no-block-on-false-candidates", action="store_true")
     ap.add_argument("--allow-unlisted-names", action="store_true")
     a = ap.parse_args(argv)
     p = Params(min_support_rows=a.min_support_rows, max_age_days=a.max_age_days, change_rule=a.change_rule, relation_rule=a.relation_rule,
-               block_on_false_candidates=not a.no_block_on_false_candidates, allow_unlisted_names=a.allow_unlisted_names)
+               staleness_rule=a.staleness_rule, block_on_false_candidates=not a.no_block_on_false_candidates, allow_unlisted_names=a.allow_unlisted_names)
     rep = validate(Path(a.claims), p, Path(a.provenance) if a.provenance else None, Path(a.report) if a.report else None)
     print(json.dumps({k: rep[k] for k in ("claims", "by_type", "claims_with_any_problem", "problem_layers", "provenance", "timing_s")}, indent=2))
     print("official validate_output (expected_claims=n): problems =", rep["official_validate_output_expected_n"]["n_problems"],

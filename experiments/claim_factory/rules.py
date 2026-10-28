@@ -1,4 +1,4 @@
-﻿"""Candidate generation for the five claim types.  Every candidate carries its evidence and, if it is refused,
+"""Candidate generation for the five claim types.  Every candidate carries its evidence and, if it is refused,
 a stable reason code.  Nothing is invented: a candidate exists only because the evidence store holds the facts it needs.
 """
 from __future__ import annotations
@@ -158,20 +158,20 @@ def gen_compare(store: Store) -> list[Cand]:
                 else:
                     c.text = text
                 out.append(c)
-    if store.params.compare_scope == "same_kind":
-        out.extend(_gen_compare_cross_attribute(store))
+    if store.params.compare_scope in ("same_kind", "cross_date"):
+        out.extend(_gen_compare_cross_attribute(store, date_only=(store.params.compare_scope == "cross_date")))
     return out
 
 
-def _gen_compare_cross_attribute(store: Store) -> list[Cand]:
-    """OPTIONAL (--compare-scope same_kind): compare two verified facts of DIFFERENT attributes that compare by the contract
-    (dates; counts of the same noun; amounts in one unit / currency+period; durations).  Valid and verified, but combinatorial:
-    its size grows with the square of the number of verified facts, so it is reported separately and is not part of the default."""
+def _gen_compare_cross_attribute(store: Store, date_only: bool = False) -> list[Cand]:
+    """OPTIONAL (--compare-scope same_kind or cross_date): compare two verified facts of DIFFERENT attributes that compare by the contract.
+    When date_only is True (cross_date), exclusively compares immutable calendar dates using render.DATE_VERB and render.DATE_PHRASE."""
     ok: list[tuple[tuple[str, str], AsOf]] = []
+    allowed_kinds = ("date",) if date_only else ("date", "quantity", "duration", "money")
     for key in sorted(store.obs):
         if store.support(key):
             r = store.asof_fact(key)
-            if r.accepted and r.value is not None and r.value.kind in ("date", "quantity", "duration", "money"):
+            if r.accepted and r.value is not None and r.value.kind in allowed_kinds:
                 if r.value.kind == "date" and len(str(r.value.value)) != 10:
                     continue
                 ok.append((key, r))
@@ -203,7 +203,7 @@ def _gen_compare_cross_attribute(store: Store) -> list[Cand]:
             status, why = store.engine_status("compare", c.form)
             c.engine = {"status": status, "reason": why}
             c.verified = True
-            c.confidence = 0.8
+            c.confidence = 0.85 if lv.kind == "date" else 0.8
             c.flags.append("cross_attribute_compare")
             if lv.kind == "date":
                 vl, vr = render.DATE_VERB.get(left[1]), render.DATE_VERB.get(right[1])
@@ -262,7 +262,7 @@ def gen_change(store: Store) -> list[Cand]:
                 continue
             if status == EvidenceState.VERIFIED_SUPPORT.value:
                 c.verified = True
-            elif p.change_rule == "corroborated":
+            elif p.change_rule in ("corroborated", "safe_transition"):
                 reasons = []
                 if flapping:
                     reasons.append("flapping_value_sequence")
@@ -273,6 +273,16 @@ def gen_change(store: Store) -> list[Cand]:
                     reasons.append(f"from_endpoint_uncorroborated({nf}<{need(fv)})")
                 if nt < need(tv):
                     reasons.append(f"to_endpoint_uncorroborated({nt}<{need(tv)})")
+                if p.change_rule == "safe_transition":
+                    fr = [o for o in sup if same_value(o.value, fv)]
+                    to = [o for o in sup if same_value(o.value, tv)]
+                    if fr and to and not (min(o.on for o in fr) < max(o.on for o in to)):
+                        reasons.append("from_not_strictly_before_to")
+                    max_to_date = max(o.on for o in to) if to else None
+                    if max_to_date is not None:
+                        later = [o for o in store.obs.get(key, []) if o.on >= max_to_date and not same_value(o.value, tv)]
+                        if later:
+                            reasons.append("later_differing_observation")
                 if reasons:
                     for r in reasons:
                         c.reasons.append("evidence:" + r)
@@ -280,12 +290,12 @@ def gen_change(store: Store) -> list[Cand]:
                     out.append(c)
                     continue
                 c.verified = True
-                c.flags.append("not_engine_verified:change_by_corroborated_pair")
+                c.flags.append("safe_transition" if p.change_rule == "safe_transition" else "not_engine_verified:change_by_corroborated_pair")
             else:
                 c.reject("evidence", "engine_change_candidate_only(observation dates do not establish a transition)")
                 out.append(c)
                 continue
-            c.confidence = 0.8 if c.engine.get("status") != EvidenceState.VERIFIED_SUPPORT.value else 0.9
+            c.confidence = 0.85 if p.change_rule == "safe_transition" else (0.8 if c.engine.get("status") != EvidenceState.VERIFIED_SUPPORT.value else 0.9)
             f, ferr = render.render_value(c.form["from"], store.names, p.allow_unlisted_names, attr)
             t, terr = render.render_value(c.form["to"], store.names, p.allow_unlisted_names, attr)
             if ferr or terr or f is None or t is None:

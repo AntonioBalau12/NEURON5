@@ -45,10 +45,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--extra-min-confidence", type=float, default=0.8)
     ap.add_argument("--extra-corroboration", default="any", choices=["any", "row_form", "two_methods", "cross_row", "agree_or_form"],
                     help="which corroboration rule(s) admit a reconstructed fact")
-    ap.add_argument("--change-rule", default="engine", choices=["engine", "corroborated"])
+    ap.add_argument("--change-rule", default="engine", choices=["engine", "corroborated", "safe_transition"],
+                    help="engine: strictly require engine support. corroborated: pairs with min-support rows. safe_transition: corroborated + chronological + no later contradiction")
     ap.add_argument("--relation-rule", default="engine", choices=["engine", "stable"])
-    ap.add_argument("--compare-scope", default="same_attribute", choices=["same_attribute", "same_kind"],
-                    help="same_attribute: peers only (default). same_kind: also pairs of different attributes (combinatorial, reported separately)")
+    ap.add_argument("--compare-scope", default="same_attribute", choices=["same_attribute", "same_kind", "cross_date"],
+                    help="same_attribute: peers only (default). cross_date: add immutable calendar date cross-compares. same_kind: all cross-attribute pairs")
+    ap.add_argument("--staleness-rule", default="strict_14d", choices=["strict_14d", "relax_definitive"],
+                    help="strict_14d: all facts older than 14d expire (except 13 date attrs). relax_definitive: definitive/immutable facts never expire (14d only for volatile)")
     ap.add_argument("--min-support-rows", type=int, default=1)
     ap.add_argument("--max-age-days", type=int, default=14, help="mutable facts must have been observed at most this many days before the as-of date")
     ap.add_argument("--no-block-on-false-candidates", action="store_true")
@@ -68,7 +71,8 @@ def main(argv: list[str] | None = None) -> int:
     t_total = time.perf_counter()
     params = Params(min_support_rows=args.min_support_rows, max_age_days=args.max_age_days,
                     block_on_false_candidates=not args.no_block_on_false_candidates, allow_unlisted_names=args.allow_unlisted_names,
-                    change_rule=args.change_rule, relation_rule=args.relation_rule, compare_scope=args.compare_scope)
+                    change_rule=args.change_rule, relation_rule=args.relation_rule, compare_scope=args.compare_scope,
+                    staleness_rule=args.staleness_rule)
     t = time.perf_counter()
     store = Store(Path(args.universe_csv), LEXICON_JSON, params, Path(args.reference_csv) if args.reference_csv else None)
     timing["graph_build_s"] = time.perf_counter() - t
