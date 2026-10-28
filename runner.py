@@ -6,17 +6,17 @@ import argparse
 import csv
 import json
 import os
+import signal
 import sys
 import tempfile
 import time
+import threading
 from pathlib import Path
-from typing import Any
-
-import joblib
-import numpy as np
-from scipy.sparse import csr_matrix, hstack
+from typing import Any, Callable
 
 from foundation import OUTPUT_COLUMNS, InputData, evidence_audit, load_inputs, validate_output
+from core.claims.checkpoint import CheckpointManager
+from core.claims.factory import ClaimFactory
 
 
 def default_path(runtime: str, local: str) -> str:
@@ -51,8 +51,15 @@ def read_candidates(path: str | Path) -> list[dict[str, Any]]:
     return raw
 
 
-def predict_unlabeled(data: InputData, model_path: str, practice_path: str) -> dict[str, tuple[str, float | None]]:
-    """Run the serialized M2 model; inference rows need only id/text/date/label."""
+def predict_unlabeled(data: InputData, model_path: str, practice_path: str, *, deadline: int = 0,
+                      progress: Callable[[dict[str, tuple[str, float | None]]], None] | None = None,
+                      stop_event: threading.Event | None = None, chunk_size: int = 256,
+                      checkpoint_every: int = 1000) -> dict[str, tuple[str, float | None]]:
+    """Run serialized M2 inference incrementally; never use runtime forms."""
+    import joblib
+    import numpy as np
+    from scipy.sparse import csr_matrix, hstack
+
     from core.graph.builder import build_graph
     from core.retrieval.features import FEATURE_NAMES, RetrievalFeatureExtractor
     from core.retrieval.hybrid import HybridEvidenceRetriever
@@ -75,21 +82,20 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str) -> d
     extractor = RetrievalFeatureExtractor(retriever)
     pending = [row for row in data.rows if row.label is None]
     result: dict[str, tuple[str, float | None]] = {}
-    usable: list[Any] = []
-    model_rows: list[dict[str, str]] = []
-    retrieval_rows: list[list[float]] = []
     for row in pending:
         if not row.text.strip() or row.date is None:
             result[row.row_id] = ("unsure", None)
-            continue
-        model_rows.append({"id": row.row_id, "text": row.text, "date": row.date.isoformat()})
-        retrieved_features = extractor.extract(
-            row.text, row.date, exclude_evidence_ids=(row.row_id,)
-        )
-        retrieval_rows.append([retrieved_features[name] for name in FEATURE_NAMES])
-        usable.append(row)
-
-    if usable:
+    usable = [row for row in pending if row.text.strip() and row.date is not None]
+    processed = 0
+    for offset in range(0, len(usable), max(1, chunk_size)):
+        if (deadline and time.time() >= deadline) or (stop_event is not None and stop_event.is_set()):
+            break
+        chunk = usable[offset:offset + max(1, chunk_size)]
+        model_rows = [{"id": row.row_id, "text": row.text, "date": row.date.isoformat()} for row in chunk]
+        retrieval_rows = []
+        for row in chunk:
+            retrieved_features = extractor.extract(row.text, row.date, exclude_evidence_ids=(row.row_id,))
+            retrieval_rows.append([retrieved_features[name] for name in FEATURE_NAMES])
         base_matrix, _ = transform_features(model_rows, feature_builder)
         retrieval_matrix = csr_matrix(np.asarray(retrieval_rows, dtype=np.float32))
         features = hstack((base_matrix, retrieval_matrix), format="csr", dtype=np.float32)
@@ -98,22 +104,27 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str) -> d
             raise ValueError(f"M2 feature count mismatch: {features.shape[1]} != {expected}")
         probabilities = np.asarray(estimator.predict_proba(features), dtype=np.float64)
         classes = tuple(str(item) for item in estimator.classes_)
-        aligned = np.zeros((len(usable), len(label_order)), dtype=np.float64)
+        aligned = np.zeros((len(chunk), len(label_order)), dtype=np.float64)
         for column, label in enumerate(classes):
             if label in label_order:
                 aligned[:, label_order.index(label)] = probabilities[:, column]
         threshold = float(artifact.get("minimum_confidence", 0.5))
-        for index, row in enumerate(usable):
+        false_threshold = float(artifact.get("false_threshold", 1.0000001))
+        for index, row in enumerate(chunk):
             predicted = label_order[int(np.argmax(aligned[index]))]
             confidence = float(aligned[index, label_order.index(predicted)])
             false_confidence = float(aligned[index, label_order.index("false")])
-            false_threshold = float(artifact.get("false_threshold", 1.0000001))
             if predicted != "false" and false_confidence >= false_threshold:
                 predicted, confidence = "false", false_confidence
             if predicted == "unsure" or confidence < threshold:
                 result[row.row_id] = ("unsure", None)
             else:
                 result[row.row_id] = (predicted, confidence)
+        processed += len(chunk)
+        if progress is not None and processed % max(1, checkpoint_every) < len(chunk):
+            progress(result.copy())
+    if progress is not None and result:
+        progress(result.copy())
     return result
 
 
@@ -146,67 +157,105 @@ def run(
         return 2
     audit = evidence_audit(data)
     print("evidence audit:", json.dumps(audit, sort_keys=True))
-    # The P0 runner has no claim-generation model. It accepts externally
-    # produced candidates only after the official schema and local checks pass.
-    if not candidates_path:
-        print("cannot meet exactly 1,000 claims: no verified candidate source is available", file=sys.stderr)
-        print("no output written; unsupported claims will not be fabricated", file=sys.stderr)
-        return 2
-    try:
-        claims = read_candidates(candidates_path)
-    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
-        print(f"cannot load claim candidates: {exc}", file=sys.stderr)
-        return 2
-    if len(claims) != 1000:
-        print(f"candidate count is {len(claims)}, not 1,000; no output written", file=sys.stderr)
-        return 2
     packaged_practice = practice_path or str(Path(__file__).resolve().parent / "data" / "practice.csv")
     packaged_model = model_path or os.environ.get(
         "NEURON_M2_MODEL",
         str(Path(__file__).resolve().parent / "ml" / "classical" / "results_m2_v1" / "model.joblib"),
     )
+    fallback_predictions = {row.row_id: ("unsure", None) for row in data.rows if row.label is None}
+    predictions = fallback_predictions
+    manager = CheckpointManager(output, data, contract_dir)
     try:
-        predictions = predict_unlabeled(data, packaged_model, packaged_practice)
-    except Exception as exc:
-        print(f"M2 inference failed: {exc}", file=sys.stderr)
-        return 2
-    rows: list[dict[str, Any]] = []
-    for row in data.rows:
-        if row.label is None:
-            label, confidence = predictions.get(row.row_id, ("unsure", None))
-            rows.append({"id": row.row_id, "type": "", "text": "", "form": "", "label": label,
-                         "confidence": "" if confidence is None else confidence})
-    for claim in claims:
-        rows.append({
-            "id": claim.get("id", ""), "type": claim.get("type", ""), "text": claim.get("text", ""),
-            "form": json.dumps(claim.get("form", {}), ensure_ascii=False, separators=(",", ":")),
-            "label": claim.get("label", "true"), "confidence": claim.get("confidence", 0.5),
-        })
-    # Validate a temporary candidate before replacing any previously complete output.
-    dest = Path(output)
-    staged = dest.with_name(dest.name + ".validate.tmp")
-    try:
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        atomic_write_csv(staged, rows)
-        problems = validate_output(staged, data, contract_dir)
-        if problems:
-            print("output validation failed:", *problems[:40], sep="\n- ", file=sys.stderr)
-            staged.unlink(missing_ok=True)
+        if not manager.publish(predictions, []):
+            print("initial UNSURE checkpoint validation failed:", *manager.last_validation[:30], sep="\n- ", file=sys.stderr)
             return 2
-        if deadline and time.time() >= deadline:
-            print("deadline passed before output commit", file=sys.stderr)
-            staged.unlink(missing_ok=True)
-            return 2
-        os.replace(staged, dest)
     except OSError as exc:
-        print(f"cannot publish output: {exc}", file=sys.stderr)
+        print(f"cannot publish initial UNSURE checkpoint: {exc}", file=sys.stderr)
         return 2
-    finally:
+    stop_event = threading.Event()
+    previous_handler = None
+    if hasattr(signal, "SIGTERM"):
         try:
-            staged.unlink(missing_ok=True)
-        except OSError:
-            pass
-    print(f"wrote {dest}")
+            previous_handler = signal.getsignal(signal.SIGTERM)
+            signal.signal(signal.SIGTERM, lambda _signum, _frame: stop_event.set())
+        except (ValueError, OSError):  # signal handlers can only be installed on the main thread
+            previous_handler = None
+    inference_predictions = fallback_predictions.copy()
+
+    def checkpoint_inference(partial: dict[str, tuple[str, float | None]]) -> None:
+        inference_predictions.update(partial)
+        try:
+            if not manager.publish(inference_predictions, []):
+                print("inference checkpoint rejected; previous checkpoint preserved:",
+                      *manager.last_validation[:10], sep="\n- ", file=sys.stderr)
+        except OSError as exc:
+            print(f"inference checkpoint write failed; previous checkpoint preserved: {exc}", file=sys.stderr)
+
+    try:
+        inferred = predict_unlabeled(data, packaged_model, packaged_practice, deadline=deadline,
+                                      progress=checkpoint_inference, stop_event=stop_event)
+        inference_predictions.update(inferred)
+    except Exception as exc:
+        print(f"M2 inference unavailable; using UNSURE for unprocessed rows: {exc}", file=sys.stderr)
+        predictions = inference_predictions
+    else:
+        try:
+            if manager.publish(inference_predictions, []):
+                predictions = inference_predictions
+            else:
+                print("classification checkpoint validation failed; keeping all-UNSURE checkpoint:",
+                      *manager.last_validation[:30], sep="\n- ", file=sys.stderr)
+        except OSError as exc:
+            print(f"cannot update classification checkpoint; keeping all-UNSURE checkpoint: {exc}", file=sys.stderr)
+    claims: list[dict[str, Any]] = []
+    # Publish a validated classification checkpoint before claim generation.
+    # Generation failure or SIGTERM therefore leaves a complete label file.
+    factory = ClaimFactory(universe, lexicon, packaged_practice, contract_dir, deadline, stop_event=stop_event,
+                           publication_seconds=manager.last_elapsed)
+
+    def checkpoint_claims(partial_claims: list[dict[str, Any]]) -> float:
+        try:
+            exact_partial = len(partial_claims) == 1000
+            if not manager.publish(predictions, partial_claims, exact=exact_partial):
+                print("claim checkpoint rejected; previous valid output preserved:",
+                      *manager.last_validation[:10], sep="\n- ", file=sys.stderr)
+        except OSError as exc:
+            print(f"claim checkpoint write failed; previous valid output preserved: {exc}", file=sys.stderr)
+        return manager.last_elapsed
+
+    try:
+        if not stop_event.is_set() and (not deadline or time.time() < deadline):
+            if candidates_path:
+                print("--candidates-json is not accepted for publication; candidates require P3 evidence provenance", file=sys.stderr)
+            claims, metrics = factory.generate(on_checkpoint=checkpoint_claims)
+            print("claim factory:", json.dumps(metrics, sort_keys=True))
+    except Exception as exc:
+        print(f"claim generation failed; preserving the validated classification checkpoint: {exc}", file=sys.stderr)
+        claims = []
+    finally:
+        if previous_handler is not None:
+            try:
+                signal.signal(signal.SIGTERM, previous_handler)
+            except (ValueError, OSError):
+                pass
+
+    claims = claims[:1000]
+    exact = len(claims) == 1000
+    try:
+        if not manager.publish(predictions, claims, exact=exact):
+            print("final output validation failed; previous valid checkpoint preserved:",
+                  *manager.last_validation[:30], sep="\n- ", file=sys.stderr)
+            return 2
+    except OSError as exc:
+        print(f"cannot publish final output: {exc}; previous checkpoint preserved", file=sys.stderr)
+        return 2
+    if manager.preserved_complete:
+        print("kept the previously validated complete 1,000-claim output")
+    elif not exact:
+        print(f"published best available output with {len(claims)} claims; deficit={1000-len(claims)}. "
+              "This is not 1,000-claim compliance.", file=sys.stderr)
+    else:
+        print(f"wrote {output}; claims={len(claims)}; checkpoint_write_seconds={manager.last_elapsed:.3f}")
     return 0
 
 
@@ -216,7 +265,7 @@ def main() -> int:
     parser.add_argument("--lexicon", default=default_path("/universe/lexicon.json", "data/lexicon.json"))
     parser.add_argument("--output", default=default_path("/output/output.csv", "output/output.csv"))
     parser.add_argument("--contract-dir", default=str(Path(__file__).resolve().parent / "contracts"))
-    parser.add_argument("--candidates-json", help="JSON array of 1,000 precomputed verified claim candidates")
+    parser.add_argument("--candidates-json", help="Deprecated; external claims are rejected without evidence provenance")
     parser.add_argument("--model", default=None, help="Path to the serialized M2 model")
     parser.add_argument("--practice", default=None, help="Path to packaged practice evidence with forms")
     args = parser.parse_args()
