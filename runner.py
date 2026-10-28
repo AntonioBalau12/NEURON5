@@ -64,6 +64,7 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str, *, d
     from core.retrieval.features import FEATURE_NAMES, RetrievalFeatureExtractor
     from core.retrieval.hybrid import HybridEvidenceRetriever
     from ml.classical.benchmark import LABELS, transform_features
+    from ml.classical.decision_policy import CalibratedDecisionPolicy
 
     artifact = joblib.load(model_path)
     if not isinstance(artifact, dict):
@@ -75,9 +76,16 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str, *, d
         raise ValueError(f"model label order mismatch: {label_order!r}")
     if tuple(artifact["retrieval_feature_names"]) != tuple(FEATURE_NAMES):
         raise ValueError("M2 retrieval feature schema mismatch")
+    policy = artifact.get("decision_policy")
+    if not isinstance(policy, CalibratedDecisionPolicy):
+        raise ValueError("M2 v2 artifact is missing its serialized CalibratedDecisionPolicy")
+    if tuple(policy.label_order) != label_order:
+        raise ValueError("M2 decision policy label order mismatch")
 
     reference = load_inputs(practice_path, str(Path(practice_path).with_name("lexicon.json")))
-    graph = build_graph(data, reference_evidence=reference)
+    # M2 v2 was calibrated with reference-only retrieval features. Runtime
+    # candidates remain available to the claim generator, but not this classifier.
+    graph = build_graph(reference)
     retriever = HybridEvidenceRetriever(graph)
     extractor = RetrievalFeatureExtractor(retriever)
     pending = [row for row in data.rows if row.label is None]
@@ -108,18 +116,11 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str, *, d
         for column, label in enumerate(classes):
             if label in label_order:
                 aligned[:, label_order.index(label)] = probabilities[:, column]
-        threshold = float(artifact.get("minimum_confidence", 0.5))
-        false_threshold = float(artifact.get("false_threshold", 1.0000001))
         for index, row in enumerate(chunk):
-            predicted = label_order[int(np.argmax(aligned[index]))]
-            confidence = float(aligned[index, label_order.index(predicted)])
-            false_confidence = float(aligned[index, label_order.index("false")])
-            if predicted != "false" and false_confidence >= false_threshold:
-                predicted, confidence = "false", false_confidence
-            if predicted == "unsure" or confidence < threshold:
-                result[row.row_id] = ("unsure", None)
-            else:
-                result[row.row_id] = (predicted, confidence)
+            retrieved = {FEATURE_NAMES[column]: retrieval_rows[index][column]
+                         for column in range(len(FEATURE_NAMES))}
+            predicted, confidence, _tier, _reason = policy.decide_single(aligned[index], retrieved)
+            result[row.row_id] = (predicted, confidence)
         processed += len(chunk)
         if progress is not None and processed % max(1, checkpoint_every) < len(chunk):
             progress(result.copy())
@@ -160,7 +161,7 @@ def run(
     packaged_practice = practice_path or str(Path(__file__).resolve().parent / "data" / "practice.csv")
     packaged_model = model_path or os.environ.get(
         "NEURON_M2_MODEL",
-        str(Path(__file__).resolve().parent / "ml" / "classical" / "results_m2_v1" / "model.joblib"),
+        str(Path(__file__).resolve().parent / "ml" / "classical" / "results_m2_v2" / "model.joblib"),
     )
     fallback_predictions = {row.row_id: ("unsure", None) for row in data.rows if row.label is None}
     predictions = fallback_predictions
