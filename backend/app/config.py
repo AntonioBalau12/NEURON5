@@ -64,6 +64,8 @@ class Settings:
     classifier_timeout_seconds: float = 30 * 60
     classifier_retries: int = 0
     classifier_token: str | None = None
+    #: artificial delay of the in-process DEMO classifier (no URLs configured)
+    mock_delay_seconds: float = 1.0
     cookie_name: str = "n5_session"
     cors_origins: tuple[str, ...] = (
         "http://localhost:3000",
@@ -94,4 +96,5 @@ def get_settings() -> Settings:
         classifier_timeout_seconds=_env_float("NEURON_CLASSIFIER_TIMEOUT_SECONDS", 30 * 60),
         classifier_retries=_env_int("NEURON_CLASSIFIER_RETRIES", 0),
         classifier_token=os.environ.get("NEURON_CLASSIFIER_TOKEN") or None,
+        mock_delay_seconds=_env_float("NEURON_MOCK_DELAY_SECONDS", 1.0),
     )

@@ -38,6 +38,22 @@ Contractul juraților fixează schema de input (`id,text,date,label`) și output
   **adaugă** o coloană la final (permisiune explicită D2). CSV-ul original nu e modificat.
 - ordinea coloanelor existente și ordinea rândurilor se păstrează.
 
+## D2b — Schema de input primită: `id,text,date,label,form`
+
+Echipa primește fișiere cu exact aceste cinci coloane, în această ordine (ex.
+`data/practice.csv`). Backend-ul le tratează ca format de prim rang:
+
+- header exact → `format: "practice"`, mapping fix (`text/date/id/label`) deja confirmat
+  (nu mai e nevoie de pasul de mapping înainte de job);
+- fiecare rând e validat: `id`/`text` ne-goale, `date` ISO `yyyy-mm-dd`, `label`
+  gol sau `true|false|unsure`, `form` gol sau JSON array de `{subject, attribute,
+  value}`; rândurile problematice nu blochează upload-ul, adaugă warning-ul
+  `PRACTICE_ROW_ERRORS`;
+- coloana `form` este păstrată neatinsă atât în snapshot, cât și în output-ul final;
+  payload-ul către serviciul colegilor conține toate cele cinci câmpuri (modul `csv`
+  trimite fișierul, modul `rows` trimite obiecte cu toate coloanele);
+- CSV-urile generice rămân acceptate (`format: "generic"`, mapping confirmat manual).
+
 ## D3 — Semantica `unsafe`
 
 Fără echivalent în contractul juraților. Nu există categorie „conținut periculos” în date.
@@ -69,8 +85,12 @@ etichete înguste (`id` + `label`), backend-ul le îmbină cu snapshot-ul păstr
 ordinea și rândurile.
 
 Consecințe:
-- nu există model, lexicon sau inferență locală în acest build; `app/engine/remote_engine.py`
-  este clientul HTTP, `app/engine/processor.py` doar stochează și validează răspunsul.
+- nu există model real, lexicon sau inferență locală; `app/engine/remote_engine.py` este
+  clientul HTTP, `app/engine/processor.py` doar stochează și validează răspunsul.
+- pentru dezvoltare zero-config există un **mock intern DEMO** (`app/engine/mock_engine.py`):
+  dacă `NEURON_CLASSIFIER_URLS` lipsește, joburile primesc etichete-placeholder
+  deterministe, iar logul jobului conține avertismentul „DEMO classifier”. Setarea URL-ului
+  real comută automat pe clientul HTTP, fără schimbări de cod sau UI.
 - indisponibilitatea serviciului **nu** produce etichete inventate: jobul eșuează cu
   `CLASSIFIER_UNAVAILABLE` (sau `TIMEOUT`), iar UI arată motivul.
 - pentru dezvoltare locală există `app/mock_classifier.py`, un stand-in care răspunde cu
