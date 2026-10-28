@@ -1,0 +1,327 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qadna.co/hype-arena/schemas/v1/entry.schema.json",
+  "title": "Entry",
+  "description": "One entry: a claim about the universe, with its text and its structured form, as a row of the table a system hands in (the contract, contracts/README.md in the starter), where tag is the label column. The form names each fact by its subject, as the lexicon names it, and its attribute, and the text must hold what the form says (contracts/claim-forms.md). Each entry is tagged true or false, with a confidence.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "text",
+    "form",
+    "tag",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The entry's id, unique in the file. Its ruling names it.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9_.-]+$"
+    },
+    "type": {
+      "description": "The claim type, which sets the claim's shape.",
+      "enum": [
+        "fact",
+        "compare",
+        "change",
+        "at_event",
+        "relation"
+      ]
+    },
+    "text": {
+      "description": "The claim in words, as contracts/claim-forms.md publishes them for its type. At most 300 characters.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "pattern": "\\S"
+    },
+    "form": {
+      "type": "object"
+    },
+    "tag": {
+      "description": "Whether the claim is true or false on its date, as the system that wrote it holds it.",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "confidence": {
+      "description": "How sure the system is that its tag is right, from 0.5 (a guess) to 1 (certain).",
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "fact"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/fact"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "compare"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/compare"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "change"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/change"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "at_event"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/at_event"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "relation"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/relation"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "value": {
+      "description": "A value, stated exactly: no op. A claim that one value is more or less than another is a compare.",
+      "$ref": "claimed_value.schema.json",
+      "not": {
+        "required": [
+          "op"
+        ]
+      }
+    },
+    "fact": {
+      "description": "One fact has a value on the as-of date. The text names the fact's subject and states the value.",
+      "type": "object",
+      "required": [
+        "subject",
+        "attribute",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/name"
+        },
+        "attribute": {
+          "$ref": "#/$defs/attribute"
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        }
+      }
+    },
+    "compare": {
+      "description": "Two facts of one kind compare: the left fact's value is more than (gt), less than (lt) or the same as (eq) the right's on the as-of date. For dates gt is after and lt before. The text names the left fact's subject, then a phrase of op, then the right fact's subject.",
+      "type": "object",
+      "required": [
+        "left",
+        "right",
+        "op"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "left": {
+          "description": "The left fact.",
+          "$ref": "#/$defs/ref"
+        },
+        "right": {
+          "description": "The right fact.",
+          "$ref": "#/$defs/ref"
+        },
+        "op": {
+          "enum": [
+            "gt",
+            "lt",
+            "eq"
+          ]
+        }
+      }
+    },
+    "change": {
+      "description": "One fact went from one value to another, at some time: it held from, and later to. The text names the fact's subject and states both values in a change phrase.",
+      "type": "object",
+      "required": [
+        "subject",
+        "attribute",
+        "from",
+        "to"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/name"
+        },
+        "attribute": {
+          "$ref": "#/$defs/attribute"
+        },
+        "from": {
+          "description": "The earlier value.",
+          "$ref": "#/$defs/value"
+        },
+        "to": {
+          "description": "The later value.",
+          "$ref": "#/$defs/value"
+        }
+      }
+    },
+    "at_event": {
+      "description": "A fact had a value on the date of an event. The text names the fact's subject, then an event phrase and the event, and states the value.",
+      "type": "object",
+      "required": [
+        "subject",
+        "attribute",
+        "event",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/name"
+        },
+        "attribute": {
+          "$ref": "#/$defs/attribute"
+        },
+        "event": {
+          "description": "The event's name, as the lexicon gives it.",
+          "$ref": "#/$defs/name"
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        }
+      }
+    },
+    "relation": {
+      "description": "A fact of the entity another fact names: the link is an attribute of the subject whose value names an entity, such as Hooly's series_a_lead, and target is the entity it names; attribute is that entity's. The text names the link's subject, holds the link's relation words and states the value.",
+      "type": "object",
+      "required": [
+        "subject",
+        "link",
+        "target",
+        "attribute",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/name"
+        },
+        "link": {
+          "description": "The subject's attribute that names an entity.",
+          "$ref": "#/$defs/attribute"
+        },
+        "target": {
+          "description": "The entity the link names.",
+          "$ref": "#/$defs/name"
+        },
+        "attribute": {
+          "$ref": "#/$defs/attribute"
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        }
+      }
+    },
+    "name": {
+      "description": "A name or alias of an entity, as the lexicon gives it; case and runs of spaces do not matter.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "pattern": "\\S"
+    },
+    "attribute": {
+      "description": "An attribute of the subject, as the lexicon gives it.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "ref": {
+      "description": "A fact: its subject and attribute.",
+      "type": "object",
+      "required": [
+        "subject",
+        "attribute"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/name"
+        },
+        "attribute": {
+          "$ref": "#/$defs/attribute"
+        }
+      }
+    }
+  }
+}

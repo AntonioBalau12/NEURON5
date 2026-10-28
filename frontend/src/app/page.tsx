@@ -4,10 +4,12 @@ import MarketingSection from '@/components/MarketingSection';
 
 export default function Home() {
   return (
-    <div className="relative w-full overflow-x-hidden">
-      <Header />
-      <Studio />
+    <>
+      <div className="relative flex h-[100dvh] w-full flex-col overflow-hidden">
+        <Header />
+        <Studio />
+      </div>
       <MarketingSection />
-    </div>
+    </>
   );
 }
