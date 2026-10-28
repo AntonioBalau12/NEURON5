@@ -14,6 +14,13 @@ from core.graph import EvidenceState
 import render
 from observations import Obs, same_value
 from store import AsOf, Store
+from confidence import (
+    calculate_fact_confidence,
+    calculate_compare_confidence,
+    calculate_change_confidence,
+    calculate_at_event_confidence,
+    calculate_relation_confidence,
+)
 
 
 @dataclass
@@ -82,7 +89,12 @@ def gen_fact(store: Store) -> list[Cand]:
         status, why = store.engine_status("fact", c.form)
         c.engine = {"status": status, "reason": why}
         c.verified = True
-        c.confidence = 0.9 if res.n_support_rows >= 3 and (res.age_days or 999) <= 45 else 0.85
+        c.confidence = calculate_fact_confidence(
+            attr,
+            age_days=res.age_days,
+            is_immutable=getattr(res, "immutable", False),
+            n_support_rows=res.n_support_rows,
+        )
         text, err = render.build_sentence("fact", subject, attr, c.form["value"], store.names, store.params.allow_unlisted_names, store.params.as_of)
         if err:
             c.reject("render", err)
@@ -151,7 +163,12 @@ def gen_compare(store: Store) -> list[Cand]:
                 status, why = store.engine_status("compare", c.form)
                 c.engine = {"status": status, "reason": why}
                 c.verified = True
-                c.confidence = 0.85
+                c.confidence = calculate_compare_confidence(
+                    attr, attr,
+                    age_left=ra.age_days,
+                    age_right=rb.age_days,
+                    is_date_compare=(lv.kind == "date"),
+                )
                 text, err = render.compare_text(left[0], right[0], attr, op, lv.kind, lv.unit)
                 if err:
                     c.reject("render", err)
@@ -203,7 +220,12 @@ def _gen_compare_cross_attribute(store: Store, date_only: bool = False) -> list[
             status, why = store.engine_status("compare", c.form)
             c.engine = {"status": status, "reason": why}
             c.verified = True
-            c.confidence = 0.85 if lv.kind == "date" else 0.8
+            c.confidence = calculate_compare_confidence(
+                ka[1], kb[1],
+                age_left=ra.age_days,
+                age_right=rb.age_days,
+                is_date_compare=(lv.kind == "date"),
+            )
             c.flags.append("cross_attribute_compare")
             if lv.kind == "date":
                 vl, vr = render.DATE_VERB.get(left[1]), render.DATE_VERB.get(right[1])
@@ -295,7 +317,10 @@ def gen_change(store: Store) -> list[Cand]:
                 c.reject("evidence", "engine_change_candidate_only(observation dates do not establish a transition)")
                 out.append(c)
                 continue
-            c.confidence = 0.85 if p.change_rule == "safe_transition" else (0.8 if c.engine.get("status") != EvidenceState.VERIFIED_SUPPORT.value else 0.9)
+            c.confidence = calculate_change_confidence(
+                is_safe_transition=(p.change_rule == "safe_transition"),
+                is_engine_verified=(c.engine.get("status") == EvidenceState.VERIFIED_SUPPORT.value),
+            )
             f, ferr = render.render_value(c.form["from"], store.names, p.allow_unlisted_names, attr)
             t, terr = render.render_value(c.form["to"], store.names, p.allow_unlisted_names, attr)
             if ferr or terr or f is None or t is None:
@@ -411,7 +436,10 @@ def gen_at_event(store: Store) -> list[Cand]:
                 out.append(c)
                 continue
             c.verified = True
-            c.confidence = 0.9
+            c.confidence = calculate_at_event_confidence(
+                is_immutable_event=True,
+                differing_observations=0,
+            )
             text, err = render.build_sentence("at_event", subject, attr, c.form["value"], store.names, store.params.allow_unlisted_names,
                                               store.params.as_of, event=event)
             if err:
@@ -480,7 +508,10 @@ def gen_relation(store: Store) -> list[Cand]:
                         out.append(c)
                         continue
                     c.verified = True
-                    c.confidence = 0.9
+                    c.confidence = calculate_relation_confidence(
+                        target_immutable=(tv.kind == "date"),
+                        is_engine_verified=True,
+                    )
                 elif p.relation_rule == "stable":
                     asof = store.asof_fact((tgt_name, ta))
                     link_ok = any(o.clean for o in link_rows)
@@ -489,7 +520,10 @@ def gen_relation(store: Store) -> list[Cand]:
                     if asof.accepted and link_ok and (immutable or not asof.volatile) and same_value(asof.value, tv):
                         c.verified = True
                         c.flags.append("not_engine_verified:relation_by_stable_target_fact")
-                        c.confidence = 0.8
+                        c.confidence = calculate_relation_confidence(
+                            target_immutable=immutable,
+                            is_engine_verified=False,
+                        )
                     else:
                         c.reject("evidence", "stable_rule_not_met(target_fact_not_stable_or_link_unclean)")
                         out.append(c)

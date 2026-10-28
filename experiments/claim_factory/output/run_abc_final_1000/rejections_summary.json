@@ -39,8 +39,8 @@
   },
   "accepted_by_type": {
     "fact": 193,
-    "compare": 712,
-    "change": 24,
+    "compare": 708,
+    "change": 28,
     "at_event": 61,
     "relation": 10
   },
@@ -222,6 +222,6 @@
   "flags": {
     "other_entity_named": 7,
     "cross_attribute_compare": 484,
-    "safe_transition": 24
+    "safe_transition": 28
   }
 }

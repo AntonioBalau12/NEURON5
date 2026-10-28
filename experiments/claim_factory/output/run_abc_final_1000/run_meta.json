@@ -1,5 +1,5 @@
 {
-  "command": "experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --staleness-rule relax_definitive --limit 1000 --out experiments/claim_factory/output/run_abc_final_1000",
+  "command": "experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --staleness-rule relax_definitive --limit 1000 --out experiments/claim_factory/output/run_abc_calibrated_confidence",
   "facts_source": "practice_forms",
   "params": {
     "min_support_rows": 1,
@@ -13,7 +13,7 @@
     "as_of": "2026-10-29"
   },
   "extra_facts": null,
-  "git_head": "8f10ce5e30a9eb2715cc66adb47d1694359d496c",
+  "git_head": "fe3c925800e87fb8da3311d24ff03751dad004e5",
   "claims_written": 1000,
   "target": 1000,
   "distance_from_1000": 0,

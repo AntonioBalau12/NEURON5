@@ -4,10 +4,10 @@
    "pass": 193
   },
   "compare": {
-   "pass": 712
+   "pass": 708
   },
   "change": {
-   "pass": 24
+   "pass": 28
   },
   "at_event": {
    "pass": 21,
@@ -9817,22 +9817,6 @@
   {
    "claim_id": "cf-compare-0492",
    "type": "compare",
-   "text": "Gemini Launch Night has fewer attendees than Hooly Cloud Next 2026.",
-   "verdict": "pass",
-   "notes": [],
-   "ages": [
-    22,
-    139
-   ],
-   "volatile": [
-    false,
-    false
-   ],
-   "kind": "quantity"
-  },
-  {
-   "claim_id": "cf-compare-0493",
-   "type": "compare",
    "text": "Hooly Pixel 9 has a lower battery capacity than Hooly Pixel 10 Pro.",
    "verdict": "pass",
    "notes": [],
@@ -9847,7 +9831,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0494",
+   "claim_id": "cf-compare-0493",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro has a higher battery capacity than Hooly Pixel Fold.",
    "verdict": "pass",
@@ -9863,7 +9847,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0495",
+   "claim_id": "cf-compare-0494",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro has a higher battery capacity than Hooly Pixel 10.",
    "verdict": "pass",
@@ -9879,7 +9863,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0496",
+   "claim_id": "cf-compare-0495",
    "type": "compare",
    "text": "Hooly Pixel 10 has a higher battery capacity than Hooly Pixel 9.",
    "verdict": "pass",
@@ -9895,7 +9879,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0497",
+   "claim_id": "cf-compare-0496",
    "type": "compare",
    "text": "Hooly Pixel Fold has a higher battery capacity than Hooly Pixel 10.",
    "verdict": "pass",
@@ -9911,7 +9895,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0498",
+   "claim_id": "cf-compare-0497",
    "type": "compare",
    "text": "Hooly Pixel Fold has a higher battery capacity than Hooly Pixel 9.",
    "verdict": "pass",
@@ -9927,7 +9911,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0499",
+   "claim_id": "cf-compare-0498",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has a longer call length than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -9943,7 +9927,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0500",
+   "claim_id": "cf-compare-0499",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has a shorter call length than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -9959,7 +9943,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0501",
+   "claim_id": "cf-compare-0500",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has a shorter call length than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -9975,7 +9959,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0502",
+   "claim_id": "cf-compare-0501",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has a longer call length than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -9991,7 +9975,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0503",
+   "claim_id": "cf-compare-0502",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has a shorter call length than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -10007,7 +9991,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0504",
+   "claim_id": "cf-compare-0503",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has a shorter call length than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -10023,7 +10007,7 @@
    "kind": "duration"
   },
   {
-   "claim_id": "cf-compare-0505",
+   "claim_id": "cf-compare-0504",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has higher cash than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -10039,7 +10023,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0506",
+   "claim_id": "cf-compare-0505",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has higher cash than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -10055,7 +10039,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0507",
+   "claim_id": "cf-compare-0506",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has lower cash than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -10071,7 +10055,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0508",
+   "claim_id": "cf-compare-0507",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has lower cash than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -10087,7 +10071,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0509",
+   "claim_id": "cf-compare-0508",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has higher cash than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -10103,7 +10087,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0510",
+   "claim_id": "cf-compare-0509",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has lower cash than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -10119,7 +10103,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0511",
+   "claim_id": "cf-compare-0510",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro has a higher charging power than Hooly Pixel 10.",
    "verdict": "pass",
@@ -10135,7 +10119,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0512",
+   "claim_id": "cf-compare-0511",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has as many customers as Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -10151,7 +10135,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0513",
+   "claim_id": "cf-compare-0512",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has more customers than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -10167,7 +10151,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0514",
+   "claim_id": "cf-compare-0513",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has more customers than Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -10183,7 +10167,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0515",
+   "claim_id": "cf-compare-0514",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has fewer customers than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -10199,7 +10183,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0516",
+   "claim_id": "cf-compare-0515",
    "type": "compare",
    "text": "Hooly Workspace Enterprise has fewer customers than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -10215,7 +10199,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0517",
+   "claim_id": "cf-compare-0516",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has more customers than Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -10231,7 +10215,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0518",
+   "claim_id": "cf-compare-0517",
    "type": "compare",
    "text": "Gemini Launch Night took place before Hooly Cloud Next 2026.",
    "verdict": "pass",
@@ -10247,7 +10231,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0519",
+   "claim_id": "cf-compare-0518",
    "type": "compare",
    "text": "Gemini Launch Night took place before Hooly I/O 2026.",
    "verdict": "pass",
@@ -10263,7 +10247,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0520",
+   "claim_id": "cf-compare-0519",
    "type": "compare",
    "text": "Gemini Launch Night took place before Hooly Maps Day.",
    "verdict": "pass",
@@ -10279,7 +10263,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0521",
+   "claim_id": "cf-compare-0520",
    "type": "compare",
    "text": "Made by Hooly 2026 took place after Gemini Launch Night.",
    "verdict": "pass",
@@ -10295,7 +10279,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0522",
+   "claim_id": "cf-compare-0521",
    "type": "compare",
    "text": "Gemini Launch Night took place before The May 2026 outage.",
    "verdict": "pass",
@@ -10311,7 +10295,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0523",
+   "claim_id": "cf-compare-0522",
    "type": "compare",
    "text": "Hooly I/O 2026 took place before Hooly Cloud Next 2026.",
    "verdict": "pass",
@@ -10327,7 +10311,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0524",
+   "claim_id": "cf-compare-0523",
    "type": "compare",
    "text": "Hooly Maps Day took place after Hooly Cloud Next 2026.",
    "verdict": "pass",
@@ -10343,7 +10327,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0525",
+   "claim_id": "cf-compare-0524",
    "type": "compare",
    "text": "Made by Hooly 2026 took place before Hooly Cloud Next 2026.",
    "verdict": "pass",
@@ -10359,7 +10343,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0526",
+   "claim_id": "cf-compare-0525",
    "type": "compare",
    "text": "The May 2026 outage took place before Hooly Cloud Next 2026.",
    "verdict": "pass",
@@ -10375,7 +10359,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0527",
+   "claim_id": "cf-compare-0526",
    "type": "compare",
    "text": "Hooly I/O 2026 took place before Hooly Maps Day.",
    "verdict": "pass",
@@ -10391,7 +10375,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0528",
+   "claim_id": "cf-compare-0527",
    "type": "compare",
    "text": "Made by Hooly 2026 took place after Hooly I/O 2026.",
    "verdict": "pass",
@@ -10407,7 +10391,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0529",
+   "claim_id": "cf-compare-0528",
    "type": "compare",
    "text": "The May 2026 outage took place after Hooly I/O 2026.",
    "verdict": "pass",
@@ -10423,7 +10407,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0530",
+   "claim_id": "cf-compare-0529",
    "type": "compare",
    "text": "Made by Hooly 2026 took place before Hooly Maps Day.",
    "verdict": "pass",
@@ -10439,7 +10423,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0531",
+   "claim_id": "cf-compare-0530",
    "type": "compare",
    "text": "The May 2026 outage took place before Hooly Maps Day.",
    "verdict": "pass",
@@ -10455,7 +10439,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0532",
+   "claim_id": "cf-compare-0531",
    "type": "compare",
    "text": "Made by Hooly 2026 took place before The May 2026 outage.",
    "verdict": "pass",
@@ -10471,7 +10455,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0533",
+   "claim_id": "cf-compare-0532",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has lower guidance than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -10487,7 +10471,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0534",
+   "claim_id": "cf-compare-0533",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has higher guidance than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -10503,7 +10487,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0535",
+   "claim_id": "cf-compare-0534",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has higher guidance than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -10519,7 +10503,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0536",
+   "claim_id": "cf-compare-0535",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has higher guidance than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -10535,7 +10519,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0537",
+   "claim_id": "cf-compare-0536",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has higher guidance than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -10551,7 +10535,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0538",
+   "claim_id": "cf-compare-0537",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has higher guidance than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -10567,7 +10551,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0539",
+   "claim_id": "cf-compare-0538",
    "type": "compare",
    "text": "Bertram Gilfoil joined after Dinesh Chugtay.",
    "verdict": "pass",
@@ -10583,7 +10567,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0540",
+   "claim_id": "cf-compare-0539",
    "type": "compare",
    "text": "Bertram Gilfoil joined after Erlich Bachmann.",
    "verdict": "pass",
@@ -10599,7 +10583,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0541",
+   "claim_id": "cf-compare-0540",
    "type": "compare",
    "text": "Bertram Gilfoil joined after Holdan.",
    "verdict": "pass",
@@ -10615,7 +10599,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0542",
+   "claim_id": "cf-compare-0541",
    "type": "compare",
    "text": "Bertram Gilfoil joined after Hoovar.",
    "verdict": "pass",
@@ -10631,7 +10615,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0543",
+   "claim_id": "cf-compare-0542",
    "type": "compare",
    "text": "Ron LaFlame joined after Bertram Gilfoil.",
    "verdict": "pass",
@@ -10647,7 +10631,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0544",
+   "claim_id": "cf-compare-0543",
    "type": "compare",
    "text": "Dinesh Chugtay joined after Erlich Bachmann.",
    "verdict": "pass",
@@ -10663,7 +10647,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0545",
+   "claim_id": "cf-compare-0544",
    "type": "compare",
    "text": "Holdan joined before Dinesh Chugtay.",
    "verdict": "pass",
@@ -10679,7 +10663,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0546",
+   "claim_id": "cf-compare-0545",
    "type": "compare",
    "text": "Hoovar joined before Dinesh Chugtay.",
    "verdict": "pass",
@@ -10695,7 +10679,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0547",
+   "claim_id": "cf-compare-0546",
    "type": "compare",
    "text": "Ron LaFlame joined after Dinesh Chugtay.",
    "verdict": "pass",
@@ -10711,7 +10695,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0548",
+   "claim_id": "cf-compare-0547",
    "type": "compare",
    "text": "Holdan joined before Erlich Bachmann.",
    "verdict": "pass",
@@ -10727,7 +10711,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0549",
+   "claim_id": "cf-compare-0548",
    "type": "compare",
    "text": "Hoovar joined before Erlich Bachmann.",
    "verdict": "pass",
@@ -10743,7 +10727,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0550",
+   "claim_id": "cf-compare-0549",
    "type": "compare",
    "text": "Ron LaFlame joined after Erlich Bachmann.",
    "verdict": "pass",
@@ -10759,7 +10743,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0551",
+   "claim_id": "cf-compare-0550",
    "type": "compare",
    "text": "Holdan joined after Hoovar.",
    "verdict": "pass",
@@ -10775,7 +10759,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0552",
+   "claim_id": "cf-compare-0551",
    "type": "compare",
    "text": "Ron LaFlame joined after Holdan.",
    "verdict": "pass",
@@ -10791,7 +10775,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0553",
+   "claim_id": "cf-compare-0552",
    "type": "compare",
    "text": "Hoovar joined before Ron LaFlame.",
    "verdict": "pass",
@@ -10807,23 +10791,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0554",
-   "type": "compare",
-   "text": "Hooly I/O 2026 has a longer keynote length than Hooly Maps Day.",
-   "verdict": "pass",
-   "notes": [],
-   "ages": [
-    216,
-    119
-   ],
-   "volatile": [
-    false,
-    false
-   ],
-   "kind": "duration"
-  },
-  {
-   "claim_id": "cf-compare-0555",
+   "claim_id": "cf-compare-0553",
    "type": "compare",
    "text": "Hooly Chrome launched before Hooly Calendar.",
    "verdict": "pass",
@@ -10839,7 +10807,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0556",
+   "claim_id": "cf-compare-0554",
    "type": "compare",
    "text": "Hooly Cloud launched before Hooly Calendar.",
    "verdict": "pass",
@@ -10855,7 +10823,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0557",
+   "claim_id": "cf-compare-0555",
    "type": "compare",
    "text": "Hooly Docs launched before Hooly Calendar.",
    "verdict": "pass",
@@ -10871,7 +10839,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0558",
+   "claim_id": "cf-compare-0556",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Drive.",
    "verdict": "pass",
@@ -10887,7 +10855,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0559",
+   "claim_id": "cf-compare-0557",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Gemini.",
    "verdict": "pass",
@@ -10903,7 +10871,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0560",
+   "claim_id": "cf-compare-0558",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Gmail.",
    "verdict": "pass",
@@ -10919,7 +10887,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0561",
+   "claim_id": "cf-compare-0559",
    "type": "compare",
    "text": "Hooly Hiring Programme launched before Hooly Calendar.",
    "verdict": "pass",
@@ -10935,7 +10903,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0562",
+   "claim_id": "cf-compare-0560",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Maps.",
    "verdict": "pass",
@@ -10951,7 +10919,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0563",
+   "claim_id": "cf-compare-0561",
    "type": "compare",
    "text": "Hooly Meet launched after Hooly Calendar.",
    "verdict": "pass",
@@ -10967,7 +10935,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0564",
+   "claim_id": "cf-compare-0562",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Photos.",
    "verdict": "pass",
@@ -10983,7 +10951,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0565",
+   "claim_id": "cf-compare-0563",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Calendar.",
    "verdict": "pass",
@@ -10999,7 +10967,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0566",
+   "claim_id": "cf-compare-0564",
    "type": "compare",
    "text": "Hooly Calendar launched before Hooly Sheets.",
    "verdict": "pass",
@@ -11015,7 +10983,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0567",
+   "claim_id": "cf-compare-0565",
    "type": "compare",
    "text": "Hooly Calendar launched after Hooly Translate.",
    "verdict": "pass",
@@ -11031,7 +10999,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0568",
+   "claim_id": "cf-compare-0566",
    "type": "compare",
    "text": "Hooly Calendar launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -11047,7 +11015,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0569",
+   "claim_id": "cf-compare-0567",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11063,7 +11031,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0570",
+   "claim_id": "cf-compare-0568",
    "type": "compare",
    "text": "Hooly Docs launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11079,7 +11047,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0571",
+   "claim_id": "cf-compare-0569",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11095,7 +11063,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0572",
+   "claim_id": "cf-compare-0570",
    "type": "compare",
    "text": "Hooly Gemini launched before Hooly Chrome.",
    "verdict": "pass",
@@ -11111,7 +11079,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0573",
+   "claim_id": "cf-compare-0571",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11127,7 +11095,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0574",
+   "claim_id": "cf-compare-0572",
    "type": "compare",
    "text": "Hooly Chrome launched before Hooly Hiring Programme.",
    "verdict": "pass",
@@ -11143,7 +11111,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0575",
+   "claim_id": "cf-compare-0573",
    "type": "compare",
    "text": "Hooly Maps launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11159,7 +11127,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0576",
+   "claim_id": "cf-compare-0574",
    "type": "compare",
    "text": "Hooly Meet launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11175,7 +11143,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0577",
+   "claim_id": "cf-compare-0575",
    "type": "compare",
    "text": "Hooly Chrome launched before Hooly Photos.",
    "verdict": "pass",
@@ -11191,7 +11159,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0578",
+   "claim_id": "cf-compare-0576",
    "type": "compare",
    "text": "Hooly Chrome launched after Hooly Search.",
    "verdict": "pass",
@@ -11207,7 +11175,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0579",
+   "claim_id": "cf-compare-0577",
    "type": "compare",
    "text": "Hooly Chrome launched before Hooly Sheets.",
    "verdict": "pass",
@@ -11223,7 +11191,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0580",
+   "claim_id": "cf-compare-0578",
    "type": "compare",
    "text": "Hooly Translate launched after Hooly Chrome.",
    "verdict": "pass",
@@ -11239,7 +11207,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0581",
+   "claim_id": "cf-compare-0579",
    "type": "compare",
    "text": "Hooly Chrome launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -11255,7 +11223,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0582",
+   "claim_id": "cf-compare-0580",
    "type": "compare",
    "text": "Hooly Cloud launched before Hooly Docs.",
    "verdict": "pass",
@@ -11271,7 +11239,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0583",
+   "claim_id": "cf-compare-0581",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Cloud.",
    "verdict": "pass",
@@ -11287,7 +11255,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0584",
+   "claim_id": "cf-compare-0582",
    "type": "compare",
    "text": "Hooly Gemini launched before Hooly Cloud.",
    "verdict": "pass",
@@ -11303,7 +11271,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0585",
+   "claim_id": "cf-compare-0583",
    "type": "compare",
    "text": "Hooly Cloud launched before Hooly Gmail.",
    "verdict": "pass",
@@ -11319,7 +11287,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0586",
+   "claim_id": "cf-compare-0584",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Hiring Programme.",
    "verdict": "pass",
@@ -11335,7 +11303,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0587",
+   "claim_id": "cf-compare-0585",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Maps.",
    "verdict": "pass",
@@ -11351,7 +11319,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0588",
+   "claim_id": "cf-compare-0586",
    "type": "compare",
    "text": "Hooly Meet launched after Hooly Cloud.",
    "verdict": "pass",
@@ -11367,7 +11335,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0589",
+   "claim_id": "cf-compare-0587",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Photos.",
    "verdict": "pass",
@@ -11383,7 +11351,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0590",
+   "claim_id": "cf-compare-0588",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Search.",
    "verdict": "pass",
@@ -11399,7 +11367,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0591",
+   "claim_id": "cf-compare-0589",
    "type": "compare",
    "text": "Hooly Cloud launched before Hooly Sheets.",
    "verdict": "pass",
@@ -11415,7 +11383,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0592",
+   "claim_id": "cf-compare-0590",
    "type": "compare",
    "text": "Hooly Cloud launched after Hooly Translate.",
    "verdict": "pass",
@@ -11431,7 +11399,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0593",
+   "claim_id": "cf-compare-0591",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Cloud.",
    "verdict": "pass",
@@ -11447,7 +11415,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0594",
+   "claim_id": "cf-compare-0592",
    "type": "compare",
    "text": "Hooly Drive launched before Hooly Docs.",
    "verdict": "pass",
@@ -11463,7 +11431,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0595",
+   "claim_id": "cf-compare-0593",
    "type": "compare",
    "text": "Hooly Gemini launched before Hooly Docs.",
    "verdict": "pass",
@@ -11479,7 +11447,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0596",
+   "claim_id": "cf-compare-0594",
    "type": "compare",
    "text": "Hooly Docs launched after Hooly Gmail.",
    "verdict": "pass",
@@ -11495,7 +11463,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0597",
+   "claim_id": "cf-compare-0595",
    "type": "compare",
    "text": "Hooly Hiring Programme launched before Hooly Docs.",
    "verdict": "pass",
@@ -11511,7 +11479,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0598",
+   "claim_id": "cf-compare-0596",
    "type": "compare",
    "text": "Hooly Docs launched after Hooly Maps.",
    "verdict": "pass",
@@ -11527,7 +11495,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0599",
+   "claim_id": "cf-compare-0597",
    "type": "compare",
    "text": "Hooly Docs launched before Hooly Meet.",
    "verdict": "pass",
@@ -11543,7 +11511,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0600",
+   "claim_id": "cf-compare-0598",
    "type": "compare",
    "text": "Hooly Photos launched before Hooly Docs.",
    "verdict": "pass",
@@ -11559,7 +11527,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0601",
+   "claim_id": "cf-compare-0599",
    "type": "compare",
    "text": "Hooly Docs launched after Hooly Search.",
    "verdict": "pass",
@@ -11575,7 +11543,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0602",
+   "claim_id": "cf-compare-0600",
    "type": "compare",
    "text": "Hooly Sheets launched after Hooly Docs.",
    "verdict": "pass",
@@ -11591,7 +11559,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0603",
+   "claim_id": "cf-compare-0601",
    "type": "compare",
    "text": "Hooly Translate launched before Hooly Docs.",
    "verdict": "pass",
@@ -11607,7 +11575,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0604",
+   "claim_id": "cf-compare-0602",
    "type": "compare",
    "text": "Hooly Docs launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -11623,7 +11591,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0605",
+   "claim_id": "cf-compare-0603",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11639,7 +11607,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0606",
+   "claim_id": "cf-compare-0604",
    "type": "compare",
    "text": "Hooly Gmail launched before Hooly Drive.",
    "verdict": "pass",
@@ -11655,7 +11623,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0607",
+   "claim_id": "cf-compare-0605",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Hiring Programme.",
    "verdict": "pass",
@@ -11671,7 +11639,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0608",
+   "claim_id": "cf-compare-0606",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Maps.",
    "verdict": "pass",
@@ -11687,7 +11655,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0609",
+   "claim_id": "cf-compare-0607",
    "type": "compare",
    "text": "Hooly Drive launched before Hooly Meet.",
    "verdict": "pass",
@@ -11703,7 +11671,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0610",
+   "claim_id": "cf-compare-0608",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Photos.",
    "verdict": "pass",
@@ -11719,7 +11687,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0611",
+   "claim_id": "cf-compare-0609",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Search.",
    "verdict": "pass",
@@ -11735,7 +11703,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0612",
+   "claim_id": "cf-compare-0610",
    "type": "compare",
    "text": "Hooly Drive launched before Hooly Sheets.",
    "verdict": "pass",
@@ -11751,7 +11719,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0613",
+   "claim_id": "cf-compare-0611",
    "type": "compare",
    "text": "Hooly Drive launched after Hooly Translate.",
    "verdict": "pass",
@@ -11767,7 +11735,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0614",
+   "claim_id": "cf-compare-0612",
    "type": "compare",
    "text": "Hooly Drive launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -11783,7 +11751,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0615",
+   "claim_id": "cf-compare-0613",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11799,7 +11767,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0616",
+   "claim_id": "cf-compare-0614",
    "type": "compare",
    "text": "Hooly Hiring Programme launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11815,7 +11783,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0617",
+   "claim_id": "cf-compare-0615",
    "type": "compare",
    "text": "Hooly Maps launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11831,7 +11799,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0618",
+   "claim_id": "cf-compare-0616",
    "type": "compare",
    "text": "Hooly Gemini launched before Hooly Meet.",
    "verdict": "pass",
@@ -11847,7 +11815,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0619",
+   "claim_id": "cf-compare-0617",
    "type": "compare",
    "text": "Hooly Photos launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11863,7 +11831,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0620",
+   "claim_id": "cf-compare-0618",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Gemini.",
    "verdict": "pass",
@@ -11879,7 +11847,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0621",
+   "claim_id": "cf-compare-0619",
    "type": "compare",
    "text": "Hooly Gemini launched before Hooly Sheets.",
    "verdict": "pass",
@@ -11895,7 +11863,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0622",
+   "claim_id": "cf-compare-0620",
    "type": "compare",
    "text": "Hooly Translate launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11911,7 +11879,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0623",
+   "claim_id": "cf-compare-0621",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Gemini.",
    "verdict": "pass",
@@ -11927,7 +11895,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0624",
+   "claim_id": "cf-compare-0622",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Hiring Programme.",
    "verdict": "pass",
@@ -11943,7 +11911,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0625",
+   "claim_id": "cf-compare-0623",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Maps.",
    "verdict": "pass",
@@ -11959,7 +11927,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0626",
+   "claim_id": "cf-compare-0624",
    "type": "compare",
    "text": "Hooly Meet launched after Hooly Gmail.",
    "verdict": "pass",
@@ -11975,7 +11943,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0627",
+   "claim_id": "cf-compare-0625",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Photos.",
    "verdict": "pass",
@@ -11991,7 +11959,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0628",
+   "claim_id": "cf-compare-0626",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Gmail.",
    "verdict": "pass",
@@ -12007,7 +11975,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0629",
+   "claim_id": "cf-compare-0627",
    "type": "compare",
    "text": "Hooly Gmail launched before Hooly Sheets.",
    "verdict": "pass",
@@ -12023,7 +11991,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0630",
+   "claim_id": "cf-compare-0628",
    "type": "compare",
    "text": "Hooly Gmail launched after Hooly Translate.",
    "verdict": "pass",
@@ -12039,7 +12007,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0631",
+   "claim_id": "cf-compare-0629",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Gmail.",
    "verdict": "pass",
@@ -12055,7 +12023,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0632",
+   "claim_id": "cf-compare-0630",
    "type": "compare",
    "text": "Hooly Hiring Programme launched after Hooly Maps.",
    "verdict": "pass",
@@ -12071,7 +12039,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0633",
+   "claim_id": "cf-compare-0631",
    "type": "compare",
    "text": "Hooly Meet launched after Hooly Hiring Programme.",
    "verdict": "pass",
@@ -12087,7 +12055,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0634",
+   "claim_id": "cf-compare-0632",
    "type": "compare",
    "text": "Hooly Photos launched before Hooly Hiring Programme.",
    "verdict": "pass",
@@ -12103,7 +12071,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0635",
+   "claim_id": "cf-compare-0633",
    "type": "compare",
    "text": "Hooly Hiring Programme launched after Hooly Search.",
    "verdict": "pass",
@@ -12119,7 +12087,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0636",
+   "claim_id": "cf-compare-0634",
    "type": "compare",
    "text": "Hooly Hiring Programme launched before Hooly Sheets.",
    "verdict": "pass",
@@ -12135,7 +12103,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0637",
+   "claim_id": "cf-compare-0635",
    "type": "compare",
    "text": "Hooly Translate launched before Hooly Hiring Programme.",
    "verdict": "pass",
@@ -12151,7 +12119,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0638",
+   "claim_id": "cf-compare-0636",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Hiring Programme.",
    "verdict": "pass",
@@ -12167,7 +12135,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0639",
+   "claim_id": "cf-compare-0637",
    "type": "compare",
    "text": "Hooly Maps launched before Hooly Meet.",
    "verdict": "pass",
@@ -12183,7 +12151,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0640",
+   "claim_id": "cf-compare-0638",
    "type": "compare",
    "text": "Hooly Maps launched before Hooly Photos.",
    "verdict": "pass",
@@ -12199,7 +12167,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0641",
+   "claim_id": "cf-compare-0639",
    "type": "compare",
    "text": "Hooly Maps launched after Hooly Search.",
    "verdict": "pass",
@@ -12215,7 +12183,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0642",
+   "claim_id": "cf-compare-0640",
    "type": "compare",
    "text": "Hooly Maps launched before Hooly Sheets.",
    "verdict": "pass",
@@ -12231,7 +12199,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0643",
+   "claim_id": "cf-compare-0641",
    "type": "compare",
    "text": "Hooly Translate launched after Hooly Maps.",
    "verdict": "pass",
@@ -12247,7 +12215,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0644",
+   "claim_id": "cf-compare-0642",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Maps.",
    "verdict": "pass",
@@ -12263,7 +12231,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0645",
+   "claim_id": "cf-compare-0643",
    "type": "compare",
    "text": "Hooly Photos launched before Hooly Meet.",
    "verdict": "pass",
@@ -12279,7 +12247,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0646",
+   "claim_id": "cf-compare-0644",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Meet.",
    "verdict": "pass",
@@ -12295,7 +12263,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0647",
+   "claim_id": "cf-compare-0645",
    "type": "compare",
    "text": "Hooly Sheets launched before Hooly Meet.",
    "verdict": "pass",
@@ -12311,7 +12279,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0648",
+   "claim_id": "cf-compare-0646",
    "type": "compare",
    "text": "Hooly Translate launched before Hooly Meet.",
    "verdict": "pass",
@@ -12327,7 +12295,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0649",
+   "claim_id": "cf-compare-0647",
    "type": "compare",
    "text": "Hooly Meet launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12343,7 +12311,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0650",
+   "claim_id": "cf-compare-0648",
    "type": "compare",
    "text": "Hooly Photos launched after Hooly Search.",
    "verdict": "pass",
@@ -12359,7 +12327,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0651",
+   "claim_id": "cf-compare-0649",
    "type": "compare",
    "text": "Hooly Sheets launched after Hooly Photos.",
    "verdict": "pass",
@@ -12375,7 +12343,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0652",
+   "claim_id": "cf-compare-0650",
    "type": "compare",
    "text": "Hooly Photos launched before Hooly Translate.",
    "verdict": "pass",
@@ -12391,7 +12359,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0653",
+   "claim_id": "cf-compare-0651",
    "type": "compare",
    "text": "Hooly Photos launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12407,7 +12375,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0654",
+   "claim_id": "cf-compare-0652",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Sheets.",
    "verdict": "pass",
@@ -12423,7 +12391,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0655",
+   "claim_id": "cf-compare-0653",
    "type": "compare",
    "text": "Hooly Translate launched after Hooly Search.",
    "verdict": "pass",
@@ -12439,7 +12407,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0656",
+   "claim_id": "cf-compare-0654",
    "type": "compare",
    "text": "Hooly Search launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12455,7 +12423,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0657",
+   "claim_id": "cf-compare-0655",
    "type": "compare",
    "text": "Hooly Translate launched before Hooly Sheets.",
    "verdict": "pass",
@@ -12471,7 +12439,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0658",
+   "claim_id": "cf-compare-0656",
    "type": "compare",
    "text": "Hooly Workspace Enterprise launched after Hooly Sheets.",
    "verdict": "pass",
@@ -12487,7 +12455,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0659",
+   "claim_id": "cf-compare-0657",
    "type": "compare",
    "text": "Hooly Translate launched before Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12503,23 +12471,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0660",
-   "type": "compare",
-   "text": "Hooly Pixel 10 Pro has higher memory than Hooly Pixel 10.",
-   "verdict": "pass",
-   "notes": [],
-   "ages": [
-    183,
-    184
-   ],
-   "volatile": [
-    false,
-    false
-   ],
-   "kind": "quantity"
-  },
-  {
-   "claim_id": "cf-compare-0661",
+   "claim_id": "cf-compare-0658",
    "type": "compare",
    "text": "Hooly Chrome has more monthly active users than Hooly Photos.",
    "verdict": "pass",
@@ -12535,7 +12487,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0662",
+   "claim_id": "cf-compare-0659",
    "type": "compare",
    "text": "Hooly Search has more monthly active users than Hooly Chrome.",
    "verdict": "pass",
@@ -12551,7 +12503,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0663",
+   "claim_id": "cf-compare-0660",
    "type": "compare",
    "text": "Hooly Photos has fewer monthly active users than Hooly Search.",
    "verdict": "pass",
@@ -12567,7 +12519,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0664",
+   "claim_id": "cf-compare-0661",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has a higher operating margin than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -12583,7 +12535,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0665",
+   "claim_id": "cf-compare-0662",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has a lower operating margin than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -12599,7 +12551,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0666",
+   "claim_id": "cf-compare-0663",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has a lower operating margin than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -12615,7 +12567,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0667",
+   "claim_id": "cf-compare-0664",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has a higher operating margin than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -12631,7 +12583,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0668",
+   "claim_id": "cf-compare-0665",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has a higher operating margin than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -12647,7 +12599,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0669",
+   "claim_id": "cf-compare-0666",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has a higher operating margin than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -12663,7 +12615,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0670",
+   "claim_id": "cf-compare-0667",
    "type": "compare",
    "text": "Hooly Photos Lite costs less than Hooly Photos Max.",
    "verdict": "pass",
@@ -12679,7 +12631,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0671",
+   "claim_id": "cf-compare-0668",
    "type": "compare",
    "text": "Hooly Photos Lite costs less than Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12695,7 +12647,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0672",
+   "claim_id": "cf-compare-0669",
    "type": "compare",
    "text": "Hooly Photos Max costs less than Hooly Workspace Enterprise.",
    "verdict": "pass",
@@ -12711,7 +12663,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0673",
+   "claim_id": "cf-compare-0670",
    "type": "compare",
    "text": "Hooly Q4 2025 Results was published before Hooly Sustainability Report.",
    "verdict": "pass",
@@ -12727,7 +12679,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0674",
+   "claim_id": "cf-compare-0671",
    "type": "compare",
    "text": "Hooly Android 16 was released before Hooly Pixel 10.",
    "verdict": "pass",
@@ -12743,7 +12695,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0675",
+   "claim_id": "cf-compare-0672",
    "type": "compare",
    "text": "Hooly Android 16 was released before Hooly Pixel 10 Pro.",
    "verdict": "pass",
@@ -12759,7 +12711,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0676",
+   "claim_id": "cf-compare-0673",
    "type": "compare",
    "text": "Hooly Pixel 9 was released before Hooly Android 16.",
    "verdict": "pass",
@@ -12775,7 +12727,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0677",
+   "claim_id": "cf-compare-0674",
    "type": "compare",
    "text": "Hooly Pixel Watch was released before Hooly Android 16.",
    "verdict": "pass",
@@ -12791,7 +12743,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0678",
+   "claim_id": "cf-compare-0675",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro was released after Hooly Pixel 9.",
    "verdict": "pass",
@@ -12807,7 +12759,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0679",
+   "claim_id": "cf-compare-0676",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro was released after Hooly Pixel Watch.",
    "verdict": "pass",
@@ -12823,7 +12775,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0680",
+   "claim_id": "cf-compare-0677",
    "type": "compare",
    "text": "Hooly Pixel 10 was released on the same day as Hooly Pixel 10 Pro.",
    "verdict": "pass",
@@ -12839,7 +12791,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0681",
+   "claim_id": "cf-compare-0678",
    "type": "compare",
    "text": "Hooly Pixel 10 was released after Hooly Pixel 9.",
    "verdict": "pass",
@@ -12855,7 +12807,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0682",
+   "claim_id": "cf-compare-0679",
    "type": "compare",
    "text": "Hooly Pixel 10 was released after Hooly Pixel Watch.",
    "verdict": "pass",
@@ -12871,7 +12823,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0683",
+   "claim_id": "cf-compare-0680",
    "type": "compare",
    "text": "Hooly Pixel Watch was released after Hooly Pixel 9.",
    "verdict": "pass",
@@ -12887,7 +12839,7 @@
    "kind": "date"
   },
   {
-   "claim_id": "cf-compare-0684",
+   "claim_id": "cf-compare-0681",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has a higher revenue growth than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -12903,7 +12855,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0685",
+   "claim_id": "cf-compare-0682",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has a lower revenue growth than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -12919,7 +12871,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0686",
+   "claim_id": "cf-compare-0683",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has a lower revenue growth than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -12935,7 +12887,7 @@
    "kind": "percent"
   },
   {
-   "claim_id": "cf-compare-0687",
+   "claim_id": "cf-compare-0684",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has higher revenue than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -12951,7 +12903,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0688",
+   "claim_id": "cf-compare-0685",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has lower revenue than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -12967,7 +12919,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0689",
+   "claim_id": "cf-compare-0686",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has lower revenue than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -12983,7 +12935,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0690",
+   "claim_id": "cf-compare-0687",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has lower revenue than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -12999,7 +12951,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0691",
+   "claim_id": "cf-compare-0688",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has lower revenue than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -13015,7 +12967,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0692",
+   "claim_id": "cf-compare-0689",
    "type": "compare",
    "text": "Hooly Q4 2025 Results has lower revenue than Hooly Q3 2026 Results.",
    "verdict": "pass",
@@ -13031,7 +12983,7 @@
    "kind": "money"
   },
   {
-   "claim_id": "cf-compare-0693",
+   "claim_id": "cf-compare-0690",
    "type": "compare",
    "text": "Hooly Pixel Watch has a lower screen size than Hooly Pixel 10 Pro.",
    "verdict": "pass",
@@ -13047,7 +12999,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0694",
+   "claim_id": "cf-compare-0691",
    "type": "compare",
    "text": "Hooly Pixel 10 Pro has a higher screen size than Hooly Pixel 10.",
    "verdict": "pass",
@@ -13063,7 +13015,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0695",
+   "claim_id": "cf-compare-0692",
    "type": "compare",
    "text": "Hooly Pixel Watch has a lower screen size than Hooly Pixel 10.",
    "verdict": "pass",
@@ -13079,7 +13031,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0696",
+   "claim_id": "cf-compare-0693",
    "type": "compare",
    "text": "Hooly Cloud Next 2026 has more sponsors than Hooly I/O 2026.",
    "verdict": "pass",
@@ -13095,7 +13047,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0697",
+   "claim_id": "cf-compare-0694",
    "type": "compare",
    "text": "Hooly Photos Lite has lower storage than Hooly Photos Max.",
    "verdict": "pass",
@@ -13111,7 +13063,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0698",
+   "claim_id": "cf-compare-0695",
    "type": "compare",
    "text": "Hooly Photos Lite has lower storage than Hooly Photos Plus.",
    "verdict": "pass",
@@ -13127,7 +13079,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0699",
+   "claim_id": "cf-compare-0696",
    "type": "compare",
    "text": "Hooly Photos Max has higher storage than Hooly Photos Plus.",
    "verdict": "pass",
@@ -13143,23 +13095,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0700",
-   "type": "compare",
-   "text": "Made by Hooly 2026 has fewer talks than Hooly I/O 2026.",
-   "verdict": "pass",
-   "notes": [],
-   "ages": [
-    185,
-    202
-   ],
-   "volatile": [
-    false,
-    false
-   ],
-   "kind": "quantity"
-  },
-  {
-   "claim_id": "cf-compare-0701",
+   "claim_id": "cf-compare-0697",
    "type": "compare",
    "text": "Hooly Pixel Fold has a lower units sold than Hooly Pixel 10 Pro.",
    "verdict": "pass",
@@ -13175,7 +13111,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0702",
+   "claim_id": "cf-compare-0698",
    "type": "compare",
    "text": "Hooly Pixel 10 has a higher units sold than Hooly Pixel 10 Pro.",
    "verdict": "pass",
@@ -13191,7 +13127,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0703",
+   "claim_id": "cf-compare-0699",
    "type": "compare",
    "text": "Hooly Pixel Fold has a lower units sold than Hooly Pixel 10.",
    "verdict": "pass",
@@ -13207,7 +13143,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0704",
+   "claim_id": "cf-compare-0700",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has fewer webcast viewers than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -13223,7 +13159,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0705",
+   "claim_id": "cf-compare-0701",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has more webcast viewers than Hooly Q1 2026 Results.",
    "verdict": "pass",
@@ -13239,7 +13175,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0706",
+   "claim_id": "cf-compare-0702",
    "type": "compare",
    "text": "Hooly Q1 2026 Results has more webcast viewers than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -13255,7 +13191,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0707",
+   "claim_id": "cf-compare-0703",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has more webcast viewers than Hooly Q2 2026 Results.",
    "verdict": "pass",
@@ -13271,7 +13207,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0708",
+   "claim_id": "cf-compare-0704",
    "type": "compare",
    "text": "Hooly Q2 2026 Results has more webcast viewers than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -13287,7 +13223,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0709",
+   "claim_id": "cf-compare-0705",
    "type": "compare",
    "text": "Hooly Q3 2026 Results has more webcast viewers than Hooly Q4 2025 Results.",
    "verdict": "pass",
@@ -13303,7 +13239,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0710",
+   "claim_id": "cf-compare-0706",
    "type": "compare",
    "text": "Hooly Pixel 10 has lower weight than Hooly Pixel Fold.",
    "verdict": "pass",
@@ -13319,7 +13255,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0711",
+   "claim_id": "cf-compare-0707",
    "type": "compare",
    "text": "Hooly Pixel Watch has lower weight than Hooly Pixel 10.",
    "verdict": "pass",
@@ -13335,7 +13271,7 @@
    "kind": "quantity"
   },
   {
-   "claim_id": "cf-compare-0712",
+   "claim_id": "cf-compare-0708",
    "type": "compare",
    "text": "Hooly Pixel Watch has lower weight than Hooly Pixel Fold.",
    "verdict": "pass",
@@ -13565,6 +13501,42 @@
    "notes": [],
    "from_rows": 2,
    "to_rows": 2
+  },
+  {
+   "claim_id": "cf-change-0025",
+   "type": "change",
+   "text": "Hooly Employee Survey's would recommend went from 71% to 84%.",
+   "verdict": "pass",
+   "notes": [],
+   "from_rows": 2,
+   "to_rows": 2
+  },
+  {
+   "claim_id": "cf-change-0026",
+   "type": "change",
+   "text": "Hooly Gemini's context window went from 128,000 tokens to 200,000 tokens.",
+   "verdict": "pass",
+   "notes": [],
+   "from_rows": 7,
+   "to_rows": 10
+  },
+  {
+   "claim_id": "cf-change-0027",
+   "type": "change",
+   "text": "Hooly Gemini's flawbench score went from 84.2% to 86%.",
+   "verdict": "pass",
+   "notes": [],
+   "from_rows": 2,
+   "to_rows": 3
+  },
+  {
+   "claim_id": "cf-change-0028",
+   "type": "change",
+   "text": "Hooly Gemini's hallucination rate went from 6.2% to 3.8%.",
+   "verdict": "pass",
+   "notes": [],
+   "from_rows": 3,
+   "to_rows": 6
   },
   {
    "claim_id": "cf-at_event-0001",

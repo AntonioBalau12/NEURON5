@@ -2,8 +2,8 @@
   "claims": 1000,
   "by_type": {
     "fact": 193,
-    "compare": 712,
-    "change": 24,
+    "compare": 708,
+    "change": 28,
     "at_event": 61,
     "relation": 10
   },
@@ -31,10 +31,10 @@
     "block_on_false_candidates": true
   },
   "timing_s": {
-    "store_build": 3.24,
-    "official_validate_output": 4.42,
-    "per_claim_layers": 3.88,
-    "total": 11.98
+    "store_build": 2.18,
+    "official_validate_output": 2.8,
+    "per_claim_layers": 2.41,
+    "total": 7.61
   },
   "problem_examples": []
 }
