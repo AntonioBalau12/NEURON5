@@ -654,7 +654,68 @@
       text-align: center;
       line-height: 1.6;
     }
-  </style>
+  
+    /* =========================================================
+       QA DNA Inset Blue Envelope Section (.scroll-dark-color)
+       ========================================================= */
+    .section.introduction {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      background-color: var(--primary-200);
+      color: var(--white-100);
+      border-radius: 40px;
+      margin: 4rem 5vw 8rem 5vw;
+      padding: 7rem 2rem;
+      box-shadow: 0 20px 60px rgba(40, 89, 181, 0.18);
+    }
+
+    .default-container {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .split-word_wrapper {
+      text-wrap: balance;
+      text-align: center;
+      max-width: 68rem;
+      width: 100%;
+    }
+
+    .heading_h2.reveal-type {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--white-100);
+      margin: 0;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .reveal-type .char {
+      opacity: 0.2;
+      display: inline-block;
+      will-change: opacity;
+      transition: opacity 0.05s ease;
+    }
+
+    .reveal-type .word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    </style>
 
   <!-- Local Mascot Data & Rive Canvas Runtime -->
   <script src="./mascot-asset.js"></script>
@@ -873,12 +934,13 @@
     </div>
   </div>
 
-  <!-- Marketing Space -->
-  <section class="marketing-section" id="marketing">
-    <h2 class="marketing-title reveal-type">Marketing space</h2>
-    <p class="marketing-body">
-      Autonomous quality engineering with deterministic temporal reasoning. QA DNA automates your critical flows with agentic precision, verified ground truth, and machine-certified schema outputs.
-    </p>
+  <!-- QA DNA Style Inset Dark Blue Envelope Section with Scroll-Scrubbed Text Reveal -->
+  <section id="introduction" class="section introduction scroll-dark-color">
+    <div class="default-container">
+      <div class="split-word_wrapper">
+        <h2 class="heading_h2 reveal-type">Marketing</h2>
+      </div>
+    </div>
   </section>
 
   <!-- Application Logic & Scripts -->
@@ -1118,6 +1180,28 @@
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
           gsap.registerPlugin(ScrollTrigger);
           lenis.on('scroll', ScrollTrigger.update);
+
+        // Kinetic Character Scrub Highlight (.reveal-type)
+        const revealElements = document.querySelectorAll('.reveal-type');
+        revealElements.forEach((element) => {
+          if (typeof SplitType !== 'undefined') {
+            const split = new SplitType(element, { types: 'chars, words' });
+            gsap.set(split.chars, { opacity: 0.2 });
+            gsap.to(split.chars, {
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                end: 'top 25%',
+                scrub: true,
+                markers: false
+              },
+              opacity: 1,
+              stagger: 0.08,
+              ease: 'power1.out'
+            });
+          }
+        });
+
           gsap.ticker.add((time) => lenis.raf(time * 1000));
           gsap.ticker.lagSmoothing(0);
         }

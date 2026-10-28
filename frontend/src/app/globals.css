@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white-100: #fcfcfc;
+  --white-0-6: rgba(255, 255, 255, 0.6);
+  --white-0-2: rgba(255, 255, 255, 0.2);
+  --white-0-1: rgba(255, 255, 255, 0.1);
+  --black-100: #202020;
+  --black-0-7: rgba(0, 0, 0, 0.7);
+  --black-0-1: rgba(0, 0, 0, 0.1);
+  --neutral-100: #ebebeb;
+  --neutral-200: #141414;
+  --primary-100: #1d6dd7;
+  --primary-200: #2859b5;
+  --accent: #d7f13b;
+  --status-true: #10b981;
+  --status-false: #ef4444;
+  --status-unsure: #f59e0b;
+  --border-40px: 40px;
+  --border-20px: 20px;
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+body {
+  background-color: var(--white-100);
+  color: var(--black-100);
+  font-family: var(--font-figtree), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Background Dot Grid */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  background-image: url('/dot-grid.svg');
+  background-repeat: repeat;
+  background-size: 48px 48px;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
