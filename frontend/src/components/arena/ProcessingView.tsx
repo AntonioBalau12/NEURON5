@@ -82,6 +82,20 @@ function numeric(value: unknown): number | null {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
 }
 
+function formatEventTimestamp(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat(undefined, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(date);
+}
+
 function maxCounter(previous: number | undefined, incoming: number | undefined): number {
   const left = typeof previous === 'number' && Number.isFinite(previous) ? previous : 0;
   const right = typeof incoming === 'number' && Number.isFinite(incoming) ? incoming : 0;
@@ -264,7 +278,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
   const onSucceededRef = useRef(onSucceeded);
   const restartSocketRef = useRef<(() => void) | null>(null);
   const refreshNowRef = useRef<(() => void) | null>(null);
-  const finishRef = useRef<((terminalJob: Job) => void) | null>(null);
+  const finishRef = useRef<((terminalJob: Job) => Promise<void>) | null>(null);
 
   useEffect(() => {
     onSucceededRef.current = onSucceeded;
@@ -276,6 +290,9 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     let reconnectTimer: number | null = null;
     let pollTimer: number | null = null;
     let refreshing = false;
+    let eventPoll: Promise<void> | null = null;
+    let socketConnected = false;
+    let finishing = false;
     let attempts = 0;
     let cursor = 0;
     let minSequence = 0;
@@ -315,6 +332,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     }
 
     function closeSocket() {
+      socketConnected = false;
       if (!socket) return;
       const closing = socket;
       socket = null;
@@ -329,7 +347,56 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
       }
     }
 
-    function finish(terminalJob: Job) {
+    function appendEvent(event: JobEvent) {
+      if (disposed) return;
+      const sequence = Number(event.sequenceId);
+      if (!Number.isFinite(sequence) || sequence < minSequence || sequence <= cursor) return;
+      cursor = sequence;
+      receivedEvents += 1;
+      if (receivedEvents > MAX_VISIBLE_EVENTS) setTruncatedView(true);
+      setEvents((previous) => {
+        const next = previous.concat(event);
+        return next.length > MAX_VISIBLE_EVENTS ? next.slice(next.length - MAX_VISIBLE_EVENTS) : next;
+      });
+      setSeenLevels((previous) => addLevel(previous, event.level));
+      if (typeof event.type === 'string') setSeenTypes((previous) => addSorted(previous, event.type));
+      if (typeof event.component === 'string') setSeenComponents((previous) => addSorted(previous, event.component));
+      setJob((previous) => applyEventToJob(previous, event) ?? previous);
+    }
+
+    function pollEventHistory(force = false, drain = false): Promise<void> {
+      if (disposed || terminal || (!force && socketConnected)) return Promise.resolve();
+      if (eventPoll) return eventPoll;
+      eventPoll = (async () => {
+        do {
+          const response = await jobsApi.events(jobId, cursor, 1000);
+          if (disposed) break;
+          if (response.truncated && response.events.length > 0) {
+            const firstSequence = response.events[0].sequenceId;
+            setGapNotice(`Older events were dropped. Showing history from sequence ${firstSequence}.`);
+            setEvents([]);
+            minSequence = firstSequence;
+            cursor = Math.max(0, firstSequence - 1);
+          }
+          const previousCursor = cursor;
+          response.events.forEach(appendEvent);
+          if (!drain || response.events.length === 0 || cursor <= previousCursor || cursor >= response.lastSequenceId) break;
+        } while (!disposed && !terminal);
+      })()
+        .catch((error: unknown) => {
+          if (!disposed) setWsError(error);
+        })
+        .finally(() => {
+          eventPoll = null;
+        });
+      return eventPoll;
+    }
+
+    async function finish(terminalJob: Job): Promise<void> {
+      if (disposed || terminal || finishing) return;
+      finishing = true;
+      if (eventPoll) await eventPoll;
+      await pollEventHistory(true, true);
       if (disposed) return;
       terminal = true;
       clearTimers();
@@ -356,6 +423,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
       refreshing = true;
       try {
         const incoming = await jobsApi.get(jobId);
+        if (isTerminalStatus(incoming.status)) await pollEventHistory(true, true);
         handleJobUpdate(incoming);
       } catch (error) {
         if (disposed) return;
@@ -424,6 +492,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           return;
         }
         attempts = 0;
+        socketConnected = true;
         setReconnectAttempt(0);
         setConnection('open');
         setWsError(null);
@@ -436,6 +505,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
         if (!frame) return;
 
         if (frame.kind === 'handshake') {
+          socketConnected = true;
           setProtocolVersion(frame.protocolVersion);
           setServerSequence(frame.lastSequenceId);
           setHandshakeStatus(frame.status);
@@ -456,7 +526,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
             cursor = Math.max(0, frame.replayFrom - 1);
           }
           setJob((previous) => mergeJob(previous, frame.job));
-          if (isTerminalStatus(frame.job.status)) finish(frame.job);
+          if (isTerminalStatus(frame.job.status)) void finish(frame.job);
           return;
         }
 
@@ -467,26 +537,8 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
         }
 
         const event = frame.event;
-        const sequence = Number(event.sequenceId);
-        if (!Number.isFinite(sequence)) return;
-        if (sequence < minSequence) return;
-        if (sequence <= cursor) return;
-        cursor = sequence;
-        receivedEvents += 1;
-        if (receivedEvents > MAX_VISIBLE_EVENTS) setTruncatedView(true);
         setConnection('open');
-        setEvents((previous) => {
-          const next = previous.concat(event);
-          return next.length > MAX_VISIBLE_EVENTS ? next.slice(next.length - MAX_VISIBLE_EVENTS) : next;
-        });
-        setSeenLevels((previous) => addLevel(previous, event.level));
-        if (typeof event.type === 'string') {
-          setSeenTypes((previous) => addSorted(previous, event.type));
-        }
-        if (typeof event.component === 'string') {
-          setSeenComponents((previous) => addSorted(previous, event.component));
-        }
-        setJob((previous) => applyEventToJob(previous, event) ?? previous);
+        appendEvent(event);
         if (event.type === 'job.completed' || event.type === 'job.failed') {
           void refresh();
         }
@@ -498,6 +550,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
 
       nextSocket.onclose = (closeEvent) => {
         if (socket === nextSocket) socket = null;
+        socketConnected = false;
         if (disposed || terminal) return;
         if (closeEvent.code === 4401 || closeEvent.code === 4403 || closeEvent.code === 4404) {
           const code =
@@ -550,7 +603,9 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     void refresh();
     pollTimer = window.setInterval(() => {
       void refresh();
+      void pollEventHistory();
     }, 2000);
+    void pollEventHistory();
     openSocket();
 
     return () => {
@@ -912,11 +967,21 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                           <span className="text-[#76910a]">{event.type}</span>
                           <span className="text-black/30">{event.component}</span>
                           {event.step ? <span className="text-black/25">[{event.step}]</span> : null}
-                          <time className="text-black/30" dateTime={event.timestamp}>
-                            {formatClock(event.timestamp)}
+                          <time className="text-black/30" dateTime={event.timestamp} title={event.timestamp}>
+                            {formatEventTimestamp(event.timestamp)}
                           </time>
                         </div>
                         <p className="whitespace-pre-wrap break-words text-black/70">{event.message}</p>
+                        {event.data && Object.keys(event.data).length > 0 ? (
+                          <details className="mt-1 text-black/45">
+                            <summary className="w-fit cursor-pointer select-none hover:text-black/70">
+                              Details
+                            </summary>
+                            <pre className="mt-1 max-h-48 overflow-auto whitespace-pre-wrap break-words rounded bg-black/[0.025] p-2 text-[9px] text-black/60">
+                              {JSON.stringify(event.data, null, 2)}
+                            </pre>
+                          </details>
+                        ) : null}
                       </div>
                     </li>
                   ))}
