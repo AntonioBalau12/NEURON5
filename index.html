@@ -7,243 +7,336 @@
   <title>AI AGENT ARENA</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <!-- Typography Styles -->
-    <style>
-      @font-face {
-        font-family: 'Creato Display';
-        src: url('./fonts/CreatoDisplay-Black.otf') format('opentype');
-        font-weight: 900;
-        font-style: normal;
-        font-display: swap;
-      }
+  <!-- Smooth Scrolling (Lenis) CSS -->
+  <link rel="stylesheet" href="./lenis.css">
 
-      @font-face {
-        font-family: 'Creato Display';
-        src: url('./fonts/CreatoDisplay-Bold.otf') format('opentype');
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-      }
+  <!-- Typography Styles -->
+  <style>
+    @font-face {
+      font-family: 'Creato Display';
+      src: url('./fonts/CreatoDisplay-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      @font-face {
-        font-family: 'Creato Display';
-        src: url('./fonts/CreatoDisplay-Medium.otf') format('opentype');
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-      }
+    @font-face {
+      font-family: 'Creato Display';
+      src: url('./fonts/CreatoDisplay-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      @font-face {
-        font-family: 'Creato Display';
-        src: url('./fonts/CreatoDisplay-Regular.otf') format('opentype');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
+    @font-face {
+      font-family: 'Creato Display';
+      src: url('./fonts/CreatoDisplay-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      @font-face {
-        font-family: 'Figtree';
-        src: url('./fonts/Figtree-Variable.ttf') format('truetype');
-        font-weight: 300 900;
-        font-style: normal;
-        font-display: swap;
-      }
+    @font-face {
+      font-family: 'Creato Display';
+      src: url('./fonts/CreatoDisplay-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      /* Design System Tokens */
-      :root {
-        --white-100: #fcfcfc;
-        --white-0-6: rgba(255, 255, 255, 0.6);
-        --black-100: #202020;
-        --black-0-7: rgba(0, 0, 0, 0.7);
-        --primary-100: #1d6dd7;
-        /* QA DNA Electric Royal Blue */
-        --primary-200: #2859b5;
-        /* QA DNA Sapphire Blue */
-        --accent: #d7f13b;
+    @font-face {
+      font-family: 'Figtree';
+      src: url('./fonts/Figtree-Variable.ttf') format('truetype');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
 
-        --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
-        --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
-      }
+    /* Design System Tokens */
+    :root {
+      --white-100: #fcfcfc;
+      --white-0-6: rgba(255, 255, 255, 0.6);
+      --white-0-2: rgba(255, 255, 255, 0.2);
+      --black-100: #202020;
+      --black-0-7: rgba(0, 0, 0, 0.7);
+      --primary-100: #1d6dd7; /* QA DNA Electric Royal Blue */
+      --primary-200: #2859b5; /* QA DNA Sapphire Blue Envelope */
+      --accent: #d7f13b;
+      --border-40px: 40px;
+      --border-20px: 20px;
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background-color: var(--white-100);
-        color: var(--black-100);
-        font-family: var(--font-body);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        user-select: none;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      /* Background Dot Grid Pattern */
-      .dot-grid {
-        position: absolute;
-        inset: 0;
-        background-image: url('./dot-grid.svg');
-        background-repeat: repeat;
-        background-size: 48px 48px;
-        opacity: 0.55;
-        pointer-events: none;
-        z-index: 0;
-      }
+    html {
+      scroll-behavior: initial;
+    }
 
-      /* Top Left Header (NEURON5 Branding) */
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--white-100);
+      color: var(--black-100);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Background Dot Grid Pattern */
+    .dot-grid {
+      position: fixed;
+      inset: 0;
+      background-image: url('./dot-grid.svg');
+      background-repeat: repeat;
+      background-size: 48px 48px;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Left Header (NEURON5 Branding) */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      cursor: default;
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    .brand-logo .brand-text {
+      color: var(--black-100);
+      transition: color 0.3s ease;
+    }
+
+    .brand-logo .brand-number {
+      color: var(--primary-100);
+      margin-left: 1px;
+      transition: color 0.3s ease;
+    }
+
+    /* Centered Hero Stage */
+    .hero-stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      padding: 0 1.5rem;
+      overflow: visible;
+    }
+
+    .hero-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-8vh);
+      z-index: 5;
+      user-select: none;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5.5vw, 4.35rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      color: var(--black-100);
+      max-width: 90vw;
+    }
+
+    .hero-title .title-line {
+      display: block;
+    }
+
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--black-0-7);
+      letter-spacing: -0.01em;
+    }
+
+    /* Mascot Stage (Gorilla Peeking from Bottom) */
+    .hero-mascot-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(440px, 45vw);
+      max-height: 42vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 10;
+      overflow: visible;
+      pointer-events: auto;
+      will-change: transform;
+    }
+
+    .hero-mascot-canvas-container {
+      width: 100%;
+      aspect-ratio: 1;
+      position: relative;
+      /* Position so only forehead/eyes/sunglasses/nose peek over the bottom edge */
+      margin-bottom: -13.5%;
+      cursor: default;
+    }
+
+    #mascot-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* =========================================================
+       QA DNA Inset Blue Envelope Section (.scroll-dark-color)
+       ========================================================= */
+    .section.introduction {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      background-color: var(--primary-200);
+      color: var(--white-100);
+      border-radius: var(--border-40px);
+      margin: -1px 5vw 8rem 5vw;
+      padding: 7rem 2rem;
+      box-shadow: 0 20px 60px rgba(40, 89, 181, 0.18);
+    }
+
+    .default-container {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .split-word_wrapper {
+      text-wrap: balance;
+      text-align: center;
+      max-width: 68rem;
+      width: 100%;
+    }
+
+    .heading_h2.reveal-type {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--white-100);
+      margin: 0;
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* SplitType character opacity target */
+    .reveal-type .char {
+      opacity: 0.2;
+      display: inline-block;
+      will-change: opacity;
+      transition: opacity 0.05s ease;
+    }
+
+    .reveal-type .word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
       .top-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 2.25rem 4vw;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        z-index: 100;
+        padding: 1.5rem 5vw;
       }
 
       .brand-logo {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        font-family: var(--font-display);
-        font-size: 1.875rem;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1;
-        cursor: default;
-      }
-
-      .brand-logo .brand-text {
-        color: var(--black-100);
-      }
-
-      .brand-logo .brand-number {
-        color: var(--primary-100);
-        margin-left: 1px;
-      }
-
-      /* Centered Hero Stage */
-      .hero-stage {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-        padding: 0 1.5rem;
+        font-size: 1.5rem;
       }
 
       .hero-content {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transform: translateY(-8vh);
-        z-index: 5;
+        transform: translateY(-10vh);
       }
 
       .hero-title {
-        font-family: var(--font-display);
-        font-size: clamp(2.25rem, 5.5vw, 4.35rem);
-        font-weight: 900;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-        text-transform: uppercase;
-        color: var(--black-100);
-        max-width: 90vw;
-      }
-
-      .hero-title .title-line {
-        display: block;
+        font-size: clamp(1.85rem, 8vw, 2.75rem);
       }
 
       .hero-subtitle {
-        margin-top: 1.5rem;
-        font-family: var(--font-body);
-        font-size: 1.125rem;
-        font-weight: 500;
-        color: var(--black-0-7);
-        letter-spacing: -0.01em;
+        font-size: 1rem;
+        margin-top: 1rem;
       }
 
-      /* Mascot Stage (Gorilla Peeking from Bottom) */
       .hero-mascot-wrapper {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(440px, 45vw);
-        max-height: 42vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        z-index: 10;
-        overflow: visible;
-        pointer-events: auto;
+        width: min(340px, 80vw);
+        max-height: 38vh;
       }
 
       .hero-mascot-canvas-container {
-        width: 100%;
-        aspect-ratio: 1;
-        position: relative;
-        /* Position so only forehead/eyes/sunglasses/nose peek over the bottom edge */
-        margin-bottom: -13.5%;
-        cursor: default;
+        margin-bottom: -15.5%;
       }
 
-      #mascot-canvas {
-        width: 100%;
-        height: 100%;
-        display: block;
+      .section.introduction {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 5rem;
+        border-radius: var(--border-20px);
+        padding: 4.5rem 1.25rem;
       }
 
-      @media (max-width: 768px) {
-        .top-header {
-          padding: 1.5rem 5vw;
-        }
-
-        .brand-logo {
-          font-size: 1.5rem;
-        }
-
-        .hero-content {
-          transform: translateY(-10vh);
-        }
-
-        .hero-title {
-          font-size: clamp(1.85rem, 8vw, 2.75rem);
-        }
-
-        .hero-subtitle {
-          font-size: 1rem;
-          margin-top: 1rem;
-        }
-
-        .hero-mascot-wrapper {
-          width: min(340px, 80vw);
-          max-height: 38vh;
-        }
-
-        .hero-mascot-canvas-container {
-          margin-bottom: -15.5%;
-        }
+      .heading_h2.reveal-type {
+        font-size: clamp(1.75rem, 7vw, 2.35rem);
+        line-height: 1.3;
       }
-    </style>
+    }
+  </style>
 
-    <!-- Local Mascot Data & Rive Canvas Runtime -->
-    <script src="./mascot-asset.js"></script>
-    <script src="./rive.min.js"></script>
+  <!-- Local Libraries: Mascot Data, Rive Runtime, GSAP, ScrollTrigger, SplitType, Lenis -->
+  <script src="./mascot-asset.js"></script>
+  <script src="./rive.min.js"></script>
+  <script src="./gsap.min.js"></script>
+  <script src="./ScrollTrigger.min.js"></script>
+  <script src="./split-type.min.js"></script>
+  <script src="./lenis.min.js"></script>
 </head>
 
 <body>
@@ -259,7 +352,7 @@
   </header>
 
   <!-- Main Hero Stage -->
-  <main class="hero-stage">
+  <section id="hero" class="hero-stage">
 
     <!-- Title & Subtitle -->
     <div class="hero-content">
@@ -271,13 +364,22 @@
     </div>
 
     <!-- Blue Mascot (QA DNA Gorilla) -->
-    <div class="hero-mascot-wrapper">
+    <div class="hero-mascot-wrapper" id="hero-gorilla">
       <div class="hero-mascot-canvas-container" id="mascot-container">
         <canvas id="mascot-canvas"></canvas>
       </div>
     </div>
 
-  </main>
+  </section>
+
+  <!-- QA DNA Style Inset Dark Blue Envelope Section with Scroll-Scrubbed Text Reveal -->
+  <section id="introduction" class="section introduction scroll-dark-color">
+    <div class="default-container">
+      <div class="split-word_wrapper">
+        <h2 class="heading_h2 reveal-type">Marketing</h2>
+      </div>
+    </div>
+  </section>
 
   <!-- Mascot Rive Runtime & Proximity Tracker -->
   <script>
@@ -333,15 +435,11 @@
       });
 
       // Proximity & Cursor Tracker Forwarder
-      // Enables smooth eye follow and glasses lift when moving cursor over the viewport
       let raf = 0;
       let lastX = 0;
       let lastY = 0;
 
       function dispatchPointer(x, y) {
-        const rect = canvas.getBoundingClientRect();
-
-        // Dispatch synthetic pointermove to canvas so Rive state machine receives cursor position
         canvas.dispatchEvent(new PointerEvent('pointermove', {
           clientX: x,
           clientY: y,
@@ -367,6 +465,98 @@
       }, { passive: true });
 
     })();
+  </script>
+
+  <!-- Lenis, Gorilla Parallax Sink, and Kinetic SplitType Scroll Highlight -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Lenis Smooth Scrolling
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+      // 2. Register GSAP ScrollTrigger
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (lenis) {
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+          });
+          gsap.ticker.lagSmoothing(0);
+        }
+
+        // 3. QA DNA Gorilla Parallax Smoothstep Sink on Scroll
+        const heroSection = document.getElementById('hero');
+        const gorillaAsset = document.getElementById('hero-gorilla');
+        if (heroSection && gorillaAsset) {
+          let heroH = heroSection.offsetHeight;
+          let ticking = false;
+
+          function updateGorillaSink() {
+            ticking = false;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            const startSink = heroH * 0.15;
+            const endSink = heroH * 0.85;
+            let progress = (scrollY - startSink) / (endSink - startSink);
+            progress = Math.max(0, Math.min(1, progress));
+            // Hermite smoothstep curve interpolation
+            progress = progress * progress * (3 - 2 * progress);
+            gorillaAsset.style.transform = `translate(-50%, ${(progress * 105).toFixed(2)}%)`;
+          }
+
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(updateGorillaSink);
+            }
+          }, { passive: true });
+
+          window.addEventListener('resize', () => {
+            heroH = heroSection.offsetHeight;
+            updateGorillaSink();
+          });
+          updateGorillaSink();
+        }
+
+        // 4. Kinetic Character Scrub Highlight (.reveal-type)
+        const revealElements = document.querySelectorAll('.reveal-type');
+        revealElements.forEach((element) => {
+          if (typeof SplitType !== 'undefined') {
+            const split = new SplitType(element, { types: 'chars, words' });
+
+            // Initial muted state: 20% opacity
+            gsap.set(split.chars, { opacity: 0.2 });
+
+            // Scrub characters to 100% white on scroll
+            gsap.to(split.chars, {
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                end: 'top 25%',
+                scrub: true,
+                markers: false
+              },
+              opacity: 1,
+              stagger: 0.08,
+              ease: 'power1.out'
+            });
+          }
+        });
+      }
+    });
   </script>
 </body>
 
