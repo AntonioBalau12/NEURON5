@@ -63,15 +63,30 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handlePointer, { passive: true });
 
-        // QA DNA Gorilla Parallax Smoothstep Sink on Scroll
+        // QA DNA Gorilla Parallax Smoothstep Sink on Scroll (Disabled when single-screen hero)
         const heroSection = document.getElementById('hero-stage');
         const gorillaEl = containerRef.current;
         let ticking = false;
+
+        if (typeof window !== 'undefined') {
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+          window.scrollTo(0, 0);
+        }
 
         const updateGorillaSink = () => {
           ticking = false;
           if (!heroSection || !gorillaEl) return;
           if ((window as any).__isPullAnimationActive) return;
+
+          // If page has no multi-screen scroll (no marketing section), keep gorilla anchored
+          const isScrollable = document.documentElement.scrollHeight > window.innerHeight + 50;
+          if (!isScrollable) {
+            gorillaEl.style.transform = 'translate(-50%, 0%)';
+            return;
+          }
+
           const heroH = heroSection.offsetHeight;
           const scrollY = window.pageYOffset || document.documentElement.scrollTop;
           const startSink = heroH * 0.15;

@@ -54,12 +54,13 @@ export default function JenkinsPipelineWorkflow({
               : 'Processing dataset claims...';
 
   return (
-    <div className={cx('w-full py-2 select-none overflow-hidden pr-2', className)}>
+    /* Generous right padding (pr-6 sm:pr-8) prevents any clipping from scrollbar */
+    <div className={cx('w-full py-2 select-none pr-6 sm:pr-8', className)}>
       
       {/* ------------------------------------------------------------- */}
       {/* TOP ROW: CATCH/FINALLY WIRE CONNECTING TO AUDIT-METRICS.JSON  */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full flex items-center justify-between pl-[85px] pr-[38px] mb-1.5">
+      <div className="w-full flex items-center justify-between pl-[80px] pr-[44px] mb-1.5">
         <div className="flex items-center gap-2 flex-1 mr-3">
           <span className="rounded bg-[#16181f] border border-zinc-700 px-1.5 py-0.5 text-[8.5px] font-bold text-slate-300 whitespace-nowrap shadow-sm">
             catch/finally
@@ -89,10 +90,10 @@ export default function JenkinsPipelineWorkflow({
         </div>
 
         {/* Continuous telemetry connector wire curving smoothly down to Output CSV */}
-        <div className="w-9 h-4 flex items-end">
-          <svg width="36" height="16" viewBox="0 0 36 16" fill="none">
+        <div className="w-8 h-4 flex items-end">
+          <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
             <path
-              d="M 0 2 L 20 2 A 12 12 0 0 1 32 14 L 32 16"
+              d="M 0 2 L 18 2 A 10 10 0 0 1 28 12 L 28 16"
               stroke={isValidateDone || isOutputDone ? '#10b981' : '#52525b'}
               strokeWidth="2.5"
               strokeLinecap="round"
@@ -104,10 +105,10 @@ export default function JenkinsPipelineWorkflow({
       {/* ------------------------------------------------------------- */}
       {/* MAIN DIAGRAM WORKFLOW ROW (100% Horizontally Aligned Axis)    */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full flex items-start justify-between gap-1 overflow-hidden">
+      <div className="w-full flex items-start justify-between gap-1">
 
         {/* 1. LEFT: INPUT SOURCE & INGEST */}
-        <div className="flex flex-col items-center w-[78px] shrink-0">
+        <div className="flex flex-col items-center w-[74px] shrink-0">
           <div className="flex flex-col items-center gap-0.5">
             <div
               className={cx(
@@ -194,8 +195,8 @@ export default function JenkinsPipelineWorkflow({
           </svg>
         </div>
 
-        {/* 2. STAGE 1: Parse & Clean (Glowing Green Aura when Active) */}
-        <div className="flex flex-col items-center w-[112px] shrink-0">
+        {/* 2. STAGE 1: Parse & Clean */}
+        <div className="flex flex-col items-center w-[108px] shrink-0">
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-600 mb-1">Stage 1</span>
           <div
             className={cx(
@@ -236,8 +237,8 @@ export default function JenkinsPipelineWorkflow({
           </svg>
         </div>
 
-        {/* 3. STAGE 2: Feature Engine (Glowing Green Aura when Active) */}
-        <div className="flex flex-col items-center w-[152px] shrink-0">
+        {/* 3. STAGE 2: Feature Engine */}
+        <div className="flex flex-col items-center w-[145px] shrink-0">
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-600 mb-1">Stage 2</span>
           <div
             className={cx(
@@ -312,8 +313,8 @@ export default function JenkinsPipelineWorkflow({
           </svg>
         </div>
 
-        {/* 4. STAGE 3: Model Inference (Glowing Green Aura when Active) */}
-        <div className="flex flex-col items-center w-[225px] shrink-0">
+        {/* 4. STAGE 3: Model Inference */}
+        <div className="flex flex-col items-center w-[212px] shrink-0">
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-600 mb-1">Stage 3</span>
           <div
             className={cx(
@@ -339,10 +340,10 @@ export default function JenkinsPipelineWorkflow({
             </div>
             
             {/* Sub-cards */}
-            <div className="flex flex-col gap-1 w-[128px] shrink-0">
+            <div className="flex flex-col gap-1 w-[122px] shrink-0">
               <div
                 className={cx(
-                  'rounded-md border px-2.5 py-1 text-left transition-all',
+                  'rounded-md border px-2 py-1 text-left transition-all',
                   isFeaturesActive
                     ? 'border-emerald-400 bg-[#06281e]'
                     : isFeaturesDone
@@ -350,12 +351,12 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">LightGBM 3-Class</div>
+                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">LightGBM 3-Class</div>
                 <div className="text-[8px] text-slate-300 leading-tight">Probabilities</div>
               </div>
               <div
                 className={cx(
-                  'rounded-md border px-2.5 py-1 text-left transition-all',
+                  'rounded-md border px-2 py-1 text-left transition-all',
                   isFeaturesActive
                     ? 'border-emerald-400 bg-[#06281e]'
                     : isFeaturesDone
@@ -363,7 +364,7 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">Threshold Margin</div>
+                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">Threshold Margin</div>
                 <div className="text-[8px] text-slate-300 leading-tight">Margin (τ=0.50)</div>
               </div>
             </div>
@@ -397,8 +398,8 @@ export default function JenkinsPipelineWorkflow({
           </svg>
         </div>
 
-        {/* 5. STAGE 4: Table Validate (Glowing Green Aura when Active) */}
-        <div className="flex flex-col items-center w-[112px] shrink-0">
+        {/* 5. STAGE 4: Table Validate */}
+        <div className="flex flex-col items-center w-[108px] shrink-0">
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-600 mb-1">Stage 4</span>
           <div
             className={cx(
@@ -443,7 +444,7 @@ export default function JenkinsPipelineWorkflow({
         <div className="mt-7 flex flex-col items-center shrink-0">
           <div
             className={cx(
-              'rounded-full px-2.5 py-1 text-[9px] font-black tracking-wider transition-all border whitespace-nowrap shadow-sm',
+              'rounded-full px-2 py-1 text-[9px] font-black tracking-wider transition-all border whitespace-nowrap shadow-sm',
               isValidateDone
                 ? 'border-emerald-500 bg-[#06281e] text-emerald-300'
                 : 'border-zinc-700 bg-[#16181f] text-slate-300'
@@ -461,8 +462,8 @@ export default function JenkinsPipelineWorkflow({
           </svg>
         </div>
 
-        {/* 7. RIGHT: CERTIFIED OUTPUT CSV (Glowing Green Aura when Complete) */}
-        <div className="flex flex-col items-center w-[78px] shrink-0 mt-3.5">
+        {/* 7. RIGHT: CERTIFIED OUTPUT CSV (Safely positioned with right margin, never clipped) */}
+        <div className="flex flex-col items-center w-[72px] shrink-0 mt-3.5 mr-2 sm:mr-3">
           <div
             className={cx(
               'w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all shadow-md',

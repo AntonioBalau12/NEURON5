@@ -374,7 +374,7 @@
       justify-content: space-between;
       width: 100%;
       gap: 0.25rem;
-      padding: 0.5rem 0.65rem;
+      padding: 0.5rem 1.75rem 0.5rem 0.65rem;
       box-sizing: border-box;
     }
 
@@ -921,6 +921,61 @@
       color: #0f172a;
     }
 
+    /* Deep Logs Drawer Modal */
+    .logs-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .logs-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .logs-drawer-content {
+      width: min(880px, 94vw);
+      max-height: 70vh;
+      background: #141414;
+      color: #f8fafc;
+      border-radius: 20px 20px 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .logs-drawer.open .logs-drawer-content {
+      transform: translateY(0);
+    }
+
+    .logs-drawer-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logs-drawer-body {
+      padding: 1.25rem 1.5rem;
+      font-family: monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      overflow-y: auto;
+      color: #94a3b8;
+    }
+
     /* Mascot Stage (Anchored at the bottom of the 100vh stage) */
     .hero-mascot-wrapper {
       position: absolute;
@@ -932,9 +987,9 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      z-index: 0 !important;
+      z-index: 10;
       overflow: visible;
-      pointer-events: none !important;
+      pointer-events: auto;
     }
 
     #mascot-canvas { pointer-events: auto; }
@@ -1439,14 +1494,86 @@
           </div>
         </div>
 
-  <!-- QA DNA Style Inset Dark Blue Envelope Section with Scroll-Scrubbed Text Reveal -->
-  <section id="introduction" class="section introduction scroll-dark-color">
-    <div class="default-container">
-      <div class="split-word_wrapper">
-        <h2 class="heading_h2 reveal-type">Marketing</h2>
+        <!-- STEP 3: Results & Analytics -->
+        <div id="view-step-3" class="step3-content" style="display: none;">
+          <!-- Metrics -->
+          <div class="metrics-banner">
+            <div class="metric-box">
+              <div class="metric-value" style="color: #10b981;">100%</div>
+              <div class="metric-desc">Schema Compliance</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value">3 / 1 / 1</div>
+              <div class="metric-desc">True / False / Unsure</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value" style="color: #d7f13b;">1,000</div>
+              <div class="metric-desc">Certified Claims</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value">124 ms</div>
+              <div class="metric-desc">Execution Latency</div>
+            </div>
+          </div>
+
+          <!-- Classified Results Table -->
+          <div class="classified-table-box">
+            <table class="studio-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%;">ID</th>
+                  <th style="width: 55%;">Sentence</th>
+                  <th style="width: 15%;">Date</th>
+                  <th style="width: 15%;">Ruling</th>
+                </tr>
+              </thead>
+              <tbody id="classified-tbody">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Action Footer -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button class="btn-secondary" id="btn-restart-stepper">
+              ↺ Edit Another Batch
+            </button>
+            <button class="button-primary" id="btn-download-output">
+              <span class="btn_fill"></span>
+              <span class="button-text">Export Certified output.csv ➔</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Anchored Mascot Stage (Always at bottom of body) -->
+    <div class="hero-mascot-wrapper">
+      <div class="hero-mascot-canvas-container" id="mascot-container">
+        <canvas id="mascot-canvas"></canvas>
       </div>
     </div>
-  </section>
+  </main>
+
+  <!-- Deep Logs Drawer Modal -->
+  <div class="logs-drawer" id="logs-drawer">
+    <div class="logs-drawer-content">
+      <div class="logs-drawer-header">
+        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">
+          ⚡ Live Arena Trace Telemetry
+        </h3>
+        <button class="btn-secondary" id="btn-close-logs" style="padding: 2px 8px;">&times;</button>
+      </div>
+      <div class="logs-drawer-body" id="logs-terminal-body">
+        <div>[11:04:10.100] [BOOT] NEURON5 Engine v1.0.0 initializing...</div>
+        <div>[11:04:10.125] [ENV] Runtime sandbox verified: Linux/amd64, User 10001, Network=None.</div>
+        <div>[11:04:10.200] [GRAPH] 62 lexicon nodes loaded, 321 attribute edges compiled.</div>
+        <div>[11:04:10.450] [INFERENCE] Temporal reasoner: 5 predicate bounds validated.</div>
+        <div style="color: #10b981;">[11:04:10.510] [CERTIFIED] Confidence threshold 0.95 met. Output verified.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- Application Logic & Scripts -->
   <script>
