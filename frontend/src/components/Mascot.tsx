@@ -48,6 +48,34 @@ export default function Mascot() {
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handlePointer, { passive: true });
 
+        // QA DNA Gorilla Parallax Smoothstep Sink on Scroll
+        const heroSection = document.getElementById('hero-stage');
+        const gorillaEl = containerRef.current;
+        let ticking = false;
+
+        const updateGorillaSink = () => {
+          ticking = false;
+          if (!heroSection || !gorillaEl) return;
+          const heroH = heroSection.offsetHeight;
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const startSink = heroH * 0.15;
+          const endSink = heroH * 0.85;
+          let progress = (scrollY - startSink) / (endSink - startSink);
+          progress = Math.max(0, Math.min(1, progress));
+          // Hermite smoothstep curve
+          progress = progress * progress * (3 - 2 * progress);
+          gorillaEl.style.transform = `translate(-50%, ${(progress * 105).toFixed(2)}%)`;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateGorillaSink);
+          }
+        }, { passive: true });
+
+        updateGorillaSink();
+
         return () => {
           window.removeEventListener('resize', handleResize);
           window.removeEventListener('mousemove', handlePointer);
@@ -67,7 +95,7 @@ export default function Mascot() {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(340px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-auto"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(340px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-auto will-change-transform"
     >
       <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default">
         <canvas ref={canvasRef} className="w-full h-full block" />
@@ -75,4 +103,3 @@ export default function Mascot() {
     </div>
   );
 }
-
