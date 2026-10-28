@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Check } from 'lucide-react';
+import gsap from 'gsap';
+import { ArrowRight, Check, X } from 'lucide-react';
 import Mascot, { MascotHandle } from './Mascot';
 import GorillaArmRig, { GorillaArmRigHandle } from './GorillaArmRig';
 import DataStage from './arena/DataStage';
@@ -24,6 +25,7 @@ const STEPS: Array<{ number: Stage; label: string }> = [
 ];
 
 export default function Studio() {
+  const [isOpen, setIsOpen] = useState(false);
   const [stage, setStage] = useState<Stage>(1);
   const [session, setSession] = useState<SessionState>({ status: 'loading' });
   const [sessionNonce, setSessionNonce] = useState(0);
@@ -32,6 +34,7 @@ export default function Studio() {
   const [resetKey, setResetKey] = useState(0);
   const [isPulling, setIsPulling] = useState(false);
 
+  const ctaRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const armRigRef = useRef<GorillaArmRigHandle>(null);
   const mascotRef = useRef<MascotHandle>(null);
@@ -83,6 +86,44 @@ export default function Studio() {
 
   const sessionReady = session.status === 'ready';
 
+  function handleOpenStudio() {
+    if (isPulling) return;
+    setIsOpen(true);
+    requestAnimationFrame(() => {
+      if (ctaRef.current) {
+        gsap.to(ctaRef.current, {
+          opacity: 0,
+          y: -25,
+          scale: 0.96,
+          duration: 0.28,
+          ease: 'power2.inOut',
+        });
+      }
+      triggerPullAnimation();
+    });
+  }
+
+  function handleCloseStudio() {
+    if (isPulling || !viewportRef.current) return;
+    gsap.to(viewportRef.current, {
+      x: typeof window !== 'undefined' ? window.innerWidth * 0.9 : 1000,
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.4,
+      ease: 'power2.in',
+      onComplete: () => {
+        setIsOpen(false);
+        if (ctaRef.current) {
+          gsap.fromTo(
+            ctaRef.current,
+            { opacity: 0, y: 25, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(1.2)' }
+          );
+        }
+      },
+    });
+  }
+
   function handleJobStarted(id: string) {
     setJobId(id);
     setResultReady(false);
@@ -119,59 +160,112 @@ export default function Studio() {
       {/* Background Dot Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none" />
 
-      {/* Stepper Navigation Pills */}
-      <nav
-        aria-label="Progressive Workflow"
-        className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-3 z-20"
-      >
-        {STEPS.map((step, index) => {
-          const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
-          const enabled = canOpen(step.number);
-          return (
-            <React.Fragment key={step.number}>
-              <button
-                type="button"
-                onClick={() => goToStage(step.number)}
-                disabled={!enabled}
-                aria-current={state === 'current' ? 'step' : undefined}
-                aria-disabled={!enabled}
-                className={
-                  'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
-                  (state === 'current'
-                    ? 'bg-[#1d6dd7] text-white shadow-sm'
-                    : state === 'done'
-                      ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
-                      : 'text-[#202020]/70 hover:text-black hover:bg-black/[0.03]') +
-                  (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
-                }
-              >
-                <span
-                  aria-hidden="true"
-                  className={
-                    'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
-                    (state === 'current'
-                      ? 'bg-white/20 text-white'
-                      : state === 'done'
-                        ? 'bg-[#e6effa] text-[#1d6dd7]'
-                        : 'bg-black/[0.04] text-black/40')
-                  }
-                >
-                  {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
-                </span>
-                <span>{step.label}</span>
-              </button>
-              {index < STEPS.length - 1 ? (
-                <span className="text-black/30 text-xs">➔</span>
-              ) : null}
-            </React.Fragment>
-          );
-        })}
-      </nav>
+      {/* ------------------------------------------------------------- */}
+      {/* HERO CALL TO ACTION (Initial State before opening Studio)      */}
+      {/* ------------------------------------------------------------- */}
+      {!isOpen && (
+        <div
+          ref={ctaRef}
+          className="flex flex-col items-center text-center max-w-2xl px-6 z-20 mt-12 md:mt-18 select-none animate-in fade-in duration-500"
+        >
+          {/* Punchy Heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#141414] leading-[1.08] mb-4">
+            Deterministic Engine for <br />
+            <span className="text-[#1d6dd7]">Temporal Intelligence</span>
+          </h1>
 
-      {/* Studio Viewport Card Container */}
+          {/* Intro description */}
+          <p className="text-sm sm:text-base text-black/60 max-w-lg mb-8 leading-relaxed font-medium">
+            Verify temporal claim constraints, test multi-agent proposition truth values, and generate certified datasets in real time.
+          </p>
+
+          {/* Big, Attractive CTA Button with Liquid Fill */}
+          <button
+            id="btn-launch-pipeline"
+            onClick={handleOpenStudio}
+            disabled={isPulling}
+            className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(29,109,215,0.28)] hover:shadow-[0_12px_32px_rgba(29,109,215,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+          >
+            <span className="btn_fill" />
+            <span className="button-text inline-flex items-center gap-3">
+              <span className="font-bold tracking-wide">Launch Processing Arena</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </button>
+        </div>
+      )}
+
+      {/* ------------------------------------------------------------- */}
+      {/* STEPPER NAVIGATION PILLS (Active when Studio is Open)         */}
+      {/* ------------------------------------------------------------- */}
+      {isOpen && (
+        <div className="flex items-center gap-2 mb-3 z-20 animate-in fade-in duration-300">
+          <nav
+            aria-label="Progressive Workflow"
+            className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+          >
+            {STEPS.map((step, index) => {
+              const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
+              const enabled = canOpen(step.number);
+              return (
+                <React.Fragment key={step.number}>
+                  <button
+                    type="button"
+                    onClick={() => goToStage(step.number)}
+                    disabled={!enabled}
+                    aria-current={state === 'current' ? 'step' : undefined}
+                    aria-disabled={!enabled}
+                    className={
+                      'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
+                      (state === 'current'
+                        ? 'bg-[#1d6dd7] text-white shadow-sm'
+                        : state === 'done'
+                          ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
+                          : 'text-[#202020]/70 hover:text-black hover:bg-black/[0.03]') +
+                      (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
+                    }
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={
+                        'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
+                        (state === 'current'
+                          ? 'bg-white/20 text-white'
+                          : state === 'done'
+                            ? 'bg-[#e6effa] text-[#1d6dd7]'
+                            : 'bg-black/[0.04] text-black/40')
+                      }
+                    >
+                      {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
+                    </span>
+                    <span>{step.label}</span>
+                  </button>
+                  {index < STEPS.length - 1 ? (
+                    <span className="text-black/30 text-xs">➔</span>
+                  ) : null}
+                </React.Fragment>
+              );
+            })}
+          </nav>
+
+          <button
+            onClick={handleCloseStudio}
+            title="Minimize Studio"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-black/50 hover:text-black hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
+          >
+            <X className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Minimize</span>
+          </button>
+        </div>
+      )}
+
+      {/* ------------------------------------------------------------- */}
+      {/* STUDIO VIEWPORT CARD CONTAINER (Pulled by Mascot Rig)         */}
+      {/* ------------------------------------------------------------- */}
       <div
         ref={viewportRef}
-        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-30 will-change-transform"
+        style={{ display: isOpen ? 'flex' : 'none' }}
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex-col overflow-hidden relative z-30 will-change-transform"
       >
         <div hidden={stage !== 1} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <DataStage

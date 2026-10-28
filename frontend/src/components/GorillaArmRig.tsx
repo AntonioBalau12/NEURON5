@@ -398,14 +398,7 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
           rotation: 0,
           duration: 0.48,
           ease: 'smoothCushion', // Silky-smooth cubic-bezier deceleration
-          boxShadow: '0 0 32px rgba(215, 241, 59, 0.4), 0 12px 36px rgba(0, 0, 0, 0.07)',
-          onComplete: () => {
-            gsap.to(viewportEl, {
-              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.06)',
-              duration: 0.5,
-              ease: 'smoothOut',
-            });
-          },
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.06)',
         },
         'step4_fullCurl'
       );
