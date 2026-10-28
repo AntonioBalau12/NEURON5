@@ -78,7 +78,21 @@ def process_csv(
     output_path = Path(output_path)
     started = time.time()
     engine.prepare()
-    emit_event(emit, "step.started", step="parse", component="processor", message="Reading dataset snapshot")
+    parse_started = time.perf_counter()
+    emit_event(
+        emit,
+        "step.started",
+        step="parse",
+        component="processor",
+        message="Reading dataset snapshot.",
+        details={
+            "inputBytes": input_path.stat().st_size,
+            "textColumn": mapping.text_column,
+            "dateColumn": mapping.date_column,
+            "idColumn": mapping.id_column,
+            "resultColumn": mapping.result_column,
+        },
+    )
     with open(input_path, "r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.reader(handle)
         try:
@@ -106,8 +120,28 @@ def process_csv(
             with open(temp, "w", encoding="utf-8", newline="") as out_handle:
                 writer = csv.writer(out_handle, lineterminator="\n")
                 writer.writerow(out_columns)
-                emit_event(emit, "step.completed", step="parse", component="processor", message=f"Parsed {len(columns)} columns")
-                emit_event(emit, "step.started", step="classify", component="classifier", message="Classifying rows")
+                emit_event(
+                    emit,
+                    "step.completed",
+                    step="parse",
+                    component="processor",
+                    message=f"Read {len(columns)} input columns.",
+                    durationMs=round((time.perf_counter() - parse_started) * 1000),
+                    details={
+                        "columnCount": len(columns),
+                        "columns": columns,
+                        "resultColumnExisted": result_index is not None,
+                    },
+                )
+                classify_started = time.perf_counter()
+                emit_event(
+                    emit,
+                    "step.started",
+                    step="classify",
+                    component="classifier",
+                    message="Classifying rows.",
+                    details={"progressEveryRows": progress_every},
+                )
                 for row in reader:
                     if not row:
                         continue
@@ -160,20 +194,71 @@ def process_csv(
                     processed += 1
                     if progress_every and processed % progress_every == 0:
                         out_handle.flush()
-                        emit_event(emit, "progress.updated", processedRows=processed, totalRows=None, counts=dict(counts),
-                              message=f"Processed {processed} rows")
+                        elapsed = max(time.perf_counter() - classify_started, 0.001)
+                        emit_event(
+                            emit,
+                            "progress.updated",
+                            processedRows=processed,
+                            totalRows=None,
+                            counts=dict(counts),
+                            message=f"Processed {processed} rows.",
+                            details={"rowsPerSecond": round(processed / elapsed, 2)},
+                        )
                 if timed_out:
-                    emit_event(emit, "log.recorded", level="WARN", component="processor", step="classify",
-                          message="Job deadline reached; remaining rows were written with the fallback label")
+                    emit_event(
+                        emit,
+                        "log.recorded",
+                        level="WARN",
+                        component="processor",
+                        step="classify",
+                        message="Job deadline reached; remaining rows were written with the fallback label.",
+                        details={"processedRows": processed, "fallbackRows": counts["fallback"]},
+                    )
                 out_handle.flush()
                 os.fsync(out_handle.fileno())
-                emit_event(emit, "step.completed", step="classify", component="classifier", message=f"Classified {total_rows} rows")
-            emit_event(emit, "step.started", step="validate", component="processor", message="Validating output table")
+                classify_duration = time.perf_counter() - classify_started
+                emit_event(
+                    emit,
+                    "step.completed",
+                    step="classify",
+                    component="classifier",
+                    message=f"Classified {total_rows} rows.",
+                    durationMs=round(classify_duration * 1000),
+                    details={
+                        "processedRows": total_rows,
+                        "counts": dict(counts),
+                        "errorRows": len(errors),
+                        "timedOut": timed_out,
+                        "rowsPerSecond": round(total_rows / max(classify_duration, 0.001), 2),
+                    },
+                )
+            validate_started = time.perf_counter()
+            emit_event(
+                emit,
+                "step.started",
+                step="validate",
+                component="processor",
+                message="Validating output table.",
+                details={"outputBytes": temp.stat().st_size, "expectedRows": total_rows},
+            )
             out_columns_check, rows_check = _validate_table(temp)
             if rows_check != total_rows:
                 raise ProcessingError(f"output row count mismatch ({rows_check} != {total_rows})")
             _publish(temp, output_path)
-            emit_event(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows_check} rows")
+            emit_event(
+                emit,
+                "step.completed",
+                step="validate",
+                component="processor",
+                message=f"Output validated: {rows_check} rows.",
+                durationMs=round((time.perf_counter() - validate_started) * 1000),
+                details={
+                    "rowCount": rows_check,
+                    "columnCount": len(out_columns_check),
+                    "columns": out_columns_check,
+                    "outputBytes": output_path.stat().st_size,
+                },
+            )
         except BaseException:
             try:
                 temp.unlink(missing_ok=True)

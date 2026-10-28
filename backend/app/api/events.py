@@ -85,6 +85,11 @@ def _component(payload: dict[str, Any], default: str = "processor") -> str:
     return default
 
 
+def _details(payload: dict[str, Any]) -> dict[str, Any]:
+    value = payload.get("details")
+    return dict(value) if isinstance(value, dict) else {}
+
+
 def _progress_counts(job: JobRecord) -> dict[str, int]:
     return {
         "true": int(job.counts.get("true", 0)),
@@ -107,7 +112,15 @@ def emit_job_started(state: ApiState, job: JobRecord) -> None:
         component="orchestrator",
         step=job.stage if job.stage in STAGES else "parse",
         message="Job started.",
-        data={},
+        data={
+            "datasetId": job.dataset_id,
+            "inputRows": job.expected_rows,
+            "deadlineAt": iso_utc(job.deadline_at),
+            "textColumn": job.mapping.text_column,
+            "dateColumn": job.mapping.date_column,
+            "idColumn": job.mapping.id_column,
+            "resultColumn": job.mapping.result_column,
+        },
     )
 
 
@@ -161,13 +174,14 @@ def _ingest_processor_event(
         step = step or (job.stage if job.stage != "queued" else "parse")
         message = message or "Job started."
     elif event_type == "step.started":
+        data = _details(payload)
         if step is not None and step in STAGES:
             job.stage = step
             if step in ("write", "validate"):
                 job.status = "finalizing"
         message = message or f"Step {step or job.stage} started."
     elif event_type == "step.completed":
-        data = {"durationMs": coerce_int(payload.get("durationMs"), 0)}
+        data = {**_details(payload), "durationMs": coerce_int(payload.get("durationMs"), 0)}
         message = message or f"Step {step or job.stage} completed."
     elif event_type == "progress.updated":
         processed = max(0, coerce_int(payload.get("processedRows"), job.processed_rows))
@@ -186,6 +200,7 @@ def _ingest_processor_event(
             "processedRows": processed,
             "totalRows": total,
             "counts": _progress_counts(job),
+            **_details(payload),
         }
         processed_text = str(processed)
         message = message or (
@@ -205,15 +220,16 @@ def _ingest_processor_event(
             "lineNumber": coerce_int(payload.get("lineNumber"), 0),
             "column": column if isinstance(column, str) else None,
             "code": str(code) if code else "ROW_ERROR",
+            **_details(payload),
         }
         message = message or f"Row {data['rowId'] or '?'} failed: {data['code']}."
         step = step or (job.stage if job.stage != "queued" else None)
     elif event_type == "log.recorded":
-        data = {}
+        data = _details(payload)
         step = step or (job.stage if job.stage != "queued" else None)
         message = message or "Log record."
     else:
-        data = {"originalType": event_type}
+        data = {"originalType": event_type, **_details(payload)}
         event_type = "log.recorded"
         step = step or (job.stage if job.stage != "queued" else None)
         message = message or "Log record."
@@ -236,6 +252,8 @@ def emit_terminal(
     *,
     success: bool,
     detail: str | None = None,
+    error_type: str | None = None,
+    error_message: str | None = None,
 ) -> None:
     now = utcnow()
     duration = job.duration_seconds
@@ -254,6 +272,9 @@ def emit_terminal(
                 "totalRows": int(job.total_rows or 0),
                 "durationSeconds": round(float(duration or 0.0), 3),
                 "counts": dict(job.counts),
+                "outputBytes": job.output_path.stat().st_size if job.output_path.is_file() else 0,
+                "errorRows": len(job.outcome.errors) if job.outcome is not None else 0,
+                "timedOut": bool(job.outcome and job.outcome.timed_out),
             },
         )
     else:
@@ -265,7 +286,11 @@ def emit_terminal(
             component="orchestrator",
             step="failed",
             message=detail or f"Job failed: {job.failure_reason or 'PROCESSOR_ERROR'}.",
-            data={"failureReason": job.failure_reason},
+            data={
+                "failureReason": job.failure_reason,
+                "errorType": error_type,
+                "errorMessage": error_message,
+            },
         )
 
 

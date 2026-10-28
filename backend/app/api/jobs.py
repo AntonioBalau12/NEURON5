@@ -125,6 +125,8 @@ def _finalize_failure(
     job: JobRecord,
     reason: str,
     detail: str,
+    error_type: str | None = None,
+    error_message: str | None = None,
 ) -> None:
     now = utcnow()
     job.status = "failed"
@@ -135,7 +137,14 @@ def _finalize_failure(
     job.terminal_at = now
     if job.started_at is None:
         job.started_at = now
-    emit_terminal(state, job, success=False, detail=detail)
+    emit_terminal(
+        state,
+        job,
+        success=False,
+        detail=detail,
+        error_type=error_type,
+        error_message=error_message,
+    )
 
 
 async def _apply_outcome(state: ApiState, job: JobRecord, outcome: ProcessOutcome) -> None:
@@ -195,7 +204,21 @@ async def run_job(state: ApiState, job: JobRecord) -> None:
                 pass
 
         def work() -> ProcessOutcome:
+            emitter("log.recorded", {
+                "level": "INFO",
+                "component": "classifier",
+                "step": "model",
+                "message": "Loading local classifier.",
+                "details": {"modelFile": state.settings.model_path.name},
+            })
             engine = engine_factory(settings=state.settings)
+            emitter("log.recorded", {
+                "level": "INFO",
+                "component": "classifier",
+                "step": "model",
+                "message": "Local classifier ready.",
+                "details": {"engine": type(engine).__name__},
+            })
             try:
                 return process_csv(
                     job.input_path,
@@ -223,15 +246,19 @@ async def run_job(state: ApiState, job: JobRecord) -> None:
                 state,
                 job,
                 "CLASSIFIER_UNAVAILABLE",
-                "The local classification model could not be loaded.",
+                f"The local classification model could not be loaded: {exc}"[:500],
+                error_type=type(exc).__name__,
+                error_message=str(exc)[:500],
             )
-        except Exception:
+        except Exception as exc:
             logger.exception("Processor failed for job %s", job.id)
             _finalize_failure(
                 state,
                 job,
                 "PROCESSOR_ERROR",
-                "The processor failed unexpectedly.",
+                f"The processor failed: {type(exc).__name__}: {exc}"[:500],
+                error_type=type(exc).__name__,
+                error_message=str(exc)[:500],
             )
         else:
             if not isinstance(outcome, ProcessOutcome):
