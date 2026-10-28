@@ -9,10 +9,13 @@ import time
 from dataclasses import replace
 from pathlib import Path
 
-import httpx
+import pytest
 
-from app.engine.api import MappingSpec, process_csv
-from app.engine.remote_engine import RemoteClassifierEngine
+from app.engine.api import RowInput
+from app.engine.local_engine import LocalModelEngine
+
+BACKEND_ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = BACKEND_ROOT / "scripts" / "adapter.joblib"
 
 PRACTICE_COLUMNS = ["id", "text", "date", "label", "form"]
 FORM_1 = json.dumps([{"subject": "Holdan", "attribute": "joined", "value": {"kind": "date", "value": "2026-01-12"}}])
@@ -39,13 +42,19 @@ def make_client(tmp_path: Path):
     from app.main import create_app
     from fastapi.testclient import TestClient
 
-    settings = replace(get_settings(), temp_dir=tmp_path / "tmp")
+    settings = replace(get_settings(), temp_dir=tmp_path / "tmp", model_path=MODEL_PATH)
     return TestClient(create_app(settings))
 
 
-def test_practice_upload_detects_schema_and_confirms_mapping(monkeypatch, tmp_path: Path):
-    monkeypatch.delenv("NEURON_CLASSIFIER_URLS", raising=False)
-    monkeypatch.delenv("NEURON_CLASSIFIER_URL", raising=False)
+@pytest.fixture(scope="module")
+def local_engine():
+    engine = LocalModelEngine(MODEL_PATH)
+    engine.prepare()
+    yield engine
+    engine.close()
+
+
+def test_practice_upload_detects_schema_and_confirms_mapping(tmp_path: Path):
     with make_client(tmp_path) as client:
         client.post("/api/v1/sessions")
         uploaded = client.post(
@@ -70,8 +79,7 @@ def test_practice_upload_detects_schema_and_confirms_mapping(monkeypatch, tmp_pa
         assert dataset["preview"]["rows"][1][4] == FORM_2
 
 
-def test_practice_rows_are_validated_and_reported(monkeypatch, tmp_path: Path):
-    monkeypatch.delenv("NEURON_CLASSIFIER_URLS", raising=False)
+def test_practice_rows_are_validated_and_reported(tmp_path: Path):
     rows = [
         ["p-1", "ok sentence", "2026-13-40", "", "[]"],          # bad date
         ["p-2", "ok sentence", "2026-01-12", "maybe", "[]"],      # bad label
@@ -89,14 +97,18 @@ def test_practice_rows_are_validated_and_reported(monkeypatch, tmp_path: Path):
         assert "PRACTICE_ROW_ERRORS" in dataset["warnings"]
 
 
-def test_practice_job_with_backend_mock_preserves_schema(monkeypatch, tmp_path: Path):
-    monkeypatch.delenv("NEURON_CLASSIFIER_URLS", raising=False)
-    monkeypatch.delenv("NEURON_CLASSIFIER_URL", raising=False)
+def test_practice_job_uses_local_model_and_preserves_schema(local_engine, tmp_path: Path):
+    rows = [
+        ["p-1", "Holdan started at Hooly on 12 January 2026.", "2026-01-12", "", FORM_1],
+        ["p-2", "Hooly AI Pro costs EUR 59 a month.", "2026-04-20", "stale", FORM_2],
+        ["p-3", "Hooly no longer sells the tablet.", "2026-05-10", "", FORM_3],
+        ["p-4", "Hooly might launch a server.", "2026-06-01", "", "[]"],
+    ]
     with make_client(tmp_path) as client:
         client.post("/api/v1/sessions")
         uploaded = client.post(
             "/api/v1/datasets/bulk",
-            files={"file": ("practice.csv", practice_csv(), "text/csv")},
+            files={"file": ("practice.csv", practice_csv(rows), "text/csv")},
         )
         dataset = uploaded.json()
         # mapping is already confirmed by the practice-format detector
@@ -111,58 +123,21 @@ def test_practice_job_with_backend_mock_preserves_schema(monkeypatch, tmp_path: 
                 break
             time.sleep(0.1)
         assert snapshot["status"] == "succeeded", snapshot
-        assert snapshot["counters"]["true"] == 2
-        assert snapshot["counters"]["false"] == 1
-        assert snapshot["counters"]["unsure"] == 1
+
+        expected = [
+            local_engine.classify(RowInput(row[0], row[1], row[2])).label
+            for row in rows
+        ]
+        assert snapshot["counters"]["true"] == expected.count("true")
+        assert snapshot["counters"]["false"] == expected.count("false")
+        assert snapshot["counters"]["unsure"] == expected.count("unsure")
 
         output = client.get(f"/api/v1/jobs/{job_id}/result.csv")
         assert output.status_code == 200
         parsed = list(csv.DictReader(io.StringIO(output.text)))
         assert list(parsed[0].keys()) == PRACTICE_COLUMNS
-        source_forms = [row[4] for row in csv.reader(io.StringIO(practice_csv().decode()))][1:]
+        source_forms = [row[4] for row in rows]
         assert [row["form"] for row in parsed] == source_forms
         assert [row["id"] for row in parsed] == ["p-1", "p-2", "p-3", "p-4"]
-        assert [row["label"] for row in parsed] == ["true", "true", "false", "unsure"]
-        # provided labels are overwritten by the classifier output
-        assert parsed[1]["label"] == "true"
-
-
-def test_rows_payload_uses_the_practice_structure(tmp_path: Path):
-    source = tmp_path / "input.csv"
-    source.write_bytes(practice_csv())
-    captured: dict = {}
-
-    def handler(request: httpx.Request) -> httpx.Response:
-        captured["payload"] = json.loads(request.content)
-        rows = captured["payload"]["rows"]
-        return httpx.Response(200, content=json.dumps({"results": [
-            {"id": row["id"], "label": "true", "confidence": 0.9} for row in rows
-        ]}).encode())
-
-    engine = RemoteClassifierEngine(
-        ["http://classifier.test/classify"], mode="rows", transport=httpx.MockTransport(handler)
-    )
-    target = tmp_path / "out.csv"
-    outcome = process_csv(
-        source,
-        target,
-        MappingSpec(text_column="text", date_column="date", id_column="id", result_column="label"),
-        engine,
-    )
-    assert outcome.valid is True
-    assert captured["payload"]["columns"] == PRACTICE_COLUMNS
-    assert captured["payload"]["mapping"] == {
-        "textColumn": "text",
-        "dateColumn": "date",
-        "idColumn": "id",
-        "resultColumn": "label",
-    }
-    first = captured["payload"]["rows"][0]
-    assert set(first) == set(PRACTICE_COLUMNS)
-    assert first["form"] == FORM_1
-
-    output = list(csv.DictReader(io.StringIO(target.read_text(encoding="utf-8"))))
-    assert list(output[0].keys()) == PRACTICE_COLUMNS
-    assert [row["form"] for row in output] == [
-        row[4] for row in csv.reader(io.StringIO(practice_csv().decode()))
-    ][1:]
+        assert [row["label"] for row in parsed] == expected
+        assert parsed[1]["label"] != "stale"

@@ -107,6 +107,10 @@ class Engine(Protocol):
         """Release resources."""
 
 
+class ClassifierUnavailable(RuntimeError):
+    """The local classification model could not be loaded."""
+
+
 def emit_event(emit: EventEmitter | None, event_type: str, **payload) -> None:
     """Notify the caller without letting logging interrupt processing."""
     if emit is None:
@@ -118,37 +122,14 @@ def emit_event(emit: EventEmitter | None, event_type: str, **payload) -> None:
 
 
 def create_engine(
-    data_dir: str | Path | None = None,  # noqa: ARG001
     *,
     settings: Settings | None = None,
 ) -> Engine:
-    """Build the engine used by jobs.
+    """Load the local model configured for this application or CLI run."""
+    from .local_engine import LocalModelEngine
 
-    - NEURON_CLASSIFIER_URLS set  -> HTTP client for the teammates' service.
-    - no URLs configured          -> in-process DEMO classifier so the frontend
-      works with zero setup (labels are placeholders, flagged in the job log).
-
-    data_dir is kept for interface stability; classification context lives in
-    the remote service, not in this container.
-    Jobs supply their application's settings; standalone callers read the
-    environment once when constructing the engine.
-    """
     settings = settings if settings is not None else get_settings()
-    if not settings.classifier_urls:
-        from .mock_engine import MockClassifierEngine
-
-        return MockClassifierEngine(delay_seconds=settings.mock_delay_seconds)
-    from .remote_engine import RemoteClassifierEngine
-
-    return RemoteClassifierEngine(
-        settings.classifier_urls,
-        mode=settings.classifier_mode,
-        field_name=settings.classifier_field_name,
-        timeout=settings.classifier_timeout_seconds,
-        retries=settings.classifier_retries,
-        token=settings.classifier_token,
-        as_of=settings.as_of_date,
-    )
+    return LocalModelEngine(settings.model_path)
 
 
 def process_csv(

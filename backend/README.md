@@ -1,66 +1,59 @@
-# Backend — NEURON5 offline CSV classification API
+# Backend — NEURON5 local CSV classification API
 
-FastAPI service for the three-stage classification UI in `../frontend`.
-Python 3.12+, no database, no LLM, **no local classifier**: classification is
-delegated to the teammates' HTTP service.
+FastAPI service for the three-stage UI in `../frontend`. The backend runs the
+local prototype stored in `scripts/adapter.joblib`; classification does not use
+an HTTP classifier service or an LLM. The checked-in adapter uses CPU inference
+with two LightGBM threads. It is a prototype classifier and does not generate
+new claims.
 
-## Run (local development)
+## Run locally
 
-```sh
+Use Python 3.12 in an isolated environment. On Windows PowerShell:
+
+```powershell
 cd backend
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-That is enough for the frontend: **without `NEURON_CLASSIFIER_URLS` the API
-classifies with the in-process DEMO classifier** (`app/engine/mock_engine.py`,
-keyword heuristic). Jobs succeed, results/logs/downloads work, and every job log
-carries the warning "DEMO classifier ... placeholders". `NEURON_MOCK_DELAY_SECONDS`
-(default 1.0) keeps stage 2 visible.
+On Linux, create the same environment with `python3 -m venv .venv` and use
+`.venv/bin/python` for installation, startup, CLI processing and tests below.
 
-When the teammates' service is ready, point the backend at it (no code change):
+The default model path is `backend/scripts/adapter.joblib` (SHA-256
+`9200b1536c6df28609e4e8b36a3aaefc16a08cecf1278392d878f847d609fd2a`). To use
+another compatible artifact, set `NEURON_MODEL_PATH` before starting the API.
+The loaded model is cached per process and path; restart the backend after
+replacing an artifact at the same path. If the artifact is missing or cannot be
+loaded, jobs fail with `CLASSIFIER_UNAVAILABLE`; the backend does not substitute
+placeholder labels.
 
-```sh
-$env:NEURON_CLASSIFIER_URLS = "http://<their-host>:<port>/<path>"
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
-
-Optional: exercise the real HTTP client path against a stand-in:
-
-```sh
-python -m app.mock_classifier        # http://127.0.0.1:8010 (demo labels only)
-$env:NEURON_CLASSIFIER_URLS = "http://127.0.0.1:8010/classify"
-```
-
-The Next.js dev server on `http://localhost:3000` talks to it directly; see
-`docs/API_CONTRACT.md` for CORS/cookie rules.
+The Next.js development server at `http://localhost:3000` talks to the API;
+see `docs/API_CONTRACT.md` for the routes, CORS and cookie rules.
 
 ## Environment
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `NEURON_CLASSIFIER_URLS` | — | comma-separated POST endpoints, tried in order; empty = in-process DEMO classifier |
-| `NEURON_MOCK_DELAY_SECONDS` | `1.0` | artificial delay of the in-process DEMO classifier |
-| `NEURON_CLASSIFIER_MODE` | `csv` | `csv` = multipart upload, `rows` = JSON rows |
-| `NEURON_CLASSIFIER_FIELD_NAME` | `file` | multipart file field name |
-| `NEURON_CLASSIFIER_TIMEOUT_SECONDS` | `1800` | per-request timeout, capped by the job deadline |
-| `NEURON_CLASSIFIER_RETRIES` | `0` | retries per endpoint (long requests are not retried by default) |
-| `NEURON_CLASSIFIER_TOKEN` | — | optional `Authorization: Bearer` token |
-| `NEURON_TEMP_DIR` | system temp | dataset snapshots, job outputs |
-| `NEURON_JOB_DEADLINE_SECONDS` | `1800` | job budget; `ARENA_DEADLINE` also caps it |
-| `NEURON_RESULT_GRACE_SECONDS` | `600` | result kept downloadable after completion |
+| `NEURON_MODEL_PATH` | `backend/scripts/adapter.joblib` | Local fitted model artifact |
+| `NEURON_TEMP_DIR` | system temp | Dataset snapshots and job outputs |
+| `NEURON_JOB_DEADLINE_SECONDS` | `1800` | Job budget; `ARENA_DEADLINE` can cap it |
+| `NEURON_RESULT_GRACE_SECONDS` | `600` | Time results remain downloadable after completion |
 
-The API runs one global job at a time; this limit is fixed and has no environment setting.
+The API runs one global job at a time; this limit is fixed.
 
-## CLI (processor without HTTP, etapa B)
+## CLI
 
-Sends the CSV to the same HTTP service; no uvicorn needed:
+Run the same local row processor without starting FastAPI:
 
 ```sh
 cd backend
-python -m app.engine.cli --input ../data/practice.csv --output /tmp/out.csv \
-    --classifier-url http://127.0.0.1:8010/classify
+python -m app.engine.cli --input ../data/practice.csv --output /tmp/out.csv
 ```
+
+Use `--model <path>` to select another compatible artifact and
+`--deadline-seconds <seconds>` to set a CLI deadline. `ARENA_DEADLINE` also
+caps the deadline. The CLI writes the labeled CSV to the requested output path.
 
 ## Tests
 
@@ -73,16 +66,16 @@ cd backend && python -m pytest -q
 ```text
 backend/
   app/
-    config.py            settings (limits, deadlines, classifier endpoints)
+    config.py            settings (model path, limits and deadlines)
     main.py              FastAPI app factory + CORS + lifespan
-    api/                 sessions, datasets, jobs, events, results routers
+    api/                 sessions, datasets, jobs, events and results routers
     engine/
-      api.py             Engine/MappingSpec/processor interface (frozen)
-      remote_engine.py   HTTP client for the teammates' classifier (CSV or JSON)
-      mock_engine.py     in-process DEMO classifier (default when no URL is set)
-      processor.py       snapshot -> remote request -> validated output table
-      cli.py             standalone processor entry point
-    mock_classifier.py   local demo stand-in for the teammates' service
-  tests/                 engine + API + end-to-end tests
+      api.py             Engine/MappingSpec/processor interface
+      model_engine.py    local adapter loading and row inference
+      processor.py       CSV snapshot -> row inference -> validated output
+      cli.py             standalone local processor entry point
+  scripts/
+    adapter.joblib       fitted local prototype classifier
+  tests/                 engine and API tests
   docs/                  API_CONTRACT.md, DECISIONS.md
 ```

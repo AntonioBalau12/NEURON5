@@ -1,17 +1,7 @@
-"""CSV processor: dataset snapshot -> labelled result table.
+"""Stream local model predictions into an atomically published CSV table.
 
-Two modes, same ProcessOutcome contract:
-
-1. Remote mode (the real one): the classifier engine is backed by the teammates'
-   HTTP service. The whole snapshot is sent in one request (RemoteClassifierEngine
-   .submit_dataset) and the returned data/CSV becomes the job output. No local
-   classification happens here.
-2. Row mode (test/diagnostic engines implementing the Engine protocol): rows are
-   classified one by one with per-row error containment. Kept so the API tests can
-   inject a fake engine without any network.
-
-Both modes preserve row order, write incrementally/atomically and validate the
-CSV before publishing it. See docs/API_CONTRACT.md section 7.
+The mapped label is overwritten or appended. Other cells, row order, frontend
+progress events and per-row error containment retain their existing contract.
 """
 
 from __future__ import annotations
@@ -21,9 +11,8 @@ import os
 import tempfile
 import time
 from pathlib import Path
-from typing import Any
 
-from .api import EventEmitter, MappingSpec, ProcessOutcome, RowDecision, RowInput, emit_event
+from .api import Engine, EventEmitter, MappingSpec, ProcessOutcome, RowDecision, RowInput, emit_event
 
 MAX_ERRORS = 2000
 
@@ -69,29 +58,6 @@ def _validate_table(path: Path) -> tuple[list[str], int]:
     return columns, rows
 
 
-def _counts_from_output(path: Path, result_column: str) -> dict[str, int]:
-    counts = {"true": 0, "false": 0, "unsure": 0, "fallback": 0}
-    try:
-        with open(path, "r", encoding="utf-8-sig", newline="") as handle:
-            reader = csv.reader(handle)
-            columns = next(reader, [])
-            index = None
-            for i, name in enumerate(columns):
-                if name.strip().lower() in (result_column.strip().lower(), "label"):
-                    index = i
-                    break
-            if index is None:
-                return counts
-            for row in reader:
-                if not row:
-                    continue
-                value = (row[index] if index < len(row) else "").strip().lower()
-                counts[value if value in ("true", "false", "unsure") else "fallback"] += 1
-    except (OSError, UnicodeDecodeError):
-        return counts
-    return counts
-
-
 def _safe_id(value: str, fallback: str) -> str:
     value = (value or "").strip()
     return value or fallback
@@ -101,7 +67,7 @@ def process_csv(
     input_path: str | Path,
     output_path: str | Path,
     mapping: MappingSpec,
-    engine: Any,
+    engine: Engine,
     *,
     deadline_epoch: float | None = None,
     emit: EventEmitter | None = None,
@@ -111,83 +77,7 @@ def process_csv(
     input_path = Path(input_path)
     output_path = Path(output_path)
     started = time.time()
-    if hasattr(engine, "submit_dataset"):
-        return _process_remote(input_path, output_path, mapping, engine, deadline_epoch, emit, as_of, started)
-    return _process_rows(input_path, output_path, mapping, engine, deadline_epoch, emit, progress_every, started)
-
-
-# --------------------------------------------------------------------------- #
-# Remote mode: one request to the teammates' service, its table is the output.
-# --------------------------------------------------------------------------- #
-def _process_remote(
-    input_path: Path,
-    output_path: Path,
-    mapping: MappingSpec,
-    engine: Any,
-    deadline_epoch: float | None,
-    emit: EventEmitter | None,
-    as_of: str | None,
-    started: float,
-) -> ProcessOutcome:
-    emit_event(emit, "progress.updated", processedRows=0, totalRows=None, counts={"true": 0, "false": 0, "unsure": 0, "fallback": 0},
-          message="Waiting for the classification service")
-    result = engine.submit_dataset(
-        input_path,
-        mapping,
-        as_of=as_of,
-        deadline_epoch=deadline_epoch,
-        emit=emit,
-    )
-
-    temp = _temp_path(output_path)
-    try:
-        with open(temp, "wb") as handle:
-            handle.write(result.content)
-            handle.flush()
-            os.fsync(handle.fileno())
-        emit_event(emit, "step.started", step="validate", component="processor", message="Validating the returned table")
-        columns, rows = _validate_table(temp)
-        if rows != result.total_rows:
-            raise ProcessingError(f"remote table changed while being stored ({result.total_rows} -> {rows} rows)")
-        _publish(temp, output_path)
-        emit_event(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows} rows, {len(columns)} columns")
-    except BaseException:
-        try:
-            temp.unlink(missing_ok=True)
-        except OSError:
-            pass
-        raise
-
-    counts = result.counts or _counts_from_output(output_path, mapping.result_column)
-    errors = list(result.errors)[:MAX_ERRORS]
-    duration = time.time() - started
-    emit_event(emit, "progress.updated", processedRows=rows, totalRows=rows, counts=counts,
-          message=f"Received {rows} rows from the classification service")
-    return ProcessOutcome(
-        output_path=output_path,
-        total_rows=rows,
-        processed_rows=rows,
-        counts=counts,
-        errors=errors,
-        duration_seconds=duration,
-        timed_out=False,
-        valid=True,
-    )
-
-
-# --------------------------------------------------------------------------- #
-# Row mode: per-row Engine.classify, used by tests and diagnostic engines.
-# --------------------------------------------------------------------------- #
-def _process_rows(
-    input_path: Path,
-    output_path: Path,
-    mapping: MappingSpec,
-    engine: Any,
-    deadline_epoch: float | None,
-    emit: EventEmitter | None,
-    progress_every: int,
-    started: float,
-) -> ProcessOutcome:
+    engine.prepare()
     emit_event(emit, "step.started", step="parse", component="processor", message="Reading dataset snapshot")
     with open(input_path, "r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.reader(handle)
@@ -236,14 +126,7 @@ def _process_rows(
                         decision = RowDecision(id=row_id, label="unsure", confidence=None, fallback=True,
                                                error="DEADLINE_EXCEEDED", reason="job deadline reached")
                     elif not text.strip():
-                        errors.append(_error_entry(row_id, line_number, mapping.text_column, "EMPTY_TEXT", "row has no sentence"))
                         decision = RowDecision(id=row_id, label="unsure", confidence=None, fallback=True, error="EMPTY_TEXT", reason="empty text")
-                    elif row_date and not _is_iso_date(row_date):
-                        errors.append(_error_entry(row_id, line_number, mapping.date_column or "date", "INVALID_DATE", f"date {row_date!r} is not yyyy-mm-dd"))
-                        if len(errors) <= MAX_ERRORS:
-                            emit_event(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.date_column, code="INVALID_DATE",
-                                  message=f"date {row_date!r} is not yyyy-mm-dd", level="WARN", component="processor", step="classify")
-                        row_date = None
                     if decision is None:
                         try:
                             decision = engine.classify(RowInput(id=row_id, text=text, row_date=row_date))
@@ -259,8 +142,9 @@ def _process_rows(
                     if decision.fallback:
                         counts["fallback"] += 1
                         if decision.error and len(errors) < MAX_ERRORS:
-                            errors.append(_error_entry(row_id, line_number, mapping.text_column, decision.error, decision.reason or decision.error))
-                            emit_event(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.text_column,
+                            error_column = mapping.date_column if decision.error in ("MISSING_DATE", "INVALID_DATE") else mapping.text_column
+                            errors.append(_error_entry(row_id, line_number, error_column, decision.error, decision.reason or decision.error))
+                            emit_event(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=error_column,
                                   code=decision.error, message=decision.reason or decision.error, level="WARN",
                                   component="classifier", step="classify")
                     else:
@@ -309,13 +193,3 @@ def _process_rows(
         timed_out=timed_out,
         valid=True,
     )
-
-
-def _is_iso_date(value: str) -> bool:
-    import datetime
-
-    try:
-        datetime.date.fromisoformat(value)
-    except ValueError:
-        return False
-    return True
