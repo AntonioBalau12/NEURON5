@@ -99,13 +99,14 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
       const baseReachLength = 560;
       const reachScale = Math.max(1.18, targetReachDistance / baseReachLength);
 
-      // Initialize table off-screen to the right (never flashes in center!)
+      // Initialize table off-screen to the right (strictly on X axis, zero Y displacement, zero tilt)
       viewportEl.style.visibility = 'visible';
       gsap.set(viewportEl, {
         x: tableStartX,
+        y: 0,
         opacity: 1,
-        scale: 0.98,
-        rotation: 2.2,
+        scale: 1,
+        rotation: 0,
       });
 
       // Initial state: Arm completely hidden below the bottom boundary
@@ -292,13 +293,15 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
         'step3_pullPart'
       );
 
-      // Table slides partially onto the screen
+      // Table slides partially onto the screen (strictly on X axis)
       tl.to(
         viewportEl,
         {
           x: partialTableX,
-          opacity: 0.98,
-          rotation: 1.4,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
           duration: 0.24,
           ease: 'smoothInOut',
         },
@@ -391,11 +394,12 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
         );
       }
 
-      // Table glides smoothly into center with cushioned cubic-bezier landing
+      // Table glides smoothly into center with cushioned cubic-bezier landing (strictly on X axis)
       tl.to(
         viewportEl,
         {
           x: 0,
+          y: 0,
           opacity: 1,
           scale: 1,
           rotation: 0,

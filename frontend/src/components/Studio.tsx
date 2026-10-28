@@ -94,6 +94,7 @@ export default function Studio() {
 
     // Smoothly fade & scale out the CTA hero block
     if (ctaRef.current) {
+      ctaRef.current.style.pointerEvents = 'none';
       gsap.to(ctaRef.current, {
         opacity: 0,
         y: -24,
@@ -122,8 +123,10 @@ export default function Studio() {
     (window as any).__isPullAnimationActive = true;
     gsap.to(viewportRef.current, {
       x: typeof window !== 'undefined' ? window.innerWidth + 200 : 1200,
+      y: 0,
       opacity: 0,
-      scale: 0.96,
+      scale: 1,
+      rotation: 0,
       duration: 0.45,
       ease: 'power2.in',
       onComplete: () => {
@@ -133,13 +136,16 @@ export default function Studio() {
         if (viewportRef.current) {
           viewportRef.current.style.visibility = 'hidden';
         }
-        if (ctaRef.current) {
-          gsap.fromTo(
-            ctaRef.current,
-            { opacity: 0, y: 25, scale: 0.95 },
-            { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(1.2)' }
-          );
-        }
+        requestAnimationFrame(() => {
+          if (ctaRef.current) {
+            ctaRef.current.style.pointerEvents = 'auto';
+            gsap.fromTo(
+              ctaRef.current,
+              { opacity: 0, y: 25, scale: 0.95 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(1.2)' }
+            );
+          }
+        });
       },
     });
   }
@@ -186,7 +192,7 @@ export default function Studio() {
       {!isOpen && (
         <div
           ref={ctaRef}
-          className="flex flex-col items-center text-center max-w-2xl px-6 relative z-50 mt-12 md:mt-18 select-none animate-in fade-in duration-500 pointer-events-auto"
+          className="absolute top-28 sm:top-32 md:top-36 left-1/2 -translate-x-1/2 flex flex-col items-center text-center w-full max-w-2xl px-6 z-50 select-none animate-in fade-in duration-500 pointer-events-auto"
         >
           {/* Punchy Heading with DESIGN.md color tokens */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#202020] leading-[1.08] mb-4">
@@ -218,66 +224,68 @@ export default function Studio() {
       {/* ------------------------------------------------------------- */}
       {/* STEPPER NAVIGATION PILLS (Active when Studio is Open)         */}
       {/* ------------------------------------------------------------- */}
-      {isOpen && (
-        <div className="flex items-center gap-2 mb-3 z-40 animate-in fade-in duration-300">
-          <nav
-            aria-label="Progressive Workflow"
-            className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
-          >
-            {STEPS.map((step, index) => {
-              const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
-              const enabled = canOpen(step.number);
-              return (
-                <React.Fragment key={step.number}>
-                  <button
-                    type="button"
-                    onClick={() => goToStage(step.number)}
-                    disabled={!enabled}
-                    aria-current={state === 'current' ? 'step' : undefined}
-                    aria-disabled={!enabled}
-                    className={
-                      'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
-                      (state === 'current'
-                        ? 'bg-[#1d6dd7] text-[#fcfcfc] shadow-sm'
-                        : state === 'done'
-                          ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
-                          : 'text-[#202020]/70 hover:text-[#202020] hover:bg-black/[0.03]') +
-                      (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
-                    }
-                  >
-                    <span
-                      aria-hidden="true"
+      <div className="h-11 mb-3 flex items-center justify-center z-40">
+        {isOpen && (
+          <div className="flex items-center gap-2 animate-in fade-in duration-300">
+            <nav
+              aria-label="Progressive Workflow"
+              className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+            >
+              {STEPS.map((step, index) => {
+                const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
+                const enabled = canOpen(step.number);
+                return (
+                  <React.Fragment key={step.number}>
+                    <button
+                      type="button"
+                      onClick={() => goToStage(step.number)}
+                      disabled={!enabled}
+                      aria-current={state === 'current' ? 'step' : undefined}
+                      aria-disabled={!enabled}
                       className={
-                        'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
+                        'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
                         (state === 'current'
-                          ? 'bg-white/20 text-[#fcfcfc]'
+                          ? 'bg-[#1d6dd7] text-[#fcfcfc] shadow-sm'
                           : state === 'done'
-                            ? 'bg-[#e6effa] text-[#1d6dd7]'
-                            : 'bg-black/[0.04] text-[#202020]/50')
+                            ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
+                            : 'text-[#202020]/70 hover:text-[#202020] hover:bg-black/[0.03]') +
+                        (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
                       }
                     >
-                      {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
-                    </span>
-                    <span>{step.label}</span>
-                  </button>
-                  {index < STEPS.length - 1 ? (
-                    <span className="text-black/30 text-xs">➔</span>
-                  ) : null}
-                </React.Fragment>
-              );
-            })}
-          </nav>
+                      <span
+                        aria-hidden="true"
+                        className={
+                          'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
+                          (state === 'current'
+                            ? 'bg-white/20 text-[#fcfcfc]'
+                            : state === 'done'
+                              ? 'bg-[#e6effa] text-[#1d6dd7]'
+                              : 'bg-black/[0.04] text-[#202020]/50')
+                        }
+                      >
+                        {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
+                      </span>
+                      <span>{step.label}</span>
+                    </button>
+                    {index < STEPS.length - 1 ? (
+                      <span className="text-black/30 text-xs">➔</span>
+                    ) : null}
+                  </React.Fragment>
+                );
+              })}
+            </nav>
 
-          <button
-            onClick={handleCloseStudio}
-            title="Minimize Studio"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-[#202020]/70 hover:text-[#202020] hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
-          >
-            <X className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Minimize</span>
-          </button>
-        </div>
-      )}
+            <button
+              onClick={handleCloseStudio}
+              title="Minimize Studio"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-[#202020]/70 hover:text-[#202020] hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Minimize</span>
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* ------------------------------------------------------------- */}
       {/* STUDIO VIEWPORT CARD CONTAINER (Pulled by Mascot Rig)         */}
