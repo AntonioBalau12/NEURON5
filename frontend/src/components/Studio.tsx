@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Sparkles,
   CheckCircle2,
@@ -16,7 +16,8 @@ import {
   BarChart3,
   ExternalLink
 } from 'lucide-react';
-import Mascot from './Mascot';
+import Mascot, { MascotHandle } from './Mascot';
+import GorillaArmRig, { GorillaArmRigHandle } from './GorillaArmRig';
 
 interface RowData {
   id: string;
@@ -38,6 +39,41 @@ export default function Studio() {
   const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
   const [activeChipIdx, setActiveChipIdx] = useState<number>(0);
   const [showLogs, setShowLogs] = useState(false);
+  const [isPulling, setIsPulling] = useState(false);
+
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const armRigRef = useRef<GorillaArmRigHandle>(null);
+  const mascotRef = useRef<MascotHandle>(null);
+
+  // Constant Function: Triggers the gorilla arm bicep curl table drag animation
+  const triggerPullAnimation = (onComplete?: () => void) => {
+    if (isPulling) return;
+    if (armRigRef.current && viewportRef.current) {
+      setIsPulling(true);
+      (window as any).__isPullAnimationActive = true;
+      armRigRef.current.triggerPull(
+        viewportRef.current,
+        mascotRef.current?.container ?? null,
+        mascotRef.current?.canvas ?? null,
+        () => {
+          setIsPulling(false);
+          (window as any).__isPullAnimationActive = false;
+          if (onComplete) onComplete();
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).triggerPullAnimation = triggerPullAnimation;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).triggerPullAnimation;
+      }
+    };
+  }, [isPulling]);
 
   const chips = [
     '⚡ Schema: 4 columns verified',
@@ -121,7 +157,10 @@ export default function Studio() {
       </nav>
 
       {/* Main Studio Viewport Box */}
-      <div className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-20">
+      <div
+        ref={viewportRef}
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-10 will-change-transform"
+      >
         
         {/* Studio Header */}
         <div className="h-12 px-6 border-b border-black/[0.08] flex items-center justify-between bg-[#fcfcfc]">
@@ -146,13 +185,29 @@ export default function Studio() {
             )}
           </h2>
 
-          <button
-            onClick={() => setShowLogs(!showLogs)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-black/10 text-xs font-semibold hover:bg-black/[0.03] transition-colors"
-          >
-            <Terminal className="w-3.5 h-3.5 text-black/60" />
-            {showLogs ? 'Hide Logs' : 'View Deep Logs'}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              id="btn-test-pull-anim"
+              onClick={() => triggerPullAnimation()}
+              disabled={isPulling}
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all shadow-sm ${
+                isPulling
+                  ? 'bg-[#d7f13b] text-[#141414] border border-[#d7f13b] cursor-not-allowed shadow-[0_0_14px_rgba(215,241,59,0.45)]'
+                  : 'bg-[#1d6dd7]/10 text-[#1d6dd7] border border-[#1d6dd7]/30 hover:bg-[#1d6dd7] hover:text-white hover:shadow-[0_0_12px_rgba(29,109,215,0.3)]'
+              }`}
+              title="Trigger mascot table bicep curl animation"
+            >
+              <span>🦾</span>
+              <span>{isPulling ? 'Bicep Curling Table...' : 'Test Pull Animation'}</span>
+            </button>
+            <button
+              onClick={() => setShowLogs(!showLogs)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-black/10 text-xs font-semibold hover:bg-black/[0.03] transition-colors"
+            >
+              <Terminal className="w-3.5 h-3.5 text-black/60" />
+              {showLogs ? 'Hide Logs' : 'View Deep Logs'}
+            </button>
+          </div>
         </div>
 
         {/* STEP 1: Schema Ingestion */}
@@ -373,8 +428,9 @@ export default function Studio() {
         </div>
       )}
 
-      {/* Anchored Gorilla Mascot (Peeking from bottom of the 100vh hero stage) */}
-      <Mascot />
+      {/* Gorilla Skeletal Arm Rig & Anchored Mascot Stage */}
+      <GorillaArmRig ref={armRigRef} />
+      <Mascot ref={mascotRef} />
     </section>
   );
 }
