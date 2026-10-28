@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import JenkinsPipelineWorkflow from './JenkinsPipelineWorkflow';
 import TemporalGraphPreview from './TemporalGraphPreview';
 
@@ -125,10 +125,12 @@ function mergeWarnings(previous: string[], incoming: string[]): string[] {
 /** Merge an authoritative job snapshot without letting stale responses move the UI backwards. */
 function mergeJob(previous: Job | null, incoming: Job): Job {
   if (!previous || previous.id !== incoming.id) return incoming;
-  const stage =
+  const terminalStage = incoming.status === 'succeeded' ? 'done' : incoming.status === 'failed' || incoming.status === 'cancelled' ? 'failed' : null;
+  const stage = terminalStage ?? (
     stageRank(incoming.progress.stage) >= stageRank(previous.progress.stage)
       ? incoming.progress.stage
-      : previous.progress.stage;
+      : previous.progress.stage
+  );
   const processedRows =
     incoming.progress.processedRows === null && previous.progress.processedRows === null
       ? null
@@ -188,9 +190,11 @@ function applyEventToJob(previous: Job | null, event: JobEvent): Job | null {
   let failureReason = previous.failureReason;
   if (event.type === 'job.completed') {
     status = 'succeeded';
+    stage = 'done';
     resultAvailable = true;
   } else if (event.type === 'job.failed') {
     status = 'failed';
+    stage = 'failed';
     if (typeof data.failureReason === 'string' && data.failureReason.length > 0) {
       failureReason = data.failureReason;
     }
@@ -255,6 +259,9 @@ export interface ProcessingViewProps {
 
 export default function ProcessingView({ jobId, onSucceeded, onBack }: ProcessingViewProps) {
   const [job, setJob] = useState<Job | null>(null);
+  const [finishedJob, setFinishedJob] = useState<Job | null>(null);
+  const [pipelineFinished, setPipelineFinished] = useState(false);
+  const handlePlaybackComplete = useCallback(() => setPipelineFinished(true), []);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<unknown>(null);
   const [events, setEvents] = useState<JobEvent[]>([]);
@@ -298,10 +305,11 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     let cursor = 0;
     let minSequence = 0;
     let terminal = false;
-    let advanced = false;
     let receivedEvents = 0;
 
     setJob(null);
+    setFinishedJob(null);
+    setPipelineFinished(false);
     setEvents([]);
     setLoading(true);
     setLoadError(null);
@@ -403,9 +411,8 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
       clearTimers();
       closeSocket();
       setConnection('closed');
-      if (terminalJob.status === 'succeeded' && !advanced) {
-        advanced = true;
-        onSucceededRef.current(terminalJob);
+      if (terminalJob.status === 'succeeded') {
+        setFinishedJob(terminalJob);
       }
     }
 
@@ -621,6 +628,10 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
   }, [jobId]);
 
   useEffect(() => {
+    if (finishedJob && pipelineFinished) onSucceededRef.current(finishedJob);
+  }, [finishedJob, pipelineFinished]);
+
+  useEffect(() => {
     if (job && isTerminalStatus(job.status)) finishRef.current?.(job);
   }, [job]);
 
@@ -774,9 +785,11 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           {/* Jenkins Architecture Workflow Diagram with Glowing Green Aura */}
           <JenkinsPipelineWorkflow
             stage={job?.progress?.stage}
+            status={job?.status}
             percent={percent}
             message={events[events.length - 1]?.message}
             className="mt-4"
+            onPlaybackComplete={handlePlaybackComplete}
           />
 
           <TemporalGraphPreview />

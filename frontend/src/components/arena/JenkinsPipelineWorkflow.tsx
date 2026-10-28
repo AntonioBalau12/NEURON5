@@ -1,37 +1,61 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { cx } from './ui';
 
 export interface JenkinsPipelineWorkflowProps {
   stage?: string; // 'queued' | 'parse' | 'classify' | 'write' | 'validate' | 'done' | 'failed';
+  status?: string;
   percent?: number | null;
   message?: string;
   className?: string;
+  onPlaybackComplete?: () => void;
 }
 
 export default function JenkinsPipelineWorkflow({
   stage = 'classify',
+  status = 'running',
   percent = null,
   message,
   className,
+  onPlaybackComplete,
 }: JenkinsPipelineWorkflowProps) {
   const normalizedStage = (stage || '').toLowerCase();
+  const isFailed = status === 'failed' || status === 'cancelled' || normalizedStage === 'failed';
+  const isCompleted = status === 'succeeded' || normalizedStage === 'done';
+  // Feature extraction and inference share the backend's classify step.
+  // Each visible block gets 400 ms before the view can advance to Results.
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const targetIndex = isCompleted ? 6 : ({ queued: 0, parse: 1, classify: 3, write: 4, validate: 4 }[normalizedStage] ?? 0);
 
-  const isInputActive = normalizedStage === 'queued';
-  const isInputDone = ['parse', 'classify', 'write', 'validate', 'done'].includes(normalizedStage);
+  useEffect(() => {
+    if (isFailed) return;
+    if (displayIndex < targetIndex) {
+      const timer = window.setTimeout(() => setDisplayIndex((index) => index + 1), 400);
+      return () => window.clearTimeout(timer);
+    }
+    if (displayIndex === 6) {
+      const timer = window.setTimeout(() => onPlaybackComplete?.(), 400);
+      return () => window.clearTimeout(timer);
+    }
+  }, [displayIndex, targetIndex, isFailed, onPlaybackComplete]);
 
-  const isParseActive = normalizedStage === 'parse';
-  const isParseDone = ['classify', 'write', 'validate', 'done'].includes(normalizedStage);
+  const isInputActive = !isFailed && displayIndex === 0;
+  const isInputDone = displayIndex > 0;
 
-  const isFeaturesActive = normalizedStage === 'classify';
-  const isFeaturesDone = ['write', 'validate', 'done'].includes(normalizedStage);
+  const isParseActive = !isFailed && displayIndex === 1;
+  const isParseDone = displayIndex > 1;
 
-  const isValidateActive = ['write', 'validate'].includes(normalizedStage);
-  const isValidateDone = normalizedStage === 'done';
+  const isFeaturesActive = !isFailed && displayIndex === 2;
+  const isFeaturesDone = displayIndex > 2;
+  const isInferenceActive = !isFailed && displayIndex === 3;
+  const isInferenceDone = displayIndex > 3;
 
-  const isOutputActive = normalizedStage === 'done';
-  const isOutputDone = normalizedStage === 'done';
+  const isValidateActive = !isFailed && displayIndex === 4;
+  const isValidateDone = displayIndex > 4;
+
+  const isOutputActive = !isFailed && displayIndex === 6;
+  const isOutputDone = !isFailed && displayIndex === 6;
 
   // Pulsing Green Glow for active stage (requested by user: "glow verde la fiecare stage")
   const activeGreenGlowStyle = {
@@ -39,19 +63,23 @@ export default function JenkinsPipelineWorkflow({
   };
 
   // Dynamic single-line live action text
-  const liveActionText = isOutputDone
+  const liveActionText = isFailed
+    ? 'Processing stopped before output was published.'
+    : isOutputDone
     ? 'Certified CSV output published successfully.'
-    : message
+    : message && displayIndex === targetIndex && !isCompleted
       ? message
       : isValidateActive
         ? 'Stage 4: Validating table invariants & publishing atomic dataset...'
-        : isFeaturesActive
-          ? 'Stage 2 & 3: Extracting features & evaluating LightGBM inference...'
+        : isInferenceActive
+          ? 'Stage 3: Evaluating model inference...'
+          : isFeaturesActive
+          ? 'Stage 2: Extracting features...'
           : isParseActive
             ? 'Stage 1: Parsing ISO timestamps & normalizing unicode headers...'
             : isInputActive
               ? 'Input: Ingesting dataset claims stream...'
-              : 'Processing dataset claims...';
+              : 'Finishing pipeline view...';
 
   return (
     /* Generous right padding (pr-6 sm:pr-8) prevents any clipping from scrollbar */
@@ -319,13 +347,13 @@ export default function JenkinsPipelineWorkflow({
           <div
             className={cx(
               'rounded-lg border px-2 py-1.5 text-center w-full transition-all shadow-sm h-[44px] flex flex-col justify-center',
-              isFeaturesActive
+              isInferenceActive
                 ? 'border-emerald-400 bg-[#06281e] animate-pulse'
-                : isFeaturesDone
+                : isInferenceDone
                   ? 'border-emerald-500/70 bg-[#041d16]'
                   : 'border-zinc-700 bg-[#16181f]'
             )}
-            style={isFeaturesActive ? activeGreenGlowStyle : undefined}
+            style={isInferenceActive ? activeGreenGlowStyle : undefined}
           >
             <div className="font-display text-[10.5px] font-bold text-white leading-tight">Model Inference</div>
             <div className="text-[9px] text-slate-400 leading-tight mt-0.5">LightGBM Engine</div>
@@ -344,9 +372,9 @@ export default function JenkinsPipelineWorkflow({
               <div
                 className={cx(
                   'rounded-md border px-2 py-1 text-left transition-all',
-                  isFeaturesActive
+                  isInferenceActive
                     ? 'border-emerald-400 bg-[#06281e]'
-                    : isFeaturesDone
+                    : isInferenceDone
                       ? 'border-emerald-500/70 bg-[#041d16]'
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
@@ -357,9 +385,9 @@ export default function JenkinsPipelineWorkflow({
               <div
                 className={cx(
                   'rounded-md border px-2 py-1 text-left transition-all',
-                  isFeaturesActive
+                  isInferenceActive
                     ? 'border-emerald-400 bg-[#06281e]'
-                    : isFeaturesDone
+                    : isInferenceDone
                       ? 'border-emerald-500/70 bg-[#041d16]'
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
@@ -372,7 +400,7 @@ export default function JenkinsPipelineWorkflow({
             {/* Centered connector arrow into Ruling Sheet */}
             <div className="flex items-center justify-center text-slate-500 shrink-0 px-0.5">
               <svg width="6" height="8" viewBox="0 0 6 8">
-                <path d="M 0 4 L 5 4 M 2 1 L 5 4 L 2 7" stroke={isFeaturesDone ? '#10b981' : '#64748b'} strokeWidth="1.6" fill="none" />
+                <path d="M 0 4 L 5 4 M 2 1 L 5 4 L 2 7" stroke={isInferenceDone ? '#10b981' : '#64748b'} strokeWidth="1.6" fill="none" />
               </svg>
             </div>
 
@@ -380,7 +408,7 @@ export default function JenkinsPipelineWorkflow({
             <div
               className={cx(
                 'rounded-md border px-2 py-1.5 text-center flex-1 transition-all bg-[#16181f] shadow-sm flex flex-col justify-center items-center',
-                isFeaturesDone
+                isInferenceDone
                   ? 'border-emerald-500 bg-[#06281e] text-emerald-400'
                   : 'border-zinc-700 text-slate-300'
               )}
@@ -394,7 +422,7 @@ export default function JenkinsPipelineWorkflow({
         {/* Arrow 3 -> 4 */}
         <div className="mt-8 flex items-center justify-center text-slate-500 shrink-0">
           <svg width="10" height="10" viewBox="0 0 10 10">
-            <path d="M 0 5 L 8 5 M 5 2 L 8 5 L 5 8" stroke={isFeaturesDone ? '#10b981' : '#52525b'} strokeWidth="1.8" fill="none" />
+            <path d="M 0 5 L 8 5 M 5 2 L 8 5 L 5 8" stroke={isInferenceDone ? '#10b981' : '#52525b'} strokeWidth="1.8" fill="none" />
           </svg>
         </div>
 
@@ -449,7 +477,7 @@ export default function JenkinsPipelineWorkflow({
                 ? 'border-emerald-500 bg-[#06281e] text-emerald-300'
                 : 'border-zinc-700 bg-[#16181f] text-slate-300'
             )}
-            style={isValidateDone ? activeGreenGlowStyle : undefined}
+            style={!isFailed && displayIndex === 5 ? activeGreenGlowStyle : undefined}
           >
             WF End
           </div>
@@ -498,7 +526,7 @@ export default function JenkinsPipelineWorkflow({
       <div className="flex items-center justify-between rounded-xl bg-[#141518] px-3.5 py-2 border border-zinc-800 text-white shadow-sm mt-3">
         <div className="flex items-center gap-2.5 min-w-0">
           <span className="relative flex h-2.5 w-2.5 shrink-0">
-            {isOutputDone ? (
+            {isOutputDone || isFailed ? (
               <span className="inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             ) : (
               <>
@@ -507,8 +535,8 @@ export default function JenkinsPipelineWorkflow({
               </>
             )}
           </span>
-          <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-emerald-400 shrink-0">
-            {isOutputDone ? 'COMPLETED' : 'RUNNING'}
+          <span className={cx('text-[10.5px] font-extrabold uppercase tracking-wider shrink-0', isFailed ? 'text-red-400' : 'text-emerald-400')}>
+            {isFailed ? 'FAILED' : isOutputDone ? 'COMPLETED' : 'RUNNING'}
           </span>
           <span className="text-zinc-600">|</span>
           <span className="text-[11px] font-medium text-slate-200 truncate">
@@ -516,7 +544,7 @@ export default function JenkinsPipelineWorkflow({
           </span>
         </div>
         <div className="flex items-center gap-2 pl-3 shrink-0">
-          <span className="font-mono text-xs font-black text-emerald-400">
+          <span className={cx('font-mono text-xs font-black', isFailed ? 'text-red-400' : 'text-emerald-400')}>
             {percent !== null ? `${percent}%` : isOutputDone ? '100%' : '...'}
           </span>
         </div>
