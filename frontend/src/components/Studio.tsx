@@ -186,7 +186,7 @@ export default function Studio() {
       {!isOpen && (
         <div
           ref={ctaRef}
-          className="flex flex-col items-center text-center max-w-2xl px-6 z-20 mt-12 md:mt-18 select-none animate-in fade-in duration-500"
+          className="flex flex-col items-center text-center max-w-2xl px-6 relative z-50 mt-12 md:mt-18 select-none animate-in fade-in duration-500 pointer-events-auto"
         >
           {/* Punchy Heading with DESIGN.md color tokens */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#202020] leading-[1.08] mb-4">
@@ -204,7 +204,7 @@ export default function Studio() {
             id="btn-launch-pipeline"
             onClick={handleOpenStudio}
             disabled={isPulling}
-            className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(29,109,215,0.28)] hover:shadow-[0_12px_32px_rgba(29,109,215,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(29,109,215,0.28)] hover:shadow-[0_12px_32px_rgba(29,109,215,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer relative z-50 pointer-events-auto"
           >
             <span className="btn_fill" />
             <span className="button-text inline-flex items-center gap-3 text-[#fcfcfc]">
