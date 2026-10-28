@@ -201,6 +201,7 @@ def main() -> int:
             writer.writerows(claims_out)
             handle.flush()
             os.fsync(handle.fileno())
+        os.chmod(temp_name, 0o644)
         os.replace(temp_name, OUTPUT)
     finally:
         if os.path.exists(temp_name):
