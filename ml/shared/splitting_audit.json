@@ -1,0 +1,130 @@
+{
+  "seed": 42,
+  "ratios_target": {
+    "train": 0.7,
+    "validation": 0.2,
+    "test": 0.1
+  },
+  "created_from": "data/practice.csv",
+  "rows": 1897,
+  "source_sha256": "c996f5477ce27d80fd5bf15d7cd8b737b295b2d31841b190bbcf661bd832d75f",
+  "split_counts": {
+    "train": 1110,
+    "validation": 567,
+    "test": 220
+  },
+  "label_counts": {
+    "train": {
+      "true": 933,
+      "false": 150,
+      "unsure": 27
+    },
+    "validation": {
+      "true": 457,
+      "unsure": 8,
+      "false": 102
+    },
+    "test": {
+      "true": 191,
+      "false": 25,
+      "unsure": 4
+    }
+  },
+  "group_count": 278,
+  "largest_group_rows": 526,
+  "group_size_p95": 12,
+  "grouping_edges": {
+    "identical_fact_signature": 713,
+    "shared_subject_attribute_history": 1888,
+    "normalized_text_duplicate": 27,
+    "near_duplicate_char_trigram_jaccard_ge_0_90": 32,
+    "near_duplicate_pairs": 32
+  },
+  "group_leakage_check": "zero grouped connected components cross splits",
+  "same_subject_attribute_history_cross_split": 0,
+  "cv_folds": {
+    "count": 10,
+    "train_rows_by_fold": [
+      199,
+      222,
+      193,
+      82,
+      183,
+      17,
+      178,
+      13,
+      12,
+      11
+    ],
+    "label_counts_by_fold": {
+      "0": {
+        "true": 165,
+        "false": 30,
+        "unsure": 4
+      },
+      "1": {
+        "false": 20,
+        "true": 198,
+        "unsure": 4
+      },
+      "2": {
+        "true": 159,
+        "false": 30,
+        "unsure": 4
+      },
+      "3": {
+        "true": 67,
+        "false": 9,
+        "unsure": 6
+      },
+      "4": {
+        "true": 152,
+        "unsure": 5,
+        "false": 26
+      },
+      "5": {
+        "true": 16,
+        "false": 1
+      },
+      "6": {
+        "true": 143,
+        "unsure": 4,
+        "false": 31
+      },
+      "7": {
+        "true": 10,
+        "false": 3
+      },
+      "8": {
+        "true": 12
+      },
+      "9": {
+        "true": 11
+      }
+    },
+    "group_leakage_check": "zero grouped connected components cross folds"
+  },
+  "split_date_ranges": {
+    "train": {
+      "min": "2025-10-10",
+      "max": "2026-10-28"
+    },
+    "validation": {
+      "min": "2025-10-07",
+      "max": "2026-10-26"
+    },
+    "test": {
+      "min": "2025-10-19",
+      "max": "2026-10-21"
+    }
+  },
+  "notes": [
+    "practice form was used only for fact/history grouping and was not used as a model feature",
+    "all rows sharing any subject-attribute history are joined into a single group; groups are indivisible",
+    "near-duplicate text is grouped at character-trigram Jaccard >= 0.90 after candidate generation",
+    "date is not used to stratify the random split; chronological ranges are reported for temporal-leakage review",
+    "the outer split balances class counts and target 80/20 sizes greedily at the group level; group sizes can cause deviation",
+    "the 10 grouped CV folds use outer training rows only; the outer test remains outside model selection",
+    "evidence from labeled rows is not used to construct features in this shared split"
+  ]
+}
