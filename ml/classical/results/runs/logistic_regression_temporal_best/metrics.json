@@ -1,0 +1,57 @@
+{
+  "selected_configuration": "logistic_regression:1.0::moderate",
+  "fit_seconds": 0.481984600000942,
+  "prediction_seconds": 0.0004501000003074296,
+  "rows_per_second": 850922.0167482813,
+  "metrics": {
+    "accuracy": 0.3681462140992167,
+    "balanced_accuracy": 0.14968152866242038,
+    "macro_f1": 0.19183673469387755,
+    "classes": {
+      "false": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 67
+      },
+      "true": {
+        "precision": 0.8011363636363636,
+        "recall": 0.44904458598726116,
+        "f1": 0.5755102040816327,
+        "support": 314
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        33,
+        34
+      ],
+      [
+        3,
+        141,
+        170
+      ],
+      [
+        0,
+        2,
+        0
+      ]
+    ],
+    "ece_10bin": 0.30030909533892497,
+    "multiclass_brier": 0.8266107446620715
+  },
+  "model_size_bytes": 35793,
+  "model_path": "ml\\classical\\results\\runs\\logistic_regression_temporal_best\\model.joblib"
+}

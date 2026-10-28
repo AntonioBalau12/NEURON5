@@ -1,0 +1,160 @@
+{
+  "status": "COMPLETED",
+  "started_at": "2026-10-28T10:59:22+00:00",
+  "updated_at": "2026-10-28T11:00:26+00:00",
+  "finished_at": "2026-10-28T11:00:26+00:00",
+  "pid": 30656,
+  "job_id": null,
+  "phase": "complete",
+  "progress_percent": 100,
+  "planned_configurations": 33,
+  "completed_configurations": 33,
+  "preliminary_duration_seconds_uncalibrated": 594,
+  "eta": {
+    "low_seconds": 0,
+    "central_seconds": 0,
+    "high_seconds": 0,
+    "calibrated": true
+  },
+  "current_configuration": null,
+  "current_model_family": "lightgbm",
+  "model_families": {
+    "logistic_regression": {
+      "completed": 7,
+      "best_validation_macro_f1": 0.39891458713735045,
+      "status": "COMPLETED",
+      "planned_configurations": 7,
+      "eta_seconds_low": 0.0,
+      "eta_seconds_central": 0.0,
+      "eta_seconds_high": 0.0,
+      "estimate_calibrated": true
+    },
+    "linear_svc": {
+      "completed": 2,
+      "best_validation_macro_f1": 0.3039399624765478,
+      "status": "COMPLETED",
+      "planned_configurations": 2,
+      "eta_seconds_low": 0.0,
+      "eta_seconds_central": 0.0,
+      "eta_seconds_high": 0.0,
+      "estimate_calibrated": true
+    },
+    "catboost": {
+      "completed": 12,
+      "best_validation_macro_f1": 0.3039399624765478,
+      "status": "COMPLETED",
+      "planned_configurations": 12,
+      "eta_seconds_low": 0.0,
+      "eta_seconds_central": 0.0,
+      "eta_seconds_high": 0.0,
+      "estimate_calibrated": true
+    },
+    "lightgbm": {
+      "completed": 12,
+      "best_validation_macro_f1": 0.4288961222611316,
+      "status": "COMPLETED",
+      "planned_configurations": 12,
+      "eta_seconds_low": 0.0,
+      "eta_seconds_central": 0.0,
+      "eta_seconds_high": 0.0,
+      "estimate_calibrated": true
+    }
+  },
+  "elapsed_seconds": 63.71071310000116,
+  "projected_finish": "2026-10-28T11:00:26+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "seed": 42,
+  "thread_limits": {
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "last_message": "benchmark suite completed; 33/33 successful",
+  "dataset_preparation_seconds": 1.1576003000009223,
+  "split_manifest": "C:\\Users\\Antonio\\Documents\\NEURON5\\ml\\classical\\split_manifest.json",
+  "feature_dimensions": {
+    "word_features": 900,
+    "char_features": 700,
+    "metadata_features": 514,
+    "matrix_features": 2114,
+    "matrix_nonzero": 144822,
+    "density": 0.036112888497448294
+  },
+  "partition_counts": {
+    "train": 1139,
+    "validation": 379,
+    "validation_pre_temporal_for_tuning": 290,
+    "test": 379,
+    "temporal_train_history_disjoint": 388,
+    "temporal_test": 383
+  },
+  "group_summary": {
+    "seed": 42,
+    "ratios_target": {
+      "train": 0.6,
+      "validation": 0.2,
+      "test": 0.2
+    },
+    "created_from": "data/practice.csv",
+    "rows": 1897,
+    "source_sha256": "c996f5477ce27d80fd5bf15d7cd8b737b295b2d31841b190bbcf661bd832d75f",
+    "split_counts": {
+      "train": 1139,
+      "validation": 379,
+      "test": 379
+    },
+    "label_counts": {
+      "train": {
+        "true": 949,
+        "unsure": 23,
+        "false": 167
+      },
+      "validation": {
+        "true": 316,
+        "false": 55,
+        "unsure": 8
+      },
+      "test": {
+        "true": 316,
+        "false": 55,
+        "unsure": 8
+      }
+    },
+    "group_count": 278,
+    "largest_group_rows": 526,
+    "group_size_p95": 12,
+    "grouping_edges": {
+      "identical_fact_signature": 713,
+      "shared_subject_attribute_history": 1888,
+      "normalized_text_duplicate": 27,
+      "near_duplicate_char_trigram_jaccard_ge_0_90": 32,
+      "near_duplicate_pairs": 32
+    },
+    "group_leakage_check": "zero grouped connected components cross splits",
+    "same_subject_attribute_history_cross_split": 0,
+    "split_date_ranges": {
+      "train": {
+        "min": "2025-10-07",
+        "max": "2026-10-28"
+      },
+      "validation": {
+        "min": "2025-10-16",
+        "max": "2026-10-27"
+      },
+      "test": {
+        "min": "2025-10-16",
+        "max": "2026-10-27"
+      }
+    },
+    "notes": [
+      "practice form was used only for fact/history grouping and was not used as a model feature",
+      "all rows sharing any subject-attribute history are joined into a single group; groups are indivisible",
+      "near-duplicate text is grouped at character-trigram Jaccard >= 0.90 after candidate generation",
+      "date is not used to stratify the random split; chronological ranges are reported for temporal-leakage review",
+      "the split balances class counts and target 60/20/20 sizes greedily at the group level; group sizes can cause deviation",
+      "evidence from labeled rows is not used to construct features in this shared split"
+    ]
+  },
+  "failed_configurations": 0
+}

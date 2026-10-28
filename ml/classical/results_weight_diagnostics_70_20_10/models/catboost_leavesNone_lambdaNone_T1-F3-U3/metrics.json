@@ -1,0 +1,124 @@
+{
+  "family": "catboost",
+  "configuration_id": "catboost:leavesNone:lambdaNone:T1-F3-U3",
+  "weights_true_false_unsure": [
+    1.0,
+    3.0,
+    3.0
+  ],
+  "base": {
+    "num_leaves": null,
+    "reg_lambda": null,
+    "depth": 5,
+    "l2_leaf_reg": 3
+  },
+  "cv_metrics": {
+    "accuracy": 0.8335843373493976,
+    "balanced_accuracy": 0.3432530258865017,
+    "macro_f1": 0.3253777961508429,
+    "classes": {
+      "false": {
+        "precision": 0.4375,
+        "recall": 0.03608247422680412,
+        "f1": 0.06666666666666667,
+        "support": 194
+      },
+      "true": {
+        "precision": 0.8384146341463414,
+        "recall": 0.993676603432701,
+        "f1": 0.909466721785862,
+        "support": 1107
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 27
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        7,
+        187,
+        0
+      ],
+      [
+        7,
+        1100,
+        0
+      ],
+      [
+        2,
+        25,
+        0
+      ]
+    ],
+    "ece_10bin": 0.19811222212789323,
+    "multiclass_brier": 0.3483928864295193
+  },
+  "fold_macro_f1_mean": 0.32475443020483136,
+  "fold_macro_f1_std": 0.04573411975774051,
+  "fit_seconds_total": 106.83137310000166,
+  "training_hardware": "CPU",
+  "validation_metrics": {
+    "accuracy": 0.7968337730870713,
+    "balanced_accuracy": 0.3235711545838128,
+    "macro_f1": 0.3049223174096123,
+    "classes": {
+      "false": {
+        "precision": 0.0625,
+        "recall": 0.01818181818181818,
+        "f1": 0.028169014084507043,
+        "support": 55
+      },
+      "true": {
+        "precision": 0.8292011019283747,
+        "recall": 0.9525316455696202,
+        "f1": 0.8865979381443299,
+        "support": 316
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 8
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        1,
+        54,
+        0
+      ],
+      [
+        15,
+        301,
+        0
+      ],
+      [
+        0,
+        8,
+        0
+      ]
+    ],
+    "ece_10bin": 0.10931355962064437,
+    "multiclass_brier": 0.3473182329920237
+  },
+  "fit_seconds": 27.61605050000071,
+  "validation_predict_seconds": 0.17220829999860143,
+  "validation_rows_per_second": 2200.823073005645,
+  "serialization_seconds": 0.04049939999822527,
+  "model_size_bytes": 551754,
+  "peak_rss_mb": 398.3,
+  "artifact": "ml\\classical\\results_weight_diagnostics_70_20_10\\models\\catboost_leavesNone_lambdaNone_T1-F3-U3\\adapter.joblib"
+}

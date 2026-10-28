@@ -1,0 +1,336 @@
+{
+  "model_configuration": "lightgbm:leaves15:lambda1:T1-F2-U1",
+  "validation_rows": 379,
+  "incorrect_rows": 80,
+  "representative_incorrect_rows_exported": 20,
+  "false_predictions": 21,
+  "correct_false_predictions_true_positives": 2,
+  "false_alarms_false_predictions_on_true_or_unsure": 19,
+  "standard_argmax_metrics": {
+    "accuracy": 0.7889182058047494,
+    "balanced_accuracy": 0.3254123513617185,
+    "macro_f1": 0.31131240564318813,
+    "classes": {
+      "false": {
+        "precision": 0.09523809523809523,
+        "recall": 0.03636363636363636,
+        "f1": 0.05263157894736842,
+        "support": 55
+      },
+      "true": {
+        "precision": 0.8296089385474861,
+        "recall": 0.939873417721519,
+        "f1": 0.8813056379821959,
+        "support": 316
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 8
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        2,
+        53,
+        0
+      ],
+      [
+        19,
+        297,
+        0
+      ],
+      [
+        0,
+        8,
+        0
+      ]
+    ],
+    "ece_10bin": 0.13027866045995262,
+    "multiclass_brier": 0.34446517521988046
+  },
+  "threshold_tuned_false_predictions": 37,
+  "error_category_counts": {
+    "entity": [
+      [
+        "Hooly Search",
+        10
+      ],
+      [
+        "Hooly",
+        9
+      ],
+      [
+        "Hooly Gemini",
+        7
+      ],
+      [
+        "Hooly Android",
+        5
+      ],
+      [
+        "Hooly Board",
+        5
+      ],
+      [
+        "Hooly Gmail",
+        5
+      ],
+      [
+        "Hooly Android 17",
+        4
+      ],
+      [
+        "Hooly Workspace",
+        4
+      ],
+      [
+        "Hooly Jules",
+        4
+      ],
+      [
+        "Hooly AI Pro",
+        3
+      ],
+      [
+        "Hooly Hiring Programme",
+        2
+      ],
+      [
+        "Hooly Sustainability Report",
+        2
+      ],
+      [
+        "Hooly Cloud Next 2026",
+        2
+      ],
+      [
+        "Hooly Pixel 10",
+        2
+      ],
+      [
+        "Hooly Docs",
+        2
+      ],
+      [
+        "Hooly Pixel Fold",
+        2
+      ],
+      [
+        "Hooly Cloud",
+        2
+      ],
+      [
+        "Hooly Photos",
+        2
+      ],
+      [
+        "Hooly Devices",
+        2
+      ],
+      [
+        "Hooly Maps",
+        2
+      ]
+    ],
+    "attribute": [
+      [
+        "price",
+        4
+      ],
+      [
+        "version",
+        3
+      ],
+      [
+        "images_indexed",
+        3
+      ],
+      [
+        "active_devices",
+        3
+      ],
+      [
+        "meetings_per_year",
+        3
+      ],
+      [
+        "index_size",
+        3
+      ],
+      [
+        "included_seats",
+        3
+      ],
+      [
+        "lead",
+        2
+      ],
+      [
+        "chair",
+        2
+      ],
+      [
+        "uptime_last_quarter",
+        2
+      ],
+      [
+        "update_size",
+        2
+      ],
+      [
+        "uptime_sla",
+        2
+      ],
+      [
+        "hallucination_rate",
+        2
+      ],
+      [
+        "mailbox_storage",
+        2
+      ],
+      [
+        "end_to_end_encryption",
+        2
+      ],
+      [
+        "had_major_outage",
+        2
+      ],
+      [
+        "suggestion_acceptance_rate",
+        2
+      ],
+      [
+        "languages_served",
+        2
+      ],
+      [
+        "supported_models",
+        2
+      ],
+      [
+        "monthly_active_users",
+        2
+      ]
+    ],
+    "value_kind": [
+      [
+        "quantity",
+        47
+      ],
+      [
+        "percent",
+        11
+      ],
+      [
+        "name",
+        8
+      ],
+      [
+        "money",
+        7
+      ],
+      [
+        "boolean",
+        7
+      ],
+      [
+        "version",
+        4
+      ],
+      [
+        "duration",
+        3
+      ],
+      [
+        "date",
+        1
+      ]
+    ],
+    "year": [
+      [
+        "2026",
+        71
+      ],
+      [
+        "2025",
+        9
+      ]
+    ],
+    "numeric_claim": [
+      [
+        "True",
+        68
+      ],
+      [
+        "False",
+        12
+      ]
+    ],
+    "negation": [
+      [
+        "False",
+        74
+      ],
+      [
+        "True",
+        6
+      ]
+    ],
+    "multi_fact": [
+      [
+        "False",
+        68
+      ],
+      [
+        "True",
+        12
+      ]
+    ],
+    "true_label": [
+      [
+        "false",
+        53
+      ],
+      [
+        "true",
+        19
+      ],
+      [
+        "unsure",
+        8
+      ]
+    ],
+    "exact_date": [
+      "2025-10-07",
+      "2026-09-24",
+      "2026-08-04",
+      "2026-04-15",
+      "2026-09-23",
+      "2026-04-28",
+      "2026-05-05",
+      "2026-09-22",
+      "2026-05-10",
+      "2026-05-14",
+      "2026-09-16",
+      "2026-05-20",
+      "2026-06-02",
+      "2026-09-08",
+      "2026-04-02",
+      "2026-06-04",
+      "2026-10-26",
+      "2026-06-12",
+      "2026-09-03",
+      "2026-06-15"
+    ]
+  },
+  "note": "gold forms are joined only after predictions, for post-hoc error analysis; they are never features"
+}

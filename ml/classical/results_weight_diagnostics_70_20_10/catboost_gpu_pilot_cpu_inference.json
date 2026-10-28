@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED",
+  "training": "GPU CatBoost model loaded for CPU inference",
+  "split": "validation; outer test skipped",
+  "rows": 379,
+  "cpu_two_thread_adapter_inference_seconds": 0.11641819999931613,
+  "cpu_two_thread_adapter_rows_per_second": 3255.5047235073753,
+  "model_size_bytes": 493219,
+  "native_model_size_bytes": 391816,
+  "adapter_size_bytes": 101403,
+  "probability_shape": [
+    379,
+    3
+  ]
+}

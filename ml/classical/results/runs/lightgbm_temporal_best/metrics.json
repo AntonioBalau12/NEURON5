@@ -1,0 +1,57 @@
+{
+  "selected_configuration": "lightgbm:7:1:balanced",
+  "fit_seconds": 0.15185209999981453,
+  "prediction_seconds": 0.005469100000482285,
+  "rows_per_second": 70029.80380066659,
+  "metrics": {
+    "accuracy": 0.6971279373368147,
+    "balanced_accuracy": 0.28343949044585987,
+    "macro_f1": 0.2772585669781931,
+    "classes": {
+      "false": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 67
+      },
+      "true": {
+        "precision": 0.8140243902439024,
+        "recall": 0.8503184713375797,
+        "f1": 0.8317757009345794,
+        "support": 314
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        59,
+        8
+      ],
+      [
+        15,
+        267,
+        32
+      ],
+      [
+        0,
+        2,
+        0
+      ]
+    ],
+    "ece_10bin": 0.1491907786870688,
+    "multiclass_brier": 0.47367056254612044
+  },
+  "model_size_bytes": 289211,
+  "model_path": "ml\\classical\\results\\runs\\lightgbm_temporal_best\\model.joblib"
+}
