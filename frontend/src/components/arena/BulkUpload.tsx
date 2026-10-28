@@ -127,8 +127,7 @@ export default function BulkUpload({ dataset, sessionReady, onUploaded }: BulkUp
         <div>
           <h3 className="font-display text-sm font-bold text-[#202020]">Bulk CSV upload</h3>
           <p className="mt-0.5 text-[11px] leading-relaxed text-black/50">
-            One immutable snapshot, UTF-8 with optional BOM. The first row is the header. Nothing is
-            edited client-side.
+            One immutable snapshot, UTF-8 with optional BOM. Standard input schema: <code className="font-mono text-[#202020] bg-black/[0.04] px-1 py-0.5 rounded">id, text, date, form</code>.
           </p>
         </div>
         <Badge tone="neutral">max 10 MB</Badge>
