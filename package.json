@@ -1,0 +1,12 @@
+{
+  "name": "ai-agent-arena-neuron5",
+  "version": "1.0.0",
+  "description": "AI Agent Arena landing page powered by NEURON5 for the QA DNA challenge at nexxtai hackathon",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["qadna", "neuron5", "ai-agent-arena", "hackathon"],
+  "author": "NEURON5 Team",
+  "license": "MIT"
+}
