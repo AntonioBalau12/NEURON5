@@ -1,0 +1,356 @@
+# NEURON5 — M2 Calibrated Confidence: Production Alignment, Calibration & Performance Optimization
+
+You are a Senior Machine Learning Engineer specializing in LightGBM, probability calibration, selective classification, information retrieval, and factual verification.
+
+## Repository
+
+https://github.com/AntonioBalau12/NEURON5
+
+**Target branch:** `feat/m2-calibrated-confidence-full-fit`
+
+Continue working on the existing implementation. Do not rebuild the system from scratch.
+
+Our final architecture is fixed:
+
+**LightGBM + BM25 + Temporal Evidence Graph + Calibrated Confidence**
+
+Do not introduce new model architectures, external LLM APIs, or unrelated refactoring.
+
+## 1. Current Results
+
+The existing M2 Calibrated implementation reports:
+
+| Metric | P2 Previous | M2 Calibrated |
+|---|---:|---:|
+| Validation Macro-F1 | 0.3939 | 0.4015 |
+| Validation Accuracy | 78.10% | 81.00% |
+| Validation FALSE Recall | 12.73% | 7.27% |
+| Validation FALSE Precision | 23.33% | 23.53% |
+| Test Macro-F1 | 0.4517 | 0.5432 |
+| Test Accuracy | 77.89% | 84.74% |
+| Test FALSE Recall | 25.00% | 21.43% |
+| Test FALSE Precision | 31.82% | 60.00% |
+
+The new model improves overall performance and FALSE precision but loses some FALSE recall.
+
+**CRITICAL:** The reported Macro-F1 of 0.5432 is based on the raw classifier's decisions, not necessarily the final calibrated decision policy used in `runner.py`.
+
+Our immediate priority is to resolve this discrepancy.
+
+## 2. P0 — Unify Training Evaluation and Production Inference
+
+Inspect:
+
+- `ml/classical/train_m2.py`
+- `runner.py`
+- `ml/classical/results_m2_v1/report.json`
+- `tests/test_confidence_calibration.py`
+
+Currently, the evaluation pipeline and production runner do not apply identical postprocessing.
+
+Create a single reusable decision policy that handles:
+
+1. LightGBM raw probabilities.
+2. Probability calibration.
+3. Trusted retrieval evidence.
+4. TRUE/FALSE/UNSURE classification.
+5. Abstention.
+6. Final confidence assignment.
+
+Both offline evaluation and production inference MUST call the same implementation.
+
+Avoid maintaining duplicate decision logic.
+
+Evaluate the complete policy on validation and test.
+
+Report both:
+
+- Raw LightGBM performance.
+- Final calibrated-policy performance.
+
+Include prediction-level comparisons showing which classifications changed and why.
+
+## 3. P0 — Fix Factual Confidence Safety
+
+The existing runner uses three confidence tiers.
+
+### Tier 1 — Deterministic Graph Verification
+
+Currently, `exact_fact_match == 1` and `temporal_evidence_match == 1` can raise confidence above 0.90 even when the predicted label is FALSE.
+
+This is unsafe because matching verified evidence generally supports a fact; it does not automatically prove that the entire claim is false.
+
+Required changes:
+
+- Distinguish VERIFIED_SUPPORT from VERIFIED_REFUTATION.
+- Respect multi-fact claim semantics.
+- Only boost confidence when the evidence supports the actual predicted verdict.
+- Never boost FALSE using positive factual support alone.
+- Require correct entity, attribute, typed value, date, and provenance.
+- Preserve UNKNOWN when evidence is ambiguous.
+
+Use explicit factual verification results rather than inferring factual support solely from two boolean features.
+
+### Tier 2 — FALSE Precision Guardrail
+
+The current policy can convert FALSE predictions into UNSURE when evidence is insufficient.
+
+This may improve precision but destroy FALSE recall.
+
+Evaluate the guardrail quantitatively.
+
+Determine how many:
+- Correct FALSE predictions are lost.
+- Incorrect FALSE predictions are prevented.
+- Claims are converted to UNSURE.
+
+Optimize this trade-off using training-side predictions only.
+
+### Tier 3 — Retrieval-Damped Confidence
+
+Review the current confidence damping and clipping.
+
+Do not arbitrarily increase confidence beyond what is justified by model reliability or independent factual evidence.
+
+Confidence should reflect estimated correctness, not merely the existence of retrieved documents.
+
+## 4. P0 — Proper Probability Calibration
+
+The current `debias_probabilities()` divides predicted probabilities by class weights.
+
+This may approximately reverse class-prior weighting, but it is not guaranteed to produce calibrated probabilities.
+
+Evaluate at least:
+
+- Raw LightGBM probabilities.
+- Existing class-weight debiasing.
+- Sigmoid/Platt calibration.
+- Temperature scaling, if appropriate for multiclass classification.
+
+Use strictly leakage-safe OOF predictions.
+
+Do not fit calibration parameters on the same predictions used for their unbiased evaluation.
+
+Use grouped folds and cross-fitting where necessary.
+
+Evaluate:
+
+- Multiclass log loss.
+- Brier score.
+- Expected Calibration Error (ECE).
+- Reliability by predicted class.
+- Confidence payoff under the official competition scoring rules.
+
+Do not assume a calibration method is better without measuring it.
+
+## 5. P0 — Optimize TRUE/FALSE/UNSURE Decisions
+
+Our goals are:
+
+1. Maximize the official competition score.
+2. Preserve or improve Macro-F1.
+3. Improve FALSE recall without excessive false positives.
+4. Avoid unnecessary UNSURE predictions.
+5. Generate reliable confidence values.
+
+Inspect the existing threshold optimization.
+
+The old FALSE threshold mechanism only promoted claims to FALSE when `P(FALSE) >= 0.5`, making it almost entirely ineffective.
+
+Test proper decision policies, such as:
+
+- Class-specific thresholds.
+- Probability margins between FALSE and TRUE.
+- Selective abstention.
+- Confidence-based decision rules.
+
+Tune policies on OOF data only.
+
+Use validation for model selection and report test results only after freezing the policy.
+
+Do not repeatedly optimize against the already-inspected outer test set.
+
+Report the confusion matrix and competition payoff before and after calibration.
+
+## 6. P0 — Fix Training/Runtime Retrieval Distribution Mismatch
+
+During training, BM25 and the temporal graph use limited training evidence.
+
+During runtime, `runner.py` builds a graph using the runtime universe plus reference evidence.
+
+This changes:
+
+- Corpus size.
+- BM25 IDF statistics.
+- Retrieval ranking.
+- Number of unverified candidates.
+- Distribution of ML features.
+
+Investigate whether this mismatch damages predictions.
+
+Maintain a clear separation between:
+
+- Trusted labeled/reference evidence.
+- Unverified runtime context.
+
+Implement a consistent policy for training and runtime.
+
+Unverified runtime claims must never become trusted factual support.
+
+If runtime context is used as retrieval material, reproduce that behavior in leakage-safe evaluation.
+
+Do not change the graph's trust semantics just to improve a benchmark.
+
+## 7. P1 — Fix Full-Fit Training and Group Leakage
+
+The current production model is trained on all 1,897 examples.
+
+Preserve this capability.
+
+However, the full-fit OOF feature generation uses MD5 hashes of row IDs to create folds.
+
+This may separate near-duplicates or related factual families into different folds.
+
+Replace the ID-hash folds with grouped cross-fitting that respects factual and near-duplicate relationships.
+
+Also inspect whether TF-IDF feature transformations are fitted outside their permitted OOF training partitions.
+
+Avoid contamination in all transformations used for calibration and model-selection evaluation.
+
+The final full-fit production model should be trained using consistent feature definitions and all permitted labeled data.
+
+## 8. P1 — Benchmark Actual Production Predictions
+
+Benchmark the exact serialized model and decision policy used by `runner.py`.
+
+Use:
+
+- Approximately 18,000–20,000 claims.
+- 2 CPU cores.
+- 6 GiB RAM.
+- Offline execution.
+- Real process peak RSS.
+- Actual input and output schemas.
+
+Measure separately:
+
+- Model loading.
+- Evidence graph construction.
+- BM25 indexing.
+- Retrieval feature extraction.
+- LightGBM inference.
+- Calibration and decision policy.
+- Output CSV generation.
+
+The previous runtime was approximately 17 minutes on 20,000 synthetic rows, but that measurement does not validate the new full-fit calibrated model.
+
+Target a comfortable margin below the 30-minute competition limit.
+
+Keep the separate 1,000 TRUE-claim generation component compatible. If it is available, include it in the final end-to-end benchmark. Otherwise, explicitly report that its runtime is excluded.
+
+Do not claim full competition readiness without testing the complete submission workflow.
+
+## 9. Regression Testing
+
+Extend `tests/test_confidence_calibration.py` and relevant integration tests.
+
+Include:
+
+- Verified TRUE evidence must not boost FALSE confidence.
+- Explicit verified refutation can support FALSE.
+- Multi-fact claims with partial support must not be oververified.
+- Incorrect dates and numeric values.
+- Conflicting evidence.
+- No retrieved evidence.
+- Unverified runtime candidates.
+- High-confidence incorrect predictions.
+- FALSE-to-UNSURE guardrail behavior.
+- Exact agreement between offline and runtime decision policies.
+- Model serialization and reload.
+- Full-fit grouped OOF leakage prevention.
+- Confidence bounds and official output schema.
+
+All existing tests must continue passing.
+
+## 10. Deliverables
+
+Implement actual fixes and run reproducible experiments.
+
+Provide:
+
+1. Updated M2 calibration code.
+2. Shared evaluation/inference decision policy.
+3. Corrected full-fit training.
+4. Updated serialized M2 model.
+5. Detailed validation and diagnostic test results.
+6. Raw versus calibrated confusion matrices.
+7. Calibration metrics and official competition payoff.
+8. Updated runtime benchmark.
+9. Regression tests.
+10. Technical report explaining improvements and remaining limitations.
+
+Use a NEW versioned results directory.
+
+Do not overwrite the existing `results_m2_v1` artifacts.
+
+Preserve the existing model as a rollback option.
+
+## 11. Final Comparison
+
+Compare:
+
+**A — Original P2 M2**
+- Existing LightGBM + BM25 + Temporal Graph.
+
+**B — Current M2 Calibrated**
+- Existing full-fit architecture and confidence policy.
+
+**C — Corrected M2 Calibrated**
+- Improved calibration, factual safety, and aligned production inference.
+
+A and B are historical references, not separate production architectures to develop.
+
+Report:
+
+| Metric | A | B | C |
+|---|---|---|---|
+| Validation Macro-F1 | | | |
+| Validation Accuracy | | | |
+| Validation FALSE Recall | | | |
+| Validation FALSE Precision | | | |
+| Validation UNSURE Recall | | | |
+| Test Macro-F1 (diagnostic) | | | |
+| Test FALSE Recall (diagnostic) | | | |
+| Competition confidence payoff | | | |
+| End-to-end runtime | | | |
+| Peak RSS | | | |
+
+Do not invent results or treat historical test metrics as fresh independent validation.
+
+## Final Questions
+
+Answer explicitly:
+
+1. Does the corrected policy improve actual production predictions?
+2. What is the real Macro-F1 AFTER calibration?
+3. Does FALSE recall improve or decrease?
+4. Is confidence genuinely better calibrated?
+5. Does calibration improve the official competition payoff?
+6. Are all evidence-based confidence boosts factually justified?
+7. Is the final serialized model trained on all 1,897 permitted examples?
+8. Can the complete runtime finish under official constraints?
+9. Is the model ready for integration into the final competition submission?
+
+## Execution Instructions
+
+Audit the existing implementation first.
+
+Then fix the identified issues, run tests, retrain, evaluate, and benchmark.
+
+Use measured evidence for every conclusion.
+
+**Do not stop at a theoretical proposal. Deliver working code and actual experimental results.**
+
+Prioritize correctness, competition scoring, reproducibility, and CPU efficiency.
+
+Do not introduce new architectures or unrelated features.

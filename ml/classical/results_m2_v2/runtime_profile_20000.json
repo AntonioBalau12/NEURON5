@@ -1,0 +1,36 @@
+{
+  "synthetic_scale": true,
+  "requested_rows": 20000,
+  "cpu_threads": 2,
+  "offline_code_path": true,
+  "input_load_seconds": 0.14529966600093758,
+  "graph_index_features_prediction_seconds": 126.62913429200125,
+  "model_loading_seconds": 0.0509973340012948,
+  "reference_load_seconds": 0.16332154200063087,
+  "evidence_graph_construction_seconds": 1.5904557499961811,
+  "bm25_indexing_seconds": 1.221662957999797,
+  "retrieval_feature_extraction_seconds": 121.42038424999919,
+  "lightgbm_inference_seconds": 1.1640068749984493,
+  "calibration_and_decision_policy_seconds": 0.13927954199607484,
+  "csv_output_seconds": 0.03772016699804226,
+  "rows": 20000,
+  "unlabeled_rows": 18103,
+  "output_bytes": 496686,
+  "output_columns": [
+    "id",
+    "type",
+    "text",
+    "form",
+    "label",
+    "confidence"
+  ],
+  "end_to_end_seconds": 126.92039666699566,
+  "process_peak_rss_mib": 540.5,
+  "official_limits": {
+    "cpu_cores": 2,
+    "memory_mib": 6144,
+    "deadline_seconds": 1800,
+    "read_only_root": "not enforced outside Docker",
+    "offline": "no network calls in this benchmark path"
+  }
+}

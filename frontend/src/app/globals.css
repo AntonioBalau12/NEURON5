@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white-100: #fcfcfc;
+  --white-0-6: rgba(255, 255, 255, 0.6);
+  --white-0-2: rgba(255, 255, 255, 0.2);
+  --white-0-1: rgba(255, 255, 255, 0.1);
+  --black-100: #202020;
+  --black-0-7: rgba(0, 0, 0, 0.7);
+  --black-0-1: rgba(0, 0, 0, 0.1);
+  --neutral-100: #ebebeb;
+  --neutral-200: #141414;
+  --primary-100: #d7f13b;
+  --primary-200: #9ebc19;
+  --primary-400: #76910a;
+  --accent: #d7f13b;
+  --status-true: #10b981;
+  --status-false: #ef4444;
+  --status-unsure: #f59e0b;
+  --border-40px: 40px;
+  --border-20px: 20px;
+  --border-12px: 12px;
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+body {
+  background-color: #0c0d10;
+  color: #f8fafc;
+  font-family: var(--font-figtree), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Background Dot Grid: Black background with white dots */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
+  background-repeat: repeat;
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   QA DNA Sliding Fill Button (Bottom-to-Top Reveal on Hover)
+   ========================================================= */
+.button-primary {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.4rem;
+  background-color: var(--primary-100);
+  color: var(--black-100);
+  border-radius: var(--border-12px);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(215, 241, 59, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(215, 241, 59, 0.5);
+}
+
+.button-primary:active {
+  transform: translateY(0);
+}
+
+.button-primary .button-text {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.button-primary .btn_fill {
+  position: absolute;
+  inset: auto 0% 0%;
+  width: 100%;
+  height: 0%;
+  background-color: var(--primary-200);
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.button-primary:hover .btn_fill {
+  height: 100%;
+}
+
+/* Dark variant (as in DESIGN.md section 4.1) */
+.button-primary.btn-dark {
+  background-color: var(--black-100);
+}
+
+.button-primary.btn-dark .btn_fill {
+  background-color: var(--primary-100);
+}
+
+/* Primate Skeleton Arm Rig (Bicep Curl Hierarchy) - Positioned behind mascot head */
+.gorilla-skeleton-rig {
+  position: absolute;
+  bottom: 22px;
+  left: calc(50% + 55px);
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  z-index: 20; /* Behind Mascot head (z-30) and in front of Table card (z-10) */
+  opacity: 0;
+  transform-origin: 0 0;
+  will-change: transform, opacity;
+}
+
+.bone-upper-arm {
+  position: absolute;
+  top: -65px;
+  left: -30px;
+  width: 320px;
+  height: 130px;
+  transform-origin: 30px 65px; /* Shoulder pivot */
+  will-change: transform;
+}
+
+.bone-forearm {
+  position: absolute;
+  left: 260px; /* Elbow pivot connection */
+  top: 10px;
+  width: 300px;
+  height: 110px;
+  transform-origin: 20px 55px; /* Elbow hinge */
+  will-change: transform;
+}
+
+.bone-hand {
+  position: absolute;
+  left: 245px; /* Wrist pivot connection */
+  top: 5px;
+  width: 160px;
+  height: 120px;
+  transform-origin: 20px 50px; /* Wrist pivot */
+  will-change: transform;
+}
+
+.bone-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
