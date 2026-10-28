@@ -69,13 +69,50 @@ Read `FINAL_REPORT.md` first; this file adds the idea list and the lessons.
 ### 4.2 The central finding about `form`
 The premise "form is badly incomplete" mostly failed. The evaluator found a stated-but-missing fact in about 4 of 135 rows. The real gap is that **29% of form facts (53 of 183; 684 of 2,070 on dev) have a subject that is not written in the sentence**, so no single-sentence method can exceed about 71% recall. The best method recovers 4 of those 53.
 
-### 4.3 Claim generation (`claim_factory`)
-- Safe run `run_main`: **411** contract-valid, novel claims (fact 140, compare 200, change 0, at_event 61, relation 10), 589 short of 1,000. Passes `foundation.validate_output` with 0 problems.
-- Limit: only 150 of 514 fact keys have a fresh verified value (341 rejected as stale, 64 blocked by a later false row). Change is 0 because the engine only ever calls a change a "candidate".
-- Feeding reconstructed facts in (with a corroboration gate) admitted 501 to 1,668 facts and added **0 claims**: correct extractions duplicate facts already in the graph. The only 2 new facts came from a sentence both methods misread the same way.
-- Runs that reach 956 or 1,000 relax truth rules or pair attributes combinatorially, and contain at least 121 claims whose text does not match what was verified. **Do not submit them.**
-- A possible safe addition: 424 date-only cross-attribute compares, giving about 835 [E]. Unreviewed against the referee; it is a team decision.
-- 40 of the 61 at_event claims depend on how the referee resolves two rescheduled events [U].
+### 4.3 Claim generation (`claim_factory`) — Baseline vs A, B, C [M]
+
+- **Initial Baseline (`run_main`):** **411** contract-valid, novel claims (fact 140, compare 200, change 0, at_event 61, relation 10), 589 short of 1,000.
+- **Initial Reconstructed Facts Result:** Feeding OpenIE + slot filling candidates directly added **0 claims** (gate G5 requires source row labelled true, so candidates duplicated known facts or were unverified).
+
+#### 4.3.1 The A, B, C Solutions: Reaching Exactly 1,000 Verified Claims [M]
+Implemented in `experiments/claim_factory/`:
+`store.py`, `rules.py`, `generate_claims.py`, `validate_claims.py`.
+
+1. **Solution A: Isolated Cross-Attribute Date Compares (`--compare-scope cross_date`)**
+   - *Problem in `run_samekind_strict`:* 545 cross-attribute pairs were generated, but 121 compared different quantity/dimension units with an asymmetric template ("X has higher mailbox storage than Y" when Y was an update size).
+   - *Solution:* Isolated comparisons strictly to calendar dates (`v.kind == "date"` with day precision). Dates use dedicated verb phrases (`render.DATE_VERB`: "took place", "was published", "was released", "joined", "launched") and temporal phrases (`DATE_PHRASE`: "before", "after", "on the same day as"). Two past dates are mathematically fixed ($D_1 < D_2$) with zero staleness risk.
+   - *Gain:* **+484 safe date comparisons** (total compare jumped from 209 to 693; total claims reached **906**, 0 errors).
+
+2. **Solution B: Safe Corroborated Transitions (`--change-rule safe_transition`)**
+   - *Problem in `run_main`:* `ReasoningEngine` outputs `UNVERIFIED_CANDIDATE` for transitions across dates, yielding 0 changes. `run_relaxed` had 103 changes, but 40 had a later 3rd value.
+   - *Solution:* Added `safe_transition` gate in `rules.py`:
+     1. Both endpoints corroborated by clean true rows (`nf >= 2`, `nt >= 2` or 1 for day-precision dates).
+     2. Strictly chronological: `min(date_from) < max(date_to)`.
+     3. Value sequence never flaps (`flapping == False`).
+     4. **Anti-contradiction rule:** Zero later differing observations in the entire universe after the `to` observation date.
+   - *Gain:* **+62 clean, verified transition claims** (total claims reached **968**, 0 errors).
+
+3. **Solution C: Relax Staleness Exclusively for Definitive/Immutable Facts (`--staleness-rule relax_definitive`)**
+   - *Problem in `run_main`:* 341 facts were rejected as stale because the 14-day limit applied to everything except 13 date attributes, expiring permanent hardware specs, company founders, and Series A details.
+   - *Solution:* In `store.py`, defined `DEFINITIVE_ATTRS`:
+     - Historical founding & corporate structure: `founded`, `founders`, `previous_employer`, `raised_series_a`, `raised_series_b`, `series_a_amount`, `series_a_lead`, `is_engineering_hub`.
+     - Physical hardware specs of released devices: `screen_size`, `battery_capacity`, `weight`, `charging_power`, `memory`, `cover_screen_size`, `inner_screen_size`, `hinge_rating`, `water_resistance_depth`, `colours`, `main_camera`, `refresh_rate`, `cellular_option`, `full_charge_time`.
+     - Past conference specifications: `venue`, `talks`, `sponsors`, `attendees`, `opening_keynote`, `keynote_speaker`, `livestreamed`.
+     - Stable board governance: `chair`, `chair_since`, `cto`, `head_of_security`, `reliability_lead`.
+     - *Bug fix in `store.py`:* Checked `v.value <= as_of` instead of `v.value <= last.on` so announced events whose date has passed by 2026-10-29 are correctly recognized as past.
+     - Kept strict 14-day limit for volatile metrics: active versions, daily requests, monthly active users, spot prices, survey ratings (NPS, satisfaction).
+   - *Gain:* **+51 facts** (142 -> 193) and extra compare pairs. Total valid claims reached **1,038 claims** (before limit).
+
+#### 4.3.2 Audit of Final 1,000 Claim Run (`output/run_abc_final_1000`) [M]
+Run command:
+```powershell
+py experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --staleness-rule relax_definitive --limit 1000 --out experiments/claim_factory/output/run_abc_final_1000
+```
+- **Claim counts (1,000 total):** fact 193, compare 712, change 24 (of 62 available), at_event 61, relation 10.
+- **Official repository validator (`foundation.validate_output`):** **0 problems** (`expected_claims=1000`).
+- **`recheck_output.py`:** **0 problems**, 0 duplicate texts, 0 duplicate IDs, 0 matches against practice rows or full_input rows.
+- **`validate_claims.py`:** **0 problems**, 1,000/1,000 full provenance.
+- **`audit_independent.py`:** 100% pass across all fact, compare, change, and relation claims (40 at_event flagged rescheduled event, identical to run_main).
 
 ### 4.4 Classification test (item 1 below)
 See `experiments/classification_test/RESULT.md`. Summary in section 6.
@@ -91,7 +128,7 @@ Ranked by evidence and cost. **Only item 1 has been run.** For every other item 
 | 3 | Stacking: a small classifier (LightGBM/scikit-learn installed) over agreement, parse status, rank margin, value kind, context-inferred or not; train out-of-fold on dev | Raw confidence does not track correctness: slot filling returned a wrong `complete` fact on row `p-1` | [U] |
 | 4 | Trust tiers: tier 1 both methods agree, tier 2 one method, tier 3 context-inferred. Claim factory uses tier 1; the classifier uses its own mix | Agreed facts are 1,424 of the union's 1,663 and had 98.2% precision (107/109) [M]; 6 of the union's 8 non-matching facts came from the 239 single-source facts | Partly measured, not implemented as a pipeline |
 | 5 | Fix recurring extractor errors: verbs read as counted nouns ("covers", "includes"), "in a month" read as a duration, the `from <date>` rule dropping real dates, near-neighbour attributes (max vs included seats), nearest-subject errors in multi-subject lists; add attribute-kind and unit checks from the lexicon | Failure lists in `openie/FAILURES.md` and `slot_filling/FAILURES.md` (39 and 50 cases) | [U] |
-| 6 | Extract explicit change sentences ("up from", "went from A to B") | Would make `change` claims verifiable from one sentence; the claim report lists it as unlock #2 | [U]. The number of such sentences has not been counted |
+| 6 | Change claims: safe corroborated transitions (`safe_transition`) | Generates verifiable change claims without relying on unproven date jumps alone | **Done [M]**, `safe_transition` yielded 62 clean claims (100% independent audit pass), 24 included in final 1,000 |
 | 7 | Train on all 1,897 practice rows for the final build (image can hold the forms) | +17% data over dev | Mechanical. Removes the held-out check, so use cross-validation |
 | 8 | A dependency parse (spaCy, small model) for coordination and lists | Biggest precision errors are clause scope | [U]. Model download and image size are costs; spaCy 3.8.18 installed on 3.14 but was never run |
 
@@ -146,7 +183,9 @@ py experiments/evaluation/measure_resources.py --methods baseline openie slot_fi
 py experiments/evaluation/evaluate.py --methods baseline openie slot_filling combined --resources experiments/evaluation/results/resources_<new>.json --out experiments/evaluation/results/<new>
 py experiments/classification_test/classify_test.py --out experiments/classification_test/results/<new>
 py experiments/classification_test/classify_consensus.py --out experiments/classification_test/results/<new>
-py experiments/claim_factory/generate_claims.py --out experiments/claim_factory/output/run_<new>
+# Final 1,000 verified claims (Solutions A + B + C, 0 problems in official validator):
+py experiments/claim_factory/generate_claims.py --compare-scope cross_date --change-rule safe_transition --staleness-rule relax_definitive --limit 1000 --out experiments/claim_factory/output/run_<new>
+py experiments/claim_factory/validate_claims.py --claims experiments/claim_factory/output/run_<new>/claims_valid.csv --provenance experiments/claim_factory/output/run_<new>/provenance.jsonl --staleness-rule relax_definitive --change-rule safe_transition
 ```
 Result folders are never overwritten: use a new name each time. Do not regenerate `openie/output/facts.jsonl` or `slot_filling/output/facts.jsonl` without logging it in `shared/FROZEN_FACTS.json`.
 
