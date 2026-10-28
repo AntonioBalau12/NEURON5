@@ -518,15 +518,24 @@ def run(*, runtime_rows: int = 18000) -> dict[str, Any]:
                                              "last_fold_seconds": time.perf_counter()-fold_start,
                                              "elapsed_seconds": time.perf_counter()-started,
                                              "updated_at": dt.datetime.now(dt.timezone.utc).isoformat()})
-    cv_metrics = parse_metrics(train_rows, cv_variant_results, input_data.lexicon)
+    cv_by_row = {
+        row.row_id: {name: cv_variant_results[name][row.row_id] for name in VARIANTS}
+        for row in train_rows
+    }
+    cv_metrics = parse_metrics(train_rows, cv_by_row, input_data.lexicon)
     for row in cv_metrics:
         row["partition"] = "grouped_oof_cv"
     cv_retrieval_aggregate = aggregate_retrieval(cv_retrieval)
 
     validation = evaluate_rows(input_data, {row.row_id for row in train_rows}, val_rows, "validation")
     validation_metrics = validation["metrics"]
+    validation_features_by_variant = {
+        name: {row.row_id: validation["features"][row.row_id][name] for row in val_rows}
+        for name in CLASSIFIER_VARIANTS
+    }
     classification_validation, feature_builder, _base_train, trained = classification_rows(
-        train_rows, val_rows, cv_feature_rows, validation["features"], lexicon_json, legacy_config)
+        train_rows, val_rows, cv_feature_rows, validation_features_by_variant,
+        lexicon_json, legacy_config)
     for row in validation_metrics:
         row["partition"] = "validation"
     selected_parse = max((row for row in validation_metrics if row["configuration"] in ("E2", "E5", "E6")),
@@ -545,7 +554,7 @@ def run(*, runtime_rows: int = 18000) -> dict[str, Any]:
     final_labels = np.asarray([row.label.lower() for row in final_fit_rows])
     train_oof_meta, selected_feature_names = feature_matrix(cv_feature_rows[selected_classifier],
                                                               [row.row_id for row in train_rows])
-    val_meta, _ = feature_matrix(validation["features"].get(selected_classifier, {}),
+    val_meta, _ = feature_matrix(validation_features_by_variant[selected_classifier],
                                  [row.row_id for row in val_rows])
     final_base_train, _ = transform_features(final_runtime, feature_builder)
     final_meta = __import__("scipy").sparse.vstack((train_oof_meta, val_meta), format="csr")
@@ -553,7 +562,11 @@ def run(*, runtime_rows: int = 18000) -> dict[str, Any]:
     final_model = new_estimator(legacy_config, final_labels).fit(final_x, final_labels)
     test_runtime = [runtime_row(row) for row in test_rows]
     test_base, _ = transform_features(test_runtime, feature_builder)
-    test_meta, _ = feature_matrix(test_eval["features"], [row.row_id for row in test_rows])
+    test_features_by_variant = {
+        row.row_id: test_eval["features"][row.row_id][selected_classifier]
+        for row in test_rows
+    }
+    test_meta, _ = feature_matrix(test_features_by_variant, [row.row_id for row in test_rows])
     test_x = hstack((test_base, test_meta), format="csr", dtype=np.float32)
     test_y = np.asarray([row.label.lower() for row in test_rows])
     test_probs = probabilities(final_model, test_x)
