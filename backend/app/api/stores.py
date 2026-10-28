@@ -49,6 +49,8 @@ class DatasetRecord:
     preview_rows: list[list[str]]
     preview_total: int | None = None
     mapping_frozen: bool = False
+    #: "practice" = the exact id,text,date,label,form schema; "manual" = manual draft; "generic" otherwise
+    format: str = "generic"
 
 
 @dataclass

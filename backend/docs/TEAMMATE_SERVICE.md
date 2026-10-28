@@ -4,6 +4,10 @@ Backend-ul (FastAPI, `backend/`) **nu clasifică local**. La fiecare job face un
 singur request HTTP către serviciul echipei de clasificare și stochează răspunsul
 ca tabelul de rezultat al jobului.
 
+> Notă: cât timp `NEURON_CLASSIFIER_URLS` nu e setat, backend-ul folosește mock-ul
+> intern DEMO (`app/engine/mock_engine.py`) și frontend-ul funcționează complet, cu
+> avertisment „DEMO classifier” în logul jobului. Nu trebuie pornit niciun proces separat.
+
 ## Configurare (fără cod)
 
 ```sh
@@ -22,7 +26,7 @@ NEURON_CLASSIFIER_TOKEN=<bearer>                      # opțional
 
 | câmp | valoare |
 | --- | --- |
-| `file` (sau `NEURON_CLASSIFIER_FIELD_NAME`) | snapshot-ul CSV al datasetului (UTF-8, virgulă, header inclus) |
+| `file` (sau `NEURON_CLASSIFIER_FIELD_NAME`) | snapshot-ul CSV al datasetului (UTF-8, virgulă, header inclus: `id,text,date,label,form`) |
 | `asOf` | data de referință, ex. `2026-10-29` |
 | `mapping` | JSON string: `{"textColumn","dateColumn","idColumn","resultColumn"}` |
 
@@ -35,7 +39,7 @@ NEURON_CLASSIFIER_TOKEN=<bearer>                      # opțional
   "asOf": "2026-10-29",
   "mapping": {"textColumn": "text", "dateColumn": "date", "idColumn": "id", "resultColumn": "label"},
   "columns": ["id", "text", "date", "label"],
-  "rows": [{"id": "p-1", "text": "...", "date": "2026-01-12", "label": ""}]
+  "rows": [{"id": "p-1", "text": "...", "date": "2026-01-12", "label": "", "form": "[{...}]"}]
 }
 ```
 

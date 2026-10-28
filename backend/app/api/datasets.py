@@ -6,8 +6,11 @@ import asyncio
 import codecs
 import copy
 import csv
+import datetime
 import io
+import json
 import math
+import re
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +35,62 @@ TEXT_COLUMN_NAMES = ("text", "sentence", "proposition", "claim", "content")
 DATE_COLUMN_NAMES = ("date", "timestamp", "day")
 ID_COLUMN_NAMES = ("id",)
 COUNT_BUDGET_BYTES = 2_000_000
+
+#: Exact schema of the input files the team receives (data/practice.csv shape).
+PRACTICE_COLUMNS = ("id", "text", "date", "label", "form")
+PRACTICE_LABELS = {"", "true", "false", "unsure"}
+
+
+def _is_practice_header(header: list[str]) -> bool:
+    """True when the header is exactly id,text,date,label,form (same order)."""
+    return [
+        column.strip().casefold() for column in header
+    ] == list(PRACTICE_COLUMNS)
+
+
+def _practice_row_problem(record: list[str]) -> str | None:
+    """Return a short reason when a practice-format row is malformed, else None."""
+    if len(record) != len(PRACTICE_COLUMNS):
+        return "field count"
+    row_id, text, when, label, form = (value.strip() for value in record)
+    if not row_id:
+        return "empty id"
+    if not text:
+        return "empty text"
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", when):
+        return "invalid date"
+    try:
+        datetime.date.fromisoformat(when)
+    except ValueError:
+        return "invalid date"
+    if label.casefold() not in PRACTICE_LABELS:
+        return "invalid label"
+    if form:
+        try:
+            parsed = json.loads(form)
+        except ValueError:
+            return "invalid form JSON"
+        if not isinstance(parsed, list) or not all(
+            isinstance(item, dict)
+            and isinstance(item.get("subject"), str)
+            and isinstance(item.get("attribute"), str)
+            and isinstance(item.get("value"), dict)
+            for item in parsed
+        ):
+            return "invalid form shape"
+    return None
+
+
+def _practice_mapping(header: list[str]) -> dict[str, Any]:
+    """Fixed schema, so the mapping is known and already confirmed."""
+    return {
+        "textColumn": header[1],
+        "dateColumn": header[2],
+        "idColumn": header[0],
+        "resultColumn": header[3],
+        "confirmed": True,
+        "autoDetected": True,
+    }
 
 
 def get_state(request: Request) -> ApiState:
@@ -82,6 +141,7 @@ def _dataset_payload(dataset: DatasetRecord) -> dict[str, Any]:
     return {
         "id": dataset.id,
         "mode": dataset.mode,
+        "format": dataset.format,
         "createdAt": _iso(dataset),
         "byteSize": dataset.byte_size,
         "encoding": dataset.encoding,
@@ -285,11 +345,19 @@ def _parse_bulk(data: bytes, explicit_delimiter: str | None) -> dict[str, Any]:
         ) from exc
     if not header or not any(name.strip() for name in header):
         raise ApiError(400, "INVALID_CSV", "The CSV header row is empty.")
+    # The input files the team receives have exactly id,text,date,label,form.
+    # That schema is first-class: it is validated row by row, the mapping is
+    # known (text/date/id/label) and already confirmed, so a job can start
+    # immediately after the upload; "form" is preserved untouched.
+    practice = _is_practice_header(header)
     preview: list[list[str]] = []
     row_count = 0
+    practice_issues = 0
     try:
         for record in reader:
             row_count += 1
+            if practice and _practice_row_problem(record) is not None:
+                practice_issues += 1
             if len(preview) < PREVIEW_LIMIT:
                 preview.append(record)
     except csv.Error as exc:
@@ -301,12 +369,20 @@ def _parse_bulk(data: bytes, explicit_delimiter: str | None) -> dict[str, Any]:
         ) from exc
     if row_count == 0:
         warnings.append("EMPTY_FILE")
-    mapping = _autodetect_mapping(header)
-    if mapping is None:
-        warnings.append("HEADER_WITHOUT_TEXT_COLUMN")
+    if practice:
+        dataset_format = "practice"
+        mapping = _practice_mapping(header)
+        if practice_issues:
+            warnings.append("PRACTICE_ROW_ERRORS")
+    else:
+        dataset_format = "generic"
+        mapping = _autodetect_mapping(header)
+        if mapping is None:
+            warnings.append("HEADER_WITHOUT_TEXT_COLUMN")
     return {
         "encoding": encoding,
         "delimiter": delimiter,
+        "format": dataset_format,
         "columns": list(header),
         "row_count": row_count if len(data) <= COUNT_BUDGET_BYTES else None,
         "total_rows": row_count,
@@ -379,6 +455,7 @@ async def create_manual_dataset(
     dataset = DatasetRecord(
         id=dataset_id,
         mode="manual",
+        format="manual",
         session_id=session.id,
         path=path,
         created_at=utcnow(),
@@ -457,6 +534,7 @@ async def create_bulk_dataset(
     dataset = DatasetRecord(
         id=dataset_id,
         mode="bulk",
+        format=parsed["format"],
         session_id=session.id,
         path=path,
         created_at=utcnow(),
