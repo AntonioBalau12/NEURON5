@@ -590,6 +590,30 @@ def validate_claim_text(claim_type: str, text: str, form: Mapping[str, Any], lex
         has_from_to = "from" in lowered and " to " in f" {lowered} "
         has_to_updown = "up from" in lowered or "down from" in lowered
         if not (has_from_to or has_to_updown): problems.append("change text lacks a published change phrase")
+        from_value, to_value = form.get("from"), form.get("to")
+        if (isinstance(from_value, Mapping) and isinstance(to_value, Mapping)
+                and from_value.get("kind") == to_value.get("kind") == "boolean"):
+            match = re.search(r"(?<!\w)from\s+(.+?\b(?:false|true))\s+to\s+(.+?\b(?:false|true))\.?\s*$",
+                              text, flags=re.IGNORECASE)
+            if from_value.get("value") is to_value.get("value"):
+                problems.append("Boolean change endpoints must differ")
+            elif match is None:
+                problems.append("Boolean change must state both from and to sides")
+            else:
+                attribute_words = str(form.get("attribute", "")).replace("_", " ")
+                for side, endpoint, label in ((match.group(1), from_value, "from"),
+                                              (match.group(2), to_value, "to")):
+                    if not _name_in_text(attribute_words, side):
+                        problems.append(f"Boolean change {label} side omits the attribute words")
+                    negative = re.search(r"\b(?:not|no|never|none|nobody|nothing|neither|nor|without|cannot)\b|\w+n['’]t\b",
+                                         side, flags=re.IGNORECASE) is not None
+                    says_false = re.search(r"(?<!\w)false(?!\w)", side, flags=re.IGNORECASE) is not None
+                    says_true = re.search(r"(?<!\w)true(?!\w)", side, flags=re.IGNORECASE) is not None
+                    expected_false = endpoint.get("value") is False
+                    if not ((says_false and not says_true and not negative)
+                            or (expected_false and negative and not says_true)
+                            or (not expected_false and not negative and not says_false)):
+                        problems.append(f"Boolean change {label} side has the wrong polarity")
     attr = form.get("attribute")
     if isinstance(attr, str) and isinstance(form.get("value"), Mapping) and form["value"].get("kind") == "boolean":
         words = attr.replace("_", " ").casefold()
@@ -643,7 +667,7 @@ def _number_is_mentioned(value: Any, text: str, lexicon: Lexicon) -> bool:
     elif isinstance(value, float):
         variants.add(f"{value:,.{max(0, len(number.partition('.')[2]))}f}")
     for variant in variants:
-        if re.search(rf"(?<![\w.]){re.escape(variant)}(?![\w.])", searchable): return True
+        if re.search(rf"(?<![\w.]){re.escape(variant)}(?!\w|\.(?=\d))", searchable): return True
         if isinstance(value, float) and "." in variant:
             comma_variant = variant.replace(".", ",")
             if re.search(rf"(?<![\w.]){re.escape(comma_variant)}(?![\w.])", searchable): return True

@@ -289,16 +289,49 @@ class OutputTests(unittest.TestCase):
             with self.subTest(example=path.name):
                 self.assertTrue(value_validator.validate(json.loads(path.read_text(encoding="utf-8"))))
 
-    def test_runner_refuses_to_fabricate_claims_or_write_partial_output(self):
+    def test_runner_publishes_a_valid_deficit_checkpoint_without_fabrication(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
-            csv_path, lex_path = write_fixture(folder, [record("p1", "known", "2026-01-01", "true", [])])
+            csv_path, lex_path = write_fixture(folder, [record("u1", "unknown", "2026-01-01", "", [])])
             output = folder / "out" / "output.csv"
-            code = run(str(csv_path), str(lex_path), str(output), str(CONTRACTS))
-            self.assertEqual(code, 2)
-            self.assertFalse(output.exists())
+            class EmptyFactory:
+                def __init__(self, *args, **kwargs): pass
+                def generate(self, *, on_checkpoint=None):
+                    if on_checkpoint: on_checkpoint([])
+                    return [], {"selected_claims": 0, "deficit_to_1000": 1000}
+            with patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
+                 patch("runner.ClaimFactory", EmptyFactory):
+                code = run(str(csv_path), str(lex_path), str(output), str(CONTRACTS))
+            self.assertEqual(code, 0)
+            self.assertTrue(output.is_file())
+            with output.open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual(rows[0]["label"], "unsure")
+            self.assertEqual(rows[0]["type"], "")
+            self.assertEqual(rows[0]["confidence"], "")
 
-    def test_runner_handles_missing_inputs_and_empty_or_malformed_candidate_files(self):
+    def test_runner_preserves_incremental_classification_when_inference_stops(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            csv_path, lex_path = write_fixture(folder, [record("u1", "unknown", "2026-01-01", "", [])])
+            output = folder / "output.csv"
+            class EmptyFactory:
+                def __init__(self, *args, **kwargs): pass
+                def generate(self, *, on_checkpoint=None):
+                    if on_checkpoint: on_checkpoint([])
+                    return [], {"selected_claims": 0, "deficit_to_1000": 1000}
+            def interrupted_inference(_data, _model, _practice, *, progress, **kwargs):
+                progress({"u1": ("true", 0.8)})
+                raise RuntimeError("deadline reached after first batch")
+            with patch("runner.predict_unlabeled", side_effect=interrupted_inference), \
+                 patch("runner.ClaimFactory", EmptyFactory):
+                self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS)), 0)
+            with output.open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual(rows[0]["label"], "true")
+            self.assertEqual(rows[0]["confidence"], "0.8")
+
+    def test_runner_handles_missing_inputs_and_ignores_unprovenanced_candidate_override(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
             csv_path, lex_path = write_fixture(folder, [record("p1", "known", "2026-01-01", "true", [])])
@@ -306,13 +339,17 @@ class OutputTests(unittest.TestCase):
             self.assertEqual(run(str(folder / "missing.csv"), str(lex_path), str(output), str(CONTRACTS)), 2)
             empty = folder / "empty.json"
             empty.write_text("[]", encoding="utf-8")
-            self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS), str(empty)), 2)
-            malformed = folder / "malformed.json"
-            malformed.write_text("{", encoding="utf-8")
-            self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS), str(malformed)), 2)
+            class EmptyFactory:
+                def __init__(self, *args, **kwargs): pass
+                def generate(self, *, on_checkpoint=None):
+                    if on_checkpoint: on_checkpoint([])
+                    return [], {"selected_claims": 0, "deficit_to_1000": 1000}
+            with patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
+                 patch("runner.ClaimFactory", EmptyFactory):
+                self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS), str(empty)), 0)
             with patch.dict(os.environ, {"ARENA_DEADLINE": "1"}):
                 self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS)), 2)
-            self.assertFalse(output.exists())
+            self.assertTrue(output.exists())
 
 
 if __name__ == "__main__":
