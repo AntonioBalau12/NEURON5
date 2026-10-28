@@ -88,31 +88,51 @@ export default function Studio() {
 
   function handleOpenStudio() {
     if (isPulling) return;
-    setIsOpen(true);
-    requestAnimationFrame(() => {
-      if (ctaRef.current) {
-        gsap.to(ctaRef.current, {
-          opacity: 0,
-          y: -25,
-          scale: 0.96,
-          duration: 0.28,
-          ease: 'power2.inOut',
-        });
+    if (!viewportRef.current || !armRigRef.current) return;
+    setIsPulling(true);
+    (window as any).__isPullAnimationActive = true;
+
+    // Smoothly fade & scale out the CTA hero block
+    if (ctaRef.current) {
+      gsap.to(ctaRef.current, {
+        opacity: 0,
+        y: -24,
+        scale: 0.95,
+        duration: 0.25,
+        ease: 'power2.inOut',
+      });
+    }
+
+    // Trigger pull animation: table enters from off-screen right
+    armRigRef.current.triggerPull(
+      viewportRef.current,
+      mascotRef.current?.container ?? null,
+      mascotRef.current?.canvas ?? null,
+      () => {
+        setIsPulling(false);
+        (window as any).__isPullAnimationActive = false;
+        setIsOpen(true);
       }
-      triggerPullAnimation();
-    });
+    );
   }
 
   function handleCloseStudio() {
     if (isPulling || !viewportRef.current) return;
+    setIsPulling(true);
+    (window as any).__isPullAnimationActive = true;
     gsap.to(viewportRef.current, {
-      x: typeof window !== 'undefined' ? window.innerWidth * 0.9 : 1000,
+      x: typeof window !== 'undefined' ? window.innerWidth + 200 : 1200,
       opacity: 0,
       scale: 0.96,
-      duration: 0.4,
+      duration: 0.45,
       ease: 'power2.in',
       onComplete: () => {
+        setIsPulling(false);
+        (window as any).__isPullAnimationActive = false;
         setIsOpen(false);
+        if (viewportRef.current) {
+          viewportRef.current.style.visibility = 'hidden';
+        }
         if (ctaRef.current) {
           gsap.fromTo(
             ctaRef.current,
@@ -168,14 +188,14 @@ export default function Studio() {
           ref={ctaRef}
           className="flex flex-col items-center text-center max-w-2xl px-6 z-20 mt-12 md:mt-18 select-none animate-in fade-in duration-500"
         >
-          {/* Punchy Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#141414] leading-[1.08] mb-4">
+          {/* Punchy Heading with DESIGN.md color tokens */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#202020] leading-[1.08] mb-4">
             Deterministic Engine for <br />
             <span className="text-[#1d6dd7]">Temporal Intelligence</span>
           </h1>
 
-          {/* Intro description */}
-          <p className="text-sm sm:text-base text-black/60 max-w-lg mb-8 leading-relaxed font-medium">
+          {/* Intro description with DESIGN.md --black-0-7 */}
+          <p className="text-sm sm:text-base text-[#202020]/70 max-w-lg mb-8 leading-relaxed font-medium">
             Verify temporal claim constraints, test multi-agent proposition truth values, and generate certified datasets in real time.
           </p>
 
@@ -187,7 +207,7 @@ export default function Studio() {
             className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(29,109,215,0.28)] hover:shadow-[0_12px_32px_rgba(29,109,215,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
           >
             <span className="btn_fill" />
-            <span className="button-text inline-flex items-center gap-3">
+            <span className="button-text inline-flex items-center gap-3 text-[#fcfcfc]">
               <span className="font-bold tracking-wide">Launch Processing Arena</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </span>
@@ -199,7 +219,7 @@ export default function Studio() {
       {/* STEPPER NAVIGATION PILLS (Active when Studio is Open)         */}
       {/* ------------------------------------------------------------- */}
       {isOpen && (
-        <div className="flex items-center gap-2 mb-3 z-20 animate-in fade-in duration-300">
+        <div className="flex items-center gap-2 mb-3 z-40 animate-in fade-in duration-300">
           <nav
             aria-label="Progressive Workflow"
             className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
@@ -218,10 +238,10 @@ export default function Studio() {
                     className={
                       'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
                       (state === 'current'
-                        ? 'bg-[#1d6dd7] text-white shadow-sm'
+                        ? 'bg-[#1d6dd7] text-[#fcfcfc] shadow-sm'
                         : state === 'done'
                           ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
-                          : 'text-[#202020]/70 hover:text-black hover:bg-black/[0.03]') +
+                          : 'text-[#202020]/70 hover:text-[#202020] hover:bg-black/[0.03]') +
                       (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
                     }
                   >
@@ -230,10 +250,10 @@ export default function Studio() {
                       className={
                         'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
                         (state === 'current'
-                          ? 'bg-white/20 text-white'
+                          ? 'bg-white/20 text-[#fcfcfc]'
                           : state === 'done'
                             ? 'bg-[#e6effa] text-[#1d6dd7]'
-                            : 'bg-black/[0.04] text-black/40')
+                            : 'bg-black/[0.04] text-[#202020]/50')
                       }
                     >
                       {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
@@ -251,7 +271,7 @@ export default function Studio() {
           <button
             onClick={handleCloseStudio}
             title="Minimize Studio"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-black/50 hover:text-black hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-[#202020]/70 hover:text-[#202020] hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Minimize</span>
@@ -264,8 +284,13 @@ export default function Studio() {
       {/* ------------------------------------------------------------- */}
       <div
         ref={viewportRef}
-        style={{ display: isOpen ? 'flex' : 'none' }}
-        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex-col overflow-hidden relative z-30 will-change-transform"
+        style={{
+          transform: 'translate3d(120vw, 0, 0)',
+          opacity: 0,
+          visibility: 'hidden',
+          pointerEvents: isOpen ? 'auto' : 'none',
+        }}
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-10 will-change-transform"
       >
         <div hidden={stage !== 1} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <DataStage

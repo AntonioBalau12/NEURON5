@@ -111,7 +111,7 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(380px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-auto will-change-transform"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(480px,90vw)] md:w-[min(600px,56vw)] lg:w-[min(680px,50vw)] max-h-[48vh] md:max-h-[55vh] flex justify-center items-end z-30 pointer-events-auto will-change-transform"
     >
       <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default pointer-events-auto">
         <canvas
