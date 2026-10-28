@@ -18,6 +18,77 @@ from scipy.sparse import csr_matrix, hstack
 
 from foundation import OUTPUT_COLUMNS, InputData, evidence_audit, load_inputs, validate_output
 
+IMMUTABLE_ATTRIBUTES = frozenset({
+    "launched",
+    "released",
+    "published",
+    "venue",
+    "city",
+    "screen_size",
+    "weight",
+    "battery_capacity",
+})
+
+
+def debias_probabilities(
+    probs: np.ndarray,
+    class_weights_map: dict[str, float] | None,
+    label_order: tuple[str, ...] = ("false", "true", "unsure"),
+) -> np.ndarray:
+    """Reverse class-weight prior distortion so probabilities reflect the true prior."""
+    if not class_weights_map:
+        return np.asarray(probs, dtype=np.float64)
+    probs_arr = np.asarray(probs, dtype=np.float64)
+    orig_shape = probs_arr.shape
+    if probs_arr.ndim == 1:
+        probs_arr = probs_arr.reshape(1, -1)
+    weights = np.asarray([float(class_weights_map.get(lbl, 1.0)) for lbl in label_order], dtype=np.float64)
+    weights = np.maximum(weights, 1e-12)
+    unweighted = probs_arr / weights
+    sums = unweighted.sum(axis=1, keepdims=True)
+    debiased = np.divide(unweighted, sums, out=np.zeros_like(unweighted), where=sums != 0)
+    return debiased.reshape(orig_shape)
+
+
+def calibrate_claim_confidence(claim: dict[str, Any], as_of_date: str = "2026-10-29") -> float:
+    """Calibrate confidence for generated claims based on immutability and recency."""
+    form_raw = claim.get("form")
+    attrs: set[str] = set()
+    if isinstance(form_raw, str):
+        try:
+            parsed = json.loads(form_raw)
+        except (TypeError, ValueError):
+            parsed = None
+    else:
+        parsed = form_raw
+
+    if isinstance(parsed, list):
+        for item in parsed:
+            if isinstance(item, dict) and "attribute" in item:
+                attrs.add(str(item["attribute"]).casefold())
+    elif isinstance(parsed, dict):
+        for side in ("left", "right"):
+            sub = parsed.get(side)
+            if isinstance(sub, dict) and "attribute" in sub:
+                attrs.add(str(sub["attribute"]).casefold())
+
+    if attrs and attrs.issubset(IMMUTABLE_ATTRIBUTES):
+        return 0.95
+
+    # Mutable claim recency calculation
+    claim_date_str = claim.get("date")
+    if claim_date_str:
+        try:
+            import datetime
+            as_of = datetime.date.fromisoformat(as_of_date)
+            dt = datetime.date.fromisoformat(str(claim_date_str)[:10])
+            days = max(0, (as_of - dt).days)
+            recency = max(0.0, min(1.0, 1.0 - days / 365.0))
+            return round(0.75 + 0.17 * recency, 4)
+        except (ValueError, TypeError):
+            pass
+    return 0.88
+
 
 def default_path(runtime: str, local: str) -> str:
     return runtime if Path(runtime).exists() else str(Path(__file__).resolve().parent / local)
@@ -102,18 +173,46 @@ def predict_unlabeled(data: InputData, model_path: str, practice_path: str) -> d
         for column, label in enumerate(classes):
             if label in label_order:
                 aligned[:, label_order.index(label)] = probabilities[:, column]
-        threshold = float(artifact.get("minimum_confidence", 0.5))
+
+        class_weights_map = artifact.get("class_weights_map")
+        if not class_weights_map:
+            class_weights_map = getattr(estimator, "class_weight", None)
+        aligned = debias_probabilities(aligned, class_weights_map, label_order)
+
+        minimum_confidence = float(artifact.get("minimum_confidence", 0.53))
+        false_threshold = float(artifact.get("false_threshold", 0.68))
+
         for index, row in enumerate(usable):
-            predicted = label_order[int(np.argmax(aligned[index]))]
-            confidence = float(aligned[index, label_order.index(predicted)])
-            false_confidence = float(aligned[index, label_order.index("false")])
-            false_threshold = float(artifact.get("false_threshold", 1.0000001))
-            if predicted != "false" and false_confidence >= false_threshold:
-                predicted, confidence = "false", false_confidence
-            if predicted == "unsure" or confidence < threshold:
+            rf = retrieval_rows[index]
+            retrieved_dict = {FEATURE_NAMES[k]: rf[k] for k in range(len(FEATURE_NAMES))}
+            exact_fact_match = retrieved_dict.get("exact_fact_match", 0)
+            temporal_evidence_match = retrieved_dict.get("temporal_evidence_match", 0)
+            retrieved_verified_count = retrieved_dict.get("retrieved_verified_count", 0)
+            graph_lookup_success = retrieved_dict.get("graph_lookup_success", 0)
+
+            raw_pred = label_order[int(np.argmax(aligned[index]))]
+            raw_conf = float(aligned[index, label_order.index(raw_pred)])
+            false_conf = float(aligned[index, label_order.index("false")])
+
+            if raw_pred != "false" and false_conf >= false_threshold:
+                raw_pred, raw_conf = "false", false_conf
+
+            # Tier 1 (Deterministic Graph Verification)
+            if exact_fact_match == 1 and temporal_evidence_match == 1 and raw_pred in ("true", "false"):
+                safe_conf = round(min(0.98, max(0.90, raw_conf + 0.02 * retrieved_verified_count)), 4)
+                result[row.row_id] = (raw_pred, safe_conf)
+            # Tier 2 (false Precision Guardrail)
+            elif raw_pred == "false" and retrieved_verified_count == 0 and raw_conf < false_threshold:
                 result[row.row_id] = ("unsure", None)
+            # Tier 3 (Retrieval-Damped Confidence & Abstention)
             else:
-                result[row.row_id] = (predicted, confidence)
+                damping = 0.90 if graph_lookup_success == 1 else 0.75
+                safe_conf = 0.5 + (raw_conf - 0.5) * damping
+                if raw_pred == "unsure" or safe_conf < minimum_confidence:
+                    result[row.row_id] = ("unsure", None)
+                else:
+                    safe_conf = round(float(np.clip(safe_conf, 0.5001, 0.88)), 4)
+                    result[row.row_id] = (raw_pred, safe_conf)
     return result
 
 
@@ -174,13 +273,45 @@ def run(
     for row in data.rows:
         if row.label is None:
             label, confidence = predictions.get(row.row_id, ("unsure", None))
-            rows.append({"id": row.row_id, "type": "", "text": "", "form": "", "label": label,
-                         "confidence": "" if confidence is None else confidence})
+            rows.append({
+                "id": row.row_id,
+                "type": "",
+                "text": "",
+                "form": "",
+                "label": label,
+                "confidence": "" if confidence is None else f"{confidence:g}",
+            })
     for claim in claims:
+        claim_conf = claim.get("confidence")
+        if claim_conf is None or claim_conf == "":
+            claim_conf = calibrate_claim_confidence(claim)
+        elif isinstance(claim_conf, (int, float, str)):
+            try:
+                c_val = float(claim_conf)
+                if not 0.5 <= c_val <= 1.0:
+                    claim_conf = calibrate_claim_confidence(claim)
+                else:
+                    claim_conf = c_val
+            except ValueError:
+                claim_conf = calibrate_claim_confidence(claim)
+
+        form_val = claim.get("form", {})
+        if isinstance(form_val, str):
+            try:
+                parsed_f = json.loads(form_val)
+                serialized_form = json.dumps(parsed_f, ensure_ascii=False, separators=(",", ":"))
+            except (ValueError, TypeError):
+                serialized_form = form_val
+        else:
+            serialized_form = json.dumps(form_val, ensure_ascii=False, separators=(",", ":"))
+
         rows.append({
-            "id": claim.get("id", ""), "type": claim.get("type", ""), "text": claim.get("text", ""),
-            "form": json.dumps(claim.get("form", {}), ensure_ascii=False, separators=(",", ":")),
-            "label": claim.get("label", "true"), "confidence": claim.get("confidence", 0.5),
+            "id": claim.get("id", ""),
+            "type": claim.get("type", ""),
+            "text": claim.get("text", ""),
+            "form": serialized_form,
+            "label": claim.get("label", "true"),
+            "confidence": f"{claim_conf:g}" if isinstance(claim_conf, float) else str(claim_conf),
         })
     # Validate a temporary candidate before replacing any previously complete output.
     dest = Path(output)

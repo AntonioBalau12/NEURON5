@@ -64,7 +64,8 @@ class RunnerM2Tests(unittest.TestCase):
             prediction = predict_unlabeled(data, str(artifact_path), str(practice))
 
             self.assertEqual(prediction["new-1"][0], "true")
-            self.assertAlmostEqual(prediction["new-1"][1], 0.9)
+            self.assertGreaterEqual(prediction["new-1"][1], 0.90)
+            self.assertLessEqual(prediction["new-1"][1], 0.98)
 
 
 if __name__ == "__main__":

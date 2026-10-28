@@ -210,6 +210,79 @@ def false_metrics(y: np.ndarray, probs: np.ndarray, threshold: float | None = No
             "false_true_positives": tp, "false_false_positives": fp, "false_false_negatives": fn}
 
 
+def debias_probabilities(
+    probs: np.ndarray,
+    class_weights_map: dict[str, float] | None,
+    label_order: tuple[str, ...] = tuple(LABELS),
+) -> np.ndarray:
+    """Reverse class-weight prior distortion so probabilities reflect the true prior."""
+    if not class_weights_map:
+        return np.asarray(probs, dtype=np.float64)
+    probs_arr = np.asarray(probs, dtype=np.float64)
+    orig_shape = probs_arr.shape
+    if probs_arr.ndim == 1:
+        probs_arr = probs_arr.reshape(1, -1)
+    weights = np.asarray([float(class_weights_map.get(lbl, 1.0)) for lbl in label_order], dtype=np.float64)
+    weights = np.maximum(weights, 1e-12)
+    unweighted = probs_arr / weights
+    sums = unweighted.sum(axis=1, keepdims=True)
+    debiased = np.divide(unweighted, sums, out=np.zeros_like(unweighted), where=sums != 0)
+    return debiased.reshape(orig_shape)
+
+
+def compute_confidence_payoff(
+    y: np.ndarray,
+    probs: np.ndarray,
+    minimum_confidence: float,
+    false_threshold: float,
+) -> float:
+    """Competition payoff: +confidence for correct, -confidence for wrong, 0 for unsure."""
+    total_payoff = 0.0
+    for i in range(len(y)):
+        actual = y[i]
+        raw_pred = LABELS[int(np.argmax(probs[i]))]
+        raw_conf = float(probs[i, LABELS.index(raw_pred)])
+        false_conf = float(probs[i, LABELS.index("false")])
+
+        if raw_pred != "false" and false_conf >= false_threshold:
+            raw_pred, raw_conf = "false", false_conf
+
+        if raw_pred == "unsure" or raw_conf < minimum_confidence:
+            continue
+
+        if raw_pred == actual:
+            total_payoff += raw_conf
+        else:
+            total_payoff -= raw_conf
+    return total_payoff / max(1, len(y))
+
+
+def tune_calibration_thresholds(
+    y: np.ndarray,
+    debiased_oof_probs: np.ndarray,
+) -> tuple[float, float, float]:
+    """Grid search minimum_confidence and false_threshold on de-biased OOF probabilities."""
+    min_conf_grid = [0.50, 0.52, 0.55, 0.58, 0.60]
+    false_thresh_grid = [0.55, 0.60, 0.65, 0.70, 0.75]
+
+    best_min_conf = 0.53
+    best_false_thresh = 0.68
+    best_score = -float("inf")
+
+    for mc in min_conf_grid:
+        for ft in false_thresh_grid:
+            payoff = compute_confidence_payoff(y, debiased_oof_probs, mc, ft)
+            f_metrics = false_metrics(y, debiased_oof_probs, ft)
+            # Payoff primary, false_f1 secondary
+            score = (payoff, f_metrics["false_f1"], f_metrics["false_precision"])
+            if score > (best_score, 0.0, 0.0):
+                best_score = payoff
+                best_min_conf = mc
+                best_false_thresh = ft
+
+    return best_min_conf, best_false_thresh, best_score
+
+
 def tune_false_threshold(y: np.ndarray, oof_probs: np.ndarray) -> float:
     scores = oof_probs[:, LABELS.index("false")]
     candidates = sorted(value for value in set(scores.tolist()) | {0.5, 1.0000001} if value >= 0.5)
@@ -261,9 +334,9 @@ def score(estimator: Any, x: Any, y: np.ndarray, rows: list[dict[str, str]], ref
     return out
 
 
-def run(*, output: Path = OUT, max_configs: int | None = None) -> dict[str, Any]:
+def run(*, output: Path = OUT, max_configs: int | None = None, overwrite: bool = True) -> dict[str, Any]:
     require_lightgbm()
-    if output.exists() and any(output.iterdir()):
+    if output.exists() and any(output.iterdir()) and not overwrite:
         raise FileExistsError(f"refusing to overwrite populated results directory: {output}")
     rows, lexicon, splits, folds = load_inputs()
     train_ix = [i for i, r in enumerate(rows) if splits[r["id"]] == "train"]
@@ -309,7 +382,10 @@ def run(*, output: Path = OUT, max_configs: int | None = None) -> dict[str, Any]
         _, _, cfg, validation = max(candidates, key=lambda item: (item[0], item[1]))
         oof_probs, oof_fold_false = oof_probabilities(x_train_base, y_train, train, folds, cfg,
                                                        lexicon, name == "m2")
-        threshold = tune_false_threshold(y_train, oof_probs)
+        cw_map = class_weights(y_train, cfg["weighting"])
+        debiased_oof = debias_probabilities(oof_probs, cw_map)
+        min_conf, false_thresh, payoff = tune_calibration_thresholds(y_train, debiased_oof)
+        threshold = false_thresh
         oof_fold_reports = []
         for fold in oof_fold_false:
             indexes = np.asarray(fold["indices"], dtype=int)
@@ -339,6 +415,12 @@ def run(*, output: Path = OUT, max_configs: int | None = None) -> dict[str, Any]
                               "validation_after": false_metrics(y_val, val_probs, threshold),
                               "validation_precision_cost": false_metrics(y_val, val_probs)["false_precision"] - false_metrics(y_val, val_probs, threshold)["false_precision"]},
                           "validation_metrics_after_false_threshold": metrics(y_val, val_probs, threshold),
+                          "calibration": {
+                              "minimum_confidence": float(min_conf),
+                              "false_threshold": float(false_thresh),
+                              "confidence_payoff": float(payoff),
+                              "class_weights_map": cw_map,
+                          },
                           "oof_fold_metrics": oof_fold_reports,
                           "oof_fold_metric_mean_std": {
                               "before_threshold": mean_std([fold["before_threshold"] for fold in oof_fold_reports],
@@ -358,10 +440,38 @@ def run(*, output: Path = OUT, max_configs: int | None = None) -> dict[str, Any]
                                    "outer_test_precision_cost": test_before["false_precision"] - test_after["false_precision"]}
         if name == "m2":
             output.mkdir(parents=True, exist_ok=True)
-            joblib.dump({"estimator": final, "feature_builder": feature_builder,
-                         "label_order": tuple(LABELS), "retrieval_feature_names": tuple(FEATURE_NAMES),
-                         "feature_count": int(final_x.shape[1]), "minimum_confidence": 0.5,
-                         "false_threshold": threshold}, output / "model.joblib", compress=3)
+            # --- Full-Universe Production Fit on 100% of data/practice.csv (1,897 rows) ---
+            all_rows = rows
+            y_all = np.asarray([r["label"].lower() for r in all_rows])
+            prod_feature_builder = make_feature_builder(all_rows, lexicon)
+            x_prod_base, _ = transform_features(inference_rows(all_rows), prod_feature_builder)
+
+            # 10-fold fold-safe OOF retrieval features across all 1,897 rows
+            prod_folds = {r["id"]: (int(hashlib.md5(r["id"].encode("utf-8")).hexdigest(), 16) % 10) for r in all_rows}
+            prod_retr = lil_matrix((len(all_rows), len(FEATURE_NAMES)), dtype=np.float32)
+            for p_fold in sorted(set(prod_folds.values())):
+                p_held = [i for i, r in enumerate(all_rows) if prod_folds[r["id"]] == p_fold]
+                p_fit_rows = [r for i, r in enumerate(all_rows) if prod_folds[r["id"]] != p_fold]
+                p_extractor = build_retriever(p_fit_rows, lexicon)
+                p_held_rows = [all_rows[i] for i in p_held]
+                prod_retr[p_held] = extractor_matrix(p_extractor, p_held_rows)
+            prod_retr = prod_retr.tocsr()
+            x_prod_full = estimator_matrix(x_prod_base, prod_retr)
+
+            prod_estimator = new_estimator(cfg, y_all).fit(x_prod_full, y_all)
+            cw_all = class_weights(y_all, cfg["weighting"])
+
+            joblib.dump({
+                "estimator": prod_estimator,
+                "feature_builder": prod_feature_builder,
+                "label_order": tuple(LABELS),
+                "retrieval_feature_names": tuple(FEATURE_NAMES),
+                "feature_count": int(x_prod_full.shape[1]),
+                "class_weights_map": cw_all,
+                "minimum_confidence": float(min_conf),
+                "false_threshold": float(false_thresh),
+                "production_universe_rows": len(all_rows),
+            }, output / "model.joblib", compress=3)
     report = {"status": "completed", "created_at": datetime.now(timezone.utc).isoformat(),
               "rows": {"train": len(train), "validation": len(val), "outer_test": len(test)},
               "selection": "validation macro-F1 then balanced accuracy; outer test was scored after selection and never used for tuning",
@@ -390,8 +500,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--max-configs", type=int, help="bounded run for smoke benchmarking")
     parser.add_argument("--output", type=Path, default=OUT, help="new versioned output directory")
+    parser.add_argument("--no-overwrite", action="store_true", help="refuse to overwrite existing directory")
     args = parser.parse_args()
-    report = run(output=args.output, max_configs=args.max_configs)
+    report = run(output=args.output, max_configs=args.max_configs, overwrite=not args.no_overwrite)
     print(json.dumps({"selected": report["selected"], "outer_test": report["outer_test"]}, indent=2))
     return 0
 
