@@ -12,6 +12,10 @@ import time
 from pathlib import Path
 from typing import Any
 
+import joblib
+import numpy as np
+from scipy.sparse import csr_matrix, hstack
+
 from foundation import OUTPUT_COLUMNS, InputData, evidence_audit, load_inputs, validate_output
 
 
@@ -47,7 +51,81 @@ def read_candidates(path: str | Path) -> list[dict[str, Any]]:
     return raw
 
 
-def run(universe: str, lexicon: str, output: str, contract_dir: str, candidates_path: str | None = None) -> int:
+def predict_unlabeled(data: InputData, model_path: str, practice_path: str) -> dict[str, tuple[str, float | None]]:
+    """Run the serialized M2 model; inference rows need only id/text/date/label."""
+    from core.graph.builder import build_graph
+    from core.retrieval.features import FEATURE_NAMES, RetrievalFeatureExtractor
+    from core.retrieval.hybrid import HybridEvidenceRetriever
+    from ml.classical.benchmark import LABELS, transform_features
+
+    artifact = joblib.load(model_path)
+    if not isinstance(artifact, dict):
+        raise ValueError("M2 model artifact must be a mapping")
+    estimator = artifact["estimator"]
+    feature_builder = artifact["feature_builder"]
+    label_order = tuple(artifact["label_order"])
+    if label_order != tuple(LABELS):
+        raise ValueError(f"model label order mismatch: {label_order!r}")
+    if tuple(artifact["retrieval_feature_names"]) != tuple(FEATURE_NAMES):
+        raise ValueError("M2 retrieval feature schema mismatch")
+
+    reference = load_inputs(practice_path, str(Path(practice_path).with_name("lexicon.json")))
+    graph = build_graph(data, reference_evidence=reference)
+    retriever = HybridEvidenceRetriever(graph)
+    extractor = RetrievalFeatureExtractor(retriever)
+    pending = [row for row in data.rows if row.label is None]
+    result: dict[str, tuple[str, float | None]] = {}
+    usable: list[Any] = []
+    model_rows: list[dict[str, str]] = []
+    retrieval_rows: list[list[float]] = []
+    for row in pending:
+        if not row.text.strip() or row.date is None:
+            result[row.row_id] = ("unsure", None)
+            continue
+        model_rows.append({"id": row.row_id, "text": row.text, "date": row.date.isoformat()})
+        retrieved_features = extractor.extract(
+            row.text, row.date, exclude_evidence_ids=(row.row_id,)
+        )
+        retrieval_rows.append([retrieved_features[name] for name in FEATURE_NAMES])
+        usable.append(row)
+
+    if usable:
+        base_matrix, _ = transform_features(model_rows, feature_builder)
+        retrieval_matrix = csr_matrix(np.asarray(retrieval_rows, dtype=np.float32))
+        features = hstack((base_matrix, retrieval_matrix), format="csr", dtype=np.float32)
+        expected = artifact.get("feature_count")
+        if expected is not None and features.shape[1] != int(expected):
+            raise ValueError(f"M2 feature count mismatch: {features.shape[1]} != {expected}")
+        probabilities = np.asarray(estimator.predict_proba(features), dtype=np.float64)
+        classes = tuple(str(item) for item in estimator.classes_)
+        aligned = np.zeros((len(usable), len(label_order)), dtype=np.float64)
+        for column, label in enumerate(classes):
+            if label in label_order:
+                aligned[:, label_order.index(label)] = probabilities[:, column]
+        threshold = float(artifact.get("minimum_confidence", 0.5))
+        for index, row in enumerate(usable):
+            predicted = label_order[int(np.argmax(aligned[index]))]
+            confidence = float(aligned[index, label_order.index(predicted)])
+            false_confidence = float(aligned[index, label_order.index("false")])
+            false_threshold = float(artifact.get("false_threshold", 1.0000001))
+            if predicted != "false" and false_confidence >= false_threshold:
+                predicted, confidence = "false", false_confidence
+            if predicted == "unsure" or confidence < threshold:
+                result[row.row_id] = ("unsure", None)
+            else:
+                result[row.row_id] = (predicted, confidence)
+    return result
+
+
+def run(
+    universe: str,
+    lexicon: str,
+    output: str,
+    contract_dir: str,
+    candidates_path: str | None = None,
+    model_path: str | None = None,
+    practice_path: str | None = None,
+) -> int:
     os.environ.setdefault("HOME", "/tmp")
     os.environ.setdefault("XDG_CACHE_HOME", "/tmp/.cache")
     os.environ.setdefault("HF_HOME", "/tmp/huggingface")
@@ -82,10 +160,22 @@ def run(universe: str, lexicon: str, output: str, contract_dir: str, candidates_
     if len(claims) != 1000:
         print(f"candidate count is {len(claims)}, not 1,000; no output written", file=sys.stderr)
         return 2
+    packaged_practice = practice_path or str(Path(__file__).resolve().parent / "data" / "practice.csv")
+    packaged_model = model_path or os.environ.get(
+        "NEURON_M2_MODEL",
+        str(Path(__file__).resolve().parent / "ml" / "classical" / "results_m2_v1" / "model.joblib"),
+    )
+    try:
+        predictions = predict_unlabeled(data, packaged_model, packaged_practice)
+    except Exception as exc:
+        print(f"M2 inference failed: {exc}", file=sys.stderr)
+        return 2
     rows: list[dict[str, Any]] = []
     for row in data.rows:
         if row.label is None:
-            rows.append({"id": row.row_id, "type": "", "text": "", "form": "", "label": "unsure", "confidence": ""})
+            label, confidence = predictions.get(row.row_id, ("unsure", None))
+            rows.append({"id": row.row_id, "type": "", "text": "", "form": "", "label": label,
+                         "confidence": "" if confidence is None else confidence})
     for claim in claims:
         rows.append({
             "id": claim.get("id", ""), "type": claim.get("type", ""), "text": claim.get("text", ""),
@@ -127,8 +217,10 @@ def main() -> int:
     parser.add_argument("--output", default=default_path("/output/output.csv", "output/output.csv"))
     parser.add_argument("--contract-dir", default=str(Path(__file__).resolve().parent / "contracts"))
     parser.add_argument("--candidates-json", help="JSON array of 1,000 precomputed verified claim candidates")
+    parser.add_argument("--model", default=None, help="Path to the serialized M2 model")
+    parser.add_argument("--practice", default=None, help="Path to packaged practice evidence with forms")
     args = parser.parse_args()
-    return run(args.universe, args.lexicon, args.output, args.contract_dir, args.candidates_json)
+    return run(args.universe, args.lexicon, args.output, args.contract_dir, args.candidates_json, args.model, args.practice)
 
 
 if __name__ == "__main__":

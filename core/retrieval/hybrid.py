@@ -360,12 +360,64 @@ class HybridEvidenceRetriever:
                 on_date=parsed_date,
                 exclude_evidence_ids=tuple(exclude_evidence_ids or ()),
             )
-            if resolution.status in {
-                EvidenceState.VERIFIED_SUPPORT,
-                EvidenceState.VERIFIED_REFUTATION,
-                EvidenceState.CONFLICTING,
-            }:
-                return resolution
+            retrieved_verified_ids = {
+                item.evidence_id
+                for item in retrieved
+                if item.verification_status in {
+                    EvidenceState.VERIFIED_SUPPORT,
+                    EvidenceState.VERIFIED_REFUTATION,
+                    EvidenceState.CONFLICTING,
+                }
+            }
+            atomic_results = resolution.atomic_results
+
+            def retrieved_contributors(result: Any) -> tuple[str, ...]:
+                if result.status == EvidenceState.VERIFIED_SUPPORT:
+                    records = result.supporting
+                elif result.status == EvidenceState.VERIFIED_REFUTATION:
+                    records = result.contradicting
+                elif result.status == EvidenceState.CONFLICTING:
+                    records = (*result.supporting, *result.contradicting)
+                else:
+                    records = ()
+                return tuple(dict.fromkeys(
+                    record.source_row_id for record in records
+                    if record.source_row_id in retrieved_verified_ids
+                ))
+
+            def retrieved_conflict_contributors(result: Any) -> tuple[str, ...]:
+                supporting = tuple(
+                    record.source_row_id for record in result.supporting
+                    if record.source_row_id in retrieved_verified_ids
+                )
+                contradicting = tuple(
+                    record.source_row_id for record in result.contradicting
+                    if record.source_row_id in retrieved_verified_ids
+                )
+                if result.supporting and result.contradicting and not (supporting and contradicting):
+                    return ()
+                return tuple(dict.fromkeys((*supporting, *contradicting)))
+
+            contributing_ids: tuple[str, ...] = ()
+            if resolution.status == EvidenceState.VERIFIED_SUPPORT and atomic_results:
+                per_fact_ids = [retrieved_contributors(result) for result in atomic_results]
+                if all(result.status == EvidenceState.VERIFIED_SUPPORT for result in atomic_results) and all(per_fact_ids):
+                    contributing_ids = tuple(dict.fromkeys(eid for ids in per_fact_ids for eid in ids))
+            elif resolution.status == EvidenceState.VERIFIED_REFUTATION:
+                contributing_ids = tuple(dict.fromkeys(
+                    eid for result in atomic_results
+                    if result.status == EvidenceState.VERIFIED_REFUTATION
+                    for eid in retrieved_contributors(result)
+                ))
+            elif resolution.status == EvidenceState.CONFLICTING:
+                contributing_ids = tuple(dict.fromkeys(
+                    eid for result in atomic_results
+                    if result.status == EvidenceState.CONFLICTING
+                    for eid in retrieved_conflict_contributors(result)
+                ))
+
+            if contributing_ids:
+                return replace(resolution, evidence_ids=contributing_ids)
 
         return ClaimResolution(
             status=EvidenceState.UNKNOWN,

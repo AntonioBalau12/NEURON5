@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any, Iterable, Mapping, Sequence
 
-from foundation import compare_values, normalize_date
+from foundation import AtomicFact, normalize_date
 from core.graph.models import EvidenceState
 from core.retrieval.bm25 import RetrievedEvidence, _extract_dates
 from core.retrieval.hybrid import HybridEvidenceRetriever
@@ -109,43 +109,26 @@ class RetrievalFeatureExtractor:
         elif hasattr(self.retriever, "parser"):
             candidate_facts = self.retriever.parser.parse(claim_text).facts
 
-        if candidate_facts:
-            for fact in candidate_facts:
-                for r in results:
-                    for ev_fact in r.facts:
-                        if (
-                            fact.subject.casefold() == ev_fact.subject.casefold()
-                            and fact.attribute == ev_fact.attribute
-                            and compare_values(fact.value, ev_fact.value, "eq") is True
-                        ):
-                            exact_fact_match = 1
-                            break
-                    if exact_fact_match:
-                        break
+        supporting_records = ()
+        resolver = getattr(self.retriever, "resolver", None)
+        if resolver is not None:
+            retrieved_ids = {
+                r.evidence_id for r in results
+                if r.verification_status == EvidenceState.VERIFIED_SUPPORT
+            }
+            supporting_records = tuple(
+                record
+                for fact in candidate_facts
+                for record in resolver.find_supporting_evidence(fact, parsed_claim_date)
+                if record.source_row_id in retrieved_ids
+            )
+        if supporting_records:
+            exact_fact_match = 1
 
         # 5. Temporal evidence match
         temporal_evidence_match = 0
-        candidate_dates = set()
-        if parsed_claim_date is not None:
-            candidate_dates.add(parsed_claim_date)
-        for ext_d in _extract_dates(claim_text):
-            norm_ext, _ = normalize_date(ext_d)
-            if norm_ext:
-                candidate_dates.add(norm_ext)
-
-        if candidate_dates:
-            for r in results:
-                if r.source_date is not None and r.source_date in candidate_dates:
-                    temporal_evidence_match = 1
-                    break
-                for ev_fact in r.facts:
-                    if ev_fact.value.kind == "date":
-                        ev_d, _ = normalize_date(str(ev_fact.value.value))
-                        if ev_d and ev_d in candidate_dates:
-                            temporal_evidence_match = 1
-                            break
-                if temporal_evidence_match:
-                    break
+        if parsed_claim_date is not None and supporting_records:
+            temporal_evidence_match = 1
 
         return {
             "bm25_top_score": round(bm25_top_score, 4),

@@ -483,22 +483,22 @@ class BM25Index:
             b=b,
             include_attribute_synonyms=include_attribute_synonyms,
         )
+        status_by_source_row_id: dict[str, EvidenceState] = {}
+        status_priority = {
+            EvidenceState.VERIFIED_REFUTATION: 1,
+            EvidenceState.CONFLICTING: 2,
+            EvidenceState.VERIFIED_SUPPORT: 3,
+        }
+        for records in graph.facts_by_subject_attribute.values():
+            for record in records:
+                priority = status_priority.get(record.evidence_status, 0)
+                if priority > status_priority.get(status_by_source_row_id.get(record.source_row_id), 0):
+                    status_by_source_row_id[record.source_row_id] = record.evidence_status
+
         for evidence in graph.evidence_by_id.values():
             entities = tuple(f.subject for f in evidence.facts)
             attributes = tuple(f.attribute for f in evidence.facts)
-            # Determine evidence status from graph facts
-            records = [
-                r for records in graph.facts_by_subject_attribute.values()
-                for r in records if r.source_row_id == evidence.source_row_id
-            ]
-            if any(r.evidence_status == EvidenceState.VERIFIED_SUPPORT for r in records):
-                status = EvidenceState.VERIFIED_SUPPORT
-            elif any(r.evidence_status == EvidenceState.CONFLICTING for r in records):
-                status = EvidenceState.CONFLICTING
-            elif any(r.evidence_status == EvidenceState.VERIFIED_REFUTATION for r in records):
-                status = EvidenceState.VERIFIED_REFUTATION
-            else:
-                status = EvidenceState.UNVERIFIED_CANDIDATE
+            status = status_by_source_row_id.get(evidence.source_row_id, EvidenceState.UNVERIFIED_CANDIDATE)
 
             index.add_document(
                 evidence_id=evidence.source_row_id,
