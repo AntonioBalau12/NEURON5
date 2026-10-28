@@ -70,7 +70,6 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
         const updateGorillaSink = () => {
           ticking = false;
           if (!heroSection || !gorillaEl) return;
-          // Don't interfere if pull animation is actively running
           if ((window as any).__isPullAnimationActive) return;
           const heroH = heroSection.offsetHeight;
           const scrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -78,7 +77,6 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
           const endSink = heroH * 0.85;
           let progress = (scrollY - startSink) / (endSink - startSink);
           progress = Math.max(0, Math.min(1, progress));
-          // Hermite smoothstep curve
           progress = progress * progress * (3 - 2 * progress);
           gorillaEl.style.transform = `translate(-50%, ${(progress * 105).toFixed(2)}%)`;
         };
@@ -112,12 +110,12 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(480px,90vw)] md:w-[min(600px,56vw)] lg:w-[min(680px,50vw)] max-h-[48vh] md:max-h-[55vh] flex justify-center items-end z-30 pointer-events-auto"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(380px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-none will-change-transform"
     >
-      <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default">
+      <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default pointer-events-none">
         <canvas
           ref={canvasRef}
-          className="w-full h-full block"
+          className="w-full h-full block pointer-events-none"
         />
       </div>
     </div>

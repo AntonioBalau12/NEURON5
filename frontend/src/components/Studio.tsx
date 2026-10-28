@@ -159,7 +159,7 @@ export default function Studio() {
       {/* Main Studio Viewport Box */}
       <div
         ref={viewportRef}
-        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-10 will-change-transform"
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-30 will-change-transform"
       >
         
         {/* Studio Header */}
