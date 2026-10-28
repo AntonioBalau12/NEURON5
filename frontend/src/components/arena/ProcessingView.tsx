@@ -348,6 +348,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     }
 
     function appendEvent(event: JobEvent) {
+      if (disposed) return;
       const sequence = Number(event.sequenceId);
       if (!Number.isFinite(sequence) || sequence < minSequence || sequence <= cursor) return;
       cursor = sequence;
@@ -369,6 +370,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
       eventPoll = (async () => {
         do {
           const response = await jobsApi.events(jobId, cursor, 1000);
+          if (disposed) break;
           if (response.truncated && response.events.length > 0) {
             const firstSequence = response.events[0].sequenceId;
             setGapNotice(`Older events were dropped. Showing history from sequence ${firstSequence}.`);
