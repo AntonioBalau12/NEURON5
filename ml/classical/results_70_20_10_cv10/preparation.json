@@ -1,0 +1,22 @@
+{
+  "duration_seconds": 8.596762400000443,
+  "outer_counts": {
+    "train": 1328,
+    "validation": 379,
+    "test": 190
+  },
+  "fold_counts": {
+    "0": 127,
+    "1": 125,
+    "2": 133,
+    "3": 141,
+    "4": 133,
+    "5": 145,
+    "6": 129,
+    "7": 135,
+    "8": 130,
+    "9": 130
+  },
+  "features": "text + date + lexicon; form excluded from inference features",
+  "split_sha256": "a7a57df8e0e0350ba5dded75bf674302f3a62bc024cb117db325d18f6845d9c1"
+}

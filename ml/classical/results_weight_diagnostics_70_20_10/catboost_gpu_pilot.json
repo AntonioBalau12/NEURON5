@@ -1,0 +1,3104 @@
+{
+  "status": "COMPLETED",
+  "started_at": "2026-10-28T12:03:36+00:00",
+  "protocol": "GPU fit on train only; validation scored after fit; outer test skipped",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB VRAM",
+  "weights_true_false_unsure": [
+    1.0,
+    2.0,
+    1.0
+  ],
+  "preparation_seconds": 0.5732405999988259,
+  "train_rows": 1328,
+  "validation_rows": 379,
+  "outer_test": "not loaded",
+  "gpu_fit_seconds": 3.2836151999981666,
+  "native_model_size_bytes": 391816,
+  "cpu_validation_inference_seconds": 0.02247440000064671,
+  "cpu_validation_rows_per_second": 16863.631509143474,
+  "validation_metrics": {
+    "accuracy": 0.8073878627968337,
+    "balanced_accuracy": 0.3327963176064442,
+    "macro_f1": 0.31692523782161786,
+    "classes": {
+      "false": {
+        "precision": 0.14285714285714285,
+        "recall": 0.03636363636363636,
+        "f1": 0.057971014492753624,
+        "support": 55
+      },
+      "true": {
+        "precision": 0.8328767123287671,
+        "recall": 0.9620253164556962,
+        "f1": 0.8928046989720999,
+        "support": 316
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 8
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        2,
+        53,
+        0
+      ],
+      [
+        12,
+        304,
+        0
+      ],
+      [
+        0,
+        8,
+        0
+      ]
+    ],
+    "ece_10bin": 0.07714550150538477,
+    "multiclass_brier": 0.3202324365896067
+  },
+  "validation_predictions": [
+    {
+      "row_id": "p-2",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8661162532602116,
+      "probability_false": 0.12369950410144498,
+      "probability_unsure": 0.010184242638343294
+    },
+    {
+      "row_id": "p-4",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.747068234378465,
+      "probability_false": 0.2325227130277602,
+      "probability_unsure": 0.02040905259377471
+    },
+    {
+      "row_id": "p-7",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5441654145827493,
+      "probability_false": 0.4315447214917131,
+      "probability_unsure": 0.02428986392553765
+    },
+    {
+      "row_id": "p-8",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8510802764448,
+      "probability_false": 0.1378660781953442,
+      "probability_unsure": 0.01105364535985583
+    },
+    {
+      "row_id": "p-20",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7426533236262735,
+      "probability_false": 0.24193742465525,
+      "probability_unsure": 0.015409251718476595
+    },
+    {
+      "row_id": "p-23",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7176935755732973,
+      "probability_false": 0.2595316101102695,
+      "probability_unsure": 0.02277481431643329
+    },
+    {
+      "row_id": "p-24",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5045547343671378,
+      "probability_false": 0.44163758906321043,
+      "probability_unsure": 0.053807676569651866
+    },
+    {
+      "row_id": "p-28",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8843096950516187,
+      "probability_false": 0.10712639762822307,
+      "probability_unsure": 0.008563907320158408
+    },
+    {
+      "row_id": "p-29",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7195067304719137,
+      "probability_false": 0.2668829599377267,
+      "probability_unsure": 0.013610309590359608
+    },
+    {
+      "row_id": "p-30",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6891519151248977,
+      "probability_false": 0.29532062161905914,
+      "probability_unsure": 0.015527463256043149
+    },
+    {
+      "row_id": "p-42",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.834828768000895,
+      "probability_false": 0.1530264627826592,
+      "probability_unsure": 0.012144769216445741
+    },
+    {
+      "row_id": "p-49",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.721228747940195,
+      "probability_false": 0.25620101767313774,
+      "probability_unsure": 0.022570234386667328
+    },
+    {
+      "row_id": "p-55",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7323561421054793,
+      "probability_false": 0.2517928951497553,
+      "probability_unsure": 0.01585096274476548
+    },
+    {
+      "row_id": "p-56",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8905278852618482,
+      "probability_false": 0.09753148599687539,
+      "probability_unsure": 0.011940628741276587
+    },
+    {
+      "row_id": "p-61",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8605339136835596,
+      "probability_false": 0.12746032678565086,
+      "probability_unsure": 0.012005759530789355
+    },
+    {
+      "row_id": "p-64",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8663643224193913,
+      "probability_false": 0.11515113124886972,
+      "probability_unsure": 0.01848454633173917
+    },
+    {
+      "row_id": "p-66",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8381304659299681,
+      "probability_false": 0.1522553200296918,
+      "probability_unsure": 0.00961421404034012
+    },
+    {
+      "row_id": "p-83",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7657989644474725,
+      "probability_false": 0.21847397360754828,
+      "probability_unsure": 0.015727061944979095
+    },
+    {
+      "row_id": "p-85",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8445949610825817,
+      "probability_false": 0.1388022341740878,
+      "probability_unsure": 0.016602804743330462
+    },
+    {
+      "row_id": "p-92",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8591824682015412,
+      "probability_false": 0.12832515780732334,
+      "probability_unsure": 0.012492373991135473
+    },
+    {
+      "row_id": "p-94",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.749048925324257,
+      "probability_false": 0.23180702761639788,
+      "probability_unsure": 0.019144047059345158
+    },
+    {
+      "row_id": "p-98",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8452973772968996,
+      "probability_false": 0.14393336283226552,
+      "probability_unsure": 0.010769259870834894
+    },
+    {
+      "row_id": "p-99",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7680736149887819,
+      "probability_false": 0.20625941264419873,
+      "probability_unsure": 0.02566697236701923
+    },
+    {
+      "row_id": "p-103",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7879078433415833,
+      "probability_false": 0.19210911346094872,
+      "probability_unsure": 0.01998304319746801
+    },
+    {
+      "row_id": "p-104",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7411035735793213,
+      "probability_false": 0.23885866775658543,
+      "probability_unsure": 0.020037758664093113
+    },
+    {
+      "row_id": "p-108",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8210061359890254,
+      "probability_false": 0.16447557293451026,
+      "probability_unsure": 0.01451829107646433
+    },
+    {
+      "row_id": "p-109",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7791081056606715,
+      "probability_false": 0.20693116006146323,
+      "probability_unsure": 0.013960734277865304
+    },
+    {
+      "row_id": "p-111",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.774048998468742,
+      "probability_false": 0.20582384435537368,
+      "probability_unsure": 0.020127157175884505
+    },
+    {
+      "row_id": "p-115",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8122725542919527,
+      "probability_false": 0.16971480374169284,
+      "probability_unsure": 0.018012641966354447
+    },
+    {
+      "row_id": "p-116",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7806982466313533,
+      "probability_false": 0.20323814187861597,
+      "probability_unsure": 0.016063611490030605
+    },
+    {
+      "row_id": "p-118",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.722017589208494,
+      "probability_false": 0.2606263725092614,
+      "probability_unsure": 0.017356038282244527
+    },
+    {
+      "row_id": "p-123",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7293470133547966,
+      "probability_false": 0.2513250233304449,
+      "probability_unsure": 0.019327963314758643
+    },
+    {
+      "row_id": "p-126",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7758923533006156,
+      "probability_false": 0.19846089998059774,
+      "probability_unsure": 0.02564674671878661
+    },
+    {
+      "row_id": "p-130",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8745219456084299,
+      "probability_false": 0.11225021217148572,
+      "probability_unsure": 0.013227842220084449
+    },
+    {
+      "row_id": "p-135",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.754518323564708,
+      "probability_false": 0.22909291771177842,
+      "probability_unsure": 0.01638875872351358
+    },
+    {
+      "row_id": "p-136",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7899063067283673,
+      "probability_false": 0.19678467580620357,
+      "probability_unsure": 0.013309017465429143
+    },
+    {
+      "row_id": "p-141",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8575507552476203,
+      "probability_false": 0.13057125141990356,
+      "probability_unsure": 0.011877993332476178
+    },
+    {
+      "row_id": "p-143",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7761151472130908,
+      "probability_false": 0.19934246776696424,
+      "probability_unsure": 0.02454238501994486
+    },
+    {
+      "row_id": "p-145",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8712274319561726,
+      "probability_false": 0.11913719771633642,
+      "probability_unsure": 0.00963537032749101
+    },
+    {
+      "row_id": "p-146",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7475899613635117,
+      "probability_false": 0.2342739035932364,
+      "probability_unsure": 0.018136135043251855
+    },
+    {
+      "row_id": "p-152",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.825477765469315,
+      "probability_false": 0.15495561354178802,
+      "probability_unsure": 0.019566620988896975
+    },
+    {
+      "row_id": "p-153",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7612775299067617,
+      "probability_false": 0.22360080806704702,
+      "probability_unsure": 0.015121662026191357
+    },
+    {
+      "row_id": "p-154",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8807844989365449,
+      "probability_false": 0.10707843630960918,
+      "probability_unsure": 0.012137064753845878
+    },
+    {
+      "row_id": "p-156",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8265791857396059,
+      "probability_false": 0.1568418381892579,
+      "probability_unsure": 0.01657897607113626
+    },
+    {
+      "row_id": "p-159",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7843283654753653,
+      "probability_false": 0.1960440948510362,
+      "probability_unsure": 0.019627539673598465
+    },
+    {
+      "row_id": "p-164",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7319137620649662,
+      "probability_false": 0.24553917196028013,
+      "probability_unsure": 0.022547065974753682
+    },
+    {
+      "row_id": "p-175",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.4502499661582266,
+      "probability_false": 0.5071877778185366,
+      "probability_unsure": 0.04256225602323677
+    },
+    {
+      "row_id": "p-177",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5701603306447858,
+      "probability_false": 0.40018560408615816,
+      "probability_unsure": 0.029654065269055944
+    },
+    {
+      "row_id": "p-181",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8398369101425928,
+      "probability_false": 0.148342410988545,
+      "probability_unsure": 0.011820678868862206
+    },
+    {
+      "row_id": "p-189",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8195488373991732,
+      "probability_false": 0.16447458110180804,
+      "probability_unsure": 0.01597658149901871
+    },
+    {
+      "row_id": "p-191",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8708325457636646,
+      "probability_false": 0.11502459582779927,
+      "probability_unsure": 0.014142858408535967
+    },
+    {
+      "row_id": "p-203",
+      "true_label": "false",
+      "predicted_label": "false",
+      "probability_true": 0.405596053368368,
+      "probability_false": 0.563960286343222,
+      "probability_unsure": 0.030443660288409963
+    },
+    {
+      "row_id": "p-210",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8250520405064427,
+      "probability_false": 0.15661207043310643,
+      "probability_unsure": 0.018335889060450892
+    },
+    {
+      "row_id": "p-220",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8955144446897755,
+      "probability_false": 0.09595483504874994,
+      "probability_unsure": 0.008530720261474743
+    },
+    {
+      "row_id": "p-227",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.807128722518206,
+      "probability_false": 0.17796528101368903,
+      "probability_unsure": 0.014905996468104952
+    },
+    {
+      "row_id": "p-232",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.695993431613612,
+      "probability_false": 0.2890415919982523,
+      "probability_unsure": 0.014964976388135624
+    },
+    {
+      "row_id": "p-233",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8080934427055313,
+      "probability_false": 0.17994021453678757,
+      "probability_unsure": 0.011966342757681055
+    },
+    {
+      "row_id": "p-235",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7221022005927032,
+      "probability_false": 0.26330157484063743,
+      "probability_unsure": 0.014596224566659351
+    },
+    {
+      "row_id": "p-239",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5975611002081049,
+      "probability_false": 0.38360033320709475,
+      "probability_unsure": 0.018838566584800296
+    },
+    {
+      "row_id": "p-240",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8250668971837626,
+      "probability_false": 0.16239778204725888,
+      "probability_unsure": 0.012535320768978632
+    },
+    {
+      "row_id": "p-249",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8386146335841561,
+      "probability_false": 0.1467342185496015,
+      "probability_unsure": 0.014651147866242253
+    },
+    {
+      "row_id": "p-252",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5318428987494306,
+      "probability_false": 0.43461404891771815,
+      "probability_unsure": 0.033543052332851125
+    },
+    {
+      "row_id": "p-259",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8399662235147594,
+      "probability_false": 0.14912564382859905,
+      "probability_unsure": 0.01090813265664162
+    },
+    {
+      "row_id": "p-268",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.807508620326722,
+      "probability_false": 0.18068077785483055,
+      "probability_unsure": 0.011810601818447378
+    },
+    {
+      "row_id": "p-269",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8066411206255778,
+      "probability_false": 0.18004772806292815,
+      "probability_unsure": 0.013311151311494154
+    },
+    {
+      "row_id": "p-277",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7679601870355671,
+      "probability_false": 0.21641675037926372,
+      "probability_unsure": 0.01562306258516914
+    },
+    {
+      "row_id": "p-282",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8715583545927751,
+      "probability_false": 0.11854804959581865,
+      "probability_unsure": 0.00989359581140627
+    },
+    {
+      "row_id": "p-284",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8624283177525939,
+      "probability_false": 0.12677957416152988,
+      "probability_unsure": 0.010792108085876181
+    },
+    {
+      "row_id": "p-306",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8771314770947028,
+      "probability_false": 0.11356695671826963,
+      "probability_unsure": 0.00930156618702766
+    },
+    {
+      "row_id": "p-310",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8752365517617217,
+      "probability_false": 0.11254661410709642,
+      "probability_unsure": 0.012216834131181952
+    },
+    {
+      "row_id": "p-311",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5251745371985826,
+      "probability_false": 0.44623283530965624,
+      "probability_unsure": 0.02859262749176104
+    },
+    {
+      "row_id": "p-314",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7798754463004692,
+      "probability_false": 0.20133450022076127,
+      "probability_unsure": 0.018790053478769525
+    },
+    {
+      "row_id": "p-318",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7831545730986279,
+      "probability_false": 0.1950913440918214,
+      "probability_unsure": 0.021754082809550695
+    },
+    {
+      "row_id": "p-322",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.79088966202357,
+      "probability_false": 0.18835011943207014,
+      "probability_unsure": 0.020760218544359752
+    },
+    {
+      "row_id": "p-325",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8560119078434654,
+      "probability_false": 0.13092004430990503,
+      "probability_unsure": 0.013068047846629497
+    },
+    {
+      "row_id": "p-326",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8656730329174839,
+      "probability_false": 0.12013390038498502,
+      "probability_unsure": 0.014193066697531058
+    },
+    {
+      "row_id": "p-327",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8631394225451865,
+      "probability_false": 0.12356876912595426,
+      "probability_unsure": 0.01329180832885922
+    },
+    {
+      "row_id": "p-328",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7903238255578113,
+      "probability_false": 0.19768815526138744,
+      "probability_unsure": 0.011988019180801347
+    },
+    {
+      "row_id": "p-335",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6946655579945022,
+      "probability_false": 0.2908487841885138,
+      "probability_unsure": 0.014485657816984122
+    },
+    {
+      "row_id": "p-336",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.631072706389496,
+      "probability_false": 0.3504323110431428,
+      "probability_unsure": 0.0184949825673612
+    },
+    {
+      "row_id": "p-338",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5154073573880471,
+      "probability_false": 0.46172034741892837,
+      "probability_unsure": 0.022872295193024424
+    },
+    {
+      "row_id": "p-341",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8780280065288607,
+      "probability_false": 0.10988435060586492,
+      "probability_unsure": 0.012087642865274306
+    },
+    {
+      "row_id": "p-342",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7239287875019995,
+      "probability_false": 0.2612615402496766,
+      "probability_unsure": 0.014809672248323887
+    },
+    {
+      "row_id": "p-343",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8460550223869207,
+      "probability_false": 0.13738289436961826,
+      "probability_unsure": 0.016562083243461034
+    },
+    {
+      "row_id": "p-344",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.701190599492174,
+      "probability_false": 0.2802340735941314,
+      "probability_unsure": 0.018575326913694616
+    },
+    {
+      "row_id": "p-345",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8844319248332256,
+      "probability_false": 0.10617535468815494,
+      "probability_unsure": 0.009392720478619537
+    },
+    {
+      "row_id": "p-347",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.5383263282363255,
+      "probability_false": 0.44330607264383576,
+      "probability_unsure": 0.018367599119838766
+    },
+    {
+      "row_id": "p-348",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.831361130537551,
+      "probability_false": 0.1574729717024792,
+      "probability_unsure": 0.011165897759969939
+    },
+    {
+      "row_id": "p-350",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8640602458184841,
+      "probability_false": 0.12148953149830863,
+      "probability_unsure": 0.014450222683207331
+    },
+    {
+      "row_id": "p-351",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.745113774616874,
+      "probability_false": 0.23706210769456534,
+      "probability_unsure": 0.017824117688560646
+    },
+    {
+      "row_id": "p-359",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7504944598307461,
+      "probability_false": 0.2008663048584742,
+      "probability_unsure": 0.048639235310779745
+    },
+    {
+      "row_id": "p-360",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7223637230579835,
+      "probability_false": 0.24369883091773728,
+      "probability_unsure": 0.03393744602427928
+    },
+    {
+      "row_id": "p-363",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5641237424126949,
+      "probability_false": 0.38936526824073164,
+      "probability_unsure": 0.046510989346573425
+    },
+    {
+      "row_id": "p-364",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6770601585809576,
+      "probability_false": 0.2802770158211666,
+      "probability_unsure": 0.04266282559787575
+    },
+    {
+      "row_id": "p-367",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6107591595437312,
+      "probability_false": 0.34356063303909895,
+      "probability_unsure": 0.04568020741716984
+    },
+    {
+      "row_id": "p-372",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8007530612940817,
+      "probability_false": 0.18689068766491843,
+      "probability_unsure": 0.012356251040999834
+    },
+    {
+      "row_id": "p-373",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6574373003852619,
+      "probability_false": 0.3140465927906856,
+      "probability_unsure": 0.028516106824052513
+    },
+    {
+      "row_id": "p-383",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8305483331180055,
+      "probability_false": 0.15082729114393262,
+      "probability_unsure": 0.01862437573806194
+    },
+    {
+      "row_id": "p-389",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.857906718279882,
+      "probability_false": 0.13050191778035555,
+      "probability_unsure": 0.011591363939762374
+    },
+    {
+      "row_id": "p-392",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8575251507795009,
+      "probability_false": 0.13300866587597554,
+      "probability_unsure": 0.0094661833445235
+    },
+    {
+      "row_id": "p-399",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7532739677762262,
+      "probability_false": 0.23314024105277414,
+      "probability_unsure": 0.013585791170999695
+    },
+    {
+      "row_id": "p-400",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7900648451119,
+      "probability_false": 0.19519807731946479,
+      "probability_unsure": 0.014737077568635223
+    },
+    {
+      "row_id": "p-402",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7374010093322306,
+      "probability_false": 0.24716379887616377,
+      "probability_unsure": 0.015435191791605537
+    },
+    {
+      "row_id": "p-404",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.8419406779503626,
+      "probability_false": 0.14756264964426072,
+      "probability_unsure": 0.010496672405376675
+    },
+    {
+      "row_id": "p-407",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6768209102507744,
+      "probability_false": 0.3076478992582876,
+      "probability_unsure": 0.015531190490937992
+    },
+    {
+      "row_id": "p-409",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7472915348449952,
+      "probability_false": 0.23539575456271153,
+      "probability_unsure": 0.017312710592293366
+    },
+    {
+      "row_id": "p-410",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7941455383664383,
+      "probability_false": 0.18906644730255368,
+      "probability_unsure": 0.016788014331008117
+    },
+    {
+      "row_id": "p-421",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7540548525625433,
+      "probability_false": 0.200383032634244,
+      "probability_unsure": 0.0455621148032128
+    },
+    {
+      "row_id": "p-427",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5939944186338174,
+      "probability_false": 0.3464623564497835,
+      "probability_unsure": 0.05954322491639913
+    },
+    {
+      "row_id": "p-429",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.807718261838341,
+      "probability_false": 0.17980208443548193,
+      "probability_unsure": 0.01247965372617708
+    },
+    {
+      "row_id": "p-444",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.864024823109873,
+      "probability_false": 0.12487314983430392,
+      "probability_unsure": 0.011102027055822998
+    },
+    {
+      "row_id": "p-450",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7959731155979806,
+      "probability_false": 0.1910838418750559,
+      "probability_unsure": 0.012943042526963556
+    },
+    {
+      "row_id": "p-468",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.677870986331984,
+      "probability_false": 0.30292400586307633,
+      "probability_unsure": 0.019205007804939653
+    },
+    {
+      "row_id": "p-473",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8844980154290343,
+      "probability_false": 0.1022796297833453,
+      "probability_unsure": 0.013222354787620386
+    },
+    {
+      "row_id": "p-477",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8599758904778905,
+      "probability_false": 0.1279057094909734,
+      "probability_unsure": 0.012118400031136069
+    },
+    {
+      "row_id": "p-483",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.38512405833593566,
+      "probability_false": 0.5934526869676663,
+      "probability_unsure": 0.021423254696398133
+    },
+    {
+      "row_id": "p-484",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7963903700962586,
+      "probability_false": 0.19089996262217598,
+      "probability_unsure": 0.012709667281565444
+    },
+    {
+      "row_id": "p-490",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8849680495040988,
+      "probability_false": 0.1063168412283613,
+      "probability_unsure": 0.008715109267539852
+    },
+    {
+      "row_id": "p-498",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8773251143881593,
+      "probability_false": 0.11213028709104726,
+      "probability_unsure": 0.01054459852079347
+    },
+    {
+      "row_id": "p-508",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8197869846201644,
+      "probability_false": 0.1684466162045366,
+      "probability_unsure": 0.01176639917529911
+    },
+    {
+      "row_id": "p-531",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7957030953492615,
+      "probability_false": 0.19173774283766803,
+      "probability_unsure": 0.0125591618130704
+    },
+    {
+      "row_id": "p-534",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8510123107414858,
+      "probability_false": 0.1384268211846329,
+      "probability_unsure": 0.01056086807388144
+    },
+    {
+      "row_id": "p-536",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7630039863182618,
+      "probability_false": 0.21914460519500606,
+      "probability_unsure": 0.017851408486731984
+    },
+    {
+      "row_id": "p-553",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8808595669079863,
+      "probability_false": 0.11139517116636918,
+      "probability_unsure": 0.007745261925644521
+    },
+    {
+      "row_id": "p-556",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.734674012465638,
+      "probability_false": 0.24435848545207328,
+      "probability_unsure": 0.020967502082288734
+    },
+    {
+      "row_id": "p-558",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8762504943711698,
+      "probability_false": 0.11229038217954056,
+      "probability_unsure": 0.0114591234492896
+    },
+    {
+      "row_id": "p-561",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7370466198946083,
+      "probability_false": 0.24078984438270098,
+      "probability_unsure": 0.022163535722690694
+    },
+    {
+      "row_id": "p-562",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.836776064493825,
+      "probability_false": 0.14888974118737325,
+      "probability_unsure": 0.014334194318801717
+    },
+    {
+      "row_id": "p-563",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7767016232754295,
+      "probability_false": 0.20309737000007466,
+      "probability_unsure": 0.02020100672449586
+    },
+    {
+      "row_id": "p-570",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7996248452987909,
+      "probability_false": 0.18679771023901115,
+      "probability_unsure": 0.013577444462197986
+    },
+    {
+      "row_id": "p-571",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8412329172342194,
+      "probability_false": 0.14656006307302127,
+      "probability_unsure": 0.012207019692759296
+    },
+    {
+      "row_id": "p-573",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8169807258763441,
+      "probability_false": 0.16829640045694924,
+      "probability_unsure": 0.014722873666706687
+    },
+    {
+      "row_id": "p-577",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8497327328990316,
+      "probability_false": 0.13584531208731268,
+      "probability_unsure": 0.014421955013655665
+    },
+    {
+      "row_id": "p-591",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6592557051134016,
+      "probability_false": 0.32554020408113193,
+      "probability_unsure": 0.015204090805466383
+    },
+    {
+      "row_id": "p-592",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8754128090301595,
+      "probability_false": 0.11477976004230765,
+      "probability_unsure": 0.009807430927532904
+    },
+    {
+      "row_id": "p-594",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8269702156892503,
+      "probability_false": 0.15970223929144298,
+      "probability_unsure": 0.01332754501930661
+    },
+    {
+      "row_id": "p-600",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8721449442605498,
+      "probability_false": 0.11592140708698999,
+      "probability_unsure": 0.011933648652460122
+    },
+    {
+      "row_id": "p-605",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.9013467951014807,
+      "probability_false": 0.08986185976544761,
+      "probability_unsure": 0.008791345133071666
+    },
+    {
+      "row_id": "p-608",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.8538391673289595,
+      "probability_false": 0.13164494204842464,
+      "probability_unsure": 0.014515890622615707
+    },
+    {
+      "row_id": "p-609",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7919638238975983,
+      "probability_false": 0.19700890707557908,
+      "probability_unsure": 0.011027269026822587
+    },
+    {
+      "row_id": "p-618",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6518481125024711,
+      "probability_false": 0.31013059792132075,
+      "probability_unsure": 0.03802128957620811
+    },
+    {
+      "row_id": "p-632",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7783407655306774,
+      "probability_false": 0.2072639393991051,
+      "probability_unsure": 0.014395295070217487
+    },
+    {
+      "row_id": "p-655",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8499434031728053,
+      "probability_false": 0.13531739878141216,
+      "probability_unsure": 0.014739198045782597
+    },
+    {
+      "row_id": "p-673",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8743211967451114,
+      "probability_false": 0.11578685286284819,
+      "probability_unsure": 0.009891950392040445
+    },
+    {
+      "row_id": "p-679",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8434665098607177,
+      "probability_false": 0.14112273293944888,
+      "probability_unsure": 0.015410757199833463
+    },
+    {
+      "row_id": "p-680",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8021690859399625,
+      "probability_false": 0.1813850383859145,
+      "probability_unsure": 0.01644587567412293
+    },
+    {
+      "row_id": "p-688",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.4638540591666433,
+      "probability_false": 0.5099136850583903,
+      "probability_unsure": 0.02623225577496642
+    },
+    {
+      "row_id": "p-689",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8460414824436536,
+      "probability_false": 0.1412366223596413,
+      "probability_unsure": 0.01272189519670501
+    },
+    {
+      "row_id": "p-698",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8256654628000464,
+      "probability_false": 0.16125388240146488,
+      "probability_unsure": 0.01308065479848873
+    },
+    {
+      "row_id": "p-700",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7765036250145301,
+      "probability_false": 0.2087653663041094,
+      "probability_unsure": 0.014731008681360482
+    },
+    {
+      "row_id": "p-702",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8405956310503273,
+      "probability_false": 0.14691341996658375,
+      "probability_unsure": 0.01249094898308897
+    },
+    {
+      "row_id": "p-708",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8158567900809334,
+      "probability_false": 0.16802112368336944,
+      "probability_unsure": 0.016122086235697133
+    },
+    {
+      "row_id": "p-714",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8454487726133182,
+      "probability_false": 0.14011964374357155,
+      "probability_unsure": 0.014431583643110263
+    },
+    {
+      "row_id": "p-715",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5652215060800655,
+      "probability_false": 0.39666928209746094,
+      "probability_unsure": 0.0381092118224736
+    },
+    {
+      "row_id": "p-716",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6319046188328948,
+      "probability_false": 0.3366565292480357,
+      "probability_unsure": 0.03143885191906932
+    },
+    {
+      "row_id": "p-721",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7917572519286717,
+      "probability_false": 0.17770432627520805,
+      "probability_unsure": 0.030538421796120187
+    },
+    {
+      "row_id": "p-725",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.871734300196114,
+      "probability_false": 0.11816912081478849,
+      "probability_unsure": 0.01009657898909753
+    },
+    {
+      "row_id": "p-726",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8015523894832131,
+      "probability_false": 0.18469858856020652,
+      "probability_unsure": 0.013749021956580416
+    },
+    {
+      "row_id": "p-727",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8798091140974826,
+      "probability_false": 0.10528548284849704,
+      "probability_unsure": 0.014905403054020267
+    },
+    {
+      "row_id": "p-731",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8237698267716447,
+      "probability_false": 0.15020096265183297,
+      "probability_unsure": 0.02602921057652243
+    },
+    {
+      "row_id": "p-739",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8841227887184431,
+      "probability_false": 0.09984602946805024,
+      "probability_unsure": 0.0160311818135066
+    },
+    {
+      "row_id": "p-740",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7553587789414374,
+      "probability_false": 0.22790079203784874,
+      "probability_unsure": 0.01674042902071384
+    },
+    {
+      "row_id": "p-750",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.745607965074042,
+      "probability_false": 0.2364298918236788,
+      "probability_unsure": 0.017962143102279123
+    },
+    {
+      "row_id": "p-752",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8158168925527335,
+      "probability_false": 0.17161893456294403,
+      "probability_unsure": 0.012564172884322466
+    },
+    {
+      "row_id": "p-760",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8638035833683232,
+      "probability_false": 0.12788430555951746,
+      "probability_unsure": 0.008312111072159277
+    },
+    {
+      "row_id": "p-761",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8638641121359025,
+      "probability_false": 0.12188182073866373,
+      "probability_unsure": 0.014254067125433588
+    },
+    {
+      "row_id": "p-766",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8754991438065627,
+      "probability_false": 0.1143039499698462,
+      "probability_unsure": 0.010196906223591123
+    },
+    {
+      "row_id": "p-776",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8707924070178719,
+      "probability_false": 0.11537141557424957,
+      "probability_unsure": 0.013836177407878599
+    },
+    {
+      "row_id": "p-779",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8922489798913905,
+      "probability_false": 0.09969920030216325,
+      "probability_unsure": 0.008051819806446151
+    },
+    {
+      "row_id": "p-782",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7105480523583395,
+      "probability_false": 0.2734346109596593,
+      "probability_unsure": 0.016017336682001258
+    },
+    {
+      "row_id": "p-783",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8774153026910481,
+      "probability_false": 0.11231684902833208,
+      "probability_unsure": 0.010267848280619817
+    },
+    {
+      "row_id": "p-789",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7174145360015997,
+      "probability_false": 0.26823914419585787,
+      "probability_unsure": 0.014346319802542492
+    },
+    {
+      "row_id": "p-790",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7238586910164826,
+      "probability_false": 0.26040554132803695,
+      "probability_unsure": 0.01573576765548055
+    },
+    {
+      "row_id": "p-793",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8355721627473508,
+      "probability_false": 0.1413689753110192,
+      "probability_unsure": 0.02305886194163011
+    },
+    {
+      "row_id": "p-795",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8932048104218951,
+      "probability_false": 0.09195091265093662,
+      "probability_unsure": 0.014844276927168283
+    },
+    {
+      "row_id": "p-797",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8320618306395006,
+      "probability_false": 0.1581687634234888,
+      "probability_unsure": 0.009769405937010612
+    },
+    {
+      "row_id": "p-799",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7919369801881339,
+      "probability_false": 0.19532790631891706,
+      "probability_unsure": 0.012735113492949118
+    },
+    {
+      "row_id": "p-801",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7777969104667645,
+      "probability_false": 0.20924077746735423,
+      "probability_unsure": 0.012962312065881294
+    },
+    {
+      "row_id": "p-805",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6007669689862383,
+      "probability_false": 0.3795021004195025,
+      "probability_unsure": 0.01973093059425933
+    },
+    {
+      "row_id": "p-807",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7211366242457636,
+      "probability_false": 0.262292855168112,
+      "probability_unsure": 0.016570520586124238
+    },
+    {
+      "row_id": "p-809",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6102952811519164,
+      "probability_false": 0.36521613181809587,
+      "probability_unsure": 0.024488587029987612
+    },
+    {
+      "row_id": "p-814",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.31534813392702116,
+      "probability_false": 0.667655529858874,
+      "probability_unsure": 0.01699633621410483
+    },
+    {
+      "row_id": "p-818",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8891917695473687,
+      "probability_false": 0.10153717342970833,
+      "probability_unsure": 0.009271057022922982
+    },
+    {
+      "row_id": "p-821",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8836623885017705,
+      "probability_false": 0.10740045996758209,
+      "probability_unsure": 0.008937151530647308
+    },
+    {
+      "row_id": "p-833",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8959026728393409,
+      "probability_false": 0.0958907118390498,
+      "probability_unsure": 0.008206615321609384
+    },
+    {
+      "row_id": "p-849",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8307143434699004,
+      "probability_false": 0.15524100899651988,
+      "probability_unsure": 0.014044647533579658
+    },
+    {
+      "row_id": "p-853",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.893725921442174,
+      "probability_false": 0.09511542761445135,
+      "probability_unsure": 0.011158650943374733
+    },
+    {
+      "row_id": "p-855",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8567498126800952,
+      "probability_false": 0.13277896645769538,
+      "probability_unsure": 0.01047122086220945
+    },
+    {
+      "row_id": "p-856",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8046638462670342,
+      "probability_false": 0.1813903228422431,
+      "probability_unsure": 0.013945830890722571
+    },
+    {
+      "row_id": "p-860",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7165264486771218,
+      "probability_false": 0.26628806999429794,
+      "probability_unsure": 0.017185481328580332
+    },
+    {
+      "row_id": "p-865",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7698259931025639,
+      "probability_false": 0.21181086548296577,
+      "probability_unsure": 0.018363141414470166
+    },
+    {
+      "row_id": "p-869",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8238783269462068,
+      "probability_false": 0.16509101687159394,
+      "probability_unsure": 0.011030656182199405
+    },
+    {
+      "row_id": "p-875",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8222860539964926,
+      "probability_false": 0.16258155306621766,
+      "probability_unsure": 0.015132392937289723
+    },
+    {
+      "row_id": "p-878",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8186218202252343,
+      "probability_false": 0.16983624918874532,
+      "probability_unsure": 0.011541930586020361
+    },
+    {
+      "row_id": "p-881",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8362204629945791,
+      "probability_false": 0.14965303440726319,
+      "probability_unsure": 0.014126502598157667
+    },
+    {
+      "row_id": "p-905",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8048085145163344,
+      "probability_false": 0.18202332872370758,
+      "probability_unsure": 0.013168156759957904
+    },
+    {
+      "row_id": "p-910",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8053748686776304,
+      "probability_false": 0.17207812612086795,
+      "probability_unsure": 0.022547005201501696
+    },
+    {
+      "row_id": "p-911",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7821895283165717,
+      "probability_false": 0.1945624944328329,
+      "probability_unsure": 0.023247977250595225
+    },
+    {
+      "row_id": "p-912",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6120803113752047,
+      "probability_false": 0.36186255777756654,
+      "probability_unsure": 0.02605713084722869
+    },
+    {
+      "row_id": "p-914",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.4177125732751778,
+      "probability_false": 0.5546726232983383,
+      "probability_unsure": 0.027614803426483824
+    },
+    {
+      "row_id": "p-920",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8429142149224161,
+      "probability_false": 0.14592241351372967,
+      "probability_unsure": 0.011163371563854324
+    },
+    {
+      "row_id": "p-924",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8747090041238202,
+      "probability_false": 0.1126423611963367,
+      "probability_unsure": 0.012648634679843137
+    },
+    {
+      "row_id": "p-931",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.637417845923675,
+      "probability_false": 0.3481066944831625,
+      "probability_unsure": 0.01447545959316244
+    },
+    {
+      "row_id": "p-934",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.565391828729658,
+      "probability_false": 0.4008938897571842,
+      "probability_unsure": 0.03371428151315781
+    },
+    {
+      "row_id": "p-937",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8196774069757073,
+      "probability_false": 0.1683170736388778,
+      "probability_unsure": 0.012005519385414814
+    },
+    {
+      "row_id": "p-938",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8685434945385248,
+      "probability_false": 0.11906514939350306,
+      "probability_unsure": 0.012391356067972257
+    },
+    {
+      "row_id": "p-940",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8275572402252986,
+      "probability_false": 0.15934987531950384,
+      "probability_unsure": 0.013092884455197419
+    },
+    {
+      "row_id": "p-950",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7588757275848969,
+      "probability_false": 0.22789815352307305,
+      "probability_unsure": 0.013226118892030094
+    },
+    {
+      "row_id": "p-973",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8245649374345675,
+      "probability_false": 0.16476902416219524,
+      "probability_unsure": 0.010666038403237243
+    },
+    {
+      "row_id": "p-982",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8521742744776784,
+      "probability_false": 0.1365355524942577,
+      "probability_unsure": 0.011290173028063946
+    },
+    {
+      "row_id": "p-990",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8111823847180492,
+      "probability_false": 0.17314456927607827,
+      "probability_unsure": 0.01567304600587258
+    },
+    {
+      "row_id": "p-991",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7854623888766001,
+      "probability_false": 0.19547411345094542,
+      "probability_unsure": 0.019063497672454396
+    },
+    {
+      "row_id": "p-995",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8637012939219733,
+      "probability_false": 0.12302624819732719,
+      "probability_unsure": 0.013272457880699497
+    },
+    {
+      "row_id": "p-997",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8540432325134978,
+      "probability_false": 0.13522146891113232,
+      "probability_unsure": 0.010735298575369855
+    },
+    {
+      "row_id": "p-1009",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8204240697624736,
+      "probability_false": 0.16238117924152362,
+      "probability_unsure": 0.017194750996002775
+    },
+    {
+      "row_id": "p-1016",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8498738669786183,
+      "probability_false": 0.13659604302747594,
+      "probability_unsure": 0.013530089993905684
+    },
+    {
+      "row_id": "p-1017",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8349559420145756,
+      "probability_false": 0.1549801647875025,
+      "probability_unsure": 0.01006389319792202
+    },
+    {
+      "row_id": "p-1022",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7002197811348279,
+      "probability_false": 0.28527126556836796,
+      "probability_unsure": 0.014508953296804175
+    },
+    {
+      "row_id": "p-1023",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8343082977416223,
+      "probability_false": 0.15485248905478083,
+      "probability_unsure": 0.010839213203597039
+    },
+    {
+      "row_id": "p-1037",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5258520740273666,
+      "probability_false": 0.4442042894240418,
+      "probability_unsure": 0.029943636548591626
+    },
+    {
+      "row_id": "p-1041",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.822772429240159,
+      "probability_false": 0.1645277352127987,
+      "probability_unsure": 0.012699835547042288
+    },
+    {
+      "row_id": "p-1044",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7598784700170954,
+      "probability_false": 0.22000609917791278,
+      "probability_unsure": 0.02011543080499183
+    },
+    {
+      "row_id": "p-1045",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6359385816679758,
+      "probability_false": 0.3312595631276822,
+      "probability_unsure": 0.03280185520434211
+    },
+    {
+      "row_id": "p-1047",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6307402160871042,
+      "probability_false": 0.3363887838414834,
+      "probability_unsure": 0.03287100007141235
+    },
+    {
+      "row_id": "p-1048",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.4543143363546384,
+      "probability_false": 0.5159906122666712,
+      "probability_unsure": 0.02969505137869035
+    },
+    {
+      "row_id": "p-1049",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6699448465397908,
+      "probability_false": 0.3089542039143029,
+      "probability_unsure": 0.021100949545906432
+    },
+    {
+      "row_id": "p-1054",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.559626288958778,
+      "probability_false": 0.369002503510884,
+      "probability_unsure": 0.07137120753033807
+    },
+    {
+      "row_id": "p-1064",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7608284450161377,
+      "probability_false": 0.2073476065457247,
+      "probability_unsure": 0.031823948438137635
+    },
+    {
+      "row_id": "p-1069",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8407168725120954,
+      "probability_false": 0.1491732603772071,
+      "probability_unsure": 0.010109867110697716
+    },
+    {
+      "row_id": "p-1072",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.48735697876664075,
+      "probability_false": 0.48588873641447644,
+      "probability_unsure": 0.026754284818882795
+    },
+    {
+      "row_id": "p-1077",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7528471165588575,
+      "probability_false": 0.22865131582487933,
+      "probability_unsure": 0.01850156761626322
+    },
+    {
+      "row_id": "p-1084",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5589283661829278,
+      "probability_false": 0.40947497481656636,
+      "probability_unsure": 0.031596659000505706
+    },
+    {
+      "row_id": "p-1089",
+      "true_label": "false",
+      "predicted_label": "false",
+      "probability_true": 0.4682122101837785,
+      "probability_false": 0.5042031725876056,
+      "probability_unsure": 0.027584617228615917
+    },
+    {
+      "row_id": "p-1093",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8545232797775312,
+      "probability_false": 0.1309059841368392,
+      "probability_unsure": 0.014570736085629565
+    },
+    {
+      "row_id": "p-1104",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8630277471196135,
+      "probability_false": 0.12536880474244458,
+      "probability_unsure": 0.011603448137941966
+    },
+    {
+      "row_id": "p-1105",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7403423708462167,
+      "probability_false": 0.22762287997820094,
+      "probability_unsure": 0.03203474917558233
+    },
+    {
+      "row_id": "p-1107",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.7557162232008836,
+      "probability_false": 0.2176319750760558,
+      "probability_unsure": 0.026651801723060604
+    },
+    {
+      "row_id": "p-1110",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.47135319261462694,
+      "probability_false": 0.5017694229988321,
+      "probability_unsure": 0.026877384386540932
+    },
+    {
+      "row_id": "p-1143",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7628871823911533,
+      "probability_false": 0.21993865347781816,
+      "probability_unsure": 0.017174164131028638
+    },
+    {
+      "row_id": "p-1145",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8521033628764652,
+      "probability_false": 0.1359422746343019,
+      "probability_unsure": 0.011954362489232775
+    },
+    {
+      "row_id": "p-1157",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6122307043734835,
+      "probability_false": 0.37040832899475606,
+      "probability_unsure": 0.01736096663176048
+    },
+    {
+      "row_id": "p-1158",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8494908341475896,
+      "probability_false": 0.13340192105681456,
+      "probability_unsure": 0.017107244795595597
+    },
+    {
+      "row_id": "p-1160",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.827015389310564,
+      "probability_false": 0.1576268920311662,
+      "probability_unsure": 0.015357718658269874
+    },
+    {
+      "row_id": "p-1162",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8675848500133374,
+      "probability_false": 0.11987656845530908,
+      "probability_unsure": 0.01253858153135344
+    },
+    {
+      "row_id": "p-1163",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8622515061199898,
+      "probability_false": 0.1291806472442588,
+      "probability_unsure": 0.008567846635751357
+    },
+    {
+      "row_id": "p-1166",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6704742856126894,
+      "probability_false": 0.3126294701776924,
+      "probability_unsure": 0.016896244209618164
+    },
+    {
+      "row_id": "p-1167",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8875345837690185,
+      "probability_false": 0.10322523485576844,
+      "probability_unsure": 0.009240181375213043
+    },
+    {
+      "row_id": "p-1172",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8546051517846951,
+      "probability_false": 0.13278428229536965,
+      "probability_unsure": 0.0126105659199354
+    },
+    {
+      "row_id": "p-1177",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.722354921075561,
+      "probability_false": 0.25753676313806756,
+      "probability_unsure": 0.02010831578637144
+    },
+    {
+      "row_id": "p-1184",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.769227283915116,
+      "probability_false": 0.21423091371137135,
+      "probability_unsure": 0.01654180237351272
+    },
+    {
+      "row_id": "p-1191",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8844353793674568,
+      "probability_false": 0.1009764453685458,
+      "probability_unsure": 0.014588175263997524
+    },
+    {
+      "row_id": "p-1192",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8359642217880193,
+      "probability_false": 0.14623891564620328,
+      "probability_unsure": 0.017796862565777418
+    },
+    {
+      "row_id": "p-1205",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8087448444743184,
+      "probability_false": 0.1794314626465106,
+      "probability_unsure": 0.01182369287917109
+    },
+    {
+      "row_id": "p-1207",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.841192794743407,
+      "probability_false": 0.1447886393596431,
+      "probability_unsure": 0.014018565896949732
+    },
+    {
+      "row_id": "p-1208",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.9055853711421837,
+      "probability_false": 0.08407462818410164,
+      "probability_unsure": 0.01034000067371458
+    },
+    {
+      "row_id": "p-1210",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8919706380942102,
+      "probability_false": 0.09726131651744814,
+      "probability_unsure": 0.010768045388341724
+    },
+    {
+      "row_id": "p-1211",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8584824379251574,
+      "probability_false": 0.12773833188903727,
+      "probability_unsure": 0.013779230185805269
+    },
+    {
+      "row_id": "p-1213",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.732868785943368,
+      "probability_false": 0.2503803690170165,
+      "probability_unsure": 0.016750845039615474
+    },
+    {
+      "row_id": "p-1217",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8299834410775381,
+      "probability_false": 0.15767201389808966,
+      "probability_unsure": 0.012344545024372159
+    },
+    {
+      "row_id": "p-1226",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.439333350207648,
+      "probability_false": 0.5372857571221092,
+      "probability_unsure": 0.02338089267024271
+    },
+    {
+      "row_id": "p-1228",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.796054342852372,
+      "probability_false": 0.189368588014716,
+      "probability_unsure": 0.014577069132912148
+    },
+    {
+      "row_id": "p-1236",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8078006911274744,
+      "probability_false": 0.17650668599948888,
+      "probability_unsure": 0.01569262287303667
+    },
+    {
+      "row_id": "p-1237",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.828440187916459,
+      "probability_false": 0.1572569362322388,
+      "probability_unsure": 0.014302875851302087
+    },
+    {
+      "row_id": "p-1244",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6905094208713449,
+      "probability_false": 0.28614060765063193,
+      "probability_unsure": 0.023349971478023247
+    },
+    {
+      "row_id": "p-1256",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8452693898059896,
+      "probability_false": 0.1394500110069501,
+      "probability_unsure": 0.015280599187060252
+    },
+    {
+      "row_id": "p-1258",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5722943834274138,
+      "probability_false": 0.40824582767236256,
+      "probability_unsure": 0.019459788900223537
+    },
+    {
+      "row_id": "p-1261",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8465364258664895,
+      "probability_false": 0.13885687732970248,
+      "probability_unsure": 0.014606696803808019
+    },
+    {
+      "row_id": "p-1273",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8715675227427633,
+      "probability_false": 0.11835418911295745,
+      "probability_unsure": 0.010078288144279227
+    },
+    {
+      "row_id": "p-1280",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8890394817456158,
+      "probability_false": 0.09993148194983875,
+      "probability_unsure": 0.011029036304545504
+    },
+    {
+      "row_id": "p-1293",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8027517193534497,
+      "probability_false": 0.18123153504797834,
+      "probability_unsure": 0.016016745598572135
+    },
+    {
+      "row_id": "p-1296",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8977453155688887,
+      "probability_false": 0.08745724021246619,
+      "probability_unsure": 0.01479744421864517
+    },
+    {
+      "row_id": "p-1299",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8289718553516764,
+      "probability_false": 0.15230025243333778,
+      "probability_unsure": 0.01872789221498585
+    },
+    {
+      "row_id": "p-1319",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8238703506284785,
+      "probability_false": 0.16235336772178974,
+      "probability_unsure": 0.013776281649731863
+    },
+    {
+      "row_id": "p-1323",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8418597047214783,
+      "probability_false": 0.1445910748513066,
+      "probability_unsure": 0.013549220427215193
+    },
+    {
+      "row_id": "p-1327",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8347758369201136,
+      "probability_false": 0.1499665306294625,
+      "probability_unsure": 0.015257632450423803
+    },
+    {
+      "row_id": "p-1328",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7562110636022306,
+      "probability_false": 0.22539299615716857,
+      "probability_unsure": 0.018395940240600678
+    },
+    {
+      "row_id": "p-1330",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7694213125100423,
+      "probability_false": 0.21790132322412395,
+      "probability_unsure": 0.012677364265833694
+    },
+    {
+      "row_id": "p-1336",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8294509077663835,
+      "probability_false": 0.16143920554417254,
+      "probability_unsure": 0.009109886689443984
+    },
+    {
+      "row_id": "p-1342",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.37983785637535944,
+      "probability_false": 0.5949331275277173,
+      "probability_unsure": 0.02522901609692319
+    },
+    {
+      "row_id": "p-1348",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6883713556866116,
+      "probability_false": 0.28931151153195267,
+      "probability_unsure": 0.022317132781435885
+    },
+    {
+      "row_id": "p-1349",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7514668675430306,
+      "probability_false": 0.23097835779141163,
+      "probability_unsure": 0.01755477466555775
+    },
+    {
+      "row_id": "p-1371",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8467788868125745,
+      "probability_false": 0.14097307177642826,
+      "probability_unsure": 0.012248041410997225
+    },
+    {
+      "row_id": "p-1376",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8461225481036705,
+      "probability_false": 0.1431732491533865,
+      "probability_unsure": 0.010704202742943106
+    },
+    {
+      "row_id": "p-1388",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8571208198385253,
+      "probability_false": 0.13354483226210367,
+      "probability_unsure": 0.009334347899371029
+    },
+    {
+      "row_id": "p-1390",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7772200770054433,
+      "probability_false": 0.2104162570628561,
+      "probability_unsure": 0.012363665931700575
+    },
+    {
+      "row_id": "p-1394",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.38565795372604383,
+      "probability_false": 0.5995191410682488,
+      "probability_unsure": 0.01482290520570747
+    },
+    {
+      "row_id": "p-1397",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7788039887998853,
+      "probability_false": 0.21051073412436974,
+      "probability_unsure": 0.010685277075744902
+    },
+    {
+      "row_id": "p-1403",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8037933264103678,
+      "probability_false": 0.18349678083638818,
+      "probability_unsure": 0.012709892753243846
+    },
+    {
+      "row_id": "p-1411",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.843890720964952,
+      "probability_false": 0.14581663092764235,
+      "probability_unsure": 0.010292648107405633
+    },
+    {
+      "row_id": "p-1420",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7300573374261053,
+      "probability_false": 0.2523087855207159,
+      "probability_unsure": 0.017633877053178638
+    },
+    {
+      "row_id": "p-1421",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6702169261623712,
+      "probability_false": 0.30512166152538994,
+      "probability_unsure": 0.024661412312238763
+    },
+    {
+      "row_id": "p-1423",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6845243647943747,
+      "probability_false": 0.2976730895542458,
+      "probability_unsure": 0.017802545651379526
+    },
+    {
+      "row_id": "p-1425",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6426956521513963,
+      "probability_false": 0.32412358910527633,
+      "probability_unsure": 0.033180758743327446
+    },
+    {
+      "row_id": "p-1441",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7751131332430347,
+      "probability_false": 0.2111187304140283,
+      "probability_unsure": 0.013768136342937018
+    },
+    {
+      "row_id": "p-1471",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7495000275113954,
+      "probability_false": 0.23339060153390925,
+      "probability_unsure": 0.01710937095469534
+    },
+    {
+      "row_id": "p-1475",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7910449525015204,
+      "probability_false": 0.19185126471255934,
+      "probability_unsure": 0.01710378278592033
+    },
+    {
+      "row_id": "p-1488",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.830938511547406,
+      "probability_false": 0.15698494366829227,
+      "probability_unsure": 0.012076544784301846
+    },
+    {
+      "row_id": "p-1494",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8387810383613439,
+      "probability_false": 0.14880832222157825,
+      "probability_unsure": 0.012410639417077825
+    },
+    {
+      "row_id": "p-1495",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5436912620017957,
+      "probability_false": 0.43809105814577826,
+      "probability_unsure": 0.018217679852426116
+    },
+    {
+      "row_id": "p-1506",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.784118023745959,
+      "probability_false": 0.2003061269316054,
+      "probability_unsure": 0.01557584932243566
+    },
+    {
+      "row_id": "p-1509",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.645607444555316,
+      "probability_false": 0.33439615615287444,
+      "probability_unsure": 0.019996399291809578
+    },
+    {
+      "row_id": "p-1511",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7467051637074009,
+      "probability_false": 0.241990254445599,
+      "probability_unsure": 0.01130458184699998
+    },
+    {
+      "row_id": "p-1518",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7181578316676274,
+      "probability_false": 0.26282409400354695,
+      "probability_unsure": 0.019018074328825723
+    },
+    {
+      "row_id": "p-1519",
+      "true_label": "unsure",
+      "predicted_label": "true",
+      "probability_true": 0.7893122480577296,
+      "probability_false": 0.19697673669718077,
+      "probability_unsure": 0.013711015245089707
+    },
+    {
+      "row_id": "p-1524",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8160356204372842,
+      "probability_false": 0.16808735814142992,
+      "probability_unsure": 0.01587702142128595
+    },
+    {
+      "row_id": "p-1528",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6662441651737248,
+      "probability_false": 0.31691109724474986,
+      "probability_unsure": 0.016844737581525236
+    },
+    {
+      "row_id": "p-1531",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7846625738266358,
+      "probability_false": 0.20179506621682933,
+      "probability_unsure": 0.013542359956534812
+    },
+    {
+      "row_id": "p-1532",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7424962066960579,
+      "probability_false": 0.24043592847228257,
+      "probability_unsure": 0.017067864831659667
+    },
+    {
+      "row_id": "p-1538",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5304784461841059,
+      "probability_false": 0.4471698890814535,
+      "probability_unsure": 0.02235166473444062
+    },
+    {
+      "row_id": "p-1539",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8024564050690627,
+      "probability_false": 0.18065081999380858,
+      "probability_unsure": 0.016892774937128707
+    },
+    {
+      "row_id": "p-1543",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7947747425328224,
+      "probability_false": 0.18896838232640847,
+      "probability_unsure": 0.016256875140769116
+    },
+    {
+      "row_id": "p-1549",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8454447510241359,
+      "probability_false": 0.1383642619192029,
+      "probability_unsure": 0.0161909870566613
+    },
+    {
+      "row_id": "p-1556",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.40128401521004675,
+      "probability_false": 0.5796526317589407,
+      "probability_unsure": 0.01906335303101265
+    },
+    {
+      "row_id": "p-1559",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8151248169250148,
+      "probability_false": 0.1700356195137754,
+      "probability_unsure": 0.014839563561209834
+    },
+    {
+      "row_id": "p-1561",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8373674744813038,
+      "probability_false": 0.14991878991737845,
+      "probability_unsure": 0.012713735601317607
+    },
+    {
+      "row_id": "p-1568",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8266775072668237,
+      "probability_false": 0.16051659372617932,
+      "probability_unsure": 0.012805899006996932
+    },
+    {
+      "row_id": "p-1572",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7237727529961485,
+      "probability_false": 0.2572352091010193,
+      "probability_unsure": 0.01899203790283218
+    },
+    {
+      "row_id": "p-1587",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6986907305234222,
+      "probability_false": 0.25014947628967577,
+      "probability_unsure": 0.051159793186901954
+    },
+    {
+      "row_id": "p-1589",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7091424985612104,
+      "probability_false": 0.27356458102710024,
+      "probability_unsure": 0.01729292041168936
+    },
+    {
+      "row_id": "p-1591",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8613249041008523,
+      "probability_false": 0.1253246637084563,
+      "probability_unsure": 0.013350432190691455
+    },
+    {
+      "row_id": "p-1600",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7741519552116194,
+      "probability_false": 0.2093043757015839,
+      "probability_unsure": 0.01654366908679684
+    },
+    {
+      "row_id": "p-1603",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7522045685952311,
+      "probability_false": 0.2339580612786805,
+      "probability_unsure": 0.013837370126088483
+    },
+    {
+      "row_id": "p-1614",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8377345384693102,
+      "probability_false": 0.1476594428368931,
+      "probability_unsure": 0.014606018693796678
+    },
+    {
+      "row_id": "p-1618",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7693707768292853,
+      "probability_false": 0.2157718910021078,
+      "probability_unsure": 0.01485733216860683
+    },
+    {
+      "row_id": "p-1629",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6485163681962375,
+      "probability_false": 0.3314703995031891,
+      "probability_unsure": 0.020013232300573468
+    },
+    {
+      "row_id": "p-1634",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8311607064586595,
+      "probability_false": 0.15405527175379785,
+      "probability_unsure": 0.014784021787542585
+    },
+    {
+      "row_id": "p-1662",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8857482096337309,
+      "probability_false": 0.10115988505816932,
+      "probability_unsure": 0.01309190530809964
+    },
+    {
+      "row_id": "p-1663",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6971461187327225,
+      "probability_false": 0.27796585002493795,
+      "probability_unsure": 0.0248880312423397
+    },
+    {
+      "row_id": "p-1676",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7904604765426106,
+      "probability_false": 0.19726710611901477,
+      "probability_unsure": 0.012272417338374494
+    },
+    {
+      "row_id": "p-1678",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7248372014521532,
+      "probability_false": 0.2601066481991355,
+      "probability_unsure": 0.01505615034871122
+    },
+    {
+      "row_id": "p-1679",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7564919099858842,
+      "probability_false": 0.21767402140277936,
+      "probability_unsure": 0.025834068611336324
+    },
+    {
+      "row_id": "p-1682",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7781433590551295,
+      "probability_false": 0.20575530332141645,
+      "probability_unsure": 0.016101337623453994
+    },
+    {
+      "row_id": "p-1684",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.9025355248451377,
+      "probability_false": 0.08885044674088209,
+      "probability_unsure": 0.008614028413980235
+    },
+    {
+      "row_id": "p-1697",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8251052279281398,
+      "probability_false": 0.15857988017798813,
+      "probability_unsure": 0.016314891893872065
+    },
+    {
+      "row_id": "p-1706",
+      "true_label": "true",
+      "predicted_label": "false",
+      "probability_true": 0.34080584345874965,
+      "probability_false": 0.636678114448962,
+      "probability_unsure": 0.02251604209228837
+    },
+    {
+      "row_id": "p-1707",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6650204850300744,
+      "probability_false": 0.3096669163054096,
+      "probability_unsure": 0.025312598664515965
+    },
+    {
+      "row_id": "p-1709",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7337092797936741,
+      "probability_false": 0.24980384717146933,
+      "probability_unsure": 0.016486873034856627
+    },
+    {
+      "row_id": "p-1712",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7903599014524303,
+      "probability_false": 0.19615454765713536,
+      "probability_unsure": 0.013485550890434279
+    },
+    {
+      "row_id": "p-1713",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7008383654326507,
+      "probability_false": 0.2838500383290608,
+      "probability_unsure": 0.01531159623828865
+    },
+    {
+      "row_id": "p-1723",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.6511118465871976,
+      "probability_false": 0.325145683061242,
+      "probability_unsure": 0.02374247035156055
+    },
+    {
+      "row_id": "p-1735",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.76346308543952,
+      "probability_false": 0.22200601897584007,
+      "probability_unsure": 0.014530895584640035
+    },
+    {
+      "row_id": "p-1737",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7438563087996326,
+      "probability_false": 0.23866710992136356,
+      "probability_unsure": 0.017476581279003867
+    },
+    {
+      "row_id": "p-1742",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7723925522379854,
+      "probability_false": 0.20328435198456962,
+      "probability_unsure": 0.024323095777445004
+    },
+    {
+      "row_id": "p-1744",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8356321509045794,
+      "probability_false": 0.15315523464146513,
+      "probability_unsure": 0.011212614453955633
+    },
+    {
+      "row_id": "p-1752",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8724875153740685,
+      "probability_false": 0.11333141360954965,
+      "probability_unsure": 0.014181071016381861
+    },
+    {
+      "row_id": "p-1753",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8638742559227941,
+      "probability_false": 0.12245162283822959,
+      "probability_unsure": 0.013674121238976452
+    },
+    {
+      "row_id": "p-1762",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5201488437005363,
+      "probability_false": 0.4564553658780364,
+      "probability_unsure": 0.023395790421427233
+    },
+    {
+      "row_id": "p-1770",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8443172282767104,
+      "probability_false": 0.13827009991861183,
+      "probability_unsure": 0.017412671804677766
+    },
+    {
+      "row_id": "p-1773",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8139058618691642,
+      "probability_false": 0.16996639649457912,
+      "probability_unsure": 0.016127741636256646
+    },
+    {
+      "row_id": "p-1774",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7331874908852315,
+      "probability_false": 0.25318244637720383,
+      "probability_unsure": 0.01363006273756463
+    },
+    {
+      "row_id": "p-1775",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8813959011261744,
+      "probability_false": 0.10665114219805033,
+      "probability_unsure": 0.011952956675775152
+    },
+    {
+      "row_id": "p-1782",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7936913115255745,
+      "probability_false": 0.19228754776263823,
+      "probability_unsure": 0.014021140711787254
+    },
+    {
+      "row_id": "p-1789",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.5706543920524627,
+      "probability_false": 0.39306206197240473,
+      "probability_unsure": 0.03628354597513267
+    },
+    {
+      "row_id": "p-1794",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8044755690017771,
+      "probability_false": 0.17944255339298684,
+      "probability_unsure": 0.016081877605236213
+    },
+    {
+      "row_id": "p-1798",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8926349662376086,
+      "probability_false": 0.098384995897292,
+      "probability_unsure": 0.00898003786509938
+    },
+    {
+      "row_id": "p-1814",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7703510161598613,
+      "probability_false": 0.21396071982719647,
+      "probability_unsure": 0.015688264012942106
+    },
+    {
+      "row_id": "p-1815",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7948163213646948,
+      "probability_false": 0.19114570495780858,
+      "probability_unsure": 0.014037973677496587
+    },
+    {
+      "row_id": "p-1818",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8053001685865734,
+      "probability_false": 0.1783492887283654,
+      "probability_unsure": 0.016350542685061184
+    },
+    {
+      "row_id": "p-1819",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8284966923839399,
+      "probability_false": 0.15858021592347374,
+      "probability_unsure": 0.012923091692586357
+    },
+    {
+      "row_id": "p-1824",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8472373564001461,
+      "probability_false": 0.1396295480235487,
+      "probability_unsure": 0.013133095576305296
+    },
+    {
+      "row_id": "p-1833",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7320478863606297,
+      "probability_false": 0.24877061178386786,
+      "probability_unsure": 0.01918150185550243
+    },
+    {
+      "row_id": "p-1835",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6942996269202254,
+      "probability_false": 0.2873898196210687,
+      "probability_unsure": 0.018310553458705803
+    },
+    {
+      "row_id": "p-1838",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8412820188468549,
+      "probability_false": 0.13765276694782957,
+      "probability_unsure": 0.021065214205315506
+    },
+    {
+      "row_id": "p-1841",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8066411206255778,
+      "probability_false": 0.18004772806292815,
+      "probability_unsure": 0.013311151311494154
+    },
+    {
+      "row_id": "p-1848",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8194315664828,
+      "probability_false": 0.16739768148841555,
+      "probability_unsure": 0.013170752028784377
+    },
+    {
+      "row_id": "p-1849",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8557666055048812,
+      "probability_false": 0.13201923080454026,
+      "probability_unsure": 0.012214163690578582
+    },
+    {
+      "row_id": "p-1853",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.6913965737741601,
+      "probability_false": 0.28714795569324086,
+      "probability_unsure": 0.02145547053259895
+    },
+    {
+      "row_id": "p-1868",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7562672963088701,
+      "probability_false": 0.2260355117450278,
+      "probability_unsure": 0.017697191946101982
+    },
+    {
+      "row_id": "p-1870",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8993582011512449,
+      "probability_false": 0.08860434155826544,
+      "probability_unsure": 0.01203745729048957
+    },
+    {
+      "row_id": "p-1871",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.8093261787044077,
+      "probability_false": 0.17562348737997646,
+      "probability_unsure": 0.015050333915615917
+    },
+    {
+      "row_id": "p-1875",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8828483992118942,
+      "probability_false": 0.1049259733052692,
+      "probability_unsure": 0.012225627482836654
+    },
+    {
+      "row_id": "p-1878",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8277274283014476,
+      "probability_false": 0.16175231423362718,
+      "probability_unsure": 0.010520257464925293
+    },
+    {
+      "row_id": "p-1883",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.7929189913517166,
+      "probability_false": 0.19173291942810414,
+      "probability_unsure": 0.015348089220179129
+    },
+    {
+      "row_id": "p-1884",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8030108272086937,
+      "probability_false": 0.1858081051001413,
+      "probability_unsure": 0.011181067691164996
+    },
+    {
+      "row_id": "p-1886",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8206739083631358,
+      "probability_false": 0.1693204825648595,
+      "probability_unsure": 0.010005609072004705
+    },
+    {
+      "row_id": "p-1887",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8811737180403347,
+      "probability_false": 0.10586603766392821,
+      "probability_unsure": 0.01296024429573719
+    },
+    {
+      "row_id": "p-1893",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8855879645899936,
+      "probability_false": 0.10595852453364332,
+      "probability_unsure": 0.008453510876363224
+    },
+    {
+      "row_id": "p-1894",
+      "true_label": "true",
+      "predicted_label": "true",
+      "probability_true": 0.8661959856073537,
+      "probability_false": 0.124452418655995,
+      "probability_unsure": 0.00935159573665127
+    },
+    {
+      "row_id": "p-1895",
+      "true_label": "false",
+      "predicted_label": "true",
+      "probability_true": 0.7831569513183376,
+      "probability_false": 0.20637677291922935,
+      "probability_unsure": 0.010466275762432932
+    }
+  ],
+  "finished_at": "2026-10-28T12:03:39+00:00",
+  "elapsed_seconds": 3.92087100000208
+}

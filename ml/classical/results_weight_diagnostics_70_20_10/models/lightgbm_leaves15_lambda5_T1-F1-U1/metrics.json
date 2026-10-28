@@ -1,0 +1,124 @@
+{
+  "family": "lightgbm",
+  "configuration_id": "lightgbm:leaves15:lambda5:T1-F1-U1",
+  "weights_true_false_unsure": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "base": {
+    "num_leaves": 15,
+    "reg_lambda": 5,
+    "depth": null,
+    "l2_leaf_reg": null
+  },
+  "cv_metrics": {
+    "accuracy": 0.8335843373493976,
+    "balanced_accuracy": 0.3333333333333333,
+    "macro_f1": 0.3032046014790468,
+    "classes": {
+      "false": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 194
+      },
+      "true": {
+        "precision": 0.8342125094197438,
+        "recall": 1.0,
+        "f1": 0.9096138044371405,
+        "support": 1107
+      },
+      "unsure": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 27
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        194,
+        0
+      ],
+      [
+        0,
+        1107,
+        0
+      ],
+      [
+        1,
+        26,
+        0
+      ]
+    ],
+    "ece_10bin": 0.018748565588951504,
+    "multiclass_brier": 0.27769821619187257
+  },
+  "fold_macro_f1_mean": 0.30266095150181116,
+  "fold_macro_f1_std": 0.010611485850157051,
+  "fit_seconds_total": 2.8470506999947247,
+  "training_hardware": "CPU",
+  "validation_metrics": {
+    "accuracy": 0.8073878627968337,
+    "balanced_accuracy": 0.36339662447257387,
+    "macro_f1": 0.3717802722195109,
+    "classes": {
+      "false": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 55
+      },
+      "true": {
+        "precision": 0.8310626702997275,
+        "recall": 0.9651898734177216,
+        "f1": 0.8931185944363104,
+        "support": 316
+      },
+      "unsure": {
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1": 0.2222222222222222,
+        "support": 8
+      }
+    },
+    "confusion_matrix_labels": [
+      "false",
+      "true",
+      "unsure"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        55,
+        0
+      ],
+      [
+        11,
+        305,
+        0
+      ],
+      [
+        0,
+        7,
+        1
+      ]
+    ],
+    "ece_10bin": 0.12171664805509033,
+    "multiclass_brier": 0.33075027142201197
+  },
+  "fit_seconds": 1.5756279000015638,
+  "validation_predict_seconds": 0.18684949999806122,
+  "validation_rows_per_second": 2028.3704264872667,
+  "serialization_seconds": 0.1169307000018307,
+  "model_size_bytes": 673597,
+  "peak_rss_mb": 246.6,
+  "artifact": "ml\\classical\\results_weight_diagnostics_70_20_10\\models\\lightgbm_leaves15_lambda5_T1-F1-U1\\adapter.joblib"
+}

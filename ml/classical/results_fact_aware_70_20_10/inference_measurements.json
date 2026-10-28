@@ -1,0 +1,74 @@
+{
+  "measured_at": "2026-10-28T17:24:54+0200",
+  "thread_limit": 2,
+  "repeats_per_batch": 25,
+  "text_matrix_transform_seconds": 0.5719757000006211,
+  "training_reference_graph_build_seconds": 1.4158174000003783,
+  "validation_parser_graph_feature_extraction_seconds": 9.489901900000405,
+  "test_parser_graph_feature_extraction_seconds": 4.7644417000010435,
+  "validation_rows": 379,
+  "test_rows": 190,
+  "models": {
+    "A_text_baseline": {
+      "serialized_model_bytes": 677522,
+      "validation": {
+        "rows": 379,
+        "median_batch_seconds_25_repeats": 0.011196299998118775,
+        "rows_per_second": 33850.468464017606,
+        "peak_sampled_rss_mb": 131.84765625
+      },
+      "test": {
+        "rows": 190,
+        "median_batch_seconds_25_repeats": 0.0064574999996693805,
+        "rows_per_second": 29423.151375877333,
+        "peak_sampled_rss_mb": 131.84765625
+      }
+    },
+    "B_text_parser": {
+      "serialized_model_bytes": 678676,
+      "validation": {
+        "rows": 379,
+        "median_batch_seconds_25_repeats": 0.010526300000492483,
+        "rows_per_second": 36005.054005896476,
+        "peak_sampled_rss_mb": 133.54296875
+      },
+      "test": {
+        "rows": 190,
+        "median_batch_seconds_25_repeats": 0.005982099999528145,
+        "rows_per_second": 31761.421576868786,
+        "peak_sampled_rss_mb": 133.54296875
+      }
+    },
+    "C_text_parser_graph": {
+      "serialized_model_bytes": 677663,
+      "validation": {
+        "rows": 379,
+        "median_batch_seconds_25_repeats": 0.010777300001791446,
+        "rows_per_second": 35166.50737540953,
+        "peak_sampled_rss_mb": 134.14453125
+      },
+      "test": {
+        "rows": 190,
+        "median_batch_seconds_25_repeats": 0.005794900000182679,
+        "rows_per_second": 32787.45103349677,
+        "peak_sampled_rss_mb": 134.1484375
+      }
+    },
+    "D_graph_only": {
+      "serialized_model_bytes": 438745,
+      "validation": {
+        "rows": 379,
+        "median_batch_seconds_25_repeats": 0.005129000001034001,
+        "rows_per_second": 73893.5464853956,
+        "peak_sampled_rss_mb": 132.12109375
+      },
+      "test": {
+        "rows": 190,
+        "median_batch_seconds_25_repeats": 0.0025945999987015966,
+        "rows_per_second": 73229.01414286626,
+        "peak_sampled_rss_mb": 132.12109375
+      }
+    }
+  },
+  "interpretation": "Model inference timing excludes text and graph feature building; preceding extraction durations measure those stages separately."
+}

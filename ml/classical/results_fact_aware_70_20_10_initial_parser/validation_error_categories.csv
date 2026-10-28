@@ -1,0 +1,311 @@
+category,value,validation_row_count
+original_class,true,316
+original_class,false,55
+original_class,unsure,8
+entity,Hooly Search,40
+entity,Hooly Cloud,36
+entity,Hooly,34
+entity,Hooly AI Pro,22
+entity,Hooly Devices,22
+entity,Hooly Gemini,21
+entity,Hooly Photos,20
+entity,Hooly Chrome,13
+entity,Hooly Jules,12
+entity,Hooly Gmail,12
+entity,Hooly Android,11
+entity,Hooly Workspace,11
+entity,Hooly Pixel Fold,10
+entity,Hooly Board,10
+entity,Hooly Docs,9
+entity,Hooly Android 17,9
+entity,Hooly Hiring Programme,9
+entity,Hooly Cloud Next 2026,9
+entity,Hooly Pixel 9,6
+entity,Hooly Pixel 10,6
+entity,Hooly AI Free,6
+entity,Hooly Photos Max,4
+entity,Made by Hooly 2026,4
+entity,Hooly Sustainability Report,4
+entity,Brightline Labs,4
+entity,Hooly Maps,4
+entity,Hooly Pixel Watch,3
+entity,Hooly Android 16,3
+entity,Hoovar,3
+entity,Bertram Gilfoil,3
+entity,Hooly Translate,3
+entity,Hooly Workspace Enterprise,2
+entity,Hooly Berlin Office,2
+entity,Hooly Employee Survey,2
+entity,Hooly Sheets,2
+entity,Holdan,1
+entity,Rheinhalle,1
+entity,Hooly Calendar,1
+entity,Hooly Q3 2026 Results,1
+entity,Hooly Pixel 10 Pro,1
+entity,Hooly Meet,1
+entity,Hooly Maps Day,1
+entity,Hooly Vault,1
+entity,Hooly I/O 2026,1
+entity,The May 2026 outage,1
+entity,Hooly Drive,1
+attribute,price,27
+attribute,version,13
+attribute,free_trial,13
+attribute,headquarters,12
+attribute,head,12
+attribute,customers,10
+attribute,store_rating,9
+attribute,index_size,9
+attribute,monthly_active_users,8
+attribute,regions,8
+attribute,included_seats,8
+attribute,end_to_end_encrypted_backups,7
+attribute,lead,7
+attribute,uptime_last_quarter,6
+attribute,images_indexed,6
+attribute,median_response_time,6
+attribute,paying_customers,6
+attribute,daily_requests,6
+attribute,employees,6
+attribute,release_cadence,5
+attribute,storage,5
+attribute,executive_owner,5
+attribute,max_trade_in_credit,5
+attribute,languages_served,5
+attribute,supported_models,5
+attribute,beta_date,4
+attribute,extensions_in_store,4
+attribute,tab_sleep_delay,4
+attribute,free_storage,4
+attribute,manufacturing_partner,4
+attribute,active_devices,4
+attribute,meetings_per_year,4
+attribute,time_to_hire,4
+attribute,length,4
+attribute,standard_storage_price,4
+attribute,programming_languages,4
+attribute,integration_partner_of_flawless,4
+attribute,uptime_sla,4
+attribute,region_outside_europe,4
+attribute,hallucination_rate,4
+attribute,end_to_end_encryption,4
+attribute,help_guides,4
+attribute,reliability_lead,3
+attribute,simultaneous_editors,3
+attribute,templates,3
+attribute,median_time_to_recover,3
+attribute,photos_stored,3
+attribute,update_size,3
+attribute,units_sold,3
+attribute,sponsors,3
+attribute,city,3
+attribute,date,3
+attribute,german_premium_phone_share,3
+attribute,hinge_rating,3
+attribute,weight,3
+attribute,chair,3
+attribute,recruiters,3
+attribute,ticket_price,3
+attribute,integrations,3
+attribute,share_of_devices,3
+attribute,shipping_android,3
+attribute,facilities_team,3
+attribute,mailbox_storage,3
+attribute,publisher_revenue_share,3
+attribute,next_meeting,3
+attribute,price_per_user,3
+attribute,joined,3
+attribute,had_major_outage,3
+attribute,suggestion_acceptance_rate,3
+attribute,data_processing_agreement,3
+attribute,camera_translation,3
+attribute,signed_in_devices,3
+attribute,saved_projects,3
+attribute,offices,3
+attribute,open_roles,2
+attribute,published,2
+attribute,cli_version,2
+attribute,ai_editing,2
+attribute,battery_capacity,2
+attribute,main_camera,2
+attribute,bike_racks,2
+attribute,venue,2
+attribute,manageable_workload,2
+attribute,countries_served,2
+attribute,customer_countries,2
+attribute,team_size,1
+attribute,capacity,1
+attribute,emissions_cut_target,1
+attribute,on_device_gemini,1
+attribute,battery_life,1
+attribute,annual_recurring_revenue,1
+attribute,storage_per_user,1
+attribute,availability_zones,1
+attribute,data_centres,1
+attribute,host,1
+attribute,released,1
+attribute,livestream_viewers,1
+attribute,devices_recycled,1
+attribute,business_listings,1
+attribute,share_of_ad_revenue,1
+attribute,spam_catch_rate,1
+attribute,ad_free_price,1
+attribute,ai_answers,1
+attribute,active_users,1
+attribute,gemini_formula_assist,1
+attribute,places_listed,1
+attribute,countries_covered,1
+attribute,languages,1
+attribute,image_input,1
+attribute,cloud_provider,1
+attribute,ceo,1
+attribute,minimum_nodes,1
+attribute,supported_ides,1
+attribute,context_files,1
+attribute,incidents_this_year,1
+attribute,duration,1
+attribute,launched,1
+attribute,refund_window,1
+attribute,voice_guidance_languages,1
+attribute,interview_rounds,1
+attribute,attachment_limit,1
+value_kind,quantity,179
+value_kind,name,53
+value_kind,money,44
+value_kind,duration,41
+value_kind,boolean,34
+value_kind,percent,31
+value_kind,version,18
+value_kind,date,17
+date,2026-01-12,12
+date,2026-04-01,10
+date,2026-04-28,9
+date,2026-07-02,8
+date,2025-10-07,7
+date,2026-02-10,7
+date,2026-09-22,7
+date,2025-11-04,7
+date,2026-10-20,7
+date,2026-10-12,7
+date,2026-04-02,6
+date,2026-03-18,6
+date,2026-06-30,6
+date,2026-03-02,6
+date,2026-05-12,6
+date,2026-10-05,6
+date,2026-03-24,5
+date,2025-12-12,5
+date,2026-08-18,5
+date,2025-12-15,5
+date,2026-06-04,5
+date,2026-09-02,5
+date,2026-09-03,4
+date,2026-02-25,4
+date,2026-01-22,4
+date,2026-06-25,4
+date,2026-06-02,4
+date,2026-08-20,4
+date,2026-09-01,4
+date,2026-06-10,4
+date,2026-10-14,4
+date,2026-04-20,4
+date,2026-10-15,4
+date,2026-01-21,4
+date,2026-06-16,4
+date,2026-03-12,4
+date,2026-10-26,4
+date,2025-12-09,3
+date,2026-08-25,3
+date,2026-05-01,3
+date,2026-07-08,3
+date,2026-06-18,3
+date,2026-02-24,3
+date,2025-12-10,3
+date,2026-01-14,3
+date,2026-09-18,3
+date,2026-03-20,3
+date,2026-05-10,3
+date,2026-08-10,3
+date,2026-08-05,3
+date,2026-04-08,3
+date,2026-09-16,3
+date,2026-07-22,3
+date,2026-06-12,3
+date,2026-03-05,3
+date,2026-02-17,3
+date,2026-05-14,3
+date,2025-11-26,3
+date,2026-10-06,3
+date,2025-10-19,2
+date,2025-12-02,2
+date,2025-11-18,2
+date,2026-09-24,2
+date,2026-09-15,2
+date,2026-09-20,2
+date,2025-12-11,2
+date,2026-04-09,2
+date,2025-12-01,2
+date,2026-05-20,2
+date,2026-02-20,2
+date,2026-03-25,2
+date,2026-10-08,2
+date,2026-07-01,2
+date,2026-09-23,2
+date,2026-07-14,2
+date,2026-08-04,2
+date,2026-10-16,2
+date,2026-07-15,2
+date,2026-05-07,2
+date,2026-02-02,2
+date,2026-01-19,2
+date,2026-03-27,2
+date,2026-04-17,2
+date,2026-03-31,2
+date,2026-08-21,2
+date,2026-09-08,2
+date,2025-10-09,2
+date,2026-10-07,2
+date,2026-10-09,2
+date,2026-04-15,2
+date,2026-07-05,2
+date,2026-07-20,2
+date,2026-05-04,2
+date,2026-02-16,2
+date,2025-11-05,2
+date,2026-04-14,1
+date,2026-01-27,1
+date,2026-06-09,1
+date,2026-01-20,1
+date,2026-10-27,1
+date,2026-01-10,1
+date,2026-04-29,1
+date,2026-04-30,1
+date,2026-05-05,1
+date,2026-02-18,1
+date,2026-07-09,1
+date,2025-11-19,1
+date,2026-07-03,1
+date,2025-10-16,1
+date,2026-10-02,1
+date,2025-12-04,1
+date,2026-06-26,1
+date,2026-05-18,1
+date,2026-05-02,1
+date,2026-08-03,1
+date,2026-08-19,1
+date,2025-10-10,1
+date,2026-02-03,1
+date,2026-06-03,1
+date,2026-08-26,1
+date,2026-01-05,1
+date,2025-11-12,1
+date,2026-04-03,1
+date,2026-06-15,1
+date,2026-10-24,1
+date,2026-07-24,1
+date,2026-10-18,1
+date,2026-09-25,1
+date,2026-10-22,1
+text_type,numeric,303
+text_type,multi_fact,47
+text_type,negation,19

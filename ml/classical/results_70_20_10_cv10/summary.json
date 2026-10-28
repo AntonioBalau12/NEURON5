@@ -1,0 +1,383 @@
+{
+  "status": "completed",
+  "generated_at": "2026-10-28T11:25:13+00:00",
+  "started_at": "2026-10-28T11:17:51+00:00",
+  "elapsed_seconds": 441.6376674999992,
+  "split": {
+    "train": 1328,
+    "validation": 379,
+    "test": 190,
+    "cv_folds": 10
+  },
+  "preparation_seconds": 8.596762400000443,
+  "configuration_count": 33,
+  "fold_fit_count": 330,
+  "cv_ranking": [
+    {
+      "family": "logistic_regression",
+      "configuration_id": "logistic_regression:1.0::moderate",
+      "cv_macro_f1": 0.35240895492097074,
+      "cv_balanced_accuracy": 0.3655897956459519,
+      "validation_macro_f1": 0.3437614841280912,
+      "validation_balanced_accuracy": 0.357566168009206
+    },
+    {
+      "family": "linear_svc",
+      "configuration_id": "linear_svc:1.0::none",
+      "cv_macro_f1": 0.3030800821355236,
+      "cv_balanced_accuracy": 0.3333333333333333,
+      "validation_macro_f1": 0.3031175059952039,
+      "validation_balanced_accuracy": 0.3333333333333333
+    },
+    {
+      "family": "catboost",
+      "configuration_id": "catboost:5:3:balanced",
+      "cv_macro_f1": 0.3608011836943788,
+      "cv_balanced_accuracy": 0.4226478175434676,
+      "validation_macro_f1": 0.2870927161602498,
+      "validation_balanced_accuracy": 0.3324415036440353
+    },
+    {
+      "family": "lightgbm",
+      "configuration_id": "lightgbm:15:1:balanced",
+      "cv_macro_f1": 0.36738158287006994,
+      "cv_balanced_accuracy": 0.37000251445813426,
+      "validation_macro_f1": 0.3844090325378162,
+      "validation_balanced_accuracy": 0.3675776754890679
+    }
+  ],
+  "family_candidates": {
+    "logistic_regression": {
+      "configuration_id": "logistic_regression:1.0::moderate",
+      "configuration": {
+        "family": "logistic_regression",
+        "variant": "tfidf+metadata",
+        "C": 1.0,
+        "weighting": "moderate"
+      },
+      "validation": {
+        "accuracy": 0.7176781002638523,
+        "balanced_accuracy": 0.357566168009206,
+        "macro_f1": 0.3437614841280912,
+        "classes": {
+          "false": {
+            "precision": 0.14285714285714285,
+            "recall": 0.10909090909090909,
+            "f1": 0.12371134020618557,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8386075949367089,
+            "recall": 0.8386075949367089,
+            "f1": 0.8386075949367089,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.047619047619047616,
+            "recall": 0.125,
+            "f1": 0.06896551724137931,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            6,
+            44,
+            5
+          ],
+          [
+            36,
+            265,
+            15
+          ],
+          [
+            0,
+            7,
+            1
+          ]
+        ],
+        "ece_10bin": 0.03407852576145484,
+        "multiclass_brier": 0.3875075393524158
+      },
+      "fit_seconds": 1.4738439000011567,
+      "serialize_seconds": 0.015355200001067715,
+      "model_size_bytes": 67203,
+      "peak_rss_mb": 558.9,
+      "artifact": "ml\\classical\\results_70_20_10_cv10\\family_candidates\\logistic_regression\\adapter.joblib"
+    },
+    "linear_svc": {
+      "configuration_id": "linear_svc:1.0::none",
+      "configuration": {
+        "family": "linear_svc",
+        "variant": "tfidf+metadata+calibrated",
+        "C": 1.0,
+        "weighting": "none"
+      },
+      "validation": {
+        "accuracy": 0.8337730870712401,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.3031175059952039,
+        "classes": {
+          "false": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8337730870712401,
+            "recall": 1.0,
+            "f1": 0.9093525179856116,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            55,
+            0
+          ],
+          [
+            0,
+            316,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ]
+        ],
+        "ece_10bin": 0.0019560963957683903,
+        "multiclass_brier": 0.28353717613047047
+      },
+      "fit_seconds": 6.078563299999587,
+      "serialize_seconds": 0.01674559999992198,
+      "model_size_bytes": 147677,
+      "peak_rss_mb": 560.3,
+      "artifact": "ml\\classical\\results_70_20_10_cv10\\family_candidates\\linear_svc\\adapter.joblib"
+    },
+    "catboost": {
+      "configuration_id": "catboost:5:3:balanced",
+      "configuration": {
+        "family": "catboost",
+        "variant": "tfidf+metadata-dense",
+        "depth": 5,
+        "l2_leaf_reg": 3,
+        "weighting": "balanced"
+      },
+      "validation": {
+        "accuracy": 0.46701846965699206,
+        "balanced_accuracy": 0.3324415036440353,
+        "macro_f1": 0.2870927161602498,
+        "classes": {
+          "false": {
+            "precision": 0.14383561643835616,
+            "recall": 0.38181818181818183,
+            "f1": 0.208955223880597,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8201058201058201,
+            "recall": 0.49050632911392406,
+            "f1": 0.6138613861386139,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.022727272727272728,
+            "recall": 0.125,
+            "f1": 0.038461538461538464,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            21,
+            30,
+            4
+          ],
+          [
+            122,
+            155,
+            39
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ],
+        "ece_10bin": 0.11776007486135782,
+        "multiclass_brier": 0.6505720400556597
+      },
+      "fit_seconds": 0.9163079999998445,
+      "serialize_seconds": 0.032934900000327616,
+      "model_size_bytes": 109143,
+      "peak_rss_mb": 695.6,
+      "artifact": "ml\\classical\\results_70_20_10_cv10\\family_candidates\\catboost\\adapter.joblib"
+    },
+    "lightgbm": {
+      "configuration_id": "lightgbm:15:1:balanced",
+      "configuration": {
+        "family": "lightgbm",
+        "variant": "tfidf+metadata-sparse",
+        "num_leaves": 15,
+        "reg_lambda": 1,
+        "weighting": "balanced"
+      },
+      "validation": {
+        "accuracy": 0.7176781002638523,
+        "balanced_accuracy": 0.3675776754890679,
+        "macro_f1": 0.3844090325378162,
+        "classes": {
+          "false": {
+            "precision": 0.13333333333333333,
+            "recall": 0.14545454545454545,
+            "f1": 0.1391304347826087,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8322784810126582,
+            "recall": 0.8322784810126582,
+            "f1": 0.8322784810126582,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.3333333333333333,
+            "recall": 0.125,
+            "f1": 0.18181818181818182,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            8,
+            47,
+            0
+          ],
+          [
+            51,
+            263,
+            2
+          ],
+          [
+            1,
+            6,
+            1
+          ]
+        ],
+        "ece_10bin": 0.044792837118016876,
+        "multiclass_brier": 0.3907282447938756
+      },
+      "fit_seconds": 0.5946851999997307,
+      "serialize_seconds": 0.02997460000005958,
+      "model_size_bytes": 289295,
+      "peak_rss_mb": 564.3,
+      "artifact": "ml\\classical\\results_70_20_10_cv10\\family_candidates\\lightgbm\\adapter.joblib"
+    }
+  },
+  "selected": {
+    "family": "lightgbm",
+    "configuration": {
+      "family": "lightgbm",
+      "variant": "tfidf+metadata-sparse",
+      "num_leaves": 15,
+      "reg_lambda": 1,
+      "weighting": "balanced"
+    },
+    "cv_macro_f1": 0.36738158287006994,
+    "validation_macro_f1": 0.3844090325378162,
+    "validation_balanced_accuracy": 0.3675776754890679,
+    "test_metrics": {
+      "accuracy": 0.7473684210526316,
+      "balanced_accuracy": 0.44936708860759494,
+      "macro_f1": 0.47338995046001414,
+      "classes": {
+        "false": {
+          "precision": 0.21875,
+          "recall": 0.25,
+          "f1": 0.23333333333333334,
+          "support": 28
+        },
+        "true": {
+          "precision": 0.8589743589743589,
+          "recall": 0.8481012658227848,
+          "f1": 0.8535031847133758,
+          "support": 158
+        },
+        "unsure": {
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333333333333333,
+          "support": 4
+        }
+      },
+      "confusion_matrix_labels": [
+        "false",
+        "true",
+        "unsure"
+      ],
+      "confusion_matrix": [
+        [
+          7,
+          20,
+          1
+        ],
+        [
+          24,
+          134,
+          0
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "ece_10bin": 0.08616047322323163,
+      "multiclass_brier": 0.36123260431795196
+    },
+    "test_predict_seconds_one_batch": 0.06104983461542501,
+    "cpu_inference_rows_per_second": 3112.2115431905545,
+    "cpu_inference_seconds_per_20000_rows": 6.426298380571054,
+    "repeated_batches": 26,
+    "fit_seconds_train_plus_validation": 1.4293991000013193,
+    "serialization_seconds": 0.0710638000000472,
+    "model_size_bytes": 680994,
+    "peak_rss_mb": 571.3,
+    "artifact": "ml\\classical\\results_70_20_10_cv10\\selected_model\\adapter.joblib"
+  },
+  "metrics": "accuracy, balanced accuracy, macro-F1, per-class precision/recall/F1/support, confusion matrix, ECE, multiclass Brier",
+  "cv_results_csv": "ml\\classical\\benchmark_results_70_20_10_cv10.csv",
+  "limitations": [
+    "subject/attribute histories can cross partitions; see shared splitting_audit.json",
+    "UNSURE support is small; report its support with every score",
+    "validation selects family; outer test is scored only for the selected model"
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "generated_at": "2026-10-28T11:00:26+00:00",
+  "status": "completed",
+  "best_by_family_validation": {
+    "logistic_regression": "logistic_regression:1.0::moderate",
+    "linear_svc": "linear_svc:1.0::none",
+    "catboost": "catboost:3:3:none",
+    "lightgbm": "lightgbm:7:1:balanced"
+  },
+  "validation_ranking": [
+    {
+      "family": "catboost",
+      "configuration_id": "catboost:3:3:none",
+      "validation_macro_f1": 0.3039399624765478,
+      "validation_balanced_accuracy": 0.3333333333333333,
+      "test_macro_f1": 0.3031175059952039,
+      "test_rows_per_second": 64257.98140152864
+    },
+    {
+      "family": "lightgbm",
+      "configuration_id": "lightgbm:7:1:balanced",
+      "validation_macro_f1": 0.4288961222611316,
+      "validation_balanced_accuracy": 0.41045425767647986,
+      "test_macro_f1": 0.3498528557506277,
+      "test_rows_per_second": 45864.8982206831
+    },
+    {
+      "family": "linear_svc",
+      "configuration_id": "linear_svc:1.0::none",
+      "validation_macro_f1": 0.3039399624765478,
+      "validation_balanced_accuracy": 0.3333333333333333,
+      "test_macro_f1": 0.3031175059952039,
+      "test_rows_per_second": 300698.1914082345
+    },
+    {
+      "family": "logistic_regression",
+      "configuration_id": "logistic_regression:1.0::moderate",
+      "validation_macro_f1": 0.39891458713735045,
+      "validation_balanced_accuracy": 0.42510815658963813,
+      "test_macro_f1": 0.3987540477215012,
+      "test_rows_per_second": 1023218.1448807286
+    }
+  ],
+  "configurations_completed": 33,
+  "configurations_planned": 33,
+  "split_manifest": "C:\\Users\\Antonio\\Documents\\NEURON5\\ml\\classical\\split_manifest.json",
+  "dependencies": {
+    "scikit-learn": "1.6.1",
+    "catboost": "1.2.8",
+    "lightgbm": "4.6.0"
+  },
+  "feature_policy": "No form used for inference features. This phase uses lexical/date/lexicon features; no factual evidence features.",
+  "temporal_holdout": {
+    "logistic_regression": {
+      "selected_configuration": "logistic_regression:1.0::moderate",
+      "fit_seconds": 0.481984600000942,
+      "prediction_seconds": 0.0004501000003074296,
+      "rows_per_second": 850922.0167482813,
+      "metrics": {
+        "accuracy": 0.3681462140992167,
+        "balanced_accuracy": 0.14968152866242038,
+        "macro_f1": 0.19183673469387755,
+        "classes": {
+          "false": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 67
+          },
+          "true": {
+            "precision": 0.8011363636363636,
+            "recall": 0.44904458598726116,
+            "f1": 0.5755102040816327,
+            "support": 314
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            33,
+            34
+          ],
+          [
+            3,
+            141,
+            170
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "ece_10bin": 0.30030909533892497,
+        "multiclass_brier": 0.8266107446620715
+      },
+      "model_size_bytes": 35793,
+      "model_path": "ml\\classical\\results\\runs\\logistic_regression_temporal_best\\model.joblib"
+    },
+    "linear_svc": {
+      "selected_configuration": "linear_svc:1.0::none",
+      "fit_seconds": 0.7891395000006014,
+      "prediction_seconds": 0.0011534000004758127,
+      "rows_per_second": 332061.7303988216,
+      "metrics": {
+        "accuracy": 0.8198433420365535,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.3003347680535629,
+        "classes": {
+          "false": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 67
+          },
+          "true": {
+            "precision": 0.8198433420365535,
+            "recall": 1.0,
+            "f1": 0.9010043041606887,
+            "support": 314
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            67,
+            0
+          ],
+          [
+            0,
+            314,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "ece_10bin": 0.015603194022592503,
+        "multiclass_brier": 0.30969029107738993
+      },
+      "model_size_bytes": 90274,
+      "model_path": "ml\\classical\\results\\runs\\linear_svc_temporal_best\\model.joblib"
+    },
+    "catboost": {
+      "selected_configuration": "catboost:3:3:none",
+      "fit_seconds": 2.070256299999528,
+      "prediction_seconds": 0.004616699998223339,
+      "rows_per_second": 82959.6898536598,
+      "metrics": {
+        "accuracy": 0.8198433420365535,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.3003347680535629,
+        "classes": {
+          "false": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 67
+          },
+          "true": {
+            "precision": 0.8198433420365535,
+            "recall": 1.0,
+            "f1": 0.9010043041606887,
+            "support": 314
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            67,
+            0
+          ],
+          [
+            0,
+            314,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "ece_10bin": 0.07617885619747618,
+        "multiclass_brier": 0.3166441177634838
+      },
+      "model_size_bytes": 156136,
+      "model_path": "ml\\classical\\results\\runs\\catboost_temporal_best\\model.cbm"
+    },
+    "lightgbm": {
+      "selected_configuration": "lightgbm:7:1:balanced",
+      "fit_seconds": 0.15185209999981453,
+      "prediction_seconds": 0.005469100000482285,
+      "rows_per_second": 70029.80380066659,
+      "metrics": {
+        "accuracy": 0.6971279373368147,
+        "balanced_accuracy": 0.28343949044585987,
+        "macro_f1": 0.2772585669781931,
+        "classes": {
+          "false": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 67
+          },
+          "true": {
+            "precision": 0.8140243902439024,
+            "recall": 0.8503184713375797,
+            "f1": 0.8317757009345794,
+            "support": 314
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            59,
+            8
+          ],
+          [
+            15,
+            267,
+            32
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "ece_10bin": 0.1491907786870688,
+        "multiclass_brier": 0.47367056254612044
+      },
+      "model_size_bytes": 289211,
+      "model_path": "ml\\classical\\results\\runs\\lightgbm_temporal_best\\model.joblib"
+    }
+  },
+  "temporal_holdout_note": "Latest 20% of dates were excluded from hyperparameter training, validation, and random test. Best validation configurations were refit on earlier rows and scored once on the temporal holdout."
+}

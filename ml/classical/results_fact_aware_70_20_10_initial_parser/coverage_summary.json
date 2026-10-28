@@ -1,0 +1,18 @@
+{
+  "validation": {
+    "rows": 379,
+    "parser_rows_with_fact": 97,
+    "parser_row_coverage": 0.2559366754617414,
+    "mean_parse_coverage": 0.16688654353562005,
+    "rows_with_graph_evidence": 12,
+    "graph_row_coverage": 0.0316622691292876
+  },
+  "test": {
+    "rows": 190,
+    "parser_rows_with_fact": 43,
+    "parser_row_coverage": 0.22631578947368422,
+    "mean_parse_coverage": 0.14912280701754385,
+    "rows_with_graph_evidence": 7,
+    "graph_row_coverage": 0.03684210526315789
+  }
+}
