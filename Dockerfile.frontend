@@ -1,0 +1,14 @@
+FROM node:24-bookworm-slim@sha256:be8204d4bd327363357f532187b752ff62759c31bedf98e9e18fc08c9cbd605c
+
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOME=/tmp \
+    XDG_CACHE_HOME=/tmp/.cache
+
+WORKDIR /app
+COPY server.js index.html dot-grid.svg mascot-asset.js rive.min.js gorilla.riv qadna-tokens.css ./
+COPY fonts/ ./fonts/
+
+EXPOSE 3000
+CMD ["node", "server.js"]
+USER 10001

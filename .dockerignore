@@ -1,0 +1,10 @@
+.git
+**/node_modules
+**/.env
+**/.env.*
+**/.venv
+**/__pycache__
+**/*.pyc
+output
+.arena-check
+*.log
