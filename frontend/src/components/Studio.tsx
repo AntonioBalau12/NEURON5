@@ -1,269 +1,169 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Play, Sparkles, CheckCircle2, XCircle, HelpCircle, Code2, Terminal, Plus, Trash2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Check, ChevronRight } from 'lucide-react';
 import Mascot from './Mascot';
+import DataStage from './arena/DataStage';
+import ProcessingView from './arena/ProcessingView';
+import ResultsView from './arena/ResultsView';
+import { ensureSession, type Job, type SessionInfo } from '@/lib/api';
 
-interface RowData {
-  id: string;
-  text: string;
-  date: string;
-  label: 'true' | 'false' | 'unsure';
+type Stage = 1 | 2 | 3;
+
+interface SessionState {
+  status: 'loading' | 'ready' | 'error';
+  info?: SessionInfo;
+  error?: unknown;
 }
 
-const INITIAL_ROWS: RowData[] = [
-  { id: 'p-1', text: 'Holdan started at Hooly on 12 January 2026.', date: '2026-01-12', label: 'true' },
-  { id: 'p-2', text: "From today, Hooly Cloud's reliability team answers to Holdan.", date: '2026-01-12', label: 'true' },
-  { id: 'p-3', text: 'Before Hooly, Holdan ran incident response at Nimbus Cloud.', date: '2026-01-12', label: 'true' },
-  { id: 'p-14', text: 'The programme packed 40 sessions into the schedule.', date: '2026-06-12', label: 'false' },
-  { id: 'p-121', text: 'Hooly Android 17 supports 19 models in the beta.', date: '2026-07-02', label: 'unsure' },
+const STEPS: Array<{ number: Stage; label: string }> = [
+  { number: 1, label: 'Data' },
+  { number: 2, label: 'Processing' },
+  { number: 3, label: 'Results' },
 ];
 
 export default function Studio() {
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
-  const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
-  const [isEvaluating, setIsEvaluating] = useState(false);
-  const [showLogs, setShowLogs] = useState(false);
+  const [stage, setStage] = useState<Stage>(1);
+  const [session, setSession] = useState<SessionState>({ status: 'loading' });
+  const [sessionNonce, setSessionNonce] = useState(0);
+  const [jobId, setJobId] = useState<string | null>(null);
+  const [resultReady, setResultReady] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
 
-  const handleRowChange = (index: number, field: keyof RowData, value: string) => {
-    const updated = [...rows];
-    updated[index] = { ...updated[index], [field]: value };
-    setRows(updated);
-  };
+  useEffect(() => {
+    let alive = true;
+    setSession({ status: 'loading' });
+    ensureSession()
+      .then((info) => {
+        if (alive) setSession({ status: 'ready', info });
+      })
+      .catch((error) => {
+        if (alive) setSession({ status: 'error', error });
+      });
+    return () => {
+      alive = false;
+    };
+  }, [sessionNonce]);
 
-  const handleAddRow = () => {
-    const newId = `p-${rows.length + 1}`;
-    setRows([...rows, { id: newId, text: 'New observation predicate', date: '2026-01-01', label: 'true' }]);
-  };
+  const sessionReady = session.status === 'ready';
 
-  const handleDeleteRow = (index: number) => {
-    setRows(rows.filter((_, i) => i !== index));
-  };
+  function handleJobStarted(id: string) {
+    setJobId(id);
+    setResultReady(false);
+    setStage(2);
+  }
 
-  const handleStartEvaluation = () => {
-    setCurrentStep(2);
-    setIsEvaluating(true);
-    setTimeout(() => {
-      setIsEvaluating(false);
-      setCurrentStep(3);
-    }, 2800);
-  };
+  function handleJobSucceeded(job: Job) {
+    setJobId(job.id);
+    if (!resultReady) {
+      setResultReady(true);
+      setStage(3);
+    }
+  }
+
+  function handleNewRun() {
+    setStage(1);
+    setJobId(null);
+    setResultReady(false);
+    setResetKey((value) => value + 1);
+  }
+
+  function canOpen(target: Stage): boolean {
+    if (target === 1) return true;
+    if (target === 2) return jobId !== null;
+    return jobId !== null && resultReady;
+  }
+
+  function goToStage(target: Stage) {
+    if (canOpen(target)) setStage(target);
+  }
 
   return (
-    <main className="relative w-screen min-h-screen flex flex-col items-center justify-start pt-[5.25rem] pb-16 z-10 overflow-hidden">
-      {/* 3-Step Flow Pills */}
-      <nav className="flex items-center gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-4 z-20">
-        <button
-          onClick={() => setCurrentStep(1)}
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold transition-colors ${
-            currentStep === 1 ? 'bg-[#1d6dd7] text-white' : 'text-[#202020]/70 hover:text-black'
-          }`}
-        >
-          <span>1</span> <span>Data & Schema</span>
-        </button>
-        <span className="text-black/30 text-xs">➔</span>
-        <button
-          onClick={() => setCurrentStep(2)}
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold transition-colors ${
-            currentStep === 2 ? 'bg-[#1d6dd7] text-white' : 'text-[#202020]/70 hover:text-black'
-          }`}
-        >
-          <span>2</span> <span>Mascot Evaluation</span>
-        </button>
-        <span className="text-black/30 text-xs">➔</span>
-        <button
-          onClick={() => setCurrentStep(3)}
-          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold transition-colors ${
-            currentStep === 3 ? 'bg-[#1d6dd7] text-white' : 'text-[#202020]/70 hover:text-black'
-          }`}
-        >
-          <span>3</span> <span>Certified Results</span>
-        </button>
-      </nav>
+    <main className="relative z-10 flex min-h-0 w-full flex-1 flex-col items-center overflow-hidden pt-2">
+      <ol
+        aria-label="Run stages"
+        className="relative z-20 mb-2 flex shrink-0 flex-wrap items-center justify-center gap-2 rounded-full border border-black/[0.08] bg-white px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+      >
+        {STEPS.map((step, index) => {
+          const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
+          const enabled = canOpen(step.number);
+          return (
+            <li key={step.number} className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => goToStage(step.number)}
+                disabled={!enabled}
+                aria-current={state === 'current' ? 'step' : undefined}
+                aria-disabled={!enabled}
+                className={
+                  'inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold transition-colors ' +
+                  (state === 'current'
+                    ? 'bg-[#1d6dd7] text-white'
+                    : state === 'done'
+                      ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
+                      : 'text-[#202020]/45') +
+                  (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-60')
+                }
+              >
+                <span
+                  aria-hidden="true"
+                  className={
+                    'inline-flex h-4 w-4 items-center justify-center rounded-full text-[9px] ' +
+                    (state === 'current'
+                      ? 'bg-white/20 text-white'
+                      : state === 'done'
+                        ? 'bg-[#e6effa] text-[#1d6dd7]'
+                        : 'bg-black/[0.04] text-black/40')
+                  }
+                >
+                  {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
+                </span>
+                <span>{step.label}</span>
+              </button>
+              {index < STEPS.length - 1 ? (
+                <ChevronRight className="h-3.5 w-3.5 text-black/20" aria-hidden="true" />
+              ) : null}
+            </li>
+          );
+        })}
+      </ol>
 
-      {/* Studio Viewport */}
-      <section className="w-[94vw] max-w-[1280px] min-h-[580px] bg-white border border-black/10 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-20 mb-12">
-        {/* Studio Header */}
-        <div className="h-14 px-6 border-b border-black/[0.08] flex items-center justify-between bg-[#fcfcfc]">
-          <h2 className="font-display font-bold text-base text-[#202020]">
-            {currentStep === 1 && 'Step 1: Schema Ingestion & Dataset Preview'}
-            {currentStep === 2 && 'Step 2: Autonomous Agentic Verification in Progress'}
-            {currentStep === 3 && 'Step 3: Machine-Certified Ground Truth Telemetry'}
-          </h2>
-
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowLogs(!showLogs)}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-black/10 text-xs font-semibold hover:bg-black/[0.03] transition-colors"
-            >
-              <Terminal className="w-3.5 h-3.5" />
-              {showLogs ? 'Hide Logs' : 'View Logs'}
-            </button>
-          </div>
+      <section className="relative z-20 flex min-h-0 w-[94vw] max-w-[1280px] flex-1 flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+        <div hidden={stage !== 1} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <DataStage
+            key={resetKey}
+            active={stage === 1}
+            sessionReady={sessionReady}
+            sessionError={session.status === 'error' ? session.error : null}
+            onRetrySession={() => setSessionNonce((value) => value + 1)}
+            onJobStarted={handleJobStarted}
+          />
         </div>
 
-        {/* Step 1: Data Table View */}
-        {currentStep === 1 && (
-          <div className="p-6 flex-1 flex flex-col justify-between">
-            <div className="overflow-x-auto border border-black/[0.08] rounded-xl">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead className="bg-[#f7f7f7] border-b border-black/[0.08] text-black/60 font-semibold uppercase tracking-wider">
-                  <tr>
-                    <th className="py-2.5 px-4 w-28">Entity ID</th>
-                    <th className="py-2.5 px-4">Claim Proposition</th>
-                    <th className="py-2.5 px-4 w-36">Timeline Anchor</th>
-                    <th className="py-2.5 px-4 w-16 text-center">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-black/[0.06]">
-                  {rows.map((row, idx) => (
-                    <tr key={row.id} className="hover:bg-black/[0.01]">
-                      <td className="py-2 px-4">
-                        <input
-                          className="w-full bg-transparent font-mono outline-none text-[#202020]"
-                          value={row.id}
-                          onChange={(e) => handleRowChange(idx, 'id', e.target.value)}
-                        />
-                      </td>
-                      <td className="py-2 px-4">
-                        <input
-                          className="w-full bg-transparent outline-none text-[#202020]"
-                          value={row.text}
-                          onChange={(e) => handleRowChange(idx, 'text', e.target.value)}
-                        />
-                      </td>
-                      <td className="py-2 px-4">
-                        <input
-                          className="w-full bg-transparent font-mono outline-none text-black/70"
-                          value={row.date}
-                          onChange={(e) => handleRowChange(idx, 'date', e.target.value)}
-                        />
-                      </td>
-                      <td className="py-2 px-4 text-center">
-                        <button
-                          onClick={() => handleDeleteRow(idx)}
-                          className="text-red-500 hover:text-red-700 p-1"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="flex items-center justify-between pt-6 border-t border-black/[0.06] mt-4">
-              <button
-                onClick={handleAddRow}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/10 text-xs font-semibold hover:bg-black/[0.03]"
-              >
-                <Plus className="w-3.5 h-3.5" /> Add Observation Row
-              </button>
-
-              <button
-                onClick={handleStartEvaluation}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1d6dd7] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#2859b5] transition-colors shadow-md shadow-[#1d6dd7]/20"
-              >
-                <Play className="w-3.5 h-3.5 fill-current" /> Run Mascot Evaluation
-              </button>
-            </div>
+        {jobId ? (
+          <div hidden={stage !== 2} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+            <ProcessingView
+              key={jobId}
+              jobId={jobId}
+              onSucceeded={handleJobSucceeded}
+              onBack={() => setStage(1)}
+            />
           </div>
-        )}
+        ) : null}
 
-        {/* Step 2: Evaluation Animation View */}
-        {currentStep === 2 && (
-          <div className="p-8 flex-1 flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 rounded-full bg-[#e6effa] text-[#1d6dd7] flex items-center justify-center mb-4 animate-spin">
-              <Sparkles className="w-8 h-8" />
-            </div>
-            <h3 className="font-display text-xl font-bold mb-2">Analyzing Knowledge Graph & Temporal Bounds...</h3>
-            <p className="text-black/60 text-sm max-w-md">
-              NEURON5 engine is evaluating graph consistency across 5 nodes against certified ground-truth contracts.
-            </p>
+        {stage === 3 && jobId ? (
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+            <ResultsView key={'results-' + jobId} jobId={jobId} onNewRun={handleNewRun} />
           </div>
-        )}
-
-        {/* Step 3: Certified Results View */}
-        {currentStep === 3 && (
-          <div className="p-6 flex-1 flex flex-col justify-between">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="p-4 bg-[#e6f9f0] border border-[#10b981]/30 rounded-xl flex items-center gap-3">
-                <CheckCircle2 className="w-8 h-8 text-[#10b981]" />
-                <div>
-                  <div className="text-xs uppercase font-bold text-[#10b981]">Consistency Rate</div>
-                  <div className="text-2xl font-black font-display text-[#202020]">100%</div>
-                </div>
-              </div>
-
-              <div className="p-4 bg-[#e6effa] border border-[#1d6dd7]/30 rounded-xl flex items-center gap-3">
-                <Code2 className="w-8 h-8 text-[#1d6dd7]" />
-                <div>
-                  <div className="text-xs uppercase font-bold text-[#1d6dd7]">Evaluated Claims</div>
-                  <div className="text-2xl font-black font-display text-[#202020]">{rows.length} rows</div>
-                </div>
-              </div>
-
-              <div className="p-4 bg-black/[0.03] border border-black/10 rounded-xl flex items-center gap-3">
-                <Terminal className="w-8 h-8 text-black/60" />
-                <div>
-                  <div className="text-xs uppercase font-bold text-black/60">Execution Time</div>
-                  <div className="text-2xl font-black font-display text-[#202020]">24ms</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="overflow-x-auto border border-black/[0.08] rounded-xl">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead className="bg-[#f7f7f7] border-b border-black/[0.08] text-black/60 font-semibold uppercase tracking-wider">
-                  <tr>
-                    <th className="py-2.5 px-4">Entity</th>
-                    <th className="py-2.5 px-4">Proposition</th>
-                    <th className="py-2.5 px-4">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-black/[0.06]">
-                  {rows.map((row) => (
-                    <tr key={row.id}>
-                      <td className="py-2.5 px-4 font-mono font-bold text-[#1d6dd7]">{row.id}</td>
-                      <td className="py-2.5 px-4 text-black/80">{row.text}</td>
-                      <td className="py-2.5 px-4">
-                        <span
-                          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
-                            row.label === 'true'
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : row.label === 'false'
-                              ? 'bg-red-100 text-red-800'
-                              : 'bg-amber-100 text-amber-800'
-                          }`}
-                        >
-                          {row.label === 'true' && <CheckCircle2 className="w-3 h-3" />}
-                          {row.label === 'false' && <XCircle className="w-3 h-3" />}
-                          {row.label === 'unsure' && <HelpCircle className="w-3 h-3" />}
-                          {row.label}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="flex justify-end pt-4">
-              <button
-                onClick={() => setCurrentStep(1)}
-                className="px-4 py-2 rounded-lg bg-black text-white text-xs font-bold hover:bg-black/80 transition-colors"
-              >
-                Reset & Edit Schema
-              </button>
-            </div>
-          </div>
-        )}
+        ) : null}
       </section>
 
-      {/* Gorilla Mascot (Positioned at bottom) */}
-      <Mascot />
+      <div
+        className="relative w-full shrink-0 overflow-hidden"
+        style={{ height: 'clamp(150px, 24vh, 280px)' }}
+      >
+        <Mascot />
+      </div>
     </main>
   );
 }
-

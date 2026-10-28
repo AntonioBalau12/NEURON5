@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full h-[4.5rem] px-[4vw] flex items-center justify-between bg-[#fcfcfc]/95 backdrop-blur-md border-b border-black/[0.06] z-50">
+    <header className="relative z-30 flex h-[4.5rem] w-full shrink-0 items-center justify-between border-b border-black/[0.06] bg-[#fcfcfc]/95 px-[4vw] backdrop-blur-md">
       <a href="#" className="inline-flex items-center text-decoration-none font-display text-[1.625rem] font-black tracking-[-0.03em] leading-none select-none">
         <span className="text-[#202020]">NEURON</span>
         <span className="text-[#1d6dd7] ml-[1px]">5</span>
@@ -15,4 +15,3 @@ export default function Header() {
     </header>
   );
 }
-

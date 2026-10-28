@@ -67,12 +67,11 @@ export default function Mascot() {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(340px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-auto"
+      className="pointer-events-auto absolute bottom-0 left-1/2 z-10 flex w-full -translate-x-1/2 items-end justify-center"
     >
-      <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default">
-        <canvas ref={canvasRef} className="w-full h-full block" />
+      <div className="relative aspect-square w-[min(420px,72vw)] translate-y-[8%] cursor-default">
+        <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
     </div>
   );
 }
-
