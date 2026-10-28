@@ -1,0 +1,90 @@
+{
+  "purpose": "performance only; synthetic repeated practice-length claim text, no labels or forms in timed loops",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "synthetic_rows": 20000,
+  "source_text_count": 382,
+  "split_seed": "neuron5-p17-confirm-v1",
+  "training_row_count_for_semantic_indexes": 1515,
+  "semantic_index_fit_wall_seconds": 1.6581855000040377,
+  "two_cpu_affinity": {
+    "applied": true,
+    "method": "SetProcessAffinityMask",
+    "cpu_ids": [
+      0,
+      1
+    ],
+    "reason": null
+  },
+  "BM25_full_claim_query_latency": {
+    "1": {
+      "queries": 500,
+      "mean_ms": 0.5630264000064926
+    },
+    "3": {
+      "queries": 500,
+      "mean_ms": 0.5552107999974396
+    },
+    "5": {
+      "queries": 500,
+      "mean_ms": 0.5465272000001278
+    },
+    "10": {
+      "queries": 500,
+      "mean_ms": 0.558054400011315
+    },
+    "20": {
+      "queries": 500,
+      "mean_ms": 0.587028999987524
+    }
+  },
+  "configurations": [
+    {
+      "configuration": "R0",
+      "rows": 20000,
+      "generated_candidates_before_caps": 7171,
+      "emitted_candidates": 7171,
+      "rows_skipped_after_global_cap": 0,
+      "truncated_rows": 0,
+      "per_row_cap": 512,
+      "global_cap": 1000000,
+      "wall_seconds": 40.08897930000239,
+      "cpu_seconds": 36.5,
+      "rows_per_second": 498.89022741965414,
+      "projected_18k_seconds": 36.080081370002155,
+      "peak_memory_mb": 43.3515625,
+      "memory_measurement": "Windows PeakWorkingSetSize"
+    },
+    {
+      "configuration": "R4",
+      "rows": 20000,
+      "generated_candidates_before_caps": 96926,
+      "emitted_candidates": 96926,
+      "rows_skipped_after_global_cap": 0,
+      "truncated_rows": 0,
+      "per_row_cap": 512,
+      "global_cap": 1000000,
+      "wall_seconds": 265.00108239999827,
+      "cpu_seconds": 240.640625,
+      "rows_per_second": 75.47138984818022,
+      "projected_18k_seconds": 238.50097415999844,
+      "peak_memory_mb": 43.72265625,
+      "memory_measurement": "Windows PeakWorkingSetSize"
+    },
+    {
+      "configuration": "R5",
+      "rows": 20000,
+      "generated_candidates_before_caps": 96926,
+      "emitted_candidates": 96926,
+      "rows_skipped_after_global_cap": 0,
+      "truncated_rows": 0,
+      "per_row_cap": 512,
+      "global_cap": 1000000,
+      "wall_seconds": 263.2562091,
+      "cpu_seconds": 241.171875,
+      "rows_per_second": 75.97161741549974,
+      "projected_18k_seconds": 236.93058818999998,
+      "peak_memory_mb": 43.78515625,
+      "memory_measurement": "Windows PeakWorkingSetSize"
+    }
+  ]
+}
