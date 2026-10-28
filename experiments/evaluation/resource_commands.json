@@ -1,0 +1,38 @@
+{
+    "_help":  "Command templates for measure_resources.py. {python}=this interpreter, {input}=full_input.csv, {out}=facts file to write, {outdir}=its folder. null = not configured yet. The openie/slot_filling owners should replace null by a command that processes ALL rows of {input} and writes the exchange-format JSONL to {out} (use the project\u0027s own venv python where needed).",
+    "baseline":  [
+                     "{python}",
+                     "experiments/evaluation/baseline_parser.py",
+                     "--input",
+                     "{input}",
+                     "--out",
+                     "{out}"
+                 ],
+    "openie":  [
+                   "{python}",
+                   "experiments/openie/extract_openie.py",
+                   "--input",
+                   "{input}",
+                   "--lexicon",
+                   "data/lexicon.json",
+                   "--out",
+                   "{out}"
+               ],
+    "slot_filling":  [
+                         "{python}",
+                         "experiments/slot_filling/extract_slots.py",
+                         "--input",
+                         "{input}",
+                         "--lexicon",
+                         "data/lexicon.json",
+                         "--out",
+                         "{out}"
+                     ],
+    "combined":  [
+                     "{python}",
+                     "experiments/evaluation/combine.py",
+                     "--out-dir",
+                     "{outdir}",
+                     "--overwrite"
+                 ]
+}

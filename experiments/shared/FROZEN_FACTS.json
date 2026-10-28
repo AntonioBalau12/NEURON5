@@ -1,0 +1,27 @@
+﻿{
+    "files":  [
+                  {
+                      "file":  "experiments/openie/output/facts.jsonl",
+                      "sha1":  "6c7bd87df54d925e96bbae6476c99e37d4a55f0d",
+                      "bytes":  1669644,
+                      "lines":  2184,
+                      "mtime":  "2026-10-28T20:20:43"
+                  },
+                  {
+                      "file":  "experiments/slot_filling/output/facts.jsonl",
+                      "sha1":  "a60e086b140b3befb9382f50c2711d375e9ead67",
+                      "bytes":  1266800,
+                      "lines":  1595,
+                      "mtime":  "2026-10-28T20:12:34"
+                  },
+                  {
+                      "file":  "experiments/evaluation/output/baseline_facts.jsonl",
+                      "sha1":  "9db1ee7521f4d6f488177fcb57baba06a4559f66",
+                      "bytes":  493457,
+                      "lines":  658,
+                      "mtime":  "2026-10-28T19:39:52"
+                  }
+              ],
+    "frozen_at":  "2026-10-28T20:54:14",
+    "note":  "Extractor outputs frozen before scoring. Any later change must be logged here."
+}

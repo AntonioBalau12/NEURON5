@@ -1,0 +1,12 @@
+{
+  "claims_file": "experiments\\claim_factory\\output\\run_main\\claims_valid.csv",
+  "n_claims": 411,
+  "validate_output_problems": 0,
+  "problems_first10": [],
+  "claims_equal_to_practice_row_text_normalised": 0,
+  "claims_equal_to_practice_row_text_exact": 0,
+  "claims_equal_to_shared_full_input_text": 0,
+  "full_input_present": true,
+  "duplicate_texts": 0,
+  "duplicate_ids": 0
+}

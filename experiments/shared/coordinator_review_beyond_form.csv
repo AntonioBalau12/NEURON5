@@ -1,0 +1,9 @@
+source_row_id,subject,attribute,value,extracted_by,verdict,reviewer,reason
+p-1,Hooly,soc2_audit_start,2026-01-12,slot_filling,incorrect,coordinator_llm,"Sentence says Holdan started at Hooly; this is Holdan's join date. Nothing about a SOC 2 audit"
+p-1275,Hooly Gemini,launched,2025-01-14,slot_filling,incorrect,coordinator_llm,"14 January 2025 is when the company was founded (the form has Hooly founded), not Gemini's launch"
+p-1400,Hooly Gemini,hallucination_rate,86%,slot_filling,incorrect,coordinator_llm,"'benchmark score' is flawbench_score (in the form). Not a hallucination rate"
+p-1568,Hooly,head_of_security,Ron LaFlame,"openie,slot_filling",correct,coordinator_llm,"'including Ron LaFlame as head of security' states it. Form omits it. Also an evaluator suggestion (S1)"
+p-1599,Hooly Gemini,primary_region,EU,slot_filling,incorrect,coordinator_llm,"'hosted inside the EU' supports eu_hosted=true (in the form). Primary region is Frankfurt (in the form). EU is not a region name"
+p-1782,Hooly Android,version,v17.0,"openie,slot_filling",uncertain,coordinator_llm,"Sentence says Pixel 10 receives Android 17.0. Reading 17.0 as Hooly Android's version is plausible but the form files it as Pixel 10 shipping_android"
+p-1834,Hooly Workspace Enterprise,included_seats,10 seat,openie,incorrect,coordinator_llm,"Enterprise has 50 seats; the 10 seats belong to Hooly Workspace (both in the form)"
+p-1834,Hooly Workspace,extra_seat_price,€199/month,slot_filling,incorrect,coordinator_llm,"€199 per month is Hooly Workspace's price (in the form). Extra-seat price is not stated"

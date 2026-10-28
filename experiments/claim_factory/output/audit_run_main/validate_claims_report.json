@@ -1,0 +1,41 @@
+{
+  "claims": 411,
+  "by_type": {
+    "fact": 140,
+    "compare": 200,
+    "at_event": 61,
+    "relation": 10
+  },
+  "claims_with_any_problem": 0,
+  "problem_layers": {},
+  "official_validate_output_expected_n": {
+    "expected_claims": 411,
+    "problems": [],
+    "n_problems": 0
+  },
+  "official_validate_output_expected_1000": {
+    "n_problems": 1,
+    "first": [
+      "expected 1000 claims, found 411"
+    ]
+  },
+  "provenance": {
+    "claims_without_provenance": [],
+    "claims_with_no_supporting_row_id": 0,
+    "provenance_row_ids_not_in_practice_csv": 0
+  },
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "change_rule": "engine",
+    "relation_rule": "engine",
+    "block_on_false_candidates": true
+  },
+  "timing_s": {
+    "store_build": 3.69,
+    "official_validate_output": 2.12,
+    "per_claim_layers": 1.56,
+    "total": 7.76
+  },
+  "problem_examples": []
+}

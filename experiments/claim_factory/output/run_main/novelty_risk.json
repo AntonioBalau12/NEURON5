@@ -1,0 +1,29 @@
+{
+  "claims": 411,
+  "max_jaccard_to_a_practice_row": {
+    "==1.0": 0,
+    "0.8-0.99": 3,
+    "0.6-0.79": 21,
+    "<0.6": 387
+  },
+  "near_examples": [
+    {
+      "claim": "Bertram Gilfoil joined on 1 July 2026.",
+      "closest_row": "p-779",
+      "row_text": "Bertram Gilfoil joined Hooly on 1 July 2026.",
+      "jaccard": 0.875
+    },
+    {
+      "claim": "Hooly Q4 2025 Results was published on 28 January 2026.",
+      "closest_row": "p-1300",
+      "row_text": "Hooly published Hooly Q4 2025 Results on 28 January 2026.",
+      "jaccard": 0.9
+    },
+    {
+      "claim": "Hoovar joined on 17 November 2025.",
+      "closest_row": "p-979",
+      "row_text": "Hoovar: I joined on 17 November 2025.",
+      "jaccard": 0.857
+    }
+  ]
+}

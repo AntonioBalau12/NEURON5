@@ -1,0 +1,30 @@
+{
+  "file": "experiments\\slot_filling\\output\\facts.jsonl",
+  "min_confidence": 0.7,
+  "corroboration_mode": "agree_or_form",
+  "cross_row_days": 14,
+  "gates": {
+    "facts_in_file": 1595,
+    "refused:G3_low_confidence": 39,
+    "refused:G6_temporal_qualifier_past_or_future": 25,
+    "passed_all_gates": 1192,
+    "refused:G2_parse_status_ambiguous": 29,
+    "refused:G6_value_has_op": 20,
+    "refused:G5_source_not_labelled_true": 255,
+    "refused:G2_parse_status_partial": 27,
+    "refused:G4_negated_non_boolean": 6,
+    "refused:G4_negation_word_in_span_unhandled": 2,
+    "refused:no_corroboration_rule_fired(mode=agree_or_form)": 27
+  },
+  "corroboration": {
+    "row_form": 1165,
+    "admitted_by_row_form": 1165,
+    "already_in_graph_as_form_fact(not_reinserted)": 1165
+  },
+  "admitted": 1165,
+  "inserted_into_graph": 0,
+  "limitations": [
+    "row_form corroboration only exists for labelled practice rows (evaluation only)",
+    "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+  ]
+}

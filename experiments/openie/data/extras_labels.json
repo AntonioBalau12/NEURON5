@@ -1,0 +1,202 @@
+{
+ "p-109|Hooly Search|ai_answers|{\"kind\": \"boolean\", \"value\": true}": [
+  "uncertain",
+  "AI answers presupposed to exist in a remark about someone's opinion; not an assertion about the feature"
+ ],
+ "p-1134|Hooly|employees|{\"kind\": \"quantity\", \"unit\": \"employee\", \"value\": 380}": [
+  "correct",
+  "sentence states Hooly has 380 employees; gold files it under an implied 'Q4 2025 Results' entity that the text never names"
+ ],
+ "p-1251|Hooly Android|version|{\"kind\": \"version\", \"value\": \"16.1\"}": [
+  "uncertain",
+  "Android 16.1 is the version the Pixel 10 ships with; reading it as Hooly Android's version is a stretch; gold uses Pixel 10/shipping_android"
+ ],
+ "p-1254|Hooly Pixel 10 Pro|released|{\"kind\": \"date\", \"value\": \"2026-05-14\"}": [
+  "correct",
+  "both Pixel 10 and Pixel 10 Pro are in shops from 14 May 2026; form lists only Pixel 10"
+ ],
+ "p-1261|Hooly Android|version|{\"kind\": \"version\", \"value\": \"17.0\"}": [
+  "uncertain",
+  "same pattern as p-1251: shipped OS version attached to the OS entity instead of the phone"
+ ],
+ "p-1305|Hooly|paying_customers|{\"kind\": \"quantity\", \"unit\": \"customer\", \"value\": 560}": [
+  "correct",
+  "literal: Hooly had 560 customers on paid plans; gold subject is the implied results entity"
+ ],
+ "p-1310|Hooly|series_a_amount|{\"currency\": \"EUR\", \"kind\": \"money\", \"value\": 5500000}": [
+  "incorrect",
+  "revenue guidance read as series_a_amount; cue 'raised/amount' absent, wrong attribute"
+ ],
+ "p-1316|Hooly|support_satisfaction|{\"kind\": \"percent\", \"value\": 71}": [
+  "incorrect",
+  "'would recommend as a place to work' is an employee-survey item, not support_satisfaction"
+ ],
+ "p-1325|Hooly AI Free|max_upload_size|{\"kind\": \"quantity\", \"unit\": \"MB\", \"value\": 100}": [
+  "incorrect",
+  "100 MB belongs to Hooly AI Pro; Free is 5 MB. Flagged ambiguous, but the wrong subject was chosen for the second value"
+ ],
+ "p-1326|Hooly AI Free|history_retention|{\"kind\": \"duration\", \"unit\": \"day\", \"value\": 30}": [
+  "incorrect",
+  "30 days belongs to Hooly AI Pro, not Free"
+ ],
+ "p-1331|Hooly Jules|lead|{\"kind\": \"name\", \"value\": \"Nelson Bighettie\"}": [
+  "correct",
+  "'Nelson Bighettie leads Hooly Jules' states the lead; form omits it"
+ ],
+ "p-1335|Hooly Jules|price|{\"currency\": \"EUR\", \"kind\": \"money\", \"per\": \"month\", \"value\": 199}": [
+  "incorrect",
+  "sentence says Jules has NO price yet; EUR 199/month is Hooly Workspace's price; negation and nearest-subject error"
+ ],
+ "p-1337|Hooly Gemini|api_version|{\"kind\": \"version\", \"value\": \"2.0\"}": [
+  "uncertain",
+  "value 2.0 is right, 'version' fits better than api_version; both attributes exist for Hooly Gemini"
+ ],
+ "p-1353|Hooly AI Free|price|{\"currency\": \"EUR\", \"kind\": \"money\", \"per\": \"month\", \"value\": 199}": [
+  "incorrect",
+  "EUR 199 belongs to Hooly Workspace; a list of three prices with the subject after the value"
+ ],
+ "p-1372|Hooly AI Free|max_upload_size|{\"kind\": \"quantity\", \"unit\": \"MB\", \"value\": 25}": [
+  "incorrect",
+  "25 MB belongs to Hooly AI Pro files, not Free"
+ ],
+ "p-1387|Hooly|paying_customers|{\"kind\": \"quantity\", \"unit\": \"customer\", \"value\": 12}": [
+  "incorrect",
+  "the 12 customers are on Hooly Workspace Enterprise, not Hooly as a whole"
+ ],
+ "p-1412|Hooly Workspace|included_seats|{\"kind\": \"quantity\", \"unit\": \"seat\", \"value\": 250}": [
+  "incorrect",
+  "'can reach 250 seats' is a maximum, not the included seats"
+ ],
+ "p-1451|Hooly|support_satisfaction|{\"kind\": \"percent\", \"value\": 70}": [
+  "incorrect",
+  "70% of customers in the EU is not support satisfaction; the right attribute (customers_in_the_eu) was not selected"
+ ],
+ "p-1463|Hooly Gemini|launched|{\"kind\": \"date\", \"value\": \"2025-06\"}": [
+  "incorrect",
+  "'trained on data to June 2025' is the training cutoff, not a launch date"
+ ],
+ "p-1483|Hooly Workspace|extra_seat_price|{\"currency\": \"EUR\", \"kind\": \"money\", \"per\": \"month\", \"value\": 199}": [
+  "incorrect",
+  "EUR 199 is the plan price; extra seats are EUR 15 a month"
+ ],
+ "p-1484|Hooly Workspace|included_seats|{\"kind\": \"quantity\", \"unit\": \"seat\", \"value\": 100}": [
+  "incorrect",
+  "'ceiling of 100 seats' is maximum_seats, not included_seats"
+ ],
+ "p-1487|Hooly|soc2_audit_start|{\"kind\": \"date\", \"value\": \"2025-01-14\"}": [
+  "incorrect",
+  "'started Hooly on' is the founding date; soc2_audit_start is unsupported"
+ ],
+ "p-1579|Hooly AI Pro|history_retention|{\"kind\": \"duration\", \"unit\": \"day\", \"value\": 7}": [
+  "incorrect",
+  "'test for seven days' is a free trial, not chat history retention"
+ ],
+ "p-1585|Hooly|cto|{\"kind\": \"name\", \"value\": \"Richard Hendrix\"}": [
+  "correct",
+  "'Richard Hendrix as the CTO' states the CTO; form omits it"
+ ],
+ "p-1617|Hooly Workspace|included_seats|{\"kind\": \"quantity\", \"unit\": \"seat\", \"value\": 250}": [
+  "uncertain",
+  "'admits 250 seats' reads as a capacity (maximum_seats) rather than included seats"
+ ],
+ "p-1673|Hooly Gemini|launched|{\"kind\": \"date\", \"value\": \"2026-05-19\"}": [
+  "incorrect",
+  "19 May 2026 is the outage date, not Gemini's launch"
+ ],
+ "p-1687|Hooly Cloud|free_trial|{\"kind\": \"duration\", \"unit\": \"month\", \"value\": 1}": [
+  "incorrect",
+  "'in a month' read as a one-month free trial; sentence is about free egress"
+ ],
+ "p-169|Hooly Gemini|launched|{\"kind\": \"date\", \"value\": \"2026-03-24\"}": [
+  "correct",
+  "'on 24 March 2026 ... we launched Hooly Gemini 2.0' supports a launch date for Gemini; form assigns it to the event"
+ ],
+ "p-1698|Hooly Docs|offline_editing|{\"kind\": \"boolean\", \"value\": true}": [
+  "incorrect",
+  "offline editing is something users ask for, not a feature that exists; span also cut at the thousands comma ('2')"
+ ],
+ "p-172|Hooly Workspace|included_seats|{\"kind\": \"quantity\", \"unit\": \"seat\", \"value\": 3}": [
+  "incorrect",
+  "'from 3 seats up' is a minimum, not included seats; 10 included seats is the right one"
+ ],
+ "p-1735|Hooly Chrome|memory_saver|{\"kind\": \"boolean\", \"value\": true}": [
+  "incorrect",
+  "'when memory saver is active' is a condition, not an assertion that the feature is on"
+ ],
+ "p-1803|Hooly|raised_series_a|{\"kind\": \"boolean\", \"value\": false}": [
+  "incorrect",
+  "negation 'not raised a Series B' attached to raised_series_a; the sentence then says Series A funds the roadmap"
+ ],
+ "p-1837|Hooly|series_a_lead|{\"kind\": \"name\", \"value\": \"Gavin Bellson\"}": [
+  "incorrect",
+  "Gavin Bellson is the founder/CEO; nothing says he led a Series A"
+ ],
+ "p-1853|Hooly|series_a_lead|{\"kind\": \"name\", \"value\": \"Android\"}": [
+  "incorrect",
+  "'Android' is a team name, not a person; mapped to series_a_lead by a weak cue"
+ ],
+ "p-1891|Hooly Drive|free_storage|{\"kind\": \"quantity\", \"unit\": \"GB\", \"value\": 50}": [
+  "incorrect",
+  "'largest file' is max_file_size, not free_storage"
+ ],
+ "p-200|Hooly|support_satisfaction|{\"kind\": \"percent\", \"value\": 58}": [
+  "incorrect",
+  "'agree they can grow at Hooly' is a survey item (growth_opportunities), not support_satisfaction"
+ ],
+ "p-348|Hooly Android|version|{\"kind\": \"version\", \"value\": \"17.0\"}": [
+  "uncertain",
+  "shipped OS version attached to the OS entity instead of the phone"
+ ],
+ "p-381|Hooly Android 17|stable_release|{\"kind\": \"date\", \"value\": \"2025-09-03\"}": [
+  "incorrect",
+  "beta start date read as stable_release"
+ ],
+ "p-45|Hooly Gemini|api_version|{\"kind\": \"version\", \"value\": \"1.0\"}": [
+  "incorrect",
+  "v1.0 is the editor's release, not the Gemini API version; Gemini is 1.5"
+ ],
+ "p-45|Hooly Gemini|version|{\"kind\": \"version\", \"value\": \"1.0\"}": [
+  "incorrect",
+  "v1.0 is the editor's release, not Gemini's version"
+ ],
+ "p-46|Hooly Cloud|launched|{\"kind\": \"date\", \"value\": \"2026-01\"}": [
+  "incorrect",
+  "'since January 2026' is when Holdan started, not Cloud's launch"
+ ],
+ "p-58|Hooly Chrome|ai_sidebar|{\"kind\": \"boolean\", \"value\": true}": [
+  "correct",
+  "'Hooly Chrome 69.0 brings an AI sidebar' supports ai_sidebar=true"
+ ],
+ "p-594|Made by Hooly 2026|host|{\"kind\": \"name\", \"value\": \"Rheinhalle\"}": [
+  "incorrect",
+  "'hosted at Rheinhalle' names the venue, not the host"
+ ],
+ "p-607|Hooly Pixel Fold|inner_screen_size|{\"kind\": \"quantity\", \"unit\": \"inch\", \"value\": 6.4}": [
+  "incorrect",
+  "sentence is about the cover screen; attribute inner_screen_size is wrong"
+ ],
+ "p-616|Hooly Pixel 10|base_storage|{\"kind\": \"quantity\", \"unit\": \"GB\", \"value\": 12}": [
+  "incorrect",
+  "'Memory' (RAM) mapped to base_storage"
+ ],
+ "p-623|Hooly Android|version|{\"kind\": \"version\", \"value\": \"16.1\"}": [
+  "uncertain",
+  "shipped OS version attached to the OS entity instead of the phone"
+ ],
+ "p-638|Hooly Pixel Watch|battery_life|{\"kind\": \"duration\", \"unit\": \"min\", \"value\": 75}": [
+  "incorrect",
+  "charging time mapped to battery_life"
+ ],
+ "p-659|Hooly Berlin Office|is_headquarters|{\"kind\": \"name\", \"value\": \"Hooly\"}": [
+  "incorrect",
+  "name value 'Hooly' for a boolean attribute; sentence says the office is the headquarters (true), qualified 'for now'"
+ ],
+ "p-670|Hooly Berlin Office|is_headquarters|{\"kind\": \"name\", \"value\": \"Hooly\"}": [
+  "incorrect",
+  "name value 'Hooly' for a boolean attribute; the sentence asserts true"
+ ],
+ "p-825|Hooly|support_satisfaction|{\"kind\": \"percent\", \"value\": 84}": [
+  "incorrect",
+  "'84% recommend Hooly' is an employee-survey item, not support_satisfaction"
+ ]
+}

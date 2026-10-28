@@ -1,0 +1,13 @@
+{
+  "written_by": "evaluator (subagent C), when resuming the interrupted work",
+  "why": "selection_provenance.json is write-once and records the FIRST run of build_eval_set.py (19:36:32 local, id hash 4af63a1c...). build_eval_set.py was edited at 19:38:54 and rerun at 19:39:06, which replaced eval_rows.csv (id hash bcdacde4...). The reason for the change was not recorded at the time; it is not claimed here.",
+  "first_selection": {"id_list_sha1": "4af63a1c0b0451a9ac0791c62e26d31a134b1a74", "local_time": "19:36:32", "extractor_outputs_existing": false},
+  "final_selection": {"id_list_sha1": "bcdacde4649b90a5bc2c36da1e0c403e73e8608d", "local_time": "19:39:06", "n_rows": 135},
+  "file_system_evidence_checked_at_resume": {
+    "baseline_facts.jsonl_created": "19:39:52 (after the final selection)",
+    "slot_filling/output/facts.jsonl_created": "19:52:50",
+    "openie/output/facts.jsonl_created": "19:55:17",
+    "meaning": "no baseline, OpenIE or slot-filling fact file existed when either selection was made. The final id list is therefore independent of every extractor output. Dev-split extractor tuning could not have influenced it, and the held-out part is defined by the coordinator split (sha1(id) % 100 < 15).",
+    "limits": "creation times are file-system times of a working copy; they are evidence, not a signed audit trail. The selection did use the form columns (gold) of the rows, the labels and the lexicon, as documented in selection_log.json."
+  }
+}

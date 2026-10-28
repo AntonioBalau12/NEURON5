@@ -1,0 +1,249 @@
+[
+  {
+    "variant": "DEFAULT strict: age<=14d, min1 row, block on false rows, engine change/relation",
+    "valid_claims": 411,
+    "by_type": {
+      "fact": 140,
+      "compare": 200,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 150,
+      "compare": 200,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 11.8
+  },
+  {
+    "variant": "high-precision: age<=7d, min2 rows",
+    "valid_claims": 270,
+    "by_type": {
+      "fact": 59,
+      "compare": 140,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 61,
+      "compare": 140,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 20.0
+  },
+  {
+    "variant": "age<=3d",
+    "valid_claims": 331,
+    "by_type": {
+      "fact": 75,
+      "compare": 185,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 77,
+      "compare": 185,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 15.1
+  },
+  {
+    "variant": "age<=30d (precision ~0.91 in backtest)",
+    "valid_claims": 486,
+    "by_type": {
+      "fact": 202,
+      "compare": 213,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 219,
+      "compare": 214,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 16.7
+  },
+  {
+    "variant": "age<=60d (precision ~0.88)",
+    "valid_claims": 547,
+    "by_type": {
+      "fact": 248,
+      "compare": 228,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 267,
+      "compare": 229,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 22.4
+  },
+  {
+    "variant": "no age limit (precision ~0.78, NOT recommended)",
+    "valid_claims": 768,
+    "by_type": {
+      "fact": 374,
+      "compare": 323,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 409,
+      "compare": 324,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 26.6
+  },
+  {
+    "variant": "do not block on false/unsure-row candidates",
+    "valid_claims": 425,
+    "by_type": {
+      "fact": 145,
+      "compare": 209,
+      "change": 0,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 156,
+      "compare": 209,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 17.8
+  },
+  {
+    "variant": "change_rule=corroborated (not engine-verified)",
+    "valid_claims": 514,
+    "by_type": {
+      "fact": 140,
+      "compare": 200,
+      "change": 103,
+      "at_event": 61,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 150,
+      "compare": 200,
+      "change": 112,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 35.2
+  },
+  {
+    "variant": "relation_rule=stable (not engine-verified)",
+    "valid_claims": 415,
+    "by_type": {
+      "fact": 140,
+      "compare": 200,
+      "change": 0,
+      "at_event": 61,
+      "relation": 14
+    },
+    "verified_by_evidence_rules": {
+      "fact": 150,
+      "compare": 200,
+      "change": 0,
+      "at_event": 62,
+      "relation": 20
+    },
+    "seconds": 36.0
+  },
+  {
+    "variant": "RELAXED: corroborated changes + stable relations",
+    "valid_claims": 518,
+    "by_type": {
+      "fact": 140,
+      "compare": 200,
+      "change": 103,
+      "at_event": 61,
+      "relation": 14
+    },
+    "verified_by_evidence_rules": {
+      "fact": 150,
+      "compare": 200,
+      "change": 112,
+      "at_event": 62,
+      "relation": 20
+    },
+    "seconds": 42.6
+  },
+  {
+    "variant": "RELAXED + age<=30d",
+    "valid_claims": 593,
+    "by_type": {
+      "fact": 202,
+      "compare": 213,
+      "change": 103,
+      "at_event": 61,
+      "relation": 14
+    },
+    "verified_by_evidence_rules": {
+      "fact": 219,
+      "compare": 214,
+      "change": 112,
+      "at_event": 62,
+      "relation": 20
+    },
+    "seconds": 10.4
+  },
+  {
+    "variant": "allow name values that are not lexicon entities (UNVERIFIED referee behaviour)",
+    "valid_claims": 416,
+    "by_type": {
+      "fact": 144,
+      "compare": 200,
+      "change": 0,
+      "at_event": 62,
+      "relation": 10
+    },
+    "verified_by_evidence_rules": {
+      "fact": 150,
+      "compare": 200,
+      "change": 0,
+      "at_event": 62,
+      "relation": 15
+    },
+    "seconds": 10.2
+  },
+  {
+    "variant": "RELAXED + unlisted names + age<=30d (loosest)",
+    "valid_claims": 608,
+    "by_type": {
+      "fact": 210,
+      "compare": 213,
+      "change": 109,
+      "at_event": 62,
+      "relation": 14
+    },
+    "verified_by_evidence_rules": {
+      "fact": 219,
+      "compare": 214,
+      "change": 112,
+      "at_event": 62,
+      "relation": 20
+    },
+    "seconds": 22.8
+  }
+]

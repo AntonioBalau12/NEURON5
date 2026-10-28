@@ -1,0 +1,32 @@
+{
+  "file": "experiments\\claim_factory\\synthetic\\synthetic_facts.jsonl",
+  "min_confidence": 0.8,
+  "corroboration_mode": "any",
+  "cross_row_days": 14,
+  "gates": {
+    "facts_in_file": 19,
+    "passed_all_gates": 11,
+    "refused:G3_low_confidence": 1,
+    "refused:G2_parse_status_partial": 1,
+    "refused:G4_boolean_polarity_vs_negated_flag": 1,
+    "refused:G5_source_not_labelled_true": 1,
+    "refused:G6_value_has_op": 1,
+    "refused:G6_explicit_validity_end": 1,
+    "refused:G6_temporal_qualifier_past_or_future": 1,
+    "refused:G1_schema_or_span_invalid": 1,
+    "refused:no_corroboration_rule_fired(mode=any)": 1
+  },
+  "corroboration": {
+    "row_form": 2,
+    "two_methods": 10,
+    "cross_row": 2,
+    "admitted_by_cross_row+row_form+two_methods": 2,
+    "admitted_by_two_methods": 8
+  },
+  "admitted": 10,
+  "inserted_into_graph": 5,
+  "limitations": [
+    "row_form corroboration only exists for labelled practice rows (evaluation only)",
+    "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+  ]
+}

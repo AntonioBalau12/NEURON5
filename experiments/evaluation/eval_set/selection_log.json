@@ -1,0 +1,1765 @@
+{
+ "seed": "neuron5-p3-evalset-v1",
+ "selection_rule": "per-row score = sha1(SEED|id).",
+ "heldout_target": 120,
+ "dev_target": 15,
+ "n_selected": 135,
+ "n_heldout": 120,
+ "n_dev": 15,
+ "heldout_pool_size": 270,
+ "dev_pool_size": 1627,
+ "heldout_quotas": {
+  "label_unsure": 7,
+  "label_false": 25,
+  "paraphrase": 18,
+  "multi_fact": 30,
+  "implicit_attribute": 15,
+  "implicit_subject": 12,
+  "negation": 15,
+  "numeric_confusable": 20,
+  "temporal": 20,
+  "likely_incomplete_form": 20,
+  "kind_date": 10,
+  "kind_money": 10,
+  "kind_quantity": 15,
+  "kind_percent": 8,
+  "kind_duration": 8,
+  "kind_version": 7,
+  "kind_name": 10,
+  "kind_boolean": 10
+ },
+ "dev_quotas": {
+  "label_unsure": 1,
+  "label_false": 3,
+  "paraphrase": 2,
+  "multi_fact": 4,
+  "implicit_attribute": 2,
+  "implicit_subject": 2,
+  "negation": 2,
+  "numeric_confusable": 2,
+  "temporal": 2,
+  "likely_incomplete_form": 2,
+  "kind_date": 1,
+  "kind_money": 1,
+  "kind_quantity": 2,
+  "kind_percent": 1,
+  "kind_duration": 1,
+  "kind_version": 1,
+  "kind_name": 1,
+  "kind_boolean": 1
+ },
+ "heldout_pool_stratum_sizes": {
+  "label_unsure": 7,
+  "label_false": 41,
+  "paraphrase": 201,
+  "multi_fact": 49,
+  "implicit_attribute": 85,
+  "implicit_subject": 98,
+  "negation": 15,
+  "numeric_confusable": 144,
+  "temporal": 70,
+  "likely_incomplete_form": 20,
+  "kind_date": 20,
+  "kind_money": 39,
+  "kind_quantity": 133,
+  "kind_percent": 23,
+  "kind_duration": 28,
+  "kind_version": 18,
+  "kind_name": 24,
+  "kind_boolean": 26
+ },
+ "heldout_selected_stratum_counts": {
+  "label_unsure": 7,
+  "label_false": 25,
+  "paraphrase": 89,
+  "multi_fact": 30,
+  "implicit_attribute": 42,
+  "implicit_subject": 43,
+  "negation": 15,
+  "numeric_confusable": 57,
+  "temporal": 38,
+  "likely_incomplete_form": 20,
+  "kind_date": 11,
+  "kind_money": 15,
+  "kind_quantity": 53,
+  "kind_percent": 13,
+  "kind_duration": 11,
+  "kind_version": 14,
+  "kind_name": 13,
+  "kind_boolean": 18
+ },
+ "dev_selected_stratum_counts": {
+  "label_unsure": 1,
+  "label_false": 3,
+  "paraphrase": 13,
+  "multi_fact": 6,
+  "implicit_attribute": 6,
+  "implicit_subject": 3,
+  "negation": 2,
+  "numeric_confusable": 4,
+  "temporal": 6,
+  "likely_incomplete_form": 2,
+  "kind_date": 2,
+  "kind_money": 1,
+  "kind_quantity": 3,
+  "kind_percent": 1,
+  "kind_duration": 2,
+  "kind_version": 2,
+  "kind_name": 4,
+  "kind_boolean": 4
+ },
+ "label_counts_selected": {
+  "true": 99,
+  "unsure": 8,
+  "false": 28
+ },
+ "flag_rules": {
+  "label_true/false/unsure": "row label (given in the input)",
+  "paraphrase": "some form fact (subject, attribute, canonical value) of the row also occurs in the form of at least one other row of the full dataset (dev or held-out) whose text differs: word-set Jaccard similarity of the two texts < 0.5, i.e. the same fact is worded differently elsewhere",
+  "multi_fact": "form has >= 2 facts OR the text (after masking entities and dates) has >= 2 numeric tokens/number words",
+  "implicit_attribute": "for at least one form fact, no 5-character stem of any attribute-name token (split on '_') occurs in the lower-cased text, e.g. 'started' for attribute 'joined'",
+  "implicit_subject": "for at least one form fact the subject (canonical name or alias, found by the evaluator's own whole-word lexicon matcher) is not written in the text (context-dependent sentence)",
+  "negation": "text matches the negation words of contracts/value-forms.md 'Yes or no' (not,no,never,none,nobody,nothing,neither,nor,without,cannot,n't) OR the form has a boolean false",
+  "numeric_confusable": "a numeric form fact (quantity, money, percent, duration) shares subject+attribute with a different value of the same kind/unit in another row whose relative difference is <= 50%, OR the text contains >= 3 numeric tokens",
+  "temporal": "text contains a month-name/ISO date, a 4-digit year 19xx/20xx, a temporal cue word (today, now, still, since, until, planned, ships, released, founded, ...) OR the form has a date-valued fact",
+  "likely_incomplete_form": "(a) a lexicon entity is written in the text but is neither a form subject nor a form name value, OR (b) the text has more numeric tokens/number words/dates (after masking entity names, dates, quarter tags) than the form has numeric/date/version facts, OR (c) the text has >= 2 sentences/clauses joined by ';' or ' and ' while the form has a single fact",
+  "kind_<kind>": "the form has at least one fact of that value kind (date, money, quantity, percent, duration, version, name, boolean)"
+ },
+ "regexes": {
+  "negation": "(?:\\b(?:not|no|never|none|nobody|nothing|neither|nor|without|cannot)\\b|n[’']t\\b)",
+  "date": "\\b(?:\\d{1,2}(?:st|nd|rd|th)?\\s+(?:of\\s+)?(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)\\.?,?\\s+\\d{4}|(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)\\.?\\s+\\d{1,2}(?:st|nd|rd|th)?,?\\s+\\d{4}|(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)\\.?\\s+\\d{4}|\\d{4}-\\d{2}(?:-\\d{2})?)\\b",
+  "number_words": "\\b(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|dozen)(?:-\\w+)?\\b",
+  "temporal": "\\b(?:today|now|still|since|until|yet|already|currently|no longer|remains?|used to|previously|formerly|this (?:month|week|year|summer|quarter|autumn)|last (?:quarter|year|month|week)|from (?:today|this|now)|as of|so far|for the moment|again|starting|began|begins|planned|soon|next|every \\d+|autumn|summer|spring|winter|ships?|launch(?:es|ed)?|released?|opened|founded|announced|joined|started|came|took over|handed over)\\b"
+ },
+ "integrity": [
+  "chosen using only row text, label, given form (kinds, subjects, attributes, values) and the lexicon",
+  "no extractor output (baseline, openie, slot_filling, claim_factory) was read for selection",
+  "eval_rows.csv is runtime-shaped (id,text,date,label); gold forms live in worksheet/ and are evaluator-private"
+ ],
+ "id_list_sha1": "bcdacde4649b90a5bc2c36da1e0c403e73e8608d",
+ "rows": [
+  {
+   "id": "p-1",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "likely_incomplete_form",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-38",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-60",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-71",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_true"
+   ]
+  },
+  {
+   "id": "p-81",
+   "split": "dev",
+   "picked_for": "kind_money",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-114",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-117",
+   "split": "dev",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-121",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "kind_quantity",
+    "label_unsure",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-126",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "label_false",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-130",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-137",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-146",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-153",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true"
+   ]
+  },
+  {
+   "id": "p-167",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_money",
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-170",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "kind_duration",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-227",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_duration",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-232",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-234",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-258",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-311",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-331",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_false",
+    "likely_incomplete_form",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-338",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ]
+  },
+  {
+   "id": "p-339",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-365",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_false",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-368",
+   "split": "heldout",
+   "picked_for": "kind_percent",
+   "strata": [
+    "kind_percent",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-379",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-397",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-398",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-410",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-418",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-428",
+   "split": "dev",
+   "picked_for": "label_unsure",
+   "strata": [
+    "kind_boolean",
+    "label_unsure",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-434",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-444",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-477",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-490",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-515",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-568",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-576",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_percent",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-579",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_false",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-593",
+   "split": "dev",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_date",
+    "label_false",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-601",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-608",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "kind_quantity",
+    "label_unsure"
+   ]
+  },
+  {
+   "id": "p-622",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_money",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-627",
+   "split": "dev",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-634",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true"
+   ]
+  },
+  {
+   "id": "p-635",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "negation"
+   ]
+  },
+  {
+   "id": "p-643",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form"
+   ]
+  },
+  {
+   "id": "p-707",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_subject",
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-745",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-750",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "kind_quantity",
+    "label_unsure",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-755",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-774",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_money",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-788",
+   "split": "heldout",
+   "picked_for": "kind_percent",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-801",
+   "split": "heldout",
+   "picked_for": "kind_money",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-807",
+   "split": "dev",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_false",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-820",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-847",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_true",
+    "multi_fact"
+   ]
+  },
+  {
+   "id": "p-874",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "label_true"
+   ]
+  },
+  {
+   "id": "p-877",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-886",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-889",
+   "split": "dev",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-913",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-918",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation"
+   ]
+  },
+  {
+   "id": "p-932",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-935",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_boolean",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "negation",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-946",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-954",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_money",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-979",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-984",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-985",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_false",
+    "likely_incomplete_form",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-987",
+   "split": "dev",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ]
+  },
+  {
+   "id": "p-1000",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1010",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1019",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-1026",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true"
+   ]
+  },
+  {
+   "id": "p-1030",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "kind_quantity",
+    "label_unsure",
+    "multi_fact",
+    "numeric_confusable"
+   ]
+  },
+  {
+   "id": "p-1032",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_unsure",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1033",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "negation",
+    "numeric_confusable",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1041",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_unsure",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1085",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1093",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1108",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false"
+   ]
+  },
+  {
+   "id": "p-1109",
+   "split": "heldout",
+   "picked_for": "label_unsure",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_unsure"
+   ]
+  },
+  {
+   "id": "p-1110",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ]
+  },
+  {
+   "id": "p-1170",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1183",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "kind_name",
+    "label_false",
+    "multi_fact",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1193",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1201",
+   "split": "heldout",
+   "picked_for": "kind_money",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1209",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1222",
+   "split": "dev",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1229",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1265",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1274",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_money",
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1275",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_subject",
+    "kind_date",
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1302",
+   "split": "dev",
+   "picked_for": "kind_percent",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1322",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1352",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_quantity",
+    "kind_version",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1363",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1398",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1400",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1418",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1423",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1438",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1448",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1449",
+   "split": "dev",
+   "picked_for": "fill",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1469",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1471",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1473",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1479",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1481",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1488",
+   "split": "dev",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1499",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1556",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1566",
+   "split": "heldout",
+   "picked_for": "kind_percent",
+   "strata": [
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1568",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1570",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1575",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1599",
+   "split": "heldout",
+   "picked_for": "kind_name",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1612",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1623",
+   "split": "dev",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_duration",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1633",
+   "split": "heldout",
+   "picked_for": "kind_percent",
+   "strata": [
+    "kind_percent",
+    "label_false",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1650",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1664",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "negation",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1693",
+   "split": "heldout",
+   "picked_for": "negation",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1707",
+   "split": "heldout",
+   "picked_for": "kind_date",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1715",
+   "split": "heldout",
+   "picked_for": "kind_duration",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1716",
+   "split": "heldout",
+   "picked_for": "kind_money",
+   "strata": [
+    "kind_money",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1782",
+   "split": "heldout",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1795",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1801",
+   "split": "dev",
+   "picked_for": "kind_date",
+   "strata": [
+    "kind_date",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ]
+  },
+  {
+   "id": "p-1834",
+   "split": "heldout",
+   "picked_for": "multi_fact",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1852",
+   "split": "heldout",
+   "picked_for": "fill",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1853",
+   "split": "dev",
+   "picked_for": "likely_incomplete_form",
+   "strata": [
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1855",
+   "split": "heldout",
+   "picked_for": "label_false",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ]
+  },
+  {
+   "id": "p-1858",
+   "split": "heldout",
+   "picked_for": "kind_version",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ]
+  }
+ ]
+}

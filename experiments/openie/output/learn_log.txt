@@ -1,0 +1,1 @@
+﻿trained on 1627 dev rows: 318 attributes, 2065 aligned gold facts, 82 counted-noun units, 34 gazetteer names -> C:\Users\andrei\Documents\GitHub\NEURON5-p3\experiments\openie\data\relation_table.json

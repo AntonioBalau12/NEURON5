@@ -1,0 +1,8757 @@
+{
+ "config": {
+  "title": "Baseline smoke test (pipeline proof; baseline only)",
+  "created_utc": "2026-10-28T18:03:38+00:00",
+  "command": "experiments/evaluation/evaluate.py --methods baseline --resources experiments/evaluation/_scratch/res_baseline.json --title Baseline smoke test (pipeline proof; baseline only) --out experiments/evaluation/results/baseline_smoke",
+  "python": "3.14.0",
+  "numpy": "2.5.4",
+  "bootstrap": {
+   "B": 2000,
+   "seed": 20261028,
+   "unit": "evaluation row (cluster bootstrap)",
+   "interval": "percentile 95%"
+  },
+  "eval_rows_sha1": "48d90b02e2f058a2d823bd4a85d63bf83563ba91",
+  "reference_sha1": "a9faa7773260cc76d67a25aa3c1b351a8199f4ea",
+  "n_rows": 135,
+  "n_form_facts": 183,
+  "n_suggested_extra_facts": 4,
+  "gold_sets": [
+   "form",
+   "suggested"
+  ],
+  "primary_gold": "form",
+  "n_judgements_loaded": 8,
+  "files": {
+   "baseline": {
+    "path": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\evaluation\\output\\baseline_facts.jsonl",
+    "sha1": "9db1ee7521f4d6f488177fcb57baba06a4559f66",
+    "lines": 658,
+    "valid_facts": 658,
+    "invalid_dropped": 0,
+    "invalid_examples": [],
+    "rows_with_a_fact_in_file": 547,
+    "rows_in_full_input": 1897,
+    "facts_on_eval_rows": 49,
+    "eval_rows_with_a_fact": 42,
+    "methods_in_file": [
+     "deterministic_parser"
+    ]
+   }
+  },
+  "skipped_methods": [],
+  "value_equivalence": "foundation._canonical_value_key via common.value_key"
+ },
+ "methods": {
+  "baseline": {
+   "overall": {
+    "precision_form": {
+     "value": 0.8367346938775511,
+     "num": 41.0,
+     "den": 49.0,
+     "ci95": [
+      0.7058823529411765,
+      0.9565217391304348
+     ]
+    },
+    "recall_form": {
+     "value": 0.22404371584699453,
+     "num": 41.0,
+     "den": 183.0,
+     "ci95": [
+      0.16751745200698084,
+      0.2797733516483516
+     ]
+    },
+    "f1_form": {
+     "value": 0.35344827586206895,
+     "num": 82.0,
+     "den": 232.0,
+     "ci95": [
+      0.27667528824611576,
+      0.42677824267782427
+     ]
+    },
+    "precision_suggested": {
+     "value": 0.8367346938775511,
+     "num": 41.0,
+     "den": 49.0,
+     "ci95": [
+      0.7058823529411765,
+      0.9565217391304348
+     ]
+    },
+    "recall_suggested": {
+     "value": 0.2192513368983957,
+     "num": 41.0,
+     "den": 187.0,
+     "ci95": [
+      0.1638418079096045,
+      0.2751322751322751
+     ]
+    },
+    "f1_suggested": {
+     "value": 0.3474576271186441,
+     "num": 82.0,
+     "den": 236.0,
+     "ci95": [
+      0.2727176015473888,
+      0.41975308641975306
+     ]
+    },
+    "precision_approx_upper_bound": {
+     "value": 0.8367346938775511,
+     "num": 41.0,
+     "den": 49.0,
+     "ci95": [
+      0.7058823529411765,
+      0.9565217391304348
+     ]
+    },
+    "exact_triple_accuracy": {
+     "value": 0.22404371584699453,
+     "num": 41.0,
+     "den": 183.0,
+     "ci95": [
+      0.16751745200698084,
+      0.2797733516483516
+     ]
+    },
+    "row_all_gold_facts_found": {
+     "value": 0.1925925925925926,
+     "num": 26.0,
+     "den": 135.0,
+     "ci95": [
+      0.1259259259259259,
+      0.25925925925925924
+     ]
+    },
+    "row_exact_set": {
+     "value": 0.1925925925925926,
+     "num": 26.0,
+     "den": 135.0,
+     "ci95": [
+      0.1259259259259259,
+      0.25925925925925924
+     ]
+    },
+    "entity_accuracy": {
+     "value": 0.37158469945355194,
+     "num": 68.0,
+     "den": 183.0,
+     "ci95": [
+      0.27380786113328015,
+      0.4696969696969697
+     ]
+    },
+    "entity_accuracy_subject_written": {
+     "value": 0.5230769230769231,
+     "num": 68.0,
+     "den": 130.0,
+     "ci95": [
+      0.4036247106233389,
+      0.6346195652173913
+     ]
+    },
+    "entity_accuracy_subject_implicit": {
+     "value": 0.0,
+     "num": 0,
+     "den": 53.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "attribute_accuracy_given_entity": {
+     "value": 0.6470588235294118,
+     "num": 44.0,
+     "den": 68.0,
+     "ci95": [
+      0.548376049491825,
+      0.7727272727272727
+     ]
+    },
+    "value_accuracy_given_entity_attribute": {
+     "value": 0.9318181818181818,
+     "num": 41.0,
+     "den": 44.0,
+     "ci95": [
+      0.8536585365853658,
+      1.0
+     ]
+    },
+    "slot_recall_any_value": {
+     "value": 0.24043715846994534,
+     "num": 44.0,
+     "den": 183.0,
+     "ci95": [
+      0.18285714285714286,
+      0.29610902583798876
+     ]
+    },
+    "negation_recall": {
+     "value": 0.2857142857142857,
+     "num": 4.0,
+     "den": 14.0,
+     "ci95": [
+      0.06666666666666667,
+      0.5334615384615378
+     ]
+    },
+    "negation_specificity": {
+     "value": 0.972972972972973,
+     "num": 36.0,
+     "den": 37.0,
+     "ci95": [
+      0.911697860962567,
+      1.0
+     ]
+    },
+    "negation_flag_accuracy_on_matched": {
+     "value": 0.975609756097561,
+     "num": 40.0,
+     "den": 41.0,
+     "ci95": [
+      0.918918918918919,
+      1.0
+     ]
+    },
+    "negation_trap_rows_exact": {
+     "value": 0.2631578947368421,
+     "num": 5.0,
+     "den": 19.0,
+     "ci95": [
+      0.07142857142857142,
+      0.5
+     ]
+    },
+    "temporal_cue_recall": {
+     "value": 0.0,
+     "num": 0.0,
+     "den": 28.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "temporal_cue_recall_given_fact": {
+     "value": 0.0,
+     "num": 0.0,
+     "den": 10.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "temporal_abstention_on_no_cue_rows": {
+     "value": 1.0,
+     "num": 32.0,
+     "den": 32.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "temporal_dates_supported_by_text": {
+     "value": null,
+     "num": 0,
+     "den": 0,
+     "ci95": null
+    },
+    "share_of_extras_reviewed_incorrect": {
+     "value": 1.0,
+     "num": 8.0,
+     "den": 8.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall_date": {
+     "value": 0.15384615384615385,
+     "num": 2.0,
+     "den": 13.0,
+     "ci95": [
+      0.0,
+      0.375
+     ]
+    },
+    "precision_date": {
+     "value": 1.0,
+     "num": 2.0,
+     "den": 2.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "value_accuracy_date": {
+     "value": 1.0,
+     "num": 2.0,
+     "den": 2.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall_money": {
+     "value": 0.0,
+     "num": 0.0,
+     "den": 19.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "precision_money": {
+     "value": null,
+     "num": 0,
+     "den": 0,
+     "ci95": null
+    },
+    "value_accuracy_money": {
+     "value": null,
+     "num": 0,
+     "den": 0,
+     "ci95": null
+    },
+    "recall_quantity": {
+     "value": 0.4126984126984127,
+     "num": 26.0,
+     "den": 63.0,
+     "ci95": [
+      0.29310344827586204,
+      0.5384615384615384
+     ]
+    },
+    "precision_quantity": {
+     "value": 0.7878787878787878,
+     "num": 26.0,
+     "den": 33.0,
+     "ci95": [
+      0.6333333333333333,
+      0.9642857142857143
+     ]
+    },
+    "value_accuracy_quantity": {
+     "value": 0.9285714285714286,
+     "num": 26.0,
+     "den": 28.0,
+     "ci95": [
+      0.8333333333333334,
+      1.0
+     ]
+    },
+    "recall_percent": {
+     "value": 0.26666666666666666,
+     "num": 4.0,
+     "den": 15.0,
+     "ci95": [
+      0.06666666666666667,
+      0.5294117647058824
+     ]
+    },
+    "precision_percent": {
+     "value": 1.0,
+     "num": 4.0,
+     "den": 4.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "value_accuracy_percent": {
+     "value": 1.0,
+     "num": 4.0,
+     "den": 4.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall_duration": {
+     "value": 0.0625,
+     "num": 1.0,
+     "den": 16.0,
+     "ci95": [
+      0.0,
+      0.2222222222222222
+     ]
+    },
+    "precision_duration": {
+     "value": 1.0,
+     "num": 1.0,
+     "den": 1.0,
+     "ci95": null
+    },
+    "value_accuracy_duration": {
+     "value": 1.0,
+     "num": 1.0,
+     "den": 1.0,
+     "ci95": null
+    },
+    "recall_version": {
+     "value": 0.0625,
+     "num": 1.0,
+     "den": 16.0,
+     "ci95": [
+      0.0,
+      0.21052631578947367
+     ]
+    },
+    "precision_version": {
+     "value": 1.0,
+     "num": 1.0,
+     "den": 1.0,
+     "ci95": null
+    },
+    "value_accuracy_version": {
+     "value": 1.0,
+     "num": 1.0,
+     "den": 1.0,
+     "ci95": null
+    },
+    "recall_name": {
+     "value": 0.0,
+     "num": 0.0,
+     "den": 19.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "precision_name": {
+     "value": null,
+     "num": 0,
+     "den": 0,
+     "ci95": null
+    },
+    "value_accuracy_name": {
+     "value": null,
+     "num": 0,
+     "den": 0,
+     "ci95": null
+    },
+    "recall_boolean": {
+     "value": 0.3181818181818182,
+     "num": 7.0,
+     "den": 22.0,
+     "ci95": [
+      0.11764705882352941,
+      0.5217908902691508
+     ]
+    },
+    "precision_boolean": {
+     "value": 0.875,
+     "num": 7.0,
+     "den": 8.0,
+     "ci95": [
+      0.5555555555555556,
+      1.0
+     ]
+    },
+    "value_accuracy_boolean": {
+     "value": 0.875,
+     "num": 7.0,
+     "den": 8.0,
+     "ci95": [
+      0.5555555555555556,
+      1.0
+     ]
+    }
+   },
+   "by_split": {
+    "dev": {
+     "n_rows": 15,
+     "precision_form": {
+      "value": 0.8,
+      "num": 4.0,
+      "den": 5.0,
+      "ci95": [
+       0.3333333333333333,
+       1.0
+      ]
+     },
+     "recall_form": {
+      "value": 0.19047619047619047,
+      "num": 4.0,
+      "den": 21.0,
+      "ci95": [
+       0.043478260869565216,
+       0.38095238095238093
+      ]
+     },
+     "f1_form": {
+      "value": 0.3076923076923077,
+      "num": 8.0,
+      "den": 26.0,
+      "ci95": [
+       0.07692307692307693,
+       0.5384615384615384
+      ]
+     },
+     "precision_suggested": {
+      "value": 0.8,
+      "num": 4.0,
+      "den": 5.0,
+      "ci95": [
+       0.3333333333333333,
+       1.0
+      ]
+     },
+     "recall_suggested": {
+      "value": 0.19047619047619047,
+      "num": 4.0,
+      "den": 21.0,
+      "ci95": [
+       0.043478260869565216,
+       0.38095238095238093
+      ]
+     },
+     "f1_suggested": {
+      "value": 0.3076923076923077,
+      "num": 8.0,
+      "den": 26.0,
+      "ci95": [
+       0.07692307692307693,
+       0.5384615384615384
+      ]
+     },
+     "precision_approx_upper_bound": {
+      "value": 0.8,
+      "num": 4.0,
+      "den": 5.0,
+      "ci95": [
+       0.3333333333333333,
+       1.0
+      ]
+     },
+     "exact_triple_accuracy": {
+      "value": 0.19047619047619047,
+      "num": 4.0,
+      "den": 21.0,
+      "ci95": [
+       0.043478260869565216,
+       0.38095238095238093
+      ]
+     },
+     "row_all_gold_facts_found": {
+      "value": 0.2,
+      "num": 3.0,
+      "den": 15.0,
+      "ci95": [
+       0.0,
+       0.4
+      ]
+     },
+     "row_exact_set": {
+      "value": 0.2,
+      "num": 3.0,
+      "den": 15.0,
+      "ci95": [
+       0.0,
+       0.4
+      ]
+     },
+     "entity_accuracy": {
+      "value": 0.3333333333333333,
+      "num": 7.0,
+      "den": 21.0,
+      "ci95": [
+       0.09090909090909091,
+       0.5909090909090909
+      ]
+     },
+     "entity_accuracy_subject_written": {
+      "value": 0.3888888888888889,
+      "num": 7.0,
+      "den": 18.0,
+      "ci95": [
+       0.1111111111111111,
+       0.6666666666666666
+      ]
+     },
+     "entity_accuracy_subject_implicit": {
+      "value": 0.0,
+      "num": 0,
+      "den": 3.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "attribute_accuracy_given_entity": {
+      "value": 0.7142857142857143,
+      "num": 5.0,
+      "den": 7.0,
+      "ci95": [
+       0.5,
+       1.0
+      ]
+     },
+     "value_accuracy_given_entity_attribute": {
+      "value": 0.8,
+      "num": 4.0,
+      "den": 5.0,
+      "ci95": [
+       0.3333333333333333,
+       1.0
+      ]
+     },
+     "slot_recall_any_value": {
+      "value": 0.23809523809523808,
+      "num": 5.0,
+      "den": 21.0,
+      "ci95": [
+       0.08325000000000014,
+       0.42857142857142855
+      ]
+     },
+     "negation_recall": {
+      "value": 0.5,
+      "num": 1.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "negation_specificity": {
+      "value": 1.0,
+      "num": 3.0,
+      "den": 3.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "negation_flag_accuracy_on_matched": {
+      "value": 1.0,
+      "num": 4.0,
+      "den": 4.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "negation_trap_rows_exact": {
+      "value": 0.5,
+      "num": 1.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "temporal_cue_recall": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 4.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "temporal_cue_recall_given_fact": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 3.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "temporal_abstention_on_no_cue_rows": {
+      "value": 1.0,
+      "num": 2.0,
+      "den": 2.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "temporal_dates_supported_by_text": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "share_of_extras_reviewed_incorrect": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "recall_date": {
+      "value": 0.5,
+      "num": 1.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "precision_date": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "value_accuracy_date": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "recall_money": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "precision_money": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "value_accuracy_money": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "recall_quantity": {
+      "value": 0.25,
+      "num": 1.0,
+      "den": 4.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "precision_quantity": {
+      "value": 0.5,
+      "num": 1.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "value_accuracy_quantity": {
+      "value": 0.5,
+      "num": 1.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "recall_percent": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "precision_percent": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "value_accuracy_percent": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "recall_duration": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 3.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "precision_duration": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "value_accuracy_duration": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "recall_version": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 2.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "precision_version": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "value_accuracy_version": {
+      "value": null,
+      "num": 0.0,
+      "den": 0.0,
+      "ci95": null
+     },
+     "recall_name": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 4.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "precision_name": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "value_accuracy_name": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "recall_boolean": {
+      "value": 0.5,
+      "num": 2.0,
+      "den": 4.0,
+      "ci95": [
+       0.0,
+       1.0
+      ]
+     },
+     "precision_boolean": {
+      "value": 1.0,
+      "num": 2.0,
+      "den": 2.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "value_accuracy_boolean": {
+      "value": 1.0,
+      "num": 2.0,
+      "den": 2.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     }
+    },
+    "heldout": {
+     "n_rows": 120,
+     "precision_form": {
+      "value": 0.8409090909090909,
+      "num": 37.0,
+      "den": 44.0,
+      "ci95": [
+       0.7068965517241379,
+       0.9743749999999999
+      ]
+     },
+     "recall_form": {
+      "value": 0.22839506172839505,
+      "num": 37.0,
+      "den": 162.0,
+      "ci95": [
+       0.16947298728813562,
+       0.29055550803968516
+      ]
+     },
+     "f1_form": {
+      "value": 0.3592233009708738,
+      "num": 74.0,
+      "den": 206.0,
+      "ci95": [
+       0.28087640449438206,
+       0.4380952380952381
+      ]
+     },
+     "precision_suggested": {
+      "value": 0.8409090909090909,
+      "num": 37.0,
+      "den": 44.0,
+      "ci95": [
+       0.7068965517241379,
+       0.9743749999999999
+      ]
+     },
+     "recall_suggested": {
+      "value": 0.22289156626506024,
+      "num": 37.0,
+      "den": 166.0,
+      "ci95": [
+       0.1648336038961039,
+       0.2848101265822785
+      ]
+     },
+     "f1_suggested": {
+      "value": 0.3523809523809524,
+      "num": 74.0,
+      "den": 210.0,
+      "ci95": [
+       0.2736842105263158,
+       0.43064077305563364
+      ]
+     },
+     "precision_approx_upper_bound": {
+      "value": 0.8409090909090909,
+      "num": 37.0,
+      "den": 44.0,
+      "ci95": [
+       0.7068965517241379,
+       0.9743749999999999
+      ]
+     },
+     "exact_triple_accuracy": {
+      "value": 0.22839506172839505,
+      "num": 37.0,
+      "den": 162.0,
+      "ci95": [
+       0.16947298728813562,
+       0.29055550803968516
+      ]
+     },
+     "row_all_gold_facts_found": {
+      "value": 0.19166666666666668,
+      "num": 23.0,
+      "den": 120.0,
+      "ci95": [
+       0.125,
+       0.26666666666666666
+      ]
+     },
+     "row_exact_set": {
+      "value": 0.19166666666666668,
+      "num": 23.0,
+      "den": 120.0,
+      "ci95": [
+       0.125,
+       0.26666666666666666
+      ]
+     },
+     "entity_accuracy": {
+      "value": 0.3765432098765432,
+      "num": 61.0,
+      "den": 162.0,
+      "ci95": [
+       0.2645161290322581,
+       0.4852114260008996
+      ]
+     },
+     "entity_accuracy_subject_written": {
+      "value": 0.5446428571428571,
+      "num": 61.0,
+      "den": 112.0,
+      "ci95": [
+       0.40677500465636063,
+       0.6640654151119403
+      ]
+     },
+     "entity_accuracy_subject_implicit": {
+      "value": 0.0,
+      "num": 0,
+      "den": 50.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "attribute_accuracy_given_entity": {
+      "value": 0.639344262295082,
+      "num": 39.0,
+      "den": 61.0,
+      "ci95": [
+       0.536579822616408,
+       0.7692307692307693
+      ]
+     },
+     "value_accuracy_given_entity_attribute": {
+      "value": 0.9487179487179487,
+      "num": 37.0,
+      "den": 39.0,
+      "ci95": [
+       0.8749335106382979,
+       1.0
+      ]
+     },
+     "slot_recall_any_value": {
+      "value": 0.24074074074074073,
+      "num": 39.0,
+      "den": 162.0,
+      "ci95": [
+       0.1779107021131561,
+       0.3040999237223493
+      ]
+     },
+     "negation_recall": {
+      "value": 0.25,
+      "num": 3.0,
+      "den": 12.0,
+      "ci95": [
+       0.0,
+       0.5
+      ]
+     },
+     "negation_specificity": {
+      "value": 0.9705882352941176,
+      "num": 33.0,
+      "den": 34.0,
+      "ci95": [
+       0.9032258064516129,
+       1.0
+      ]
+     },
+     "negation_flag_accuracy_on_matched": {
+      "value": 0.972972972972973,
+      "num": 36.0,
+      "den": 37.0,
+      "ci95": [
+       0.9110606060606061,
+       1.0
+      ]
+     },
+     "negation_trap_rows_exact": {
+      "value": 0.23529411764705882,
+      "num": 4.0,
+      "den": 17.0,
+      "ci95": [
+       0.047619047619047616,
+       0.4706656346749222
+      ]
+     },
+     "temporal_cue_recall": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 24.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "temporal_cue_recall_given_fact": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 7.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "temporal_abstention_on_no_cue_rows": {
+      "value": 1.0,
+      "num": 30.0,
+      "den": 30.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "temporal_dates_supported_by_text": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "share_of_extras_reviewed_incorrect": {
+      "value": 1.0,
+      "num": 7.0,
+      "den": 7.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "recall_date": {
+      "value": 0.09090909090909091,
+      "num": 1.0,
+      "den": 11.0,
+      "ci95": [
+       0.0,
+       0.3
+      ]
+     },
+     "precision_date": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "value_accuracy_date": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "recall_money": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 18.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "precision_money": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "value_accuracy_money": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "recall_quantity": {
+      "value": 0.423728813559322,
+      "num": 25.0,
+      "den": 59.0,
+      "ci95": [
+       0.30299422799422804,
+       0.5454545454545454
+      ]
+     },
+     "precision_quantity": {
+      "value": 0.8064516129032258,
+      "num": 25.0,
+      "den": 31.0,
+      "ci95": [
+       0.6578947368421053,
+       1.0
+      ]
+     },
+     "value_accuracy_quantity": {
+      "value": 0.9615384615384616,
+      "num": 25.0,
+      "den": 26.0,
+      "ci95": [
+       0.8888888888888888,
+       1.0
+      ]
+     },
+     "recall_percent": {
+      "value": 0.2857142857142857,
+      "num": 4.0,
+      "den": 14.0,
+      "ci95": [
+       0.05555555555555555,
+       0.5714285714285714
+      ]
+     },
+     "precision_percent": {
+      "value": 1.0,
+      "num": 4.0,
+      "den": 4.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "value_accuracy_percent": {
+      "value": 1.0,
+      "num": 4.0,
+      "den": 4.0,
+      "ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "recall_duration": {
+      "value": 0.07692307692307693,
+      "num": 1.0,
+      "den": 13.0,
+      "ci95": [
+       0.0,
+       0.266818181818181
+      ]
+     },
+     "precision_duration": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "value_accuracy_duration": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "recall_version": {
+      "value": 0.07142857142857142,
+      "num": 1.0,
+      "den": 14.0,
+      "ci95": [
+       0.0,
+       0.23076923076923078
+      ]
+     },
+     "precision_version": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "value_accuracy_version": {
+      "value": 1.0,
+      "num": 1.0,
+      "den": 1.0,
+      "ci95": null
+     },
+     "recall_name": {
+      "value": 0.0,
+      "num": 0.0,
+      "den": 15.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "precision_name": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "value_accuracy_name": {
+      "value": null,
+      "num": 0,
+      "den": 0,
+      "ci95": null
+     },
+     "recall_boolean": {
+      "value": 0.2777777777777778,
+      "num": 5.0,
+      "den": 18.0,
+      "ci95": [
+       0.08333333333333333,
+       0.5
+      ]
+     },
+     "precision_boolean": {
+      "value": 0.8333333333333334,
+      "num": 5.0,
+      "den": 6.0,
+      "ci95": [
+       0.42857142857142855,
+       1.0
+      ]
+     },
+     "value_accuracy_boolean": {
+      "value": 0.8333333333333334,
+      "num": 5.0,
+      "den": 6.0,
+      "ci95": [
+       0.42857142857142855,
+       1.0
+      ]
+     }
+    }
+   },
+   "by_stratum": {
+    "implicit_attribute": {
+     "n_rows": 48,
+     "metrics": {
+      "precision_form": {
+       "value": 0.6923076923076923,
+       "num": 9.0,
+       "den": 13.0,
+       "ci95": [
+        0.4838709677419355,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.11392405063291139,
+       "num": 9.0,
+       "den": 79.0,
+       "ci95": [
+        0.0547945205479452,
+        0.17073170731707318
+       ]
+      },
+      "f1_form": {
+       "value": 0.1956521739130435,
+       "num": 18.0,
+       "den": 92.0,
+       "ci95": [
+        0.10126582278481013,
+        0.2777777777777778
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.6923076923076923,
+       "num": 9.0,
+       "den": 13.0,
+       "ci95": [
+        0.4838709677419355,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.1125,
+       "num": 9.0,
+       "den": 80.0,
+       "ci95": [
+        0.05333333333333334,
+        0.1686746987951807
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.1935483870967742,
+       "num": 18.0,
+       "den": 93.0,
+       "ci95": [
+        0.1,
+        0.27524517557734884
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.6923076923076923,
+       "num": 9.0,
+       "den": 13.0,
+       "ci95": [
+        0.4838709677419355,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.11392405063291139,
+       "num": 9.0,
+       "den": 79.0,
+       "ci95": [
+        0.0547945205479452,
+        0.17073170731707318
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 48.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 48.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.34177215189873417,
+       "num": 27.0,
+       "den": 79.0,
+       "ci95": [
+        0.1527777777777778,
+        0.5161378943637007
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.4426229508196721,
+       "num": 27.0,
+       "den": 61.0,
+       "ci95": [
+        0.20747212692967423,
+        0.6363636363636364
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 18.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.37037037037037035,
+       "num": 10.0,
+       "den": 27.0,
+       "ci95": [
+        0.29624183006535953,
+        0.4444444444444444
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9,
+       "num": 9.0,
+       "den": 10.0,
+       "ci95": [
+        0.7692307692307693,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.12658227848101267,
+       "num": 10.0,
+       "den": 79.0,
+       "ci95": [
+        0.056338028169014086,
+        0.1927710843373494
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 9.0,
+       "den": 9.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 9.0,
+       "den": 9.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 9.0,
+       "den": 9.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.3684210526315789,
+       "num": 7.0,
+       "den": 19.0,
+       "ci95": [
+        0.14285714285714285,
+        0.5789473684210527
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.6363636363636364,
+       "num": 7.0,
+       "den": 11.0,
+       "ci95": [
+        0.41654411764705906,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.75,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.3333333333333333,
+       "num": 1.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.16666666666666666,
+       "num": 1.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.5
+       ]
+      },
+      "precision_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      }
+     }
+    },
+    "implicit_subject": {
+     "n_rows": 46,
+     "metrics": {
+      "precision_form": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_form": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 56.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "f1_form": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 56.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_suggested": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_suggested": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 57.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 57.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "exact_triple_accuracy": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 56.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 46.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 46.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 56.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 53.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "slot_recall_any_value": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 56.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "negation_specificity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 21.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_quantity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_quantity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_boolean": {
+     "n_rows": 22,
+     "metrics": {
+      "precision_form": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.25925925925925924,
+       "num": 7.0,
+       "den": 27.0,
+       "ci95": [
+        0.10714285714285714,
+        0.43478260869565216
+       ]
+      },
+      "f1_form": {
+       "value": 0.4,
+       "num": 14.0,
+       "den": 35.0,
+       "ci95": [
+        0.1875,
+        0.5882352941176471
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.25925925925925924,
+       "num": 7.0,
+       "den": 27.0,
+       "ci95": [
+        0.10714285714285714,
+        0.43478260869565216
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.4,
+       "num": 14.0,
+       "den": 35.0,
+       "ci95": [
+        0.1875,
+        0.5882352941176471
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.25925925925925924,
+       "num": 7.0,
+       "den": 27.0,
+       "ci95": [
+        0.10714285714285714,
+        0.43478260869565216
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.2727272727272727,
+       "num": 6.0,
+       "den": 22.0,
+       "ci95": [
+        0.09090909090909091,
+        0.45454545454545453
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.2727272727272727,
+       "num": 6.0,
+       "den": 22.0,
+       "ci95": [
+        0.09090909090909091,
+        0.45454545454545453
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.37037037037037035,
+       "num": 10.0,
+       "den": 27.0,
+       "ci95": [
+        0.15384615384615385,
+        0.5925925925925926
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5,
+       "num": 10.0,
+       "den": 20.0,
+       "ci95": [
+        0.23509358288770088,
+        0.7368993135011438
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.8,
+       "num": 8.0,
+       "den": 10.0,
+       "ci95": [
+        0.5555555555555556,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.2962962962962963,
+       "num": 8.0,
+       "den": 27.0,
+       "ci95": [
+        0.13793103448275862,
+        0.48
+       ]
+      },
+      "negation_recall": {
+       "value": 0.2857142857142857,
+       "num": 4.0,
+       "den": 14.0,
+       "ci95": [
+        0.06666666666666667,
+        0.5384615384615384
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.25,
+       "num": 4.0,
+       "den": 16.0,
+       "ci95": [
+        0.05555555555555555,
+        0.5
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_quantity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_quantity": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.3181818181818182,
+       "num": 7.0,
+       "den": 22.0,
+       "ci95": [
+        0.13636363636363635,
+        0.5
+       ]
+      },
+      "precision_boolean": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      },
+      "value_accuracy_boolean": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.5714285714285714,
+        1.0
+       ]
+      }
+     }
+    },
+    "kind_date": {
+     "n_rows": 13,
+     "metrics": {
+      "precision_form": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.23125000000000212,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.15,
+       "num": 3.0,
+       "den": 20.0,
+       "ci95": [
+        0.0,
+        0.28
+       ]
+      },
+      "f1_form": {
+       "value": 0.25,
+       "num": 6.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.4286679536679531
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.23125000000000212,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.15,
+       "num": 3.0,
+       "den": 20.0,
+       "ci95": [
+        0.0,
+        0.28
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.25,
+       "num": 6.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.4286679536679531
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.23125000000000212,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.15,
+       "num": 3.0,
+       "den": 20.0,
+       "ci95": [
+        0.0,
+        0.28
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.07692307692307693,
+       "num": 1.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.23076923076923078
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.07692307692307693,
+       "num": 1.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.23076923076923078
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.4,
+       "num": 8.0,
+       "den": 20.0,
+       "ci95": [
+        0.0625,
+        0.6923913043478256
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5333333333333333,
+       "num": 8.0,
+       "den": 15.0,
+       "ci95": [
+        0.125,
+        0.8571428571428571
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.375,
+       "num": 3.0,
+       "den": 8.0,
+       "ci95": [
+        0.14285714285714285,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.15,
+       "num": 3.0,
+       "den": 20.0,
+       "ci95": [
+        0.0,
+        0.28
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.15384615384615385,
+       "num": 2.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.38461538461538464
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_duration": {
+     "n_rows": 13,
+     "metrics": {
+      "precision_form": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.17391304347826086,
+       "num": 4.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.34615384615384615
+       ]
+      },
+      "f1_form": {
+       "value": 0.2962962962962963,
+       "num": 8.0,
+       "den": 27.0,
+       "ci95": [
+        0.0,
+        0.5142857142857142
+       ]
+      },
+      "precision_suggested": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.17391304347826086,
+       "num": 4.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.34615384615384615
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.2962962962962963,
+       "num": 8.0,
+       "den": 27.0,
+       "ci95": [
+        0.0,
+        0.5142857142857142
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.17391304347826086,
+       "num": 4.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.34615384615384615
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.30434782608695654,
+       "num": 7.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.5862068965517241
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.3333333333333333,
+       "num": 7.0,
+       "den": 21.0,
+       "ci95": [
+        0.0,
+        0.6296783625730992
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.5714285714285714,
+       "num": 4.0,
+       "den": 7.0,
+       "ci95": [
+        0.5,
+        0.6666666666666666
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.17391304347826086,
+       "num": 4.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.34615384615384615
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0625,
+       "num": 1.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.21428571428571427
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_money": {
+     "n_rows": 16,
+     "metrics": {
+      "precision_form": {
+       "value": 0.5,
+       "num": 5.0,
+       "den": 10.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.14285714285714285,
+       "num": 5.0,
+       "den": 35.0,
+       "ci95": [
+        0.038461538461538464,
+        0.21742527173913023
+       ]
+      },
+      "f1_form": {
+       "value": 0.2222222222222222,
+       "num": 10.0,
+       "den": 45.0,
+       "ci95": [
+        0.07142857142857142,
+        0.30434782608695654
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.5,
+       "num": 5.0,
+       "den": 10.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.1388888888888889,
+       "num": 5.0,
+       "den": 36.0,
+       "ci95": [
+        0.037037037037037035,
+        0.21428571428571427
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.21739130434782608,
+       "num": 10.0,
+       "den": 46.0,
+       "ci95": [
+        0.06896551724137931,
+        0.3030632411067192
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.5,
+       "num": 5.0,
+       "den": 10.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.14285714285714285,
+       "num": 5.0,
+       "den": 35.0,
+       "ci95": [
+        0.038461538461538464,
+        0.21742527173913023
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.4857142857142857,
+       "num": 17.0,
+       "den": 35.0,
+       "ci95": [
+        0.1070504926108376,
+        0.7451069518716578
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5666666666666667,
+       "num": 17.0,
+       "den": 30.0,
+       "ci95": [
+        0.14982142857142888,
+        0.8125578703703701
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.35294117647058826,
+       "num": 6.0,
+       "den": 17.0,
+       "ci95": [
+        0.25,
+        0.5
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.8333333333333334,
+       "num": 5.0,
+       "den": 6.0,
+       "ci95": [
+        0.6666666666666666,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.17142857142857143,
+       "num": 6.0,
+       "den": 35.0,
+       "ci95": [
+        0.038461538461538464,
+        0.2692307692307692
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 5.0,
+       "den": 5.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 5.0,
+       "den": 5.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 5.0,
+       "den": 5.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 19.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.7142857142857143,
+       "num": 5.0,
+       "den": 7.0,
+       "ci95": [
+        0.4,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.5,
+       "num": 5.0,
+       "den": 10.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.8333333333333334,
+       "num": 5.0,
+       "den": 6.0,
+       "ci95": [
+        0.6666666666666666,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_name": {
+     "n_rows": 17,
+     "metrics": {
+      "precision_form": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.13333333333333333,
+       "num": 4.0,
+       "den": 30.0,
+       "ci95": [
+        0.037037037037037035,
+        0.21428571428571427
+       ]
+      },
+      "f1_form": {
+       "value": 0.23529411764705882,
+       "num": 8.0,
+       "den": 34.0,
+       "ci95": [
+        0.07142857142857142,
+        0.35294117647058826
+       ]
+      },
+      "precision_suggested": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.125,
+       "num": 4.0,
+       "den": 32.0,
+       "ci95": [
+        0.034482758620689655,
+        0.20695669607056905
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.2222222222222222,
+       "num": 8.0,
+       "den": 36.0,
+       "ci95": [
+        0.06666666666666667,
+        0.34293956043956
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.13333333333333333,
+       "num": 4.0,
+       "den": 30.0,
+       "ci95": [
+        0.037037037037037035,
+        0.21428571428571427
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 17.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 17.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.4,
+       "num": 12.0,
+       "den": 30.0,
+       "ci95": [
+        0.1111111111111111,
+        0.6470588235294118
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5217391304347826,
+       "num": 12.0,
+       "den": 23.0,
+       "ci95": [
+        0.15375000000000016,
+        0.7857142857142857
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.3333333333333333,
+       "num": 4.0,
+       "den": 12.0,
+       "ci95": [
+        0.25,
+        0.4444444444444444
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.13333333333333333,
+       "num": 4.0,
+       "den": 30.0,
+       "ci95": [
+        0.037037037037037035,
+        0.21428571428571427
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.6666666666666666,
+       "num": 2.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 19.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_percent": {
+     "n_rows": 14,
+     "metrics": {
+      "precision_form": {
+       "value": 0.7,
+       "num": 7.0,
+       "den": 10.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.2916666666666667,
+       "num": 7.0,
+       "den": 24.0,
+       "ci95": [
+        0.1578536184210527,
+        0.47058823529411764
+       ]
+      },
+      "f1_form": {
+       "value": 0.4117647058823529,
+       "num": 14.0,
+       "den": 34.0,
+       "ci95": [
+        0.25,
+        0.6206896551724138
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.7,
+       "num": 7.0,
+       "den": 10.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.2916666666666667,
+       "num": 7.0,
+       "den": 24.0,
+       "ci95": [
+        0.1578536184210527,
+        0.47058823529411764
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.4117647058823529,
+       "num": 14.0,
+       "den": 34.0,
+       "ci95": [
+        0.25,
+        0.6206896551724138
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.7,
+       "num": 7.0,
+       "den": 10.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.2916666666666667,
+       "num": 7.0,
+       "den": 24.0,
+       "ci95": [
+        0.1578536184210527,
+        0.47058823529411764
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.21428571428571427,
+       "num": 3.0,
+       "den": 14.0,
+       "ci95": [
+        0.0,
+        0.42857142857142855
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.21428571428571427,
+       "num": 3.0,
+       "den": 14.0,
+       "ci95": [
+        0.0,
+        0.42857142857142855
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.625,
+       "num": 15.0,
+       "den": 24.0,
+       "ci95": [
+        0.2222222222222222,
+        0.8461538461538461
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 1.0,
+       "num": 15.0,
+       "den": 15.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.5333333333333333,
+       "num": 8.0,
+       "den": 15.0,
+       "ci95": [
+        0.41379310344827586,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.875,
+       "num": 7.0,
+       "den": 8.0,
+       "ci95": [
+        0.75,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.3333333333333333,
+       "num": 8.0,
+       "den": 24.0,
+       "ci95": [
+        0.17391304347826086,
+        0.4782608695652174
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.5,
+       "num": 3.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.8
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.5,
+       "num": 3.0,
+       "den": 6.0,
+       "ci95": [
+        0.4,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.6666666666666666,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.26666666666666666,
+       "num": 4.0,
+       "den": 15.0,
+       "ci95": [
+        0.0625,
+        0.5
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_quantity": {
+     "n_rows": 56,
+     "metrics": {
+      "precision_form": {
+       "value": 0.8235294117647058,
+       "num": 28.0,
+       "den": 34.0,
+       "ci95": [
+        0.6807940729483284,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.3181818181818182,
+       "num": 28.0,
+       "den": 88.0,
+       "ci95": [
+        0.23862283549783553,
+        0.4125
+       ]
+      },
+      "f1_form": {
+       "value": 0.45901639344262296,
+       "num": 56.0,
+       "den": 122.0,
+       "ci95": [
+        0.36036036036036034,
+        0.5669760889980493
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.8235294117647058,
+       "num": 28.0,
+       "den": 34.0,
+       "ci95": [
+        0.6807940729483284,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.3146067415730337,
+       "num": 28.0,
+       "den": 89.0,
+       "ci95": [
+        0.2359385327164574,
+        0.40508522371224454
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.45528455284552843,
+       "num": 56.0,
+       "den": 123.0,
+       "ci95": [
+        0.35859826184468746,
+        0.5619834710743802
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.8235294117647058,
+       "num": 28.0,
+       "den": 34.0,
+       "ci95": [
+        0.6807940729483284,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.3181818181818182,
+       "num": 28.0,
+       "den": 88.0,
+       "ci95": [
+        0.23862283549783553,
+        0.4125
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.26785714285714285,
+       "num": 15.0,
+       "den": 56.0,
+       "ci95": [
+        0.16071428571428573,
+        0.39285714285714285
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.26785714285714285,
+       "num": 15.0,
+       "den": 56.0,
+       "ci95": [
+        0.16071428571428573,
+        0.39285714285714285
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.5681818181818182,
+       "num": 50.0,
+       "den": 88.0,
+       "ci95": [
+        0.4133125,
+        0.710752984389348
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.7936507936507936,
+       "num": 50.0,
+       "den": 63.0,
+       "ci95": [
+        0.6363636363636364,
+        0.9113924050632911
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 25.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.6,
+       "num": 30.0,
+       "den": 50.0,
+       "ci95": [
+        0.5,
+        0.75
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9333333333333333,
+       "num": 28.0,
+       "den": 30.0,
+       "ci95": [
+        0.8484265734265736,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.3409090909090909,
+       "num": 30.0,
+       "den": 88.0,
+       "ci95": [
+        0.2597402597402597,
+        0.43038414205344583
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 0.9642857142857143,
+       "num": 27.0,
+       "den": 28.0,
+       "ci95": [
+        0.8846153846153846,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 0.9642857142857143,
+       "num": 27.0,
+       "den": 28.0,
+       "ci95": [
+        0.8846153846153846,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.2,
+       "num": 1.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 23.0,
+       "den": 23.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 6.0,
+       "den": 6.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.4126984126984127,
+       "num": 26.0,
+       "den": 63.0,
+       "ci95": [
+        0.29508196721311475,
+        0.5410183384273408
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.8125,
+       "num": 26.0,
+       "den": 32.0,
+       "ci95": [
+        0.6666666666666666,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.9285714285714286,
+       "num": 26.0,
+       "den": 28.0,
+       "ci95": [
+        0.8387096774193549,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.2,
+       "num": 1.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.3333333333333333,
+       "num": 1.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "kind_version": {
+     "n_rows": 16,
+     "metrics": {
+      "precision_form": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.08695652173913043,
+       "num": 2.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "f1_form": {
+       "value": 0.16,
+       "num": 4.0,
+       "den": 25.0,
+       "ci95": [
+        0.0,
+        0.3448275862068966
+       ]
+      },
+      "precision_suggested": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.08333333333333333,
+       "num": 2.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.2
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.15384615384615385,
+       "num": 4.0,
+       "den": 26.0,
+       "ci95": [
+        0.0,
+        0.3333333333333333
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.08695652173913043,
+       "num": 2.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0625,
+       "num": 1.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.1875
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0625,
+       "num": 1.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.1875
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.17391304347826086,
+       "num": 4.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.4166666666666667
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.2222222222222222,
+       "num": 4.0,
+       "den": 18.0,
+       "ci95": [
+        0.0,
+        0.5004999999999973
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.5,
+       "num": 2.0,
+       "den": 4.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.08695652173913043,
+       "num": 2.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0625,
+       "num": 1.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.1875
+       ]
+      },
+      "precision_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "label_false": {
+     "n_rows": 28,
+     "metrics": {
+      "precision_form": {
+       "value": 0.9090909090909091,
+       "num": 10.0,
+       "den": 11.0,
+       "ci95": [
+        0.7142857142857143,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.2857142857142857,
+       "num": 10.0,
+       "den": 35.0,
+       "ci95": [
+        0.1537878787878789,
+        0.42857142857142855
+       ]
+      },
+      "f1_form": {
+       "value": 0.43478260869565216,
+       "num": 20.0,
+       "den": 46.0,
+       "ci95": [
+        0.2564102564102564,
+        0.5957446808510638
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.9090909090909091,
+       "num": 10.0,
+       "den": 11.0,
+       "ci95": [
+        0.7142857142857143,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.2857142857142857,
+       "num": 10.0,
+       "den": 35.0,
+       "ci95": [
+        0.1537878787878789,
+        0.42857142857142855
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.43478260869565216,
+       "num": 20.0,
+       "den": 46.0,
+       "ci95": [
+        0.2564102564102564,
+        0.5957446808510638
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.9090909090909091,
+       "num": 10.0,
+       "den": 11.0,
+       "ci95": [
+        0.7142857142857143,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.2857142857142857,
+       "num": 10.0,
+       "den": 35.0,
+       "ci95": [
+        0.1537878787878789,
+        0.42857142857142855
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.25,
+       "num": 7.0,
+       "den": 28.0,
+       "ci95": [
+        0.10714285714285714,
+        0.42857142857142855
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.25,
+       "num": 7.0,
+       "den": 28.0,
+       "ci95": [
+        0.10714285714285714,
+        0.42857142857142855
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.45714285714285713,
+       "num": 16.0,
+       "den": 35.0,
+       "ci95": [
+        0.23529411764705882,
+        0.6470588235294118
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.6956521739130435,
+       "num": 16.0,
+       "den": 23.0,
+       "ci95": [
+        0.42857142857142855,
+        0.8947822141560796
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 12.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.6875,
+       "num": 11.0,
+       "den": 16.0,
+       "ci95": [
+        0.5294117647058824,
+        0.9166666666666666
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9090909090909091,
+       "num": 10.0,
+       "den": 11.0,
+       "ci95": [
+        0.7142857142857143,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.3142857142857143,
+       "num": 11.0,
+       "den": 35.0,
+       "ci95": [
+        0.18175990675990686,
+        0.45454545454545453
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 10.0,
+       "den": 10.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 10.0,
+       "den": 10.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.14285714285714285,
+       "num": 1.0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.5
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 9.0,
+       "den": 9.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.45,
+       "num": 9.0,
+       "den": 20.0,
+       "ci95": [
+        0.24970238095238148,
+        0.6842105263157895
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.9,
+       "num": 9.0,
+       "den": 10.0,
+       "ci95": [
+        0.6923076923076923,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.9,
+       "num": 9.0,
+       "den": 10.0,
+       "ci95": [
+        0.6923076923076923,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.3333333333333333,
+       "num": 1.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "label_true": {
+     "n_rows": 99,
+     "metrics": {
+      "precision_form": {
+       "value": 0.8055555555555556,
+       "num": 29.0,
+       "den": 36.0,
+       "ci95": [
+        0.6585365853658537,
+        0.9655172413793104
+       ]
+      },
+      "recall_form": {
+       "value": 0.20863309352517986,
+       "num": 29.0,
+       "den": 139.0,
+       "ci95": [
+        0.14393939393939395,
+        0.2777777777777778
+       ]
+      },
+      "f1_form": {
+       "value": 0.3314285714285714,
+       "num": 58.0,
+       "den": 175.0,
+       "ci95": [
+        0.24159456618419992,
+        0.4210668563300141
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.8055555555555556,
+       "num": 29.0,
+       "den": 36.0,
+       "ci95": [
+        0.6585365853658537,
+        0.9655172413793104
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.20279720279720279,
+       "num": 29.0,
+       "den": 143.0,
+       "ci95": [
+        0.13970588235294118,
+        0.2702804308067466
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.3240223463687151,
+       "num": 58.0,
+       "den": 179.0,
+       "ci95": [
+        0.23602310000697885,
+        0.4093637708729655
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.8055555555555556,
+       "num": 29.0,
+       "den": 36.0,
+       "ci95": [
+        0.6585365853658537,
+        0.9655172413793104
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.20863309352517986,
+       "num": 29.0,
+       "den": 139.0,
+       "ci95": [
+        0.14393939393939395,
+        0.2777777777777778
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.1717171717171717,
+       "num": 17.0,
+       "den": 99.0,
+       "ci95": [
+        0.10101010101010101,
+        0.24242424242424243
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.1717171717171717,
+       "num": 17.0,
+       "den": 99.0,
+       "ci95": [
+        0.10101010101010101,
+        0.24242424242424243
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.3597122302158273,
+       "num": 50.0,
+       "den": 139.0,
+       "ci95": [
+        0.24029547626632689,
+        0.4838907579655649
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.49019607843137253,
+       "num": 50.0,
+       "den": 102.0,
+       "ci95": [
+        0.3478146453089245,
+        0.6269957983193276
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 37.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.62,
+       "num": 31.0,
+       "den": 50.0,
+       "ci95": [
+        0.5063252070636037,
+        0.7777777777777778
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9354838709677419,
+       "num": 29.0,
+       "den": 31.0,
+       "ci95": [
+        0.8484848484848485,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.22302158273381295,
+       "num": 31.0,
+       "den": 139.0,
+       "ci95": [
+        0.15492957746478872,
+        0.2916731366459627
+       ]
+      },
+      "negation_recall": {
+       "value": 0.4444444444444444,
+       "num": 4.0,
+       "den": 9.0,
+       "ci95": [
+        0.1111111111111111,
+        0.8
+       ]
+      },
+      "negation_specificity": {
+       "value": 0.96,
+       "num": 24.0,
+       "den": 25.0,
+       "ci95": [
+        0.8666666666666667,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 0.9655172413793104,
+       "num": 28.0,
+       "den": 29.0,
+       "ci95": [
+        0.8846153846153846,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.36363636363636365,
+       "num": 4.0,
+       "den": 11.0,
+       "ci95": [
+        0.09090909090909091,
+        0.6666666666666666
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 25.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 7.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 22.0,
+       "den": 22.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.16666666666666666,
+       "num": 2.0,
+       "den": 12.0,
+       "ci95": [
+        0.0,
+        0.4
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.42105263157894735,
+       "num": 16.0,
+       "den": 38.0,
+       "ci95": [
+        0.2647058823529412,
+        0.5862576064908719
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.7272727272727273,
+       "num": 16.0,
+       "den": 22.0,
+       "ci95": [
+        0.5428571428571428,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.9411764705882353,
+       "num": 16.0,
+       "den": 17.0,
+       "ci95": [
+        0.8461538461538461,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.2727272727272727,
+       "num": 3.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.6
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_duration": {
+       "value": 0.06666666666666667,
+       "num": 1.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.22736013986013937
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.06666666666666667,
+       "num": 1.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.2222222222222222
+       ]
+      },
+      "precision_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 17.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.375,
+       "num": 6.0,
+       "den": 16.0,
+       "ci95": [
+        0.14261904761904803,
+        0.625
+       ]
+      },
+      "precision_boolean": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5420454545454566,
+        1.0
+       ]
+      },
+      "value_accuracy_boolean": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5420454545454566,
+        1.0
+       ]
+      }
+     }
+    },
+    "label_unsure": {
+     "n_rows": 8,
+     "metrics": {
+      "precision_form": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.2222222222222222,
+       "num": 2.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.5555555555555556
+       ]
+      },
+      "f1_form": {
+       "value": 0.36363636363636365,
+       "num": 4.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.7142857142857143
+       ]
+      },
+      "precision_suggested": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.2222222222222222,
+       "num": 2.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.5555555555555556
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.36363636363636365,
+       "num": 4.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.7142857142857143
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.2222222222222222,
+       "num": 2.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.5555555555555556
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.25,
+       "num": 2.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.625
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.25,
+       "num": 2.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.625
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.2222222222222222,
+       "num": 2.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.5555555555555556
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.4,
+       "num": 2.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.8333333333333334
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.2222222222222222,
+       "num": 2.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.5555555555555556
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.2,
+       "num": 1.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.6
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      }
+     }
+    },
+    "likely_incomplete_form": {
+     "n_rows": 22,
+     "metrics": {
+      "precision_form": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.08333333333333333,
+       "num": 2.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "f1_form": {
+       "value": 0.15384615384615385,
+       "num": 4.0,
+       "den": 26.0,
+       "ci95": [
+        0.0,
+        0.3448275862068966
+       ]
+      },
+      "precision_suggested": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.07142857142857142,
+       "num": 2.0,
+       "den": 28.0,
+       "ci95": [
+        0.0,
+        0.1724512743628184
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.13333333333333333,
+       "num": 4.0,
+       "den": 30.0,
+       "ci95": [
+        0.0,
+        0.29417211328976006
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.08333333333333333,
+       "num": 2.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.09090909090909091,
+       "num": 2.0,
+       "den": 22.0,
+       "ci95": [
+        0.0,
+        0.22727272727272727
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.09090909090909091,
+       "num": 2.0,
+       "den": 22.0,
+       "ci95": [
+        0.0,
+        0.22727272727272727
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.08333333333333333,
+       "num": 2.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.15384615384615385,
+       "num": 2.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.38461538461538464
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.08333333333333333,
+       "num": 2.0,
+       "den": 24.0,
+       "ci95": [
+        0.0,
+        0.20833333333333334
+       ]
+      },
+      "negation_recall": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.3333333333333333,
+       "num": 1.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_percent": {
+       "value": 0.3333333333333333,
+       "num": 1.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "multi_fact": {
+     "n_rows": 36,
+     "metrics": {
+      "precision_form": {
+       "value": 0.7142857142857143,
+       "num": 15.0,
+       "den": 21.0,
+       "ci95": [
+        0.5384615384615384,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.17857142857142858,
+       "num": 15.0,
+       "den": 84.0,
+       "ci95": [
+        0.10988675958188154,
+        0.24675324675324675
+       ]
+      },
+      "f1_form": {
+       "value": 0.2857142857142857,
+       "num": 30.0,
+       "den": 105.0,
+       "ci95": [
+        0.19047619047619047,
+        0.37386098130841106
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.7142857142857143,
+       "num": 15.0,
+       "den": 21.0,
+       "ci95": [
+        0.5384615384615384,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.17647058823529413,
+       "num": 15.0,
+       "den": 85.0,
+       "ci95": [
+        0.10842559426896778,
+        0.2441860465116279
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.2830188679245283,
+       "num": 30.0,
+       "den": 106.0,
+       "ci95": [
+        0.18821691176470592,
+        0.3711340206185567
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.7142857142857143,
+       "num": 15.0,
+       "den": 21.0,
+       "ci95": [
+        0.5384615384615384,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.17857142857142858,
+       "num": 15.0,
+       "den": 84.0,
+       "ci95": [
+        0.10988675958188154,
+        0.24675324675324675
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 36.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 36.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.47619047619047616,
+       "num": 40.0,
+       "den": 84.0,
+       "ci95": [
+        0.2894736842105263,
+        0.6421052631578947
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5970149253731343,
+       "num": 40.0,
+       "den": 67.0,
+       "ci95": [
+        0.391304347826087,
+        0.7681203605514315
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 17.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.425,
+       "num": 17.0,
+       "den": 40.0,
+       "ci95": [
+        0.37037037037037035,
+        0.5
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.8823529411764706,
+       "num": 15.0,
+       "den": 17.0,
+       "ci95": [
+        0.7333333333333333,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.20238095238095238,
+       "num": 17.0,
+       "den": 84.0,
+       "ci95": [
+        0.125,
+        0.27586206896551724
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 15.0,
+       "den": 15.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 15.0,
+       "den": 15.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 9.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 11.0,
+       "den": 11.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 6.0,
+       "den": 6.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.2,
+       "num": 1.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.6666666666666666
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.39285714285714285,
+       "num": 11.0,
+       "den": 28.0,
+       "ci95": [
+        0.21875,
+        0.5757575757575758
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.6470588235294118,
+       "num": 11.0,
+       "den": 17.0,
+       "ci95": [
+        0.47619047619047616,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.8461538461538461,
+       "num": 11.0,
+       "den": 13.0,
+       "ci95": [
+        0.6666666666666666,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.2,
+       "num": 1.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": 0.08333333333333333,
+       "num": 1.0,
+       "den": 12.0,
+       "ci95": [
+        0.0,
+        0.3333333333333333
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.25,
+       "num": 1.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      }
+     }
+    },
+    "negation": {
+     "n_rows": 17,
+     "metrics": {
+      "precision_form": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5541666666666691,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.3157894736842105,
+       "num": 6.0,
+       "den": 19.0,
+       "ci95": [
+        0.1362154150197631,
+        0.5555555555555556
+       ]
+      },
+      "f1_form": {
+       "value": 0.46153846153846156,
+       "num": 12.0,
+       "den": 26.0,
+       "ci95": [
+        0.2222222222222222,
+        0.7096774193548387
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5541666666666691,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.3157894736842105,
+       "num": 6.0,
+       "den": 19.0,
+       "ci95": [
+        0.1362154150197631,
+        0.5555555555555556
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.46153846153846156,
+       "num": 12.0,
+       "den": 26.0,
+       "ci95": [
+        0.2222222222222222,
+        0.7096774193548387
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5541666666666691,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.3157894736842105,
+       "num": 6.0,
+       "den": 19.0,
+       "ci95": [
+        0.1362154150197631,
+        0.5555555555555556
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.35294117647058826,
+       "num": 6.0,
+       "den": 17.0,
+       "ci95": [
+        0.17647058823529413,
+        0.5882352941176471
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.35294117647058826,
+       "num": 6.0,
+       "den": 17.0,
+       "ci95": [
+        0.17647058823529413,
+        0.5882352941176471
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.3684210526315789,
+       "num": 7.0,
+       "den": 19.0,
+       "ci95": [
+        0.15789473684210525,
+        0.6111111111111112
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5,
+       "num": 7.0,
+       "den": 14.0,
+       "ci95": [
+        0.23529411764705882,
+        0.8
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5541666666666691,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.3684210526315789,
+       "num": 7.0,
+       "den": 19.0,
+       "ci95": [
+        0.15789473684210525,
+        0.6111111111111112
+       ]
+      },
+      "negation_recall": {
+       "value": 0.2857142857142857,
+       "num": 4.0,
+       "den": 14.0,
+       "ci95": [
+        0.06666666666666667,
+        0.5384615384615384
+       ]
+      },
+      "negation_specificity": {
+       "value": 0.5,
+       "num": 1.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 0.8333333333333334,
+       "num": 5.0,
+       "den": 6.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.2631578947368421,
+       "num": 5.0,
+       "den": 19.0,
+       "ci95": [
+        0.09523809523809523,
+        0.5
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 3.0,
+       "den": 3.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.5,
+       "num": 2.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_quantity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_percent": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.2857142857142857,
+       "num": 4.0,
+       "den": 14.0,
+       "ci95": [
+        0.06666666666666667,
+        0.5384615384615384
+       ]
+      },
+      "precision_boolean": {
+       "value": 0.8,
+       "num": 4.0,
+       "den": 5.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      },
+      "value_accuracy_boolean": {
+       "value": 0.8,
+       "num": 4.0,
+       "den": 5.0,
+       "ci95": [
+        0.3333333333333333,
+        1.0
+       ]
+      }
+     }
+    },
+    "numeric_confusable": {
+     "n_rows": 61,
+     "metrics": {
+      "precision_form": {
+       "value": 0.8620689655172413,
+       "num": 25.0,
+       "den": 29.0,
+       "ci95": [
+        0.7096774193548387,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.25773195876288657,
+       "num": 25.0,
+       "den": 97.0,
+       "ci95": [
+        0.1777604166666667,
+        0.3448378489326765
+       ]
+      },
+      "f1_form": {
+       "value": 0.3968253968253968,
+       "num": 50.0,
+       "den": 126.0,
+       "ci95": [
+        0.2909013209013209,
+        0.504068456650953
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.8620689655172413,
+       "num": 25.0,
+       "den": 29.0,
+       "ci95": [
+        0.7096774193548387,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.25252525252525254,
+       "num": 25.0,
+       "den": 99.0,
+       "ci95": [
+        0.17473617560151966,
+        0.3400106382978723
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.390625,
+       "num": 50.0,
+       "den": 128.0,
+       "ci95": [
+        0.28771839671120253,
+        0.49612403100775193
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.8620689655172413,
+       "num": 25.0,
+       "den": 29.0,
+       "ci95": [
+        0.7096774193548387,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.25773195876288657,
+       "num": 25.0,
+       "den": 97.0,
+       "ci95": [
+        0.1777604166666667,
+        0.3448378489326765
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.22950819672131148,
+       "num": 14.0,
+       "den": 61.0,
+       "ci95": [
+        0.13114754098360656,
+        0.3442622950819672
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.22950819672131148,
+       "num": 14.0,
+       "den": 61.0,
+       "ci95": [
+        0.13114754098360656,
+        0.3442622950819672
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.4639175257731959,
+       "num": 45.0,
+       "den": 97.0,
+       "ci95": [
+        0.3095017636684304,
+        0.6160714285714286
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.625,
+       "num": 45.0,
+       "den": 72.0,
+       "ci95": [
+        0.45454545454545453,
+        0.7721662830840045
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 25.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.6,
+       "num": 27.0,
+       "den": 45.0,
+       "ci95": [
+        0.49230158730158735,
+        0.7692307692307693
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9259259259259259,
+       "num": 25.0,
+       "den": 27.0,
+       "ci95": [
+        0.8235294117647058,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.27835051546391754,
+       "num": 27.0,
+       "den": 97.0,
+       "ci95": [
+        0.19791380494505495,
+        0.3666836734693876
+       ]
+      },
+      "negation_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 25.0,
+       "den": 25.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 25.0,
+       "den": 25.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.25,
+       "num": 1.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 20.0,
+       "den": 20.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_date": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.4583333333333333,
+       "num": 22.0,
+       "den": 48.0,
+       "ci95": [
+        0.3181818181818182,
+        0.6052631578947368
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.8461538461538461,
+       "num": 22.0,
+       "den": 26.0,
+       "ci95": [
+        0.6785714285714286,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.9166666666666666,
+       "num": 22.0,
+       "den": 24.0,
+       "ci95": [
+        0.8,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.18181818181818182,
+       "num": 2.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.5
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_duration": {
+       "value": 0.09090909090909091,
+       "num": 1.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.375
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 2.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "precision_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_boolean": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      }
+     }
+    },
+    "paraphrase": {
+     "n_rows": 102,
+     "metrics": {
+      "precision_form": {
+       "value": 0.8205128205128205,
+       "num": 32.0,
+       "den": 39.0,
+       "ci95": [
+        0.6829268292682927,
+        0.9714285714285714
+       ]
+      },
+      "recall_form": {
+       "value": 0.21768707482993196,
+       "num": 32.0,
+       "den": 147.0,
+       "ci95": [
+        0.1568527410964386,
+        0.2829145670026128
+       ]
+      },
+      "f1_form": {
+       "value": 0.34408602150537637,
+       "num": 64.0,
+       "den": 186.0,
+       "ci95": [
+        0.2634730538922156,
+        0.42529347028613346
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.8205128205128205,
+       "num": 32.0,
+       "den": 39.0,
+       "ci95": [
+        0.6829268292682927,
+        0.9714285714285714
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.2119205298013245,
+       "num": 32.0,
+       "den": 151.0,
+       "ci95": [
+        0.15328467153284672,
+        0.27537481259370306
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.3368421052631579,
+       "num": 64.0,
+       "den": 190.0,
+       "ci95": [
+        0.25668449197860965,
+        0.41711393983137035
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.8205128205128205,
+       "num": 32.0,
+       "den": 39.0,
+       "ci95": [
+        0.6829268292682927,
+        0.9714285714285714
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.21768707482993196,
+       "num": 32.0,
+       "den": 147.0,
+       "ci95": [
+        0.1568527410964386,
+        0.2829145670026128
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.16666666666666666,
+       "num": 17.0,
+       "den": 102.0,
+       "ci95": [
+        0.09803921568627451,
+        0.24509803921568626
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.16666666666666666,
+       "num": 17.0,
+       "den": 102.0,
+       "ci95": [
+        0.09803921568627451,
+        0.24509803921568626
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.3945578231292517,
+       "num": 58.0,
+       "den": 147.0,
+       "ci95": [
+        0.2740740740740741,
+        0.5094400486914181
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.5321100917431193,
+       "num": 58.0,
+       "den": 109.0,
+       "ci95": [
+        0.3879266361717101,
+        0.6574136636636637
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 38.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.603448275862069,
+       "num": 35.0,
+       "den": 58.0,
+       "ci95": [
+        0.5116213002114165,
+        0.727334152334152
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9142857142857143,
+       "num": 32.0,
+       "den": 35.0,
+       "ci95": [
+        0.8260597826086957,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.23809523809523808,
+       "num": 35.0,
+       "den": 147.0,
+       "ci95": [
+        0.17360416666666667,
+        0.30370604781997185
+       ]
+      },
+      "negation_recall": {
+       "value": 0.25,
+       "num": 3.0,
+       "den": 12.0,
+       "ci95": [
+        0.0,
+        0.5384615384615384
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 29.0,
+       "den": 29.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 32.0,
+       "den": 32.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.2,
+       "num": 3.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.45454545454545453
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 23.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 24.0,
+       "den": 24.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 7.0,
+       "den": 7.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.18181818181818182,
+       "num": 2.0,
+       "den": 11.0,
+       "ci95": [
+        0.0,
+        0.4446969696969683
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.4090909090909091,
+       "num": 18.0,
+       "den": 44.0,
+       "ci95": [
+        0.2702702702702703,
+        0.5581395348837209
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.75,
+       "num": 18.0,
+       "den": 24.0,
+       "ci95": [
+        0.5853150406504065,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 0.9,
+       "num": 18.0,
+       "den": 20.0,
+       "ci95": [
+        0.7741568914956012,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.3076923076923077,
+       "num": 4.0,
+       "den": 13.0,
+       "ci95": [
+        0.07692307692307693,
+        0.5833333333333334
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 4.0,
+       "den": 4.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_duration": {
+       "value": 0.0625,
+       "num": 1.0,
+       "den": 16.0,
+       "ci95": [
+        0.0,
+        0.2222222222222222
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.07142857142857142,
+       "num": 1.0,
+       "den": 14.0,
+       "ci95": [
+        0.0,
+        0.23076923076923078
+       ]
+      },
+      "precision_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 18.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.375,
+       "num": 6.0,
+       "den": 16.0,
+       "ci95": [
+        0.13333333333333333,
+        0.6363636363636364
+       ]
+      },
+      "precision_boolean": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "value_accuracy_boolean": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      }
+     }
+    },
+    "temporal": {
+     "n_rows": 44,
+     "metrics": {
+      "precision_form": {
+       "value": 0.875,
+       "num": 14.0,
+       "den": 16.0,
+       "ci95": [
+        0.6841507177033495,
+        1.0
+       ]
+      },
+      "recall_form": {
+       "value": 0.23333333333333334,
+       "num": 14.0,
+       "den": 60.0,
+       "ci95": [
+        0.125,
+        0.33929413746630727
+       ]
+      },
+      "f1_form": {
+       "value": 0.3684210526315789,
+       "num": 28.0,
+       "den": 76.0,
+       "ci95": [
+        0.2153846153846154,
+        0.5
+       ]
+      },
+      "precision_suggested": {
+       "value": 0.875,
+       "num": 14.0,
+       "den": 16.0,
+       "ci95": [
+        0.6841507177033495,
+        1.0
+       ]
+      },
+      "recall_suggested": {
+       "value": 0.22580645161290322,
+       "num": 14.0,
+       "den": 62.0,
+       "ci95": [
+        0.1206896551724138,
+        0.3333333333333333
+       ]
+      },
+      "f1_suggested": {
+       "value": 0.358974358974359,
+       "num": 28.0,
+       "den": 78.0,
+       "ci95": [
+        0.208955223880597,
+        0.48899543378995375
+       ]
+      },
+      "precision_approx_upper_bound": {
+       "value": 0.875,
+       "num": 14.0,
+       "den": 16.0,
+       "ci95": [
+        0.6841507177033495,
+        1.0
+       ]
+      },
+      "exact_triple_accuracy": {
+       "value": 0.23333333333333334,
+       "num": 14.0,
+       "den": 60.0,
+       "ci95": [
+        0.125,
+        0.33929413746630727
+       ]
+      },
+      "row_all_gold_facts_found": {
+       "value": 0.20454545454545456,
+       "num": 9.0,
+       "den": 44.0,
+       "ci95": [
+        0.09090909090909091,
+        0.3181818181818182
+       ]
+      },
+      "row_exact_set": {
+       "value": 0.20454545454545456,
+       "num": 9.0,
+       "den": 44.0,
+       "ci95": [
+        0.09090909090909091,
+        0.3181818181818182
+       ]
+      },
+      "entity_accuracy": {
+       "value": 0.36666666666666664,
+       "num": 22.0,
+       "den": 60.0,
+       "ci95": [
+        0.2033898305084746,
+        0.5263397129186601
+       ]
+      },
+      "entity_accuracy_subject_written": {
+       "value": 0.4888888888888889,
+       "num": 22.0,
+       "den": 45.0,
+       "ci95": [
+        0.29159722222222234,
+        0.6756955484896661
+       ]
+      },
+      "entity_accuracy_subject_implicit": {
+       "value": 0.0,
+       "num": 0,
+       "den": 15.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "attribute_accuracy_given_entity": {
+       "value": 0.6818181818181818,
+       "num": 15.0,
+       "den": 22.0,
+       "ci95": [
+        0.5161045943304008,
+        0.9090909090909091
+       ]
+      },
+      "value_accuracy_given_entity_attribute": {
+       "value": 0.9333333333333333,
+       "num": 14.0,
+       "den": 15.0,
+       "ci95": [
+        0.7727272727272727,
+        1.0
+       ]
+      },
+      "slot_recall_any_value": {
+       "value": 0.25,
+       "num": 15.0,
+       "den": 60.0,
+       "ci95": [
+        0.140625,
+        0.3606910684002259
+       ]
+      },
+      "negation_recall": {
+       "value": 0.4,
+       "num": 2.0,
+       "den": 5.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "negation_specificity": {
+       "value": 1.0,
+       "num": 12.0,
+       "den": 12.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_flag_accuracy_on_matched": {
+       "value": 1.0,
+       "num": 14.0,
+       "den": 14.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "negation_trap_rows_exact": {
+       "value": 0.5,
+       "num": 3.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "temporal_cue_recall": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 28.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_cue_recall_given_fact": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 10.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "temporal_abstention_on_no_cue_rows": {
+       "value": 1.0,
+       "num": 5.0,
+       "den": 5.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "temporal_dates_supported_by_text": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "share_of_extras_reviewed_incorrect": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_date": {
+       "value": 0.15384615384615385,
+       "num": 2.0,
+       "den": 13.0,
+       "ci95": [
+        0.0,
+        0.36363636363636365
+       ]
+      },
+      "precision_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_date": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_money": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_money": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_quantity": {
+       "value": 0.5,
+       "num": 6.0,
+       "den": 12.0,
+       "ci95": [
+        0.2222222222222222,
+        0.7777777777777778
+       ]
+      },
+      "precision_quantity": {
+       "value": 0.8571428571428571,
+       "num": 6.0,
+       "den": 7.0,
+       "ci95": [
+        0.5,
+        1.0
+       ]
+      },
+      "value_accuracy_quantity": {
+       "value": 1.0,
+       "num": 6.0,
+       "den": 6.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_percent": {
+       "value": 0.6666666666666666,
+       "num": 2.0,
+       "den": 3.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_percent": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "value_accuracy_percent": {
+       "value": 1.0,
+       "num": 2.0,
+       "den": 2.0,
+       "ci95": [
+        1.0,
+        1.0
+       ]
+      },
+      "recall_duration": {
+       "value": 0.16666666666666666,
+       "num": 1.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "precision_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "value_accuracy_duration": {
+       "value": 1.0,
+       "num": 1.0,
+       "den": 1.0,
+       "ci95": null
+      },
+      "recall_version": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 6.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "value_accuracy_version": {
+       "value": null,
+       "num": 0.0,
+       "den": 0.0,
+       "ci95": null
+      },
+      "recall_name": {
+       "value": 0.0,
+       "num": 0.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.0
+       ]
+      },
+      "precision_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "value_accuracy_name": {
+       "value": null,
+       "num": 0,
+       "den": 0,
+       "ci95": null
+      },
+      "recall_boolean": {
+       "value": 0.375,
+       "num": 3.0,
+       "den": 8.0,
+       "ci95": [
+        0.0,
+        0.727840909090906
+       ]
+      },
+      "precision_boolean": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      },
+      "value_accuracy_boolean": {
+       "value": 0.75,
+       "num": 3.0,
+       "den": 4.0,
+       "ci95": [
+        0.0,
+        1.0
+       ]
+      }
+     }
+    }
+   },
+   "counts": {
+    "n_facts_raw": 49.0,
+    "n_pred": 49.0,
+    "n_dup": 0,
+    "n_unmapped": 0,
+    "n_gold_form": 183.0,
+    "tp_form": 41.0,
+    "n_gold_suggested": 187.0,
+    "tp_suggested": 41.0,
+    "x_total": 8.0,
+    "x_matches_suggestion": 0,
+    "x_not_in_suggestions": 8.0,
+    "x_reviewed": 8.0,
+    "x_judged_correct": 0,
+    "x_judged_incorrect": 8.0,
+    "x_judged_unclear": 0,
+    "x_not_in_suggestions_unreviewed": 0,
+    "x_conflicts_with_form_slot": 3.0,
+    "x_incorrect_known": 8.0,
+    "t_cue_rows": 28.0,
+    "t_dates_set": 0,
+    "t_dates_copied_page_date": 0,
+    "n_gold_extra_suggestions": 4
+   }
+  }
+ },
+ "paired_differences_vs_reference": {},
+ "resources": {
+  "machine": {
+   "platform": "Windows-11-10.0.26200-SP0",
+   "processor": "Intel64 Family 6 Model 142 Stepping 10, GenuineIntel",
+   "cpu_count": 8,
+   "python": "3.14.0"
+  },
+  "threads": 2,
+  "affinity_pinned": false,
+  "thread_env": {
+   "OMP_NUM_THREADS": "2",
+   "MKL_NUM_THREADS": "2",
+   "OPENBLAS_NUM_THREADS": "2",
+   "NUMEXPR_NUM_THREADS": "2",
+   "VECLIB_MAXIMUM_THREADS": "2"
+  },
+  "method_of_measurement": "(Windows, psutil not required)\n  * the subprocess is put into a Job Object; the job's accounting gives user+kernel CPU time of the whole process\n    tree, including children that already exited;\n  * peak RAM: every 20 ms the working sets of all processes in the job are read; `peak_working_set_mb` is the larger of\n    (a) the biggest sum of working sets seen at one instant and (b) the biggest per-process OS-reported peak working set.\n    Exact for a single process; a sampled lower bound for a process tree;\n  * wall seconds: perf_counter around start..exit, so it includes interpreter start-up and imports.\nOn other systems the fallback is resource.getrusage(RUSAGE_CHILDREN) (CPU, peak RSS).",
+  "sequential": true,
+  "repeats": 3,
+  "input": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+  "rows": 1897,
+  "methods": {
+   "baseline": {
+    "measured": true,
+    "command": [
+     "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+     "experiments/evaluation/baseline_parser.py",
+     "--input",
+     "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+     "--out",
+     "experiments\\evaluation\\_scratch\\res_baseline_runs\\baseline\\facts.jsonl"
+    ],
+    "runs": [
+     {
+      "returncode": 0,
+      "wall_seconds": 3.8903755999999703,
+      "cpu_seconds": 3.8125,
+      "peak_sampled_sum_bytes": 24948736,
+      "peak_single_process_bytes": 25120768,
+      "job_object": true,
+      "processes_seen": 1,
+      "peak_working_set_mb": 24.0,
+      "facts_written": 658
+     },
+     {
+      "returncode": 0,
+      "wall_seconds": 5.0544365999994625,
+      "cpu_seconds": 4.921875,
+      "peak_sampled_sum_bytes": 24903680,
+      "peak_single_process_bytes": 24903680,
+      "job_object": true,
+      "processes_seen": 1,
+      "peak_working_set_mb": 23.8,
+      "facts_written": 658
+     },
+     {
+      "returncode": 0,
+      "wall_seconds": 4.552981400000135,
+      "cpu_seconds": 4.421875,
+      "peak_sampled_sum_bytes": 25083904,
+      "peak_single_process_bytes": 25083904,
+      "job_object": true,
+      "processes_seen": 1,
+      "peak_working_set_mb": 23.9,
+      "facts_written": 658
+     }
+    ],
+    "rows_processed": 1897,
+    "returncode": 0,
+    "cpu_seconds": 4.42,
+    "wall_seconds": 4.55,
+    "peak_working_set_mb": 23.9,
+    "cpu_per_wall": 0.97,
+    "cpu_seconds_per_1000_rows": 2.33
+   }
+  }
+ }
+}

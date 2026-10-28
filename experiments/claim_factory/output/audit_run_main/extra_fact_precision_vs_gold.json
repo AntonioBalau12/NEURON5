@@ -1,0 +1,84 @@
+{
+ "openie": {
+  "facts": 2184,
+  "facts_on_practice_rows": 2184,
+  "facts_on_non_practice_rows": 0,
+  "source_labels_on_non_practice_rows": {},
+  "thr>=0.0": {
+   "n": 1177,
+   "in_gold_form_of_same_row": 1149,
+   "precision": 0.9762
+  },
+  "thr>=0.5": {
+   "n": 1121,
+   "in_gold_form_of_same_row": 1098,
+   "precision": 0.9795
+  },
+  "thr>=0.6": {
+   "n": 1012,
+   "in_gold_form_of_same_row": 994,
+   "precision": 0.9822
+  },
+  "thr>=0.7": {
+   "n": 484,
+   "in_gold_form_of_same_row": 477,
+   "precision": 0.9855
+  },
+  "thr>=0.75": {
+   "n": 407,
+   "in_gold_form_of_same_row": 401,
+   "precision": 0.9853
+  },
+  "thr>=0.8": {
+   "n": 0,
+   "in_gold_form_of_same_row": 0,
+   "precision": null
+  },
+  "thr>=0.9": {
+   "n": 0,
+   "in_gold_form_of_same_row": 0,
+   "precision": null
+  }
+ },
+ "slot_filling": {
+  "facts": 1595,
+  "facts_on_practice_rows": 1595,
+  "facts_on_non_practice_rows": 0,
+  "source_labels_on_non_practice_rows": {},
+  "thr>=0.0": {
+   "n": 1227,
+   "in_gold_form_of_same_row": 1192,
+   "precision": 0.9715
+  },
+  "thr>=0.5": {
+   "n": 1227,
+   "in_gold_form_of_same_row": 1192,
+   "precision": 0.9715
+  },
+  "thr>=0.6": {
+   "n": 1227,
+   "in_gold_form_of_same_row": 1192,
+   "precision": 0.9715
+  },
+  "thr>=0.7": {
+   "n": 1196,
+   "in_gold_form_of_same_row": 1170,
+   "precision": 0.9783
+  },
+  "thr>=0.75": {
+   "n": 1161,
+   "in_gold_form_of_same_row": 1138,
+   "precision": 0.9802
+  },
+  "thr>=0.8": {
+   "n": 1118,
+   "in_gold_form_of_same_row": 1098,
+   "precision": 0.9821
+  },
+  "thr>=0.9": {
+   "n": 1002,
+   "in_gold_form_of_same_row": 989,
+   "precision": 0.987
+  }
+ }
+}

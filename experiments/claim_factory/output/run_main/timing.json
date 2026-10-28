@@ -1,0 +1,11 @@
+{
+  "graph_build_s": 5.476,
+  "generate_fact_s": 0.035,
+  "generate_compare_s": 0.021,
+  "generate_change_s": 0.053,
+  "generate_at_event_s": 0.051,
+  "generate_relation_s": 0.022,
+  "contract_checks_s": 1.694,
+  "official_validate_output_s": 1.718,
+  "total_s": 9.191
+}

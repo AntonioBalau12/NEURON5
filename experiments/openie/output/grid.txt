@@ -1,0 +1,9 @@
+﻿== strict_partial=0
+[5-fold CV] statuses=['complete'] predicted=1190 gold=2070 (no-op gold=2035) TP=1152 P=0.968 R=0.557 R_noop=0.564 extras=38
+[5-fold CV] statuses=['ambiguous', 'complete', 'partial'] predicted=1234 gold=2070 (no-op gold=2035) TP=1184 P=0.959 R=0.572 R_noop=0.580 extras=50
+== bridge_apposition=0
+[5-fold CV] statuses=['complete'] predicted=1190 gold=2070 (no-op gold=2035) TP=1151 P=0.967 R=0.556 R_noop=0.564 extras=39
+[5-fold CV] statuses=['ambiguous', 'complete', 'partial'] predicted=1234 gold=2070 (no-op gold=2035) TP=1183 P=0.959 R=0.571 R_noop=0.579 extras=51
+== strict_partial=0 --set bridge_apposition=0
+[5-fold CV] statuses=['complete'] predicted=1198 gold=2070 (no-op gold=2035) TP=1160 P=0.968 R=0.560 R_noop=0.568 extras=38
+[5-fold CV] statuses=['ambiguous', 'complete', 'partial'] predicted=1242 gold=2070 (no-op gold=2035) TP=1192 P=0.960 R=0.576 R_noop=0.584 extras=50

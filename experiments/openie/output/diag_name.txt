@@ -1,0 +1,34 @@
+﻿282 ('subj_absent', 'value_found', 'quantity')
+93 ('subj_absent', 'value_found', 'percent')
+78 ('subj_absent', 'value_found', 'name')
+75 ('subj_absent', 'value_found', 'duration')
+69 ('subj_absent', 'value_found', 'money')
+55 ('subj_in_sentence', 'value_found', 'boolean')
+50 ('subj_in_sentence', 'value_found', 'name')
+39 ('subj_absent', 'value_found', 'date')
+28 ('subj_absent', 'value_found', 'boolean')
+19 ('subj_in_sentence', 'value_found', 'quantity')
+16 ('subj_in_sentence', 'value_found', 'money')
+13 ('subj_in_sentence', 'value_found', 'duration')
+10 ('subj_in_sentence', 'value_found', 'date')
+6 ('subj_in_sentence', 'value_found', 'percent')
+3 ('subj_in_sentence', 'value_found', 'version')
+2 ('subj_absent', 'value_found', 'version')
+2 ('subj_in_sentence', 'value_not_found', 'date')
+2 ('subj_absent', 'value_not_found', 'money')
+1 ('subj_in_sentence', 'value_not_found', 'quantity')
+1 ('subj_absent', 'value_not_found', 'quantity')
+1 ('subj_in_sentence', 'value_not_found', 'version')
+===== ('subj_in_sentence', 'value_found', 'name') 50
+   p-1487 Hooly | ceo | {"kind": "name", "value": "Gavin"} | Gavin Bellson, Gavin, started Hooly on 2025-01-14.
+   p-872 Hooly | head_of_product | {"kind": "name", "value": "Dinesh Chugtay"} | Dinesh Chugtay, head of product at Hooly, on the files: Hooly Gemini reads 22 formats with a context window of 200,000 tokens.
+   p-1801 Hooly | headquarters | {"kind": "name", "value": "Berlin"} | Hooly was founded on 14 January 2025 in Berlin, where the company is still headquartered.
+   p-950 Hooly Devices | head | {"kind": "name", "value": "Jack Barkor"} | Our guest today is Jack Barkor, who took over Hooly Devices this month.
+   p-1591 Hooly | headquarters | {"kind": "name", "value": "Berlin"} | Gavin: Berlin is home, though the engineering hub stays in Berlin, so Hooly has 1 office now.
+   p-1494 Hooly | ceo | {"kind": "name", "value": "Gavin"} | Gavin Bellson, the Gavin of Hooly, will interview every candidate for Hooly Gemini 1.5.
+   p-1299 Hooly Board | chair | {"kind": "name", "value": "Gavin Bellson"} | Gavin Bellson leads the Hooly Board and signed the appointment.
+   p-46 Hooly Cloud | reliability_lead | {"kind": "name", "value": "Holdan"} | Holdan has run Hooly Cloud reliability since January 2026.
+   p-1228 Hooly Devices | head | {"kind": "name", "value": "Jack Barkor"} | Jack Barkor takes charge of Hooly Devices today, and Jack Barkor is now the person every phone launch answers to.
+   p-594 Made by Hooly 2026 | city | {"kind": "name", "value": "Frankfurt"} | Made by Hooly is hosted at Rheinhalle, in Frankfurt.
+   p-109 Hooly Search | executive_owner | {"kind": "name", "value": "Richard Hendrix"} | Richard Hendrix says AI answers in Hooly Search are the biggest change since launch.
+   p-335 Hooly Search | executive_owner | {"kind": "name", "value": "Richard Hendrix"} | Richard Hendrix presents these figures for Hooly Search.

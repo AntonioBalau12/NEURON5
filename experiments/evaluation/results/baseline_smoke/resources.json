@@ -1,0 +1,77 @@
+{
+ "machine": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 142 Stepping 10, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.14.0"
+ },
+ "threads": 2,
+ "affinity_pinned": false,
+ "thread_env": {
+  "OMP_NUM_THREADS": "2",
+  "MKL_NUM_THREADS": "2",
+  "OPENBLAS_NUM_THREADS": "2",
+  "NUMEXPR_NUM_THREADS": "2",
+  "VECLIB_MAXIMUM_THREADS": "2"
+ },
+ "method_of_measurement": "(Windows, psutil not required)\n  * the subprocess is put into a Job Object; the job's accounting gives user+kernel CPU time of the whole process\n    tree, including children that already exited;\n  * peak RAM: every 20 ms the working sets of all processes in the job are read; `peak_working_set_mb` is the larger of\n    (a) the biggest sum of working sets seen at one instant and (b) the biggest per-process OS-reported peak working set.\n    Exact for a single process; a sampled lower bound for a process tree;\n  * wall seconds: perf_counter around start..exit, so it includes interpreter start-up and imports.\nOn other systems the fallback is resource.getrusage(RUSAGE_CHILDREN) (CPU, peak RSS).",
+ "sequential": true,
+ "repeats": 3,
+ "input": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+ "rows": 1897,
+ "methods": {
+  "baseline": {
+   "measured": true,
+   "command": [
+    "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "experiments/evaluation/baseline_parser.py",
+    "--input",
+    "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+    "--out",
+    "experiments\\evaluation\\_scratch\\res_baseline_runs\\baseline\\facts.jsonl"
+   ],
+   "runs": [
+    {
+     "returncode": 0,
+     "wall_seconds": 3.8903755999999703,
+     "cpu_seconds": 3.8125,
+     "peak_sampled_sum_bytes": 24948736,
+     "peak_single_process_bytes": 25120768,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 24.0,
+     "facts_written": 658
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 5.0544365999994625,
+     "cpu_seconds": 4.921875,
+     "peak_sampled_sum_bytes": 24903680,
+     "peak_single_process_bytes": 24903680,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 23.8,
+     "facts_written": 658
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 4.552981400000135,
+     "cpu_seconds": 4.421875,
+     "peak_sampled_sum_bytes": 25083904,
+     "peak_single_process_bytes": 25083904,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 23.9,
+     "facts_written": 658
+    }
+   ],
+   "rows_processed": 1897,
+   "returncode": 0,
+   "cpu_seconds": 4.42,
+   "wall_seconds": 4.55,
+   "peak_working_set_mb": 23.9,
+   "cpu_per_wall": 0.97,
+   "cpu_seconds_per_1000_rows": 2.33
+  }
+ }
+}

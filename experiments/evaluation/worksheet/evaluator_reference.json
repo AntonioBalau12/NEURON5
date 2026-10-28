@@ -1,0 +1,4655 @@
+{
+ "meta": {
+  "form_gold": "facts of the given form; incomplete, NOT exhaustive ground truth",
+  "evaluator_suggested": "form facts + additional facts suggested by evaluator_llm; UNVERIFIED",
+  "suggestions_status": "unverified: suggestions made by reading each sentence; needs_human_verification",
+  "n_rows_with_evaluator_review": 135
+ },
+ "rows": {
+  "p-1": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-12",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "likely_incomplete_form",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Holdan",
+     "attribute": "joined",
+     "value": {
+      "kind": "date",
+      "value": "2026-01-12"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-38": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-27",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Docs",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "1.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-60": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-08",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Chrome",
+     "attribute": "stable_version",
+     "value": {
+      "kind": "version",
+      "value": "69.0"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Chrome",
+     "attribute": "stable_release_date",
+     "value": {
+      "kind": "date",
+      "value": "2026-07-07"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-71": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-24",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_true"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Quayside Hall",
+     "attribute": "capacity",
+     "value": {
+      "kind": "quantity",
+      "value": 3200,
+      "unit": "seat"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-81": {
+   "split": "dev",
+   "label": "true",
+   "date": "2025-10-19",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos Lite",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 1.99,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Photos Lite",
+     "attribute": "storage",
+     "value": {
+      "kind": "quantity",
+      "value": 100,
+      "unit": "GB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-114": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-22",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "languages_served",
+     "value": {
+      "kind": "quantity",
+      "value": 62,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-117": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-01-22",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "ai_answers",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "yet"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-121": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2026-07-02",
+   "strata": [
+    "kind_quantity",
+    "label_unsure",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android 17",
+     "attribute": "supported_models",
+     "value": {
+      "kind": "quantity",
+      "value": 19,
+      "unit": "model"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-126": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-07-02",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "label_false",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "lead",
+     "value": {
+      "kind": "name",
+      "value": "Nelson Bighettie"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Text does not say Nelson Bighettie leads Hooly Android; he thanks testers. The form reading relies on context (subject absent)."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-130": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-12",
+   "strata": [
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Devices",
+     "attribute": "head",
+     "value": {
+      "kind": "name",
+      "value": "Gavin Bellson"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "still",
+    "until"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-137": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-12",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Devices",
+     "attribute": "trade_in_programme",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "for the moment"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-146": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-04-01",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "active_devices",
+     "value": {
+      "kind": "quantity",
+      "value": 2900000000,
+      "unit": "device"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-153": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-25",
+   "strata": [
+    "kind_quantity",
+    "label_true"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Fold",
+     "attribute": "weight",
+     "value": {
+      "kind": "quantity",
+      "value": 258,
+      "unit": "g"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-167": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-01",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_money",
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly I/O 2026",
+     "attribute": "sponsors",
+     "value": {
+      "kind": "quantity",
+      "value": 9,
+      "unit": "sponsor"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly I/O 2026",
+     "attribute": "date",
+     "value": {
+      "kind": "date",
+      "value": "2026-03-24"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly I/O 2026",
+     "attribute": "city",
+     "value": {
+      "kind": "name",
+      "value": "Berlin"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F4",
+     "subject": "Hooly I/O 2026",
+     "attribute": "ticket_price",
+     "value": {
+      "kind": "money",
+      "value": 249,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-170": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-24",
+   "strata": [
+    "kind_duration",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "languages",
+     "value": {
+      "kind": "quantity",
+      "value": 12,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "median_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 1.4,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly Gemini",
+     "attribute": "context_window",
+     "value": {
+      "kind": "quantity",
+      "value": 200000,
+      "unit": "token"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "now"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-227": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-18",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_duration",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud Next 2026",
+     "attribute": "length",
+     "value": {
+      "kind": "duration",
+      "value": 3,
+      "unit": "day"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-232": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-03-18",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud Next 2026",
+     "attribute": "sponsors",
+     "value": {
+      "kind": "quantity",
+      "value": 20,
+      "unit": "sponsor"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-234": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-24",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud",
+     "attribute": "cli_version",
+     "value": {
+      "kind": "version",
+      "value": "2.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-258": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-10",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "raised_series_a",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "this month",
+    "yet"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-311": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-01-14",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos",
+     "attribute": "ai_editing",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-331": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-01-12",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_false",
+    "likely_incomplete_form",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "share_of_ad_revenue",
+     "value": {
+      "kind": "percent",
+      "value": 71
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Form subject is Hooly Search; the text names only Hooly ('Hooly's revenue')."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-338": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-20",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Brightline Labs",
+     "attribute": "integration_partner_of_flawless",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-339": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-22",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "17.0"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-365": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-12-12",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_false",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Watch",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 399,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-368": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-12-12",
+   "strata": [
+    "kind_percent",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android 16",
+     "attribute": "share_of_devices",
+     "value": {
+      "kind": "percent",
+      "value": 6.4
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "already"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-379": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-04-28",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Fold",
+     "attribute": "hinge_rating",
+     "value": {
+      "kind": "quantity",
+      "value": 500000,
+      "unit": "fold"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-397": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-30",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Made by Hooly 2026",
+     "attribute": "stream_viewers",
+     "value": {
+      "kind": "quantity",
+      "value": 2100000,
+      "unit": "viewer"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-398": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-30",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "16.1"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-410": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-03",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Workspace Enterprise",
+     "attribute": "storage_per_user",
+     "value": {
+      "kind": "quantity",
+      "value": 1000,
+      "unit": "GB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-418": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-03",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gmail",
+     "attribute": "active_users",
+     "value": {
+      "kind": "quantity",
+      "value": 21000,
+      "unit": "user"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-428": {
+   "split": "dev",
+   "label": "unsure",
+   "date": "2025-12-11",
+   "strata": [
+    "kind_boolean",
+    "label_unsure",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Board",
+     "attribute": "audit_committee",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-434": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-04-09",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Hiring Programme",
+     "attribute": "interview_rounds",
+     "value": {
+      "kind": "quantity",
+      "value": 5,
+      "unit": "round"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-444": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-20",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Berlin Office",
+     "attribute": "bike_racks",
+     "value": {
+      "kind": "quantity",
+      "value": 14,
+      "unit": "rack"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-477": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-12-01",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud",
+     "attribute": "region_outside_europe",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-490": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-10",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud",
+     "attribute": "cli_version",
+     "value": {
+      "kind": "version",
+      "value": "2.3"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-515": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-01",
+   "strata": [
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "hosting_regions",
+     "value": {
+      "kind": "quantity",
+      "value": 2,
+      "unit": "region"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "primary_region",
+     "value": {
+      "kind": "name",
+      "value": "Frankfurt"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly Gemini",
+     "attribute": "cloud_provider",
+     "value": {
+      "kind": "name",
+      "value": "Nimbus Cloud"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-568": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-11-04",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "ad_free_option",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "yet"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-576": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-20",
+   "strata": [
+    "kind_percent",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "share_of_ad_revenue",
+     "value": {
+      "kind": "percent",
+      "value": 58.9
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-579": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-10-20",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_false",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "ai_answers",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "The negation scopes over 'in every language'. It does not clearly state that AI answers do not exist; the false boolean is a context reading."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-593": {
+   "split": "dev",
+   "label": "false",
+   "date": "2026-02-20",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_date",
+    "label_false",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Made by Hooly 2026",
+     "attribute": "date",
+     "value": {
+      "kind": "date",
+      "value": "2026-04-28"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-601": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-20",
+   "strata": [
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Made by Hooly 2026",
+     "attribute": "devices_keynote_speaker",
+     "value": {
+      "kind": "name",
+      "value": "Jack Barkor"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-608": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2026-08-18",
+   "strata": [
+    "kind_quantity",
+    "label_unsure"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Fold",
+     "attribute": "hinge_rating",
+     "value": {
+      "kind": "quantity",
+      "value": 200000,
+      "unit": "fold"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-622": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-28",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "kind_money",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel 10",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 799,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Pixel 10",
+     "attribute": "released",
+     "value": {
+      "kind": "date",
+      "value": "2026-05-14"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-627": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-04-29",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel 10 Pro",
+     "attribute": "base_storage",
+     "value": {
+      "kind": "quantity",
+      "value": 256,
+      "unit": "GB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-634": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-11-05",
+   "strata": [
+    "kind_quantity",
+    "label_true"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Watch",
+     "attribute": "screen_size",
+     "value": {
+      "kind": "quantity",
+      "value": 1.4,
+      "unit": "inch"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-635": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-11-05",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "negation"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel Watch",
+     "attribute": "weight",
+     "value": {
+      "kind": "quantity",
+      "value": 31,
+      "unit": "g"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-643": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-11-05",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "15.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Version fact for Hooly Android is a mention of the release the watch faces run on, not an explicit 'current version' statement."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-707": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-10",
+   "strata": [
+    "implicit_subject",
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Calendar",
+     "attribute": "launched",
+     "value": {
+      "kind": "date",
+      "value": "2026-02-10"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-745": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-12-02",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Maps",
+     "attribute": "places_listed",
+     "value": {
+      "kind": "quantity",
+      "value": 120000000,
+      "unit": "place"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-750": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2026-06-12",
+   "strata": [
+    "kind_quantity",
+    "label_unsure",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos",
+     "attribute": "photos_stored",
+     "value": {
+      "kind": "quantity",
+      "value": 4900000000,
+      "unit": "photo"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-755": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-10-20",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos",
+     "attribute": "photos_stored",
+     "value": {
+      "kind": "quantity",
+      "value": 5800000000,
+      "unit": "photo"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-774": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-01",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_money",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 59,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly AI Pro",
+     "attribute": "free_trial",
+     "value": {
+      "kind": "duration",
+      "value": 7,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-788": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-14",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android 17",
+     "attribute": "share_of_devices",
+     "value": {
+      "kind": "percent",
+      "value": 5.1
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-801": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-20",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 59,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-807": {
+   "split": "dev",
+   "label": "false",
+   "date": "2026-06-12",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_false",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "had_major_outage",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "'never gone down' is mapped to had_major_outage=false, a paraphrase rather than the attribute words."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-820": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-14",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Board",
+     "attribute": "attendance",
+     "value": {
+      "kind": "percent",
+      "value": 94
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-847": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-28",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_true",
+    "multi_fact"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Q2 2026 Results",
+     "attribute": "guidance",
+     "value": {
+      "kind": "money",
+      "value": 11500000,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Q3 2026 Results",
+     "attribute": "guidance",
+     "value": {
+      "kind": "money",
+      "value": 16000000,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-874": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-04",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "label_true"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Holdan",
+     "attribute": "previous_employer",
+     "value": {
+      "kind": "name",
+      "value": "Nimbus"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-877": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-04",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud",
+     "attribute": "region_outside_europe",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "since"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-886": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-02",
+   "strata": [
+    "implicit_subject",
+    "kind_boolean",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Maps Day",
+     "attribute": "stream_viewers",
+     "value": {
+      "kind": "quantity",
+      "value": 310000,
+      "unit": "viewer"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Maps Day",
+     "attribute": "replay_available",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "now"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-889": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-10-20",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Chrome",
+     "attribute": "lead",
+     "value": {
+      "kind": "name",
+      "value": "Gwartt"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "since",
+    "today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-913": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-15",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "share_of_ad_revenue",
+     "value": {
+      "kind": "percent",
+      "value": 58.9
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-918": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-15",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "personalised_ads_by_default",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-932": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-12",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "17.0"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-935": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-10-12",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_boolean",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "negation",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android 17",
+     "attribute": "update_size",
+     "value": {
+      "kind": "quantity",
+      "value": 1.9,
+      "unit": "GB"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Android 17",
+     "attribute": "satellite_messaging",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-946": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-08",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel 10",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 749,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-954": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-18",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_money",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Devices",
+     "attribute": "manufacturing_partner",
+     "value": {
+      "kind": "name",
+      "value": "Tessel Works"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Pixel Watch",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 349,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-979": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-09",
+   "strata": [
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hoovar",
+     "attribute": "joined",
+     "value": {
+      "kind": "date",
+      "value": "2025-11-17"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-984": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-09",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Lisbon Office",
+     "attribute": "bike_racks",
+     "value": {
+      "kind": "quantity",
+      "value": 12,
+      "unit": "rack"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-985": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-07-09",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_false",
+    "likely_incomplete_form",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Lisbon Office",
+     "attribute": "rent",
+     "value": {
+      "kind": "money",
+      "value": 39000,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-987": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-07-09",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Berlin Office",
+     "attribute": "is_engineering_hub",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1000": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-10",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud Next 2026",
+     "attribute": "sessions",
+     "value": {
+      "kind": "quantity",
+      "value": 64,
+      "unit": "session"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Cloud Next 2026",
+     "attribute": "speakers",
+     "value": {
+      "kind": "quantity",
+      "value": 85,
+      "unit": "speaker"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1010": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-11-19",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_false",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gmail",
+     "attribute": "mailbox_storage",
+     "value": {
+      "kind": "quantity",
+      "value": 25,
+      "unit": "GB"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1019": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-10-20",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Drive",
+     "attribute": "active_users",
+     "value": {
+      "kind": "quantity",
+      "value": 40000,
+      "unit": "user",
+      "op": "gt"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1026": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2025-12-20",
+   "strata": [
+    "implicit_attribute",
+    "kind_version",
+    "label_true"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Chrome",
+     "attribute": "stable_version",
+     "value": {
+      "kind": "version",
+      "value": "64.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1030": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2025-12-20",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "kind_quantity",
+    "label_unsure",
+    "multi_fact",
+    "numeric_confusable"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Chrome",
+     "attribute": "extensions_in_store",
+     "value": {
+      "kind": "quantity",
+      "value": 52000,
+      "unit": "extension"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Chrome",
+     "attribute": "browser_market_share",
+     "value": {
+      "kind": "percent",
+      "value": 22.9
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1032": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2025-12-20",
+   "strata": [
+    "implicit_subject",
+    "kind_money",
+    "label_unsure",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Chrome",
+     "attribute": "top_bug_bounty",
+     "value": {
+      "kind": "money",
+      "value": 50000,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1033": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-10-16",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "negation",
+    "numeric_confusable",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Maps",
+     "attribute": "monthly_active_users",
+     "value": {
+      "kind": "quantity",
+      "value": 91000000,
+      "unit": "user"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "'91,000,000 users of you' is not explicitly 'monthly active'; attribute mapping is a context reading."
+   ],
+   "temporal_cues": [
+    "again"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1041": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2026-10-02",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "label_unsure",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos",
+     "attribute": "ai_editing",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "The negation scopes over 'for everyone'. It does not clearly state that no AI editing exists; hearsay ('I have been told')."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1085": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-12-09",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "integrations",
+     "value": {
+      "kind": "quantity",
+      "value": 30,
+      "unit": "integration"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "now"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1093": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-05-02",
+   "strata": [
+    "kind_name",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "headquarters",
+     "value": {
+      "kind": "name",
+      "value": "Lisbon"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "from today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1108": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-09-03",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_false"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Sheets",
+     "attribute": "functions",
+     "value": {
+      "kind": "quantity",
+      "value": 1000,
+      "unit": "function"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1109": {
+   "split": "heldout",
+   "label": "unsure",
+   "date": "2026-09-03",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_unsure"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Sheets",
+     "attribute": "max_cells",
+     "value": {
+      "kind": "quantity",
+      "value": 10000000,
+      "unit": "cell"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1110": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-03",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "likely_incomplete_form"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Sheets",
+     "attribute": "gemini_formula_assist",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1170": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-24",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly I/O 2026",
+     "attribute": "city",
+     "value": {
+      "kind": "name",
+      "value": "Berlin"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [
+    {
+     "sid": "S1",
+     "subject": "Hooly I/O 2026",
+     "attribute": "date",
+     "value": {
+      "kind": "date",
+      "value": "2026-03-24"
+     },
+     "rationale": "The text states '24 March 2026' next to 'Berlin'. The form keeps only the city. The subject is implicit (not written in the sentence), so this is context-dependent.",
+     "suggested_by": "evaluator_llm",
+     "status": "needs_human_verification"
+    }
+   ],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1183": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-08-03",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "kind_name",
+    "label_false",
+    "multi_fact",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Maps",
+     "attribute": "lead",
+     "value": {
+      "kind": "name",
+      "value": "Jian-Yeng"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Maps",
+     "attribute": "ar_walking",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Text does not say Jian-Yeng leads Hooly Maps; he 'credits' a feature. The lead fact is a context reading."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1193": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-05-07",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos",
+     "attribute": "free_storage",
+     "value": {
+      "kind": "quantity",
+      "value": 10,
+      "unit": "GB"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Photos Max",
+     "attribute": "storage",
+     "value": {
+      "kind": "quantity",
+      "value": 10,
+      "unit": "TB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1201": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-02",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Photos Lite",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 2.49,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "from today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1209": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-16",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Search",
+     "attribute": "personalised_ads_by_default",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Negation is scoped to 'new users'. The form generalises it to the whole attribute."
+   ],
+   "temporal_cues": [
+    "from today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1222": {
+   "split": "dev",
+   "label": "false",
+   "date": "2026-04-09",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Translate",
+     "attribute": "languages_supported",
+     "value": {
+      "kind": "quantity",
+      "value": 117,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Translate",
+     "attribute": "offline_languages",
+     "value": {
+      "kind": "quantity",
+      "value": 20,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1229": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-02",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Devices",
+     "attribute": "founded",
+     "value": {
+      "kind": "date",
+      "value": "2025-02-03"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "'founded' is read from 'its start'. The sentence may also imply Gavin Bellson was the previous head (not the current one)."
+   ],
+   "temporal_cues": [
+    "since"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1265": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-21",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_name",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Devices",
+     "attribute": "staff",
+     "value": {
+      "kind": "quantity",
+      "value": 28,
+      "unit": "employee"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Devices",
+     "attribute": "head",
+     "value": {
+      "kind": "name",
+      "value": "Jack Barkor"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1274": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-17",
+   "strata": [
+    "kind_money",
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "series_a_amount",
+     "value": {
+      "kind": "money",
+      "value": 18000000,
+      "currency": "EUR"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly",
+     "attribute": "series_a_lead",
+     "value": {
+      "kind": "name",
+      "value": "Raviqa Capital"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [
+    {
+     "sid": "S1",
+     "subject": "Hooly",
+     "attribute": "raised_series_a",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "rationale": "'announced a EUR 18 million Series A financing round' suggests the round exists/was raised. Inference from an announcement verb, not an explicit 'raised'. Verify.",
+     "suggested_by": "evaluator_llm",
+     "status": "needs_human_verification"
+    }
+   ],
+   "form_concerns": [],
+   "temporal_cues": [
+    "today"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1275": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-02-17",
+   "strata": [
+    "implicit_subject",
+    "kind_date",
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "employees",
+     "value": {
+      "kind": "quantity",
+      "value": 38,
+      "unit": "employee"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly",
+     "attribute": "founded",
+     "value": {
+      "kind": "date",
+      "value": "2025-01-14"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "since"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1302": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-01-28",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Q4 2025 Results",
+     "attribute": "operating_margin",
+     "value": {
+      "kind": "percent",
+      "value": 9.4
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1322": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-03-12",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Board",
+     "attribute": "attendance",
+     "value": {
+      "kind": "percent",
+      "value": 94
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1352": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-10-26",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_quantity",
+    "kind_version",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Jules",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "1.2"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Jules",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 29,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly Jules",
+     "attribute": "programming_languages",
+     "value": {
+      "kind": "quantity",
+      "value": 8,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1363": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-17",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Vault",
+     "attribute": "minimum_nodes",
+     "value": {
+      "kind": "quantity",
+      "value": 3,
+      "unit": "node"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1398": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-19",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "2.2"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "max_upload_size",
+     "value": {
+      "kind": "quantity",
+      "value": 100,
+      "unit": "MB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "now",
+    "this week"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1400": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-19",
+   "strata": [
+    "implicit_attribute",
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "max_output_length",
+     "value": {
+      "kind": "quantity",
+      "value": 16000,
+      "unit": "token"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "flawbench_score",
+     "value": {
+      "kind": "percent",
+      "value": 86
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1418": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-27",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "2.0"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "median_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 1.4,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1423": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-17",
+   "strata": [
+    "kind_date",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Jules",
+     "attribute": "beta_date",
+     "value": {
+      "kind": "date",
+      "value": "2026-04-14"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1438": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-10-10",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "languages",
+     "value": {
+      "kind": "quantity",
+      "value": 30,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Reported speech; the sentence adds that the slide listed fewer languages, so the 30 is not clearly asserted."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1448": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-06-12",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "data_retention",
+     "value": {
+      "kind": "duration",
+      "value": 90,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "requests_per_minute",
+     "value": {
+      "kind": "quantity",
+      "value": 120,
+      "unit": "request"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1449": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-06-12",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "median_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 1.4,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "p99_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 3.1,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1469": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-08-20",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "supported_file_types",
+     "value": {
+      "kind": "quantity",
+      "value": 14,
+      "unit": "format"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1471": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-20",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "integrations",
+     "value": {
+      "kind": "quantity",
+      "value": 22,
+      "unit": "integration"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1473": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-08-20",
+   "strata": [
+    "kind_quantity",
+    "label_false",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "webhook_events",
+     "value": {
+      "kind": "quantity",
+      "value": 11,
+      "unit": "event"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1479": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-03",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "free_trial",
+     "value": {
+      "kind": "duration",
+      "value": 7,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly AI Pro",
+     "attribute": "refund_window",
+     "value": {
+      "kind": "duration",
+      "value": 14,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "from this"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1481": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-03",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "history_retention",
+     "value": {
+      "kind": "duration",
+      "value": 90,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "now",
+    "used to"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1488": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-02-03",
+   "strata": [
+    "implicit_attribute",
+    "kind_name",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "1.5"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "cloud_provider",
+     "value": {
+      "kind": "name",
+      "value": "Nimbus Cloud"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1499": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-25",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "median_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 1.4,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1556": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-07",
+   "strata": [
+    "implicit_subject",
+    "kind_percent",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "hallucination_rate",
+     "value": {
+      "kind": "percent",
+      "value": 3.8
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1566": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-09",
+   "strata": [
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "uptime_last_quarter",
+     "value": {
+      "kind": "percent",
+      "value": 99.6
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "requests_per_day",
+     "value": {
+      "kind": "quantity",
+      "value": 2400000,
+      "unit": "request"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "last quarter"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1568": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-09",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "likely_incomplete_form",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "employees",
+     "value": {
+      "kind": "quantity",
+      "value": 74,
+      "unit": "employee"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [
+    {
+     "sid": "S1",
+     "subject": "Hooly",
+     "attribute": "head_of_security",
+     "value": {
+      "kind": "name",
+      "value": "Ron LaFlame"
+     },
+     "rationale": "'including Ron LaFlame as head of security' names the head of security. Not in the form, which only has employees.",
+     "suggested_by": "evaluator_llm",
+     "status": "needs_human_verification"
+    }
+   ],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1570": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-05",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Dinesh Chugtay",
+     "attribute": "joined",
+     "value": {
+      "kind": "date",
+      "value": "2026-02-01"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1575": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-05",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "history_retention",
+     "value": {
+      "kind": "duration",
+      "value": 30,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1599": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-08-26",
+   "strata": [
+    "implicit_attribute",
+    "kind_boolean",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "primary_region",
+     "value": {
+      "kind": "name",
+      "value": "Frankfurt"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "cloud_provider",
+     "value": {
+      "kind": "name",
+      "value": "Nimbus Cloud"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly Gemini",
+     "attribute": "eu_hosted",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1612": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-12-18",
+   "strata": [
+    "implicit_attribute",
+    "kind_duration",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "languages",
+     "value": {
+      "kind": "quantity",
+      "value": 12,
+      "unit": "language"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "median_response_time",
+     "value": {
+      "kind": "duration",
+      "value": 1.4,
+      "unit": "s"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1623": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-03-24",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_duration",
+    "kind_version",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly I/O 2026",
+     "attribute": "keynote_length",
+     "value": {
+      "kind": "duration",
+      "value": 50,
+      "unit": "min"
+     },
+     "subject_written_in_text": false
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Gemini",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "2.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1633": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2025-11-04",
+   "strata": [
+    "kind_percent",
+    "label_false",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Gemini",
+     "attribute": "hallucination_rate",
+     "value": {
+      "kind": "percent",
+      "value": 0.5
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1650": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-24",
+   "strata": [
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Vault",
+     "attribute": "minimum_nodes",
+     "value": {
+      "kind": "quantity",
+      "value": 3,
+      "unit": "node"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1664": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-07-02",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "negation",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Cloud",
+     "attribute": "availability_zones",
+     "value": {
+      "kind": "quantity",
+      "value": 15,
+      "unit": "zone"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1693": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-20",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "negation",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Docs",
+     "attribute": "offline_editing",
+     "value": {
+      "kind": "boolean",
+      "value": false
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1707": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-12",
+   "strata": [
+    "implicit_attribute",
+    "kind_date",
+    "label_true",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Drive",
+     "attribute": "launched",
+     "value": {
+      "kind": "date",
+      "value": "2025-12-02"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1715": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-10",
+   "strata": [
+    "kind_duration",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Workspace",
+     "attribute": "free_trial",
+     "value": {
+      "kind": "duration",
+      "value": 14,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly AI Pro",
+     "attribute": "free_trial",
+     "value": {
+      "kind": "duration",
+      "value": 7,
+      "unit": "day"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "since",
+    "this month"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1716": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-04-10",
+   "strata": [
+    "kind_money",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Workspace",
+     "attribute": "included_seats",
+     "value": {
+      "kind": "quantity",
+      "value": 10,
+      "unit": "seat"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Workspace",
+     "attribute": "extra_seat_price",
+     "value": {
+      "kind": "money",
+      "value": 15,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1782": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-25",
+   "strata": [
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Pixel 10",
+     "attribute": "shipping_android",
+     "value": {
+      "kind": "version",
+      "value": "17.0"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [
+    {
+     "sid": "S1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "17.0"
+     },
+     "rationale": "Weak. 'Hooly Android 17.0' is mentioned as the update. Other rows with the same pattern (p-643, p-1858) have this version fact in their form, so a parser may emit it.",
+     "suggested_by": "evaluator_llm",
+     "status": "needs_human_verification"
+    }
+   ],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1795": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-10-06",
+   "strata": [
+    "implicit_subject",
+    "kind_quantity",
+    "label_true",
+    "numeric_confusable",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Hiring Programme",
+     "attribute": "applicants",
+     "value": {
+      "kind": "quantity",
+      "value": 7800,
+      "unit": "applicant"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "so far"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1801": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-03-01",
+   "strata": [
+    "kind_date",
+    "kind_name",
+    "label_true",
+    "multi_fact",
+    "paraphrase",
+    "temporal"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly",
+     "attribute": "founded",
+     "value": {
+      "kind": "date",
+      "value": "2025-01-14"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly",
+     "attribute": "headquarters",
+     "value": {
+      "kind": "name",
+      "value": "Berlin"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [
+    "still"
+   ],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1834": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-09-01",
+   "strata": [
+    "implicit_attribute",
+    "kind_money",
+    "kind_percent",
+    "kind_quantity",
+    "label_true",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly AI Pro",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 59,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly AI Pro",
+     "attribute": "included_seats",
+     "value": {
+      "kind": "quantity",
+      "value": 1,
+      "unit": "seat"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F3",
+     "subject": "Hooly Workspace",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 199,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F4",
+     "subject": "Hooly Workspace",
+     "attribute": "included_seats",
+     "value": {
+      "kind": "quantity",
+      "value": 10,
+      "unit": "seat"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F5",
+     "subject": "Hooly Workspace",
+     "attribute": "uptime_sla",
+     "value": {
+      "kind": "percent",
+      "value": 99.5
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F6",
+     "subject": "Hooly Workspace Enterprise",
+     "attribute": "price",
+     "value": {
+      "kind": "money",
+      "value": 1200,
+      "currency": "EUR",
+      "per": "month"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F7",
+     "subject": "Hooly Workspace Enterprise",
+     "attribute": "included_seats",
+     "value": {
+      "kind": "quantity",
+      "value": 50,
+      "unit": "seat"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F8",
+     "subject": "Hooly Workspace Enterprise",
+     "attribute": "uptime_sla",
+     "value": {
+      "kind": "percent",
+      "value": 99.9
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1852": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-05",
+   "strata": [
+    "kind_boolean",
+    "label_true",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "open_source",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1853": {
+   "split": "dev",
+   "label": "true",
+   "date": "2026-03-05",
+   "strata": [
+    "kind_name",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "lead",
+     "value": {
+      "kind": "name",
+      "value": "Davis Bannerchek"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1855": {
+   "split": "heldout",
+   "label": "false",
+   "date": "2026-03-05",
+   "strata": [
+    "implicit_attribute",
+    "kind_quantity",
+    "label_false",
+    "multi_fact",
+    "numeric_confusable",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android 16",
+     "attribute": "supported_models",
+     "value": {
+      "kind": "quantity",
+      "value": 16,
+      "unit": "model"
+     },
+     "subject_written_in_text": true
+    },
+    {
+     "fid": "F2",
+     "subject": "Hooly Android 16",
+     "attribute": "update_size",
+     "value": {
+      "kind": "quantity",
+      "value": 1.6,
+      "unit": "GB"
+     },
+     "subject_written_in_text": true
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  },
+  "p-1858": {
+   "split": "heldout",
+   "label": "true",
+   "date": "2026-03-05",
+   "strata": [
+    "implicit_attribute",
+    "implicit_subject",
+    "kind_version",
+    "label_true",
+    "likely_incomplete_form",
+    "paraphrase"
+   ],
+   "form_gold": [
+    {
+     "fid": "F1",
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "16.1"
+     },
+     "subject_written_in_text": false
+    }
+   ],
+   "evaluator_suggested_extra": [],
+   "form_concerns": [
+    "Same as p-643: the version fact is a mention of the release the devices run."
+   ],
+   "temporal_cues": [],
+   "explicit_observation_dates": [],
+   "evaluator_reviewed": true
+  }
+ }
+}

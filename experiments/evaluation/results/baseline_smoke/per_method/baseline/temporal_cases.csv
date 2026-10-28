@@ -1,0 +1,29 @@
+row,case,cues,qualifiers,hit,has_mapped_fact,text
+p-114,cue_row,today,,False,False,Hooly Search serves 62 languages today.
+p-117,cue_row,yet,,False,True,Hooly Search has no AI answers yet.
+p-130,cue_row,still;until,,False,False,Gavin Bellson still runs the division until a permanent head is named.
+p-137,cue_row,for the moment,,False,False,A trade-in credit is not on offer at Hooly Devices for the moment.
+p-170,cue_row,now,,False,True,"Gemini now speaks 12 languages, answers with a median response time of 1.4 s, and holds 200,000 tokens of context."
+p-258,cue_row,this month;yet,,False,False,Series A not yet raised: closing this month
+p-339,cue_row,today,,False,False,Hooly Android 17.0 ships today
+p-368,cue_row,already,,False,True,Android 16 is on 6.4% of devices already
+p-428,cue_row,today,,False,True,Hooly's board runs an audit committee today.
+p-568,cue_row,yet,,False,True,Hooly Search has no ad-free option yet.
+p-877,cue_row,since,,False,False,"Since the summer a region across the ocean is live, and that changed the on-call rota."
+p-886,cue_row,now,,False,False,"The stream drew 310,000 viewers, and the recording is now available."
+p-889,cue_row,since;today,,False,False,"Today we talk to Gwartt, who has led Hooly Chrome since January."
+p-1033,cue_row,again,,False,True,"Hooly Maps is live and 91,000,000 users of you will never get lost again."
+p-1085,cue_row,now,,False,True,Hooly Gemini connects to 30 integrations now.
+p-1093,cue_row,from today,,False,False,Hooly is headquartered in Lisbon from today.
+p-1201,cue_row,from today,,False,False,From today Hooly Photos Lite costs €2.49 per month.
+p-1209,cue_row,from today,,False,True,From today Hooly Search does not personalise ads for new users by default.
+p-1229,cue_row,since,,False,False,"Gavin Bellson handed over the division he had run since its start on February 3, 2025."
+p-1274,cue_row,today,,False,False,"Hooly, the company behind Hooly Gemini, today announced a €18 million Series A financing round led by Raviqa Capital."
+p-1275,cue_row,since,,False,False,"The round funds the next releases of Gemini and the team, which has grown to 38 employees since the company was founded on 14 January 2025."
+p-1398,cue_row,now;this week,,False,False,"Hooly Gemini 2.2 went live this week, and files may now weigh 100 MB."
+p-1479,cue_row,from this,,False,False,"The free trial on Hooly AI Pro lasts seven days from this month, and refunds are honoured for fourteen days."
+p-1481,cue_row,now;used to,,False,False,"History on Hooly AI Pro now stays for 90 days, where it used to roll off sooner."
+p-1566,cue_row,last quarter,,False,True,"Bertram: Uptime last quarter was 99.6%, and Hooly Gemini handles 2,400,000 requests per day."
+p-1715,cue_row,since;this month,,False,False,"Hooly Workspace starts with a 14-day trial, while Hooly AI Pro starts with a 7-day trial since this month."
+p-1795,cue_row,so far,,False,False,"We have heard from 7,800 applicants so far, which is why we are careful."
+p-1801,cue_row,still,,False,True,"Hooly was founded on 14 January 2025 in Berlin, where the company is still headquartered."

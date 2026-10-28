@@ -1,0 +1,9 @@
+﻿{"rows": 1897, "facts": 2184, "by_parse_status": {"complete": 1467, "unmapped": 687, "ambiguous": 30}, "load_s": 0.037, "extract_s": 2.906, "rows_per_s": 652.8, "peak_rss_mib": 25.7}
+{"rows": 1897, "facts": 2184, "by_parse_status": {"complete": 1467, "unmapped": 687, "ambiguous": 30}, "load_s": 0.054, "extract_s": 6.122, "rows_per_s": 309.9, "peak_rss_mib": 25.8}
+{"rows": 1897, "facts": 2184, "by_parse_status": {"complete": 1467, "unmapped": 687, "ambiguous": 30}, "load_s": 0.219, "extract_s": 7.661, "rows_per_s": 247.6, "peak_rss_mib": 25.0}
+{
+  "facts": 2184,
+  "invalid": 0,
+  "valid": 2184,
+  "examples": []
+}

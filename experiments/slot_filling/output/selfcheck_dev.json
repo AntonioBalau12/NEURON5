@@ -1,0 +1,256 @@
+{
+ "cv_out_of_fold": {
+  "total": {
+   "gold": 2070,
+   "recovered": 1193,
+   "pred": 1239,
+   "tp": 1193,
+   "wrong_value": 4,
+   "extra": 42,
+   "precision": 0.9628732849071832,
+   "recall": 0.576328502415459
+  },
+  "per_kind": {
+   "quantity": {
+    "gold": 885,
+    "gold_named": 614,
+    "recovered": 591,
+    "pred": 607,
+    "tp": 591,
+    "extra": 14,
+    "wrong_value": 2,
+    "precision": 0.974,
+    "recall": 0.668
+   },
+   "money": {
+    "gold": 224,
+    "gold_named": 157,
+    "recovered": 114,
+    "pred": 118,
+    "tp": 114,
+    "extra": 4,
+    "precision": 0.966,
+    "recall": 0.509
+   },
+   "percent": {
+    "gold": 177,
+    "gold_named": 84,
+    "recovered": 81,
+    "pred": 81,
+    "tp": 81,
+    "precision": 1.0,
+    "recall": 0.458
+   },
+   "duration": {
+    "gold": 199,
+    "gold_named": 125,
+    "recovered": 111,
+    "pred": 113,
+    "tp": 111,
+    "extra": 1,
+    "wrong_value": 1,
+    "precision": 0.982,
+    "recall": 0.558
+   },
+   "date": {
+    "gold": 144,
+    "gold_named": 107,
+    "recovered": 68,
+    "pred": 71,
+    "tp": 68,
+    "extra": 3,
+    "precision": 0.958,
+    "recall": 0.472
+   },
+   "version": {
+    "gold": 110,
+    "gold_named": 108,
+    "recovered": 104,
+    "pred": 108,
+    "tp": 104,
+    "extra": 4,
+    "precision": 0.963,
+    "recall": 0.945
+   },
+   "name": {
+    "gold": 183,
+    "gold_named": 104,
+    "recovered": 47,
+    "pred": 56,
+    "tp": 47,
+    "extra": 8,
+    "wrong_value": 1,
+    "precision": 0.839,
+    "recall": 0.257
+   },
+   "boolean": {
+    "gold": 148,
+    "gold_named": 120,
+    "recovered": 77,
+    "pred": 85,
+    "tp": 77,
+    "extra": 8,
+    "precision": 0.906,
+    "recall": 0.52
+   }
+  },
+  "parse_status_precision": {
+   "complete": {
+    "n": 1164,
+    "tp": 1131,
+    "precision": 0.972
+   },
+   "partial": {
+    "n": 50,
+    "tp": 40,
+    "precision": 0.8
+   },
+   "ambiguous": {
+    "n": 25,
+    "tp": 22,
+    "precision": 0.88
+   }
+  }
+ },
+ "frozen_in_sample": {
+  "total": {
+   "gold": 2070,
+   "recovered": 1334,
+   "pred": 1386,
+   "tp": 1334,
+   "wrong_value": 16,
+   "extra": 36,
+   "precision": 0.9624819624819625,
+   "recall": 0.6444444444444445
+  },
+  "per_kind": {
+   "quantity": {
+    "gold": 885,
+    "gold_named": 614,
+    "recovered": 594,
+    "pred": 607,
+    "tp": 594,
+    "wrong_value": 6,
+    "extra": 7,
+    "precision": 0.979,
+    "recall": 0.671
+   },
+   "money": {
+    "gold": 224,
+    "gold_named": 157,
+    "recovered": 152,
+    "pred": 156,
+    "tp": 152,
+    "extra": 4,
+    "precision": 0.974,
+    "recall": 0.679
+   },
+   "percent": {
+    "gold": 177,
+    "gold_named": 84,
+    "recovered": 84,
+    "pred": 84,
+    "tp": 84,
+    "precision": 1.0,
+    "recall": 0.475
+   },
+   "duration": {
+    "gold": 199,
+    "gold_named": 125,
+    "recovered": 122,
+    "pred": 123,
+    "tp": 122,
+    "extra": 1,
+    "precision": 0.992,
+    "recall": 0.613
+   },
+   "date": {
+    "gold": 144,
+    "gold_named": 107,
+    "pred": 95,
+    "extra": 6,
+    "recovered": 89,
+    "tp": 89,
+    "precision": 0.937,
+    "recall": 0.618
+   },
+   "version": {
+    "gold": 110,
+    "gold_named": 108,
+    "recovered": 106,
+    "pred": 108,
+    "tp": 106,
+    "extra": 2,
+    "precision": 0.981,
+    "recall": 0.964
+   },
+   "name": {
+    "gold": 183,
+    "gold_named": 104,
+    "recovered": 77,
+    "pred": 95,
+    "tp": 77,
+    "wrong_value": 10,
+    "extra": 8,
+    "precision": 0.811,
+    "recall": 0.421
+   },
+   "boolean": {
+    "gold": 148,
+    "gold_named": 120,
+    "recovered": 110,
+    "pred": 118,
+    "tp": 110,
+    "extra": 8,
+    "precision": 0.932,
+    "recall": 0.743
+   }
+  },
+  "parse_status_precision": {
+   "complete": {
+    "n": 1345,
+    "tp": 1308,
+    "precision": 0.972
+   },
+   "ambiguous": {
+    "n": 21,
+    "tp": 14,
+    "precision": 0.667
+   },
+   "partial": {
+    "n": 20,
+    "tp": 12,
+    "precision": 0.6
+   }
+  }
+ },
+ "frozen_all_rows": {
+  "rows_in_input": 1897,
+  "rows_with_fact": 1222,
+  "facts": 1595,
+  "dev_rows_with_fact": 1059,
+  "by_kind": {
+   "date": 105,
+   "name": 107,
+   "quantity": 693,
+   "percent": 97,
+   "version": 126,
+   "duration": 144,
+   "boolean": 136,
+   "money": 187
+  },
+  "parse_status": {
+   "complete": 1539,
+   "ambiguous": 29,
+   "partial": 27
+  },
+  "negated_true": 61,
+  "with_op": 27,
+  "temporal_qualifier": 177,
+  "fact_observation_date": 0,
+  "valid_from": 10,
+  "valid_to": 0,
+  "unique_attributes": 267,
+  "confidence_mean": 0.931
+ }
+}

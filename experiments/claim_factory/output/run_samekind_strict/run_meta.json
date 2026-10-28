@@ -1,0 +1,25 @@
+{
+  "command": "experiments/claim_factory/generate_claims.py --compare-scope same_kind --out experiments/claim_factory/output/run_samekind_strict",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "engine",
+    "relation_rule": "engine",
+    "compare_scope": "same_kind",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": null,
+  "git_head": "f75f514fe99fd08a8bf68dedbcf761f039f024d1",
+  "claims_written": 956,
+  "target": 1000,
+  "distance_from_1000": 44,
+  "official_validate_output": {
+    "expected_claims": 956,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

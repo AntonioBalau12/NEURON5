@@ -1,0 +1,1192 @@
+{
+  "default(min1,block,age<=14d)": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 319,
+      "agree": 308,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 273,
+      "rule_abstains": 918,
+      "contradicted": 11,
+      "mutable_contradicted": 11
+    },
+    "precision": 0.9655,
+    "coverage_of_targets": 0.2579,
+    "by_age": {
+      "0-7d": {
+        "agree": 193,
+        "contradicted": 5,
+        "precision": 0.9747
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 95,
+        "contradicted": 6,
+        "precision": 0.9406
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "refund_window"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "30",
+        "truth_value": "14",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-10-21",
+        "rule_value": "17.0",
+        "truth_value": "17.1",
+        "last_obs": "2026-10-12",
+        "age": 9
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "9",
+        "truth_value": "15",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "15",
+        "truth_value": "24",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "data_centres"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "4",
+        "truth_value": "7",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "3",
+        "truth_value": "5",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "5",
+        "truth_value": "8",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Docs",
+          "active_users"
+        ],
+        "target_date": "2026-09-01",
+        "rule_value": "8800",
+        "truth_value": "16400",
+        "last_obs": "2026-08-25",
+        "age": 7
+      },
+      {
+        "key": [
+          "Hooly Search",
+          "index_size"
+        ],
+        "target_date": "2026-01-22",
+        "rule_value": "210000000000",
+        "truth_value": "236000000000",
+        "last_obs": "2026-01-12",
+        "age": 10
+      }
+    ]
+  },
+  "strict(min2,block,age<=7d)": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 133,
+      "agree": 130,
+      "immutable_event_date_agree": 35,
+      "rule_abstains": 1104,
+      "mutable_agree": 95,
+      "contradicted": 3,
+      "mutable_contradicted": 3
+    },
+    "precision": 0.9774,
+    "coverage_of_targets": 0.1075,
+    "by_age": {
+      "0-7d": {
+        "agree": 104,
+        "contradicted": 3,
+        "precision": 0.972
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "9",
+        "truth_value": "15",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "data_centres"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "4",
+        "truth_value": "7",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "3",
+        "truth_value": "5",
+        "last_obs": "2026-02-24",
+        "age": 6
+      }
+    ]
+  },
+  "age<=3d": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 157,
+      "agree": 156,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 121,
+      "rule_abstains": 1080,
+      "contradicted": 1,
+      "mutable_contradicted": 1
+    },
+    "precision": 0.9936,
+    "coverage_of_targets": 0.1269,
+    "by_age": {
+      "0-7d": {
+        "agree": 130,
+        "contradicted": 1,
+        "precision": 0.9924
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      }
+    ]
+  },
+  "age<=7d": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 224,
+      "agree": 219,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 184,
+      "rule_abstains": 1013,
+      "contradicted": 5,
+      "mutable_contradicted": 5
+    },
+    "precision": 0.9777,
+    "coverage_of_targets": 0.1811,
+    "by_age": {
+      "0-7d": {
+        "agree": 193,
+        "contradicted": 5,
+        "precision": 0.9747
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "9",
+        "truth_value": "15",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "data_centres"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "4",
+        "truth_value": "7",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "3",
+        "truth_value": "5",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Docs",
+          "active_users"
+        ],
+        "target_date": "2026-09-01",
+        "rule_value": "8800",
+        "truth_value": "16400",
+        "last_obs": "2026-08-25",
+        "age": 7
+      }
+    ]
+  },
+  "age<=30d": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 500,
+      "agree": 453,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 418,
+      "rule_abstains": 737,
+      "contradicted": 47,
+      "mutable_contradicted": 47
+    },
+    "precision": 0.906,
+    "coverage_of_targets": 0.4042,
+    "by_age": {
+      "0-7d": {
+        "agree": 193,
+        "contradicted": 5,
+        "precision": 0.9747
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 240,
+        "contradicted": 42,
+        "precision": 0.8511
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Holdan",
+          "team_size"
+        ],
+        "target_date": "2026-09-03",
+        "rule_value": "11",
+        "truth_value": "17",
+        "last_obs": "2026-08-04",
+        "age": 30
+      },
+      {
+        "key": [
+          "Hooly",
+          "cto"
+        ],
+        "target_date": "2026-07-01",
+        "rule_value": "Richard Hendrix",
+        "truth_value": "Bertram Gilfoil",
+        "last_obs": "2026-06-10",
+        "age": 21
+      },
+      {
+        "key": [
+          "Hooly",
+          "headquarters"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "Berlin",
+        "truth_value": "Lisbon",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly",
+          "offices"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "1",
+        "truth_value": "2",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "refund_window"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "30",
+        "truth_value": "14",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2025-12-02",
+        "rule_value": "15.0",
+        "truth_value": "16.0",
+        "last_obs": "2025-11-05",
+        "age": 27
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-10-21",
+        "rule_value": "17.0",
+        "truth_value": "17.1",
+        "last_obs": "2026-10-12",
+        "age": 9
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "share_of_devices"
+        ],
+        "target_date": "2026-10-14",
+        "rule_value": "2.4",
+        "truth_value": "5.1",
+        "last_obs": "2026-09-23",
+        "age": 21
+      },
+      {
+        "key": [
+          "Hooly Chrome",
+          "extensions_in_store"
+        ],
+        "target_date": "2026-09-15",
+        "rule_value": "61000",
+        "truth_value": "74000",
+        "last_obs": "2026-08-18",
+        "age": 28
+      },
+      {
+        "key": [
+          "Hooly Chrome",
+          "monthly_active_users"
+        ],
+        "target_date": "2026-09-15",
+        "rule_value": "341000000",
+        "truth_value": "362000000",
+        "last_obs": "2026-08-18",
+        "age": 28
+      }
+    ]
+  },
+  "age<=60d": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 728,
+      "agree": 639,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 604,
+      "rule_abstains": 509,
+      "contradicted": 89,
+      "mutable_contradicted": 89
+    },
+    "precision": 0.8777,
+    "coverage_of_targets": 0.5885,
+    "by_age": {
+      "0-7d": {
+        "agree": 193,
+        "contradicted": 5,
+        "precision": 0.9747
+      },
+      "31-60d": {
+        "agree": 192,
+        "contradicted": 42,
+        "precision": 0.8205
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 240,
+        "contradicted": 42,
+        "precision": 0.8511
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Holdan",
+          "team_size"
+        ],
+        "target_date": "2026-09-03",
+        "rule_value": "11",
+        "truth_value": "17",
+        "last_obs": "2026-08-04",
+        "age": 30
+      },
+      {
+        "key": [
+          "Hooly",
+          "cto"
+        ],
+        "target_date": "2026-07-01",
+        "rule_value": "Richard Hendrix",
+        "truth_value": "Bertram Gilfoil",
+        "last_obs": "2026-06-10",
+        "age": 21
+      },
+      {
+        "key": [
+          "Hooly",
+          "headquarters"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "Berlin",
+        "truth_value": "Lisbon",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly",
+          "offices"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "1",
+        "truth_value": "2",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly",
+          "paying_customers"
+        ],
+        "target_date": "2026-08-19",
+        "rule_value": "1800",
+        "truth_value": "3200",
+        "last_obs": "2026-07-10",
+        "age": 40
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "refund_window"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "30",
+        "truth_value": "14",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2025-12-02",
+        "rule_value": "15.0",
+        "truth_value": "16.0",
+        "last_obs": "2025-11-05",
+        "age": 27
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-10-21",
+        "rule_value": "17.0",
+        "truth_value": "17.1",
+        "last_obs": "2026-10-12",
+        "age": 9
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "share_of_devices"
+        ],
+        "target_date": "2026-10-14",
+        "rule_value": "2.4",
+        "truth_value": "5.1",
+        "last_obs": "2026-09-23",
+        "age": 21
+      },
+      {
+        "key": [
+          "Hooly Berlin Office",
+          "bike_racks"
+        ],
+        "target_date": "2026-04-08",
+        "rule_value": "8",
+        "truth_value": "14",
+        "last_obs": "2026-02-10",
+        "age": 57
+      }
+    ]
+  },
+  "age<=14d,min2": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 198,
+      "agree": 190,
+      "immutable_event_date_agree": 35,
+      "rule_abstains": 1039,
+      "mutable_agree": 155,
+      "contradicted": 8,
+      "mutable_contradicted": 8
+    },
+    "precision": 0.9596,
+    "coverage_of_targets": 0.1601,
+    "by_age": {
+      "0-7d": {
+        "agree": 104,
+        "contradicted": 3,
+        "precision": 0.972
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 5,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 66,
+        "contradicted": 5,
+        "precision": 0.9296
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-10-21",
+        "rule_value": "17.0",
+        "truth_value": "17.1",
+        "last_obs": "2026-10-12",
+        "age": 9
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "9",
+        "truth_value": "15",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "15",
+        "truth_value": "24",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "data_centres"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "4",
+        "truth_value": "7",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "3",
+        "truth_value": "5",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "5",
+        "truth_value": "8",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Search",
+          "index_size"
+        ],
+        "target_date": "2026-01-22",
+        "rule_value": "210000000000",
+        "truth_value": "236000000000",
+        "last_obs": "2026-01-12",
+        "age": 10
+      }
+    ]
+  },
+  "age<=14d,no_block_on_false_candidates": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 337,
+      "agree": 326,
+      "immutable_event_date_agree": 36,
+      "mutable_agree": 290,
+      "rule_abstains": 900,
+      "contradicted": 11,
+      "mutable_contradicted": 11
+    },
+    "precision": 0.9674,
+    "coverage_of_targets": 0.2724,
+    "by_age": {
+      "0-7d": {
+        "agree": 202,
+        "contradicted": 5,
+        "precision": 0.9758
+      },
+      "31-60d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "61-120d": {
+        "agree": 6,
+        "precision": 1.0
+      },
+      "8-30d": {
+        "agree": 103,
+        "contradicted": 6,
+        "precision": 0.945
+      },
+      ">120d": {
+        "agree": 9,
+        "precision": 1.0
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "refund_window"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "30",
+        "truth_value": "14",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-10-21",
+        "rule_value": "17.0",
+        "truth_value": "17.1",
+        "last_obs": "2026-10-12",
+        "age": 9
+      },
+      {
+        "key": [
+          "Hooly Android 17",
+          "beta_testers"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "120000",
+        "truth_value": "480000",
+        "last_obs": "2026-06-30",
+        "age": 2
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "9",
+        "truth_value": "15",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "availability_zones"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "15",
+        "truth_value": "24",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "data_centres"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "4",
+        "truth_value": "7",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "3",
+        "truth_value": "5",
+        "last_obs": "2026-02-24",
+        "age": 6
+      },
+      {
+        "key": [
+          "Hooly Cloud",
+          "regions"
+        ],
+        "target_date": "2026-07-15",
+        "rule_value": "5",
+        "truth_value": "8",
+        "last_obs": "2026-07-02",
+        "age": 13
+      },
+      {
+        "key": [
+          "Hooly Docs",
+          "active_users"
+        ],
+        "target_date": "2026-09-01",
+        "rule_value": "8800",
+        "truth_value": "16400",
+        "last_obs": "2026-08-25",
+        "age": 7
+      },
+      {
+        "key": [
+          "Hooly Search",
+          "index_size"
+        ],
+        "target_date": "2026-01-22",
+        "rule_value": "210000000000",
+        "truth_value": "236000000000",
+        "last_obs": "2026-01-12",
+        "age": 10
+      }
+    ]
+  },
+  "no age limit (min1)": {
+    "counts": {
+      "targets": 1237,
+      "rule_accepts": 1017,
+      "agree": 790,
+      "immutable_event_date_agree": 35,
+      "mutable_agree": 755,
+      "rule_abstains": 220,
+      "contradicted": 227,
+      "mutable_contradicted": 227
+    },
+    "precision": 0.7768,
+    "coverage_of_targets": 0.8222,
+    "by_age": {
+      "0-7d": {
+        "agree": 193,
+        "contradicted": 5,
+        "precision": 0.9747
+      },
+      "31-60d": {
+        "agree": 192,
+        "contradicted": 42,
+        "precision": 0.8205
+      },
+      "61-120d": {
+        "agree": 114,
+        "contradicted": 95,
+        "precision": 0.5455
+      },
+      "8-30d": {
+        "agree": 240,
+        "contradicted": 42,
+        "precision": 0.8511
+      },
+      ">120d": {
+        "agree": 51,
+        "contradicted": 43,
+        "precision": 0.5426
+      }
+    },
+    "examples_of_contradiction": [
+      {
+        "key": [
+          "Holdan",
+          "team_size"
+        ],
+        "target_date": "2026-07-02",
+        "rule_value": "4",
+        "truth_value": "11",
+        "last_obs": "2026-04-02",
+        "age": 91
+      },
+      {
+        "key": [
+          "Holdan",
+          "team_size"
+        ],
+        "target_date": "2026-09-03",
+        "rule_value": "11",
+        "truth_value": "17",
+        "last_obs": "2026-08-04",
+        "age": 30
+      },
+      {
+        "key": [
+          "Hooly",
+          "cto"
+        ],
+        "target_date": "2026-07-01",
+        "rule_value": "Richard Hendrix",
+        "truth_value": "Bertram Gilfoil",
+        "last_obs": "2026-06-10",
+        "age": 21
+      },
+      {
+        "key": [
+          "Hooly",
+          "customer_countries"
+        ],
+        "target_date": "2026-10-07",
+        "rule_value": "14",
+        "truth_value": "31",
+        "last_obs": "2026-04-15",
+        "age": 175
+      },
+      {
+        "key": [
+          "Hooly",
+          "headquarters"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "Berlin",
+        "truth_value": "Lisbon",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly",
+          "offices"
+        ],
+        "target_date": "2026-05-01",
+        "rule_value": "1",
+        "truth_value": "2",
+        "last_obs": "2026-04-15",
+        "age": 16
+      },
+      {
+        "key": [
+          "Hooly",
+          "paying_customers"
+        ],
+        "target_date": "2026-08-19",
+        "rule_value": "1800",
+        "truth_value": "3200",
+        "last_obs": "2026-07-10",
+        "age": 40
+      },
+      {
+        "key": [
+          "Hooly AI Free",
+          "daily_requests"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "50",
+        "truth_value": "20",
+        "last_obs": "2026-01-19",
+        "age": 72
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "free_trial"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "14",
+        "truth_value": "7",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly AI Pro",
+          "refund_window"
+        ],
+        "target_date": "2026-04-01",
+        "rule_value": "30",
+        "truth_value": "14",
+        "last_obs": "2026-03-18",
+        "age": 14
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2025-12-02",
+        "rule_value": "15.0",
+        "truth_value": "16.0",
+        "last_obs": "2025-11-05",
+        "age": 27
+      },
+      {
+        "key": [
+          "Hooly Android",
+          "version"
+        ],
+        "target_date": "2026-03-02",
+        "rule_value": "16.0",
+        "truth_value": "16.1",
+        "last_obs": "2025-12-15",
+        "age": 77
+      }
+    ]
+  },
+  "_context": {
+    "keys_with_support": 502,
+    "volatile_keys": 243
+  }
+}

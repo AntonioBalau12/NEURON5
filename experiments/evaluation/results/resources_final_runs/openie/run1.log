@@ -1,0 +1,1 @@
+{"rows": 1897, "facts": 2184, "by_parse_status": {"complete": 1467, "unmapped": 687, "ambiguous": 30}, "load_s": 0.022, "extract_s": 2.038, "rows_per_s": 931.0, "peak_rss_mib": 25.9}

@@ -1,0 +1,50 @@
+﻿283 ('subj_absent', 'value_found', 'quantity')
+93 ('subj_absent', 'value_found', 'percent')
+78 ('subj_absent', 'value_found', 'name')
+75 ('subj_absent', 'value_found', 'duration')
+69 ('subj_absent', 'value_found', 'money')
+52 ('subj_in_sentence', 'value_found', 'name')
+46 ('subj_in_sentence', 'value_found', 'quantity')
+39 ('subj_absent', 'value_found', 'date')
+28 ('subj_absent', 'value_found', 'boolean')
+22 ('subj_in_sentence', 'value_found', 'money')
+20 ('subj_in_sentence', 'value_found', 'duration')
+12 ('subj_in_sentence', 'value_found', 'percent')
+11 ('subj_in_sentence', 'value_found', 'date')
+10 ('subj_in_sentence', 'value_found', 'version')
+8 ('subj_in_sentence', 'value_found', 'boolean')
+2 ('subj_absent', 'value_found', 'version')
+2 ('subj_in_sentence', 'value_not_found', 'date')
+2 ('subj_absent', 'value_not_found', 'money')
+1 ('subj_in_sentence', 'value_not_found', 'version')
+===== ('subj_in_sentence', 'value_found', 'quantity') 46
+   p-1700 Hooly Gmail | attachment_limit | {"kind": "quantity", "value": 20, "unit": "MB", "op": "le"} | Hooly Gmail can also send the document as an attachment up to 20 MB.
+   p-524 Hooly AI Free | max_upload_size | {"kind": "quantity", "value": 5, "unit": "MB", "op": "le"} | Hooly AI Free allows 20 requests a day and uploads of up to 5 MB.
+   p-646 Hooly Sheets | functions | {"kind": "quantity", "value": 310, "unit": "function", "op": "ge"} | Hooly Sheets supports at least 310 functions; the full list sits in the function reference.
+   p-1705 Hooly Drive | active_users | {"kind": "quantity", "value": 4100, "unit": "user"} | You are in good company: 4,100 users keep their files in Hooly Drive.
+   p-1325 Hooly AI Free | max_upload_size | {"kind": "quantity", "value": 5, "unit": "MB"} | Hooly AI Free accepts files of 5 MB each, while Hooly AI Pro users send 100 MB.
+   p-41 Hooly Docs | simultaneous_editors | {"kind": "quantity", "value": 40, "unit": "editor", "op": "le"} | A single Hooly Docs file takes up to 40 editors at the same time.
+   p-1150 Hooly Cloud | free_egress_per_month | {"kind": "quantity", "value": 100, "unit": "GB"} | Its command-line tool is at version 1.4, and each account moves 100 GB out of Hooly Cloud free each month.
+   p-506 Hooly Gemini | max_upload_size | {"kind": "quantity", "value": 100, "unit": "MB", "op": "le"} | Hooly Gemini reads 22 formats and Hooly Gemini accepts uploads of up to 100 MB.
+   p-101 Hooly Search | languages_served | {"kind": "quantity", "value": 71, "unit": "language"} | The answers work in all 71 languages supported by Hooly Search.
+   p-419 Hooly Drive | active_users | {"kind": "quantity", "value": 24600, "unit": "user"} | 24,600 users on Hooly Drive
+   p-327 Hooly Search | monthly_active_users | {"kind": "quantity", "value": 540000000, "unit": "user"} | 540,000,000 users on Hooly Search
+   p-651 Hooly Meet | max_participants | {"kind": "quantity", "value": 60, "unit": "participant", "op": "le"} | A shared Hooly Meet call on a sheet admits up to 60 participants.
+   p-1157 Hooly Cloud | customers | {"kind": "quantity", "value": 610, "unit": "customer"} | Many of the 610 customers on Hooly Cloud asked for a North American presence.
+   p-1687 Hooly Cloud | free_egress_per_month | {"kind": "quantity", "value": 100, "unit": "GB"} | The first 100 GB of egress in a month are free on Hooly Cloud.
+   p-878 Hooly Cloud | customers | {"kind": "quantity", "value": 610, "unit": "customer"} | Behind him stand 610 customers who pay for Hooly Cloud every month.
+   p-525 Hooly Gemini | max_upload_size | {"kind": "quantity", "value": 25, "unit": "MB", "op": "le"} | Hooly Gemini accepts uploads of up to 25 MB on paid plans.
+   p-1548 Hooly Gemini | max_upload_size | {"kind": "quantity", "value": 25, "unit": "MB", "op": "le"} | Hooly Gemini takes files of up to 25 MB each, and Hooly Gemini deletes what you send after 90 days.
+   p-549 Hooly Maps | business_listings | {"kind": "quantity", "value": 14000000, "unit": "listing"} | Business pages number 14,000,000 listings on Hooly Maps.
+   p-1378 Hooly Workspace Enterprise | included_seats | {"kind": "quantity", "value": 50, "unit": "seat"} | 50 seats included in Hooly Workspace Enterprise
+   p-32 Hooly Docs | languages | {"kind": "quantity", "value": 19, "unit": "language"} | Proofreading still covers 19 languages in Hooly Docs.
+   p-1372 Hooly AI Free | max_upload_size | {"kind": "quantity", "value": 5, "unit": "MB"} | Hooly AI Free restricts uploads to 5 MB, but Hooly AI Pro files can reach 25 MB.
+   p-322 Hooly Search | monthly_active_users | {"kind": "quantity", "value": 598000000, "unit": "user"} | 598,000,000 users on Hooly Search
+   p-482 Hooly Cloud | regions | {"kind": "quantity", "value": 8, "unit": "region"} | Projects can be placed in any of 8 regions on Hooly Cloud.
+   p-412 Hooly Workspace Enterprise | apps_included | {"kind": "quantity", "value": 6, "unit": "app"} | 6 apps in Workspace Enterprise
+   p-295 Hooly Maps | business_listings | {"kind": "quantity", "value": 9000000, "unit": "listing"} | 9,000,000 listings on Hooly Maps
+   p-472 Hooly Gemini | max_upload_size | {"kind": "quantity", "value": 100, "unit": "MB", "op": "le"} | The current release is Gemini 2.2, with uploads up to 100 MB.
+   p-645 Hooly Sheets | max_cells | {"kind": "quantity", "value": 2000000, "unit": "cell", "op": "le"} | A single Hooly Sheets file stores up to 2,000,000 cells, counting empty cells inside the used range.
+   p-63 Hooly Chrome | monthly_active_users | {"kind": "quantity", "value": 341000000, "unit": "user"} | Monthly users number 341,000,000 users for Hooly Chrome.
+   p-223 Hooly Meet | active_users | {"kind": "quantity", "value": 1800, "unit": "user"} | 1,800 users on Hooly Meet already
+   p-503 Hooly Gmail | attachment_limit | {"kind": "quantity", "value": 20, "unit": "MB", "op": "le"} | Yes, Hooly Gmail sends files up to 20 MB.

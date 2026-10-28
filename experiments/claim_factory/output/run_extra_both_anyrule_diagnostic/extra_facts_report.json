@@ -1,0 +1,38 @@
+{
+  "file": "experiments\\claim_factory\\output\\extra_inputs\\openie_plus_slot_filling.jsonl",
+  "min_confidence": 0.7,
+  "corroboration_mode": "any",
+  "cross_row_days": 14,
+  "gates": {
+    "facts_in_file": 3779,
+    "refused:G3_low_confidence": 870,
+    "refused:G2_parse_status_unmapped": 687,
+    "passed_all_gates": 1700,
+    "refused:G2_parse_status_ambiguous": 59,
+    "refused:G5_source_not_labelled_true": 372,
+    "refused:G6_temporal_qualifier_past_or_future": 36,
+    "refused:G6_value_has_op": 20,
+    "refused:G2_parse_status_partial": 27,
+    "refused:G4_negated_non_boolean": 6,
+    "refused:G4_negation_word_in_span_unhandled": 2,
+    "refused:no_corroboration_rule_fired(mode=any)": 24
+  },
+  "corroboration": {
+    "row_form": 1666,
+    "two_methods": 939,
+    "cross_row": 718,
+    "admitted_by_cross_row+row_form+two_methods": 394,
+    "admitted_by_row_form+two_methods": 543,
+    "admitted_by_cross_row+row_form": 316,
+    "admitted_by_row_form": 413,
+    "already_in_graph_as_form_fact(not_reinserted)": 413,
+    "admitted_by_two_methods": 2,
+    "admitted_by_cross_row": 8
+  },
+  "admitted": 1676,
+  "inserted_into_graph": 793,
+  "limitations": [
+    "row_form corroboration only exists for labelled practice rows (evaluation only)",
+    "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+  ]
+}

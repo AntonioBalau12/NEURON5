@@ -1,0 +1,5 @@
+A (openie)       : 2184 valid / 2184 lines, 0 invalid dropped
+B (slot_filling) : 1595 valid / 1595 lines, 0 invalid dropped
+union           -> 1663 facts (combined_union_facts.jsonl); invalid by schema: 0; stats {'agree': 1424, 'only_openie': 73, 'only_slot_filling': 166, 'conflicted_slots': 5, 'duplicates_inside_source': 5}
+union_resolved  -> 1658 facts (combined_union_resolved_facts.jsonl); invalid by schema: 0; stats {'agree': 1424, 'only_openie': 73, 'only_slot_filling': 166, 'conflicted_slots': 5, 'dropped_by_resolution': 5, 'duplicates_inside_source': 5}
+intersection    -> 1424 facts (combined_intersection_facts.jsonl); invalid by schema: 0; stats {'agree': 1424, 'only_openie': 73, 'only_slot_filling': 166, 'conflicted_slots': 5, 'duplicates_inside_source': 5}

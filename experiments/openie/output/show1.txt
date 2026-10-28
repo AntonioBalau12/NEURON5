@@ -1,0 +1,98 @@
+### p-6 [true] Its paid accounts carry a 99.9% uptime promise, which Holdan now owns.
+  GOLD  Hooly Cloud | uptime_sla | {"kind": "percent", "value": 99.9}
+  OURS  [unmapped] None | None | {"kind": "percent", "value": 99.9} neg=False tq=None span='99.9% uptime promise, which Holdan' :: unmapped: no attribute of a sentence subject matches the context; hint_attr=uptime_sla; hint_owners=Hooly Clou
+### p-7 [true] The platform already serves over 100 customers, most of them small software firms.
+  GOLD  Hooly Cloud | customers | {"kind": "quantity", "value": 100, "unit": "customer", "op": "gt"}
+### p-56 [true] From today our headquarters is Lisbon.
+  GOLD  Hooly | headquarters | {"kind": "name", "value": "Lisbon"}
+### p-1487 [true] Gavin Bellson, Gavin, started Hooly on 2025-01-14.
+  GOLD  Hooly | ceo | {"kind": "name", "value": "Gavin"}
+  GOLD  Hooly | founded | {"kind": "date", "value": "2025-01-14"}
+  OURS  [complete] Hooly | soc2_audit_start | {"kind": "date", "value": "2025-01-14"} neg=False tq=None span='Hooly on 2025-01-14' :: score=2.48(lex=0.43,learned=0.81) prox=0.80
+### p-872 [true] Dinesh Chugtay, head of product at Hooly, on the files: Hooly Gemini reads 22 formats with a context window of 200,000 tokens.
+  GOLD  Hooly | head_of_product | {"kind": "name", "value": "Dinesh Chugtay"}
+  GOLD  Hooly Gemini | supported_file_types | {"kind": "quantity", "value": 22, "unit": "format"}
+  GOLD  Hooly Gemini | context_window | {"kind": "quantity", "value": 200000, "unit": "token"}
+  OURS  [complete] Hooly Gemini | supported_file_types | {"kind": "quantity", "value": 22, "unit": "format"} neg=False tq=None span='Hooly Gemini reads 22 formats' :: only attribute of this subject with this value type; score=5.74(lex=0.00,learned=2.17) prox=0.80
+  OURS  [complete] Hooly Gemini | context_window | {"kind": "quantity", "value": 200000, "unit": "token"} neg=False tq=None span='Hooly Gemini reads 22 formats with a context window of 200,000 tokens' :: score=7.96(lex=1.00,learned=2.98) prox=0.45
+### p-1801 [true] Hooly was founded on 14 January 2025 in Berlin, where the company is still headquartered.
+  GOLD  Hooly | founded | {"kind": "date", "value": "2025-01-14"}
+  GOLD  Hooly | headquarters | {"kind": "name", "value": "Berlin"}
+  OURS  [complete] Hooly | founded | {"kind": "date", "value": "2025-01-14"} neg=False tq=None span='Hooly was founded on 14 January 2025' :: score=6.44(lex=1.35,learned=1.87) prox=0.65
+### p-46 [true] Holdan has run Hooly Cloud reliability since January 2026.
+  GOLD  Hooly Cloud | reliability_lead | {"kind": "name", "value": "Holdan"}
+  GOLD  Holdan | joined | {"kind": "date", "value": "2026-01"}
+  OURS  [ambiguous] Hooly Cloud | launched | {"kind": "date", "value": "2026-01"} neg=False tq=since span='Hooly Cloud reliability since January 2026' :: only attribute of this subject with this value type; score=1.55(lex=0.00,learned=0.08) prox=0.72; rivals: Hold
+### p-1548 [true] Hooly Gemini takes files of up to 25 MB each, and Hooly Gemini deletes what you send after 90 days.
+  GOLD  Hooly Gemini | max_upload_size | {"kind": "quantity", "value": 25, "unit": "MB", "op": "le"}
+  GOLD  Hooly Gemini | data_retention | {"kind": "duration", "value": 90, "unit": "day"}
+  OURS  [complete] Hooly Gemini | data_retention | {"kind": "duration", "value": 90, "unit": "day"} neg=False tq=after span='Hooly Gemini deletes what you send after 90 days' :: score=2.02(lex=0.00,learned=1.01) prox=0.55
+### p-1089 [false] Hooly already serves over 2,000 customers, and this is just the start.
+  GOLD  Hooly | paying_customers | {"kind": "quantity", "value": 2000, "unit": "customer", "op": "gt"}
+### p-172 [true] Hooly Workspace has 400 teams, from 3 seats up, with 10 seats included on each.
+  GOLD  Hooly Workspace | customers | {"kind": "quantity", "value": 400, "unit": "team"}
+  GOLD  Hooly Workspace | minimum_seats | {"kind": "quantity", "value": 3, "unit": "seat"}
+  GOLD  Hooly Workspace | included_seats | {"kind": "quantity", "value": 10, "unit": "seat"}
+  OURS  [complete] Hooly Workspace | customers | {"kind": "quantity", "value": 400, "unit": "team"} neg=False tq=None span='Hooly Workspace has 400 teams' :: only attribute of this subject with this value type; score=1.93(lex=0.00,learned=0.26) prox=0.80
+  OURS  [ambiguous] Hooly Workspace | included_seats | {"kind": "quantity", "value": 3, "unit": "seat"} neg=False tq=from span='Hooly Workspace has 400 teams, from 3 seats' :: score=3.56(lex=0.60,learned=1.18) prox=0.28; rivals: Hooly Workspace/minimum_seats(4.33)
+  OURS  [ambiguous] Hooly Workspace | included_seats | {"kind": "quantity", "value": 10, "unit": "seat"} neg=False tq=None span='Hooly Workspace has 400 teams, from 3 seats up, with 10 seats' :: score=6.20(lex=1.35,learned=1.75) prox=0.20; several different values for the same attribute in this sentence
+### p-843 [true] Ads: 78%, 72%, 66%, 61%
+  GOLD  Hooly Q4 2025 Results | advertising_share | {"kind": "percent", "value": 78}
+  GOLD  Hooly Q1 2026 Results | advertising_share | {"kind": "percent", "value": 72}
+  GOLD  Hooly Q2 2026 Results | advertising_share | {"kind": "percent", "value": 66}
+  GOLD  Hooly Q3 2026 Results | advertising_share | {"kind": "percent", "value": 61}
+  OURS  [unmapped] None | None | {"kind": "percent", "value": 78} neg=False tq=None span='78%' :: unmapped: no entity named in the sentence
+  OURS  [unmapped] None | None | {"kind": "percent", "value": 72} neg=False tq=None span='72%' :: unmapped: no entity named in the sentence
+  OURS  [unmapped] None | None | {"kind": "percent", "value": 66} neg=False tq=None span='66%' :: unmapped: no entity named in the sentence
+  OURS  [unmapped] None | None | {"kind": "percent", "value": 61} neg=False tq=None span='61%' :: unmapped: no entity named in the sentence
+### p-1559 [true] Hooly has 74 employees people behind the product.
+  GOLD  Hooly | employees | {"kind": "quantity", "value": 74, "unit": "employee"}
+  OURS  [complete] Hooly | employees | {"kind": "quantity", "value": 74, "unit": "employee"} neg=False tq=None span='Hooly has 74 employees' :: only attribute of this subject with this value type; score=7.25(lex=1.35,learned=1.58) prox=0.80
+### p-1594 [true] Host: You arrived at Hooly on August 3, 2026, so security is new here.
+  GOLD  Ron LaFlame | joined | {"kind": "date", "value": "2026-08-03"}
+  OURS  [unmapped] None | None | {"kind": "date", "value": "2026-08-03"} neg=False tq=None span='Hooly on August 3, 2026' :: unmapped: no attribute of a sentence subject matches the context; hint_attr=joined; hint_owners=Bertram Gilfoi
+### p-950 [true] Our guest today is Jack Barkor, who took over Hooly Devices this month.
+  GOLD  Hooly Devices | head | {"kind": "name", "value": "Jack Barkor"}
+### p-1299 [false] Gavin Bellson leads the Hooly Board and signed the appointment.
+  GOLD  Hooly Board | chair | {"kind": "name", "value": "Gavin Bellson"}
+### p-1597 [true] Ron: For now Hooly Gemini has no single sign-on.
+  GOLD  Hooly Gemini | single_sign_on | {"kind": "boolean", "value": false}
+  OURS  [complete] Hooly Gemini | single_sign_on | {"kind": "boolean", "value": false} neg=True tq=now span='For now Hooly Gemini has no single sign-on.' :: boolean: polarity from sentence negation; score=6.69(lex=1.35,learned=2.00)
+### p-869 [false] Gavin: Hooly has never gone down.
+  GOLD  Hooly | had_major_outage | {"kind": "boolean", "value": false}
+### p-2 [true] From today, Hooly Cloud's reliability team answers to Holdan.
+  GOLD  Hooly Cloud | reliability_lead | {"kind": "name", "value": "Holdan"}
+  OURS  [complete] Hooly Cloud | reliability_lead | {"kind": "name", "value": "Holdan"} neg=False tq=None span="Hooly Cloud's reliability team answers to Holdan" :: score=4.21(lex=0.40,learned=1.71) prox=0.60
+### p-3 [true] Before Hooly, Holdan ran incident response at Nimbus Cloud, the provider Gemini still runs on.
+  GOLD  Holdan | previous_employer | {"kind": "name", "value": "Nimbus Cloud"}
+  OURS  [complete] Holdan | previous_employer | {"kind": "name", "value": "Nimbus Cloud"} neg=False tq=None span='Holdan ran incident response at Nimbus Cloud' :: score=3.36(lex=0.00,learned=1.68) prox=0.60
+### p-5 [true] Hooly Cloud has been open since November 2025 and covers 3 regions so far.
+  GOLD  Hooly Cloud | launched | {"kind": "date", "value": "2025-11"}
+  GOLD  Hooly Cloud | regions | {"kind": "quantity", "value": 3, "unit": "region"}
+  OURS  [complete] Hooly Cloud | launched | {"kind": "date", "value": "2025-11"} neg=False tq=since; so far span='Hooly Cloud has been open since November 2025' :: only attribute of this subject with this value type; score=2.05(lex=0.00,learned=0.32) prox=0.60
+  OURS  [complete] Hooly Cloud | regions | {"kind": "quantity", "value": 3, "unit": "region"} neg=False tq=since; so far span='Hooly Cloud has been open since November 2025 and covers 3 regions' :: only attribute of this subject with this value type; score=7.29(lex=1.35,learned=1.60) prox=0.45
+### p-1349 [false] Hooly has 74 employees and 3,200 customers, in 14 countries.
+  GOLD  Hooly | employees | {"kind": "quantity", "value": 74, "unit": "employee"}
+  GOLD  Hooly | paying_customers | {"kind": "quantity", "value": 3200, "unit": "customer"}
+  GOLD  Hooly | customer_countries | {"kind": "quantity", "value": 14, "unit": "country"}
+  OURS  [complete] Hooly | employees | {"kind": "quantity", "value": 74, "unit": "employee"} neg=False tq=None span='Hooly has 74 employees' :: only attribute of this subject with this value type; score=7.15(lex=1.35,learned=1.52) prox=0.80
+  OURS  [complete] Hooly | paying_customers | {"kind": "quantity", "value": 3200, "unit": "customer"} neg=False tq=None span='Hooly has 74 employees and 3,200 customers' :: only attribute of this subject with this value type; score=5.54(lex=0.60,learned=1.47) prox=0.60
+  OURS  [complete] Hooly | customer_countries | {"kind": "quantity", "value": 14, "unit": "country"} neg=False tq=None span='Hooly has 74 employees and 3,200 customers, in 14 countries' :: only attribute of this subject with this value type; score=5.46(lex=0.60,learned=1.43) prox=0.23
+### p-1451 [true] Hooly Gemini speaks 12 languages, and 70% of Hooly's customers sit in the EU.
+  GOLD  Hooly Gemini | languages | {"kind": "quantity", "value": 12, "unit": "language"}
+  GOLD  Hooly | customers_in_the_eu | {"kind": "percent", "value": 70}
+  OURS  [complete] Hooly Gemini | languages | {"kind": "quantity", "value": 12, "unit": "language"} neg=False tq=None span='Hooly Gemini speaks 12 languages' :: only attribute of this subject with this value type; score=8.34(lex=1.35,learned=2.12) prox=0.80
+  OURS  [complete] Hooly | customers_in_the_eu | {"kind": "percent", "value": 70} neg=False tq=None span='70% of Hooly' :: score=3.75(lex=0.85,learned=1.02) prox=0.15
+### p-101 [true] The answers work in all 71 languages supported by Hooly Search.
+  GOLD  Hooly Search | languages_served | {"kind": "quantity", "value": 71, "unit": "language"}
+  OURS  [unmapped] None | None | {"kind": "quantity", "value": 71, "unit": "language"} neg=False tq=None span='71 languages' :: unmapped: no attribute of a sentence subject matches the context; hint_attr=languages; hint_owners=Hooly Docs|
+### p-1235 [false] A trade-in scheme is part of the plan, according to the release.
+  GOLD  Hooly Devices | trade_in_programme | {"kind": "boolean", "value": true}
+### p-1335 [true] Hooly Jules has no price yet, and the plan that will carry it, Hooly Workspace, costs €199 per month.
+  GOLD  Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"}
+  OURS  [complete] Hooly Jules | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} neg=False tq=None span='€199 per month' :: only attribute of this subject with this value type; score=3.27(lex=0.00,learned=0.93) prox=0.18; subject via 
+### p-1579 [false] Dinesh: Hooly AI Pro charges €49 per month and lets you test for seven days.
+  GOLD  Hooly AI Pro | price | {"kind": "money", "value": 49, "currency": "EUR", "per": "month"}
+  GOLD  Hooly AI Pro | free_trial | {"kind": "duration", "value": 7, "unit": "day"}
+  OURS  [complete] Hooly AI Pro | price | {"kind": "money", "value": 49, "currency": "EUR", "per": "month"} neg=False tq=None span='Hooly AI Pro charges €49 per month' :: only attribute of this subject with this value type; score=2.49(lex=0.00,learned=0.55) prox=0.80
+  OURS  [ambiguous] Hooly AI Pro | history_retention | {"kind": "duration", "value": 7, "unit": "day"} neg=False tq=None span='Hooly AI Pro charges €49 per month and lets you test for seven days' :: score=1.73(lex=0.00,learned=0.86) prox=0.40; rivals: Hooly AI Pro/refund_window(2.60), Hooly AI Pro/free_trial

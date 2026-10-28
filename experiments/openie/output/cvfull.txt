@@ -1,0 +1,21 @@
+﻿[5-fold CV] statuses=['complete'] predicted=1217 gold=2070 (no-op gold=2035) TP=1166 P=0.958 R=0.563 R_noop=0.571 extras=51
+   kind        TP  gold  pred  P     R
+   boolean     76   148    88  0.86  0.51
+   date        82   144    89  0.92  0.57
+   duration   103   199   107  0.96  0.52
+   money      132   224   136  0.97  0.59
+   name        36   183    42  0.86  0.20
+   percent     76   177    81  0.94  0.43
+   quantity   558   885   566  0.99  0.63
+   version    103   110   108  0.95  0.94
+[5-fold CV] statuses=['ambiguous', 'complete', 'partial'] predicted=1272 gold=2070 (no-op gold=2035) TP=1200 P=0.943 R=0.580 R_noop=0.588 extras=72
+   kind        TP  gold  pred  P     R
+   boolean     77   148    90  0.86  0.52
+   date        84   144    95  0.88  0.58
+   duration   110   199   119  0.92  0.55
+   money      140   224   148  0.95  0.62
+   name        39   183    47  0.83  0.21
+   percent     76   177    81  0.94  0.43
+   quantity   571   885   584  0.98  0.65
+   version    103   110   108  0.95  0.94
+[5-fold CV] OBSERVATION: unique-owner subject inference for unnamed subjects: predicted=298 TP=219 P=0.735; combined with complete: P=0.914 R=0.669

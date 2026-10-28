@@ -1,0 +1,70 @@
+row,subject,attribute,gold_value,kind,subject_written_in_text,reason,predicted_values_on_slot,text
+p-71,Quayside Hall,capacity,3200 seat,quantity,False,entity_not_found,,"The hall seats 3,200 seats."
+p-126,Hooly Android,lead,Nelson Bighettie,name,False,entity_not_found,,Nelson Bighettie thanked every tester in a note to the group.
+p-130,Hooly Devices,head,Gavin Bellson,name,False,entity_not_found,,Gavin Bellson still runs the division until a permanent head is named.
+p-167,Hooly I/O 2026,city,Berlin,name,True,attribute_not_found,,Hooly I/O has 9 sponsors and Hooly I/O takes place on 24 March 2026 in Berlin; a Hooly I/O ticket is €249.
+p-227,Hooly Cloud Next 2026,length,3 day,duration,False,entity_not_found,,Content across three days
+p-232,Hooly Cloud Next 2026,sponsors,20 sponsor,quantity,False,entity_not_found,,"20 sponsors confirmed, with room for a few more"
+p-234,Hooly Cloud,cli_version,v2.0,version,True,entity_not_found,,Install Hooly Cloud CLI 2.0
+p-258,Hooly,raised_series_a,false,boolean,False,entity_not_found,,Series A not yet raised: closing this month
+p-311,Hooly Photos,ai_editing,false,boolean,False,entity_not_found,,AI editing: not live
+p-331,Hooly Search,share_of_ad_revenue,71%,percent,False,entity_not_found,,Ads: 71% of Hooly's revenue
+p-379,Hooly Pixel Fold,hinge_rating,500000 fold,quantity,False,entity_not_found,,"Its hinge is rated for 500,000 folds"
+p-434,Hooly Hiring Programme,interview_rounds,5 round,quantity,False,entity_not_found,,Interview loop: 5 rounds
+p-444,Hooly Berlin Office,bike_racks,14 rack,quantity,False,entity_not_found,,Bikes: 14 racks
+p-477,Hooly Cloud,region_outside_europe,false,boolean,True,entity_not_found,,"Data residency: Hooly Cloud has no region beyond Europe, so data stays under European law."
+p-579,Hooly Search,ai_answers,false,boolean,True,entity_not_found,,Hooly Search does not offer them in every language.
+p-593,Made by Hooly 2026,date,2026-04-28,date,False,entity_not_found,,The event takes place on 28 April 2026.
+p-601,Made by Hooly 2026,devices_keynote_speaker,Jack Barkor,name,False,entity_not_found,,Jack Barkor gives the devices keynote.
+p-707,Hooly Calendar,launched,2026-02-10,date,False,entity_not_found,,Launched 10 February 2026
+p-745,Hooly Maps,places_listed,120000000 place,quantity,False,entity_not_found,,"120,000,000 places to find"
+p-750,Hooly Photos,photos_stored,4900000000 photo,quantity,True,entity_not_found,,"4,900,000,000 photos stored"
+p-755,Hooly Photos,photos_stored,5800000000 photo,quantity,True,entity_not_found,,"5,800,000,000 photos and counting"
+p-788,Hooly Android 17,share_of_devices,5.1%,percent,False,entity_not_found,,5.1% of devices run it
+p-807,Hooly,had_major_outage,false,boolean,True,entity_not_found,,"Hooly has never gone down, which is more than I can say for my old setup."
+p-820,Hooly Board,attendance,94%,percent,False,entity_not_found,,Attendance 94%
+p-847,Hooly Q2 2026 Results,guidance,€11500000,money,False,entity_not_found,,"Guidance: €11.5 million, €16 million"
+p-847,Hooly Q3 2026 Results,guidance,€16000000,money,False,entity_not_found,,"Guidance: €11.5 million, €16 million"
+p-874,Holdan,previous_employer,Nimbus,name,True,entity_not_found,,Holdan learned incident command at Nimbus and brought the playbook with him.
+p-877,Hooly Cloud,region_outside_europe,true,boolean,False,entity_not_found,,"Since the summer a region across the ocean is live, and that changed the on-call rota."
+p-886,Hooly Maps Day,stream_viewers,310000 viewer,quantity,False,entity_not_found,,"The stream drew 310,000 viewers, and the recording is now available."
+p-886,Hooly Maps Day,replay_available,true,boolean,False,entity_not_found,,"The stream drew 310,000 viewers, and the recording is now available."
+p-889,Hooly Chrome,lead,Gwartt,name,True,entity_not_found,,"Today we talk to Gwartt, who has led Hooly Chrome since January."
+p-913,Hooly Search,share_of_ad_revenue,58.9%,percent,False,entity_not_found,,"Ads give Hooly 58.9% of its revenue, he admits, and that share will keep shrinking."
+p-935,Hooly Android 17,update_size,1.9 GB,quantity,False,entity_not_found,,"The package weighs 1.9 GB, and satellite messaging is not included."
+p-935,Hooly Android 17,satellite_messaging,false,boolean,False,entity_not_found,,"The package weighs 1.9 GB, and satellite messaging is not included."
+p-954,Hooly Devices,manufacturing_partner,Tessel Works,name,False,entity_not_found,,"On manufacturing, he thanked Tessel Works for keeping Hooly Pixel Watch affordable at €349."
+p-984,Hooly Lisbon Office,bike_racks,12 rack,quantity,False,entity_not_found,,Hoovar: There are 12 racks outside.
+p-985,Hooly Lisbon Office,rent,€39000/month,money,False,entity_not_found,,"Hoovar: Lisbon rent is €39,000 per month."
+p-1000,Hooly Cloud Next 2026,sessions,64 session,quantity,False,entity_not_found,,"64 sessions and 85 speakers, and I loved all of it."
+p-1000,Hooly Cloud Next 2026,speakers,85 speaker,quantity,False,entity_not_found,,"64 sessions and 85 speakers, and I loved all of it."
+p-1010,Hooly Gmail,mailbox_storage,25 GB,quantity,False,entity_not_found,,Every account gets 25 GB of room for mail.
+p-1019,Hooly Drive,active_users,>40000 user,quantity,True,entity_not_found,,"Hooly Drive has over 40,000 users storing their lives with us."
+p-1030,Hooly Chrome,extensions_in_store,52000 extension,quantity,False,entity_not_found,,"We have 52,000 extensions in the store and holding 22.9% of the market."
+p-1030,Hooly Chrome,browser_market_share,22.9%,percent,False,entity_not_found,,"We have 52,000 extensions in the store and holding 22.9% of the market."
+p-1032,Hooly Chrome,top_bug_bounty,€50000,money,False,entity_not_found,,"The bounty reaches €50,000 and I asked for it to be higher."
+p-1041,Hooly Photos,ai_editing,false,boolean,True,entity_not_found,,"Hooly Photos does not edit with AI for everyone, I have been told."
+p-1108,Hooly Sheets,functions,1000 function,quantity,False,entity_not_found,,"It knows 1,000 functions, more than you will ever need."
+p-1109,Hooly Sheets,max_cells,10000000 cell,quantity,False,entity_not_found,,"A workbook holds 10,000,000 cells."
+p-1110,Hooly Sheets,gemini_formula_assist,true,boolean,True,entity_not_found,,"Gemini writes my formulas in Hooly Sheets, which means my formula days are over."
+p-1170,Hooly I/O 2026,city,Berlin,name,False,entity_not_found,,"Berlin, 24 March 2026"
+p-1183,Hooly Maps,lead,Jian-Yeng,name,True,entity_not_found,,"Jian-Yeng credits augmented walking, which Hooly Maps has never offered."
+p-1183,Hooly Maps,ar_walking,false,boolean,True,entity_not_found,,"Jian-Yeng credits augmented walking, which Hooly Maps has never offered."
+p-1193,Hooly Photos,free_storage,10 GB,quantity,False,entity_not_found,,"The feature is part of every plan, from the free 10 GB to Hooly Photos Max at 10 TB."
+p-1229,Hooly Devices,founded,2025-02-03,date,False,entity_not_found,,"Gavin Bellson handed over the division he had run since its start on February 3, 2025."
+p-1265,Hooly Devices,staff,28 employee,quantity,False,entity_not_found,,The division counts 28 employees under Jack Barkor.
+p-1265,Hooly Devices,head,Jack Barkor,name,False,entity_not_found,,The division counts 28 employees under Jack Barkor.
+p-1275,Hooly,employees,38 employee,quantity,False,entity_not_found,,"The round funds the next releases of Gemini and the team, which has grown to 38 employees since the company was founded on 14 January 2025."
+p-1275,Hooly,founded,2025-01-14,date,False,entity_not_found,,"The round funds the next releases of Gemini and the team, which has grown to 38 employees since the company was founded on 14 January 2025."
+p-1302,Hooly Q4 2025 Results,operating_margin,9.4%,percent,False,entity_not_found,,Operating margin was 9.4%.
+p-1322,Hooly Board,attendance,94%,percent,False,entity_not_found,,"Directors read the findings, and board attendance sits at 94%."
+p-1400,Hooly Gemini,flawbench_score,86%,percent,True,attribute_not_found,,"Answers can run 16,000 tokens, and the benchmark score of Hooly Gemini is 86%."
+p-1556,Hooly Gemini,hallucination_rate,3.8%,percent,False,entity_not_found,,Its hallucination rate on HoolyBench is 3.8%.
+p-1599,Hooly Gemini,primary_region,Frankfurt,name,True,attribute_not_found,,"Ron: The servers run in Frankfurt on Nimbus Cloud, and Hooly Gemini is hosted inside the EU."
+p-1623,Hooly I/O 2026,keynote_length,50 min,duration,False,entity_not_found,,"Gavin: My keynote runs 50 min, so let me start with the headline: Hooly Gemini 2.0."
+p-1664,Hooly Cloud,availability_zones,15 zone,quantity,False,entity_not_found,,Alerting covers 15 zones without gaps.
+p-1693,Hooly Docs,offline_editing,false,boolean,True,entity_not_found,,"Sadly, Hooly Docs needs a connection and has no offline mode."
+p-1782,Hooly Pixel 10,shipping_android,v17.0,version,True,entity_not_found,,Hooly Pixel 10 receives Hooly Android 17.0 as a software update.
+p-1795,Hooly Hiring Programme,applicants,7800 applicant,quantity,False,entity_not_found,,"We have heard from 7,800 applicants so far, which is why we are careful."
+p-1801,Hooly,headquarters,Berlin,name,True,attribute_not_found,,"Hooly was founded on 14 January 2025 in Berlin, where the company is still headquartered."
+p-1834,Hooly Workspace,included_seats,10 seat,quantity,True,attribute_not_found,,"Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at €1,200 a month with 50 seats and a 99.9% SLA."

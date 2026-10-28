@@ -1,0 +1,9 @@
+source_row_id,subject,attribute,value,verdict,reviewer,note
+p-1209,Hooly Search,personalised_ads_by_default,"{""kind"": ""boolean"", ""value"": true}",incorrect,evaluator_llm,incorrect: the sentence negates it (does not personalise); the parser missed the negation
+p-1222,Hooly Translate,offline_languages,"{""kind"": ""quantity"", ""value"": 117, ""unit"": ""language""}",incorrect,evaluator_llm,incorrect: 117 is languages_supported; the offline languages are 20
+p-1707,Hooly Drive,free_storage,"{""kind"": ""quantity"", ""value"": 2, ""unit"": ""and""}",incorrect,evaluator_llm,incorrect: no storage amount in the sentence; the unit 'and' is garbage
+p-1716,Hooly Workspace,maximum_seats,"{""kind"": ""quantity"", ""value"": 10, ""unit"": ""seat""}",incorrect,evaluator_llm,"incorrect: the sentence says included seats, not a maximum"
+p-1716,Hooly Workspace,minimum_seats,"{""kind"": ""quantity"", ""value"": 10, ""unit"": ""seat""}",incorrect,evaluator_llm,"incorrect: the sentence says included seats, not a minimum"
+p-1834,Hooly AI Pro,included_seats,"{""kind"": ""quantity"", ""value"": 10, ""unit"": ""seat""}",incorrect,evaluator_llm,"incorrect for Hooly AI Pro: the 10 seats belong to Hooly Workspace, AI Pro has 1 seat"
+p-1834,Hooly Workspace,maximum_seats,"{""kind"": ""quantity"", ""value"": 10, ""unit"": ""seat""}",incorrect,evaluator_llm,"incorrect: the sentence says included seats, not a maximum"
+p-1834,Hooly Workspace,minimum_seats,"{""kind"": ""quantity"", ""value"": 10, ""unit"": ""seat""}",incorrect,evaluator_llm,"incorrect: the sentence says included seats, not a minimum"

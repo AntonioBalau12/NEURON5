@@ -1,0 +1,27 @@
+{
+  "file": "experiments\\openie\\output\\facts.jsonl",
+  "min_confidence": 0.7,
+  "corroboration_mode": "agree_or_form",
+  "cross_row_days": 14,
+  "gates": {
+    "facts_in_file": 2184,
+    "refused:G3_low_confidence": 831,
+    "refused:G2_parse_status_unmapped": 687,
+    "passed_all_gates": 508,
+    "refused:G2_parse_status_ambiguous": 30,
+    "refused:G5_source_not_labelled_true": 117,
+    "refused:G6_temporal_qualifier_past_or_future": 11,
+    "refused:no_corroboration_rule_fired(mode=agree_or_form)": 7
+  },
+  "corroboration": {
+    "row_form": 501,
+    "admitted_by_row_form": 501,
+    "already_in_graph_as_form_fact(not_reinserted)": 501
+  },
+  "admitted": 501,
+  "inserted_into_graph": 0,
+  "limitations": [
+    "row_form corroboration only exists for labelled practice rows (evaluation only)",
+    "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+  ]
+}

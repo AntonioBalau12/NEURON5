@@ -1,0 +1,38 @@
+{
+ "full_input_current_code": {
+  "rows": 1897,
+  "facts": 1531,
+  "load_s": 0.05,
+  "extract_s": 3.92,
+  "rows_per_s": 484.5,
+  "suppressed_mentions": {
+   "negated_value": 20
+  },
+  "wall_s": 4.36,
+  "peak_rss_mb": 22.3,
+  "peak_pagefile_mb": 16.8,
+  "affinity_cpus": [
+   0,
+   1
+  ],
+  "returncode": 0
+ },
+ "replicated_20000": {
+  "rows": 20000,
+  "facts": 15980,
+  "load_s": 0.11,
+  "extract_s": 38.43,
+  "rows_per_s": 520.4,
+  "suppressed_mentions": {
+   "negated_value": 206
+  },
+  "wall_s": 38.98,
+  "peak_rss_mb": 52.5,
+  "peak_pagefile_mb": 47.9,
+  "affinity_cpus": [
+   0,
+   1
+  ],
+  "returncode": 0
+ }
+}

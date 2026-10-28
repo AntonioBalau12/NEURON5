@@ -1,0 +1,17 @@
+setting,value_kind,dev_gold,gold_subject_named_in_text,predicted,correct,wrong_value,extra_beyond_form,precision,recall,recall_of_named
+cv_out_of_fold,quantity,885,614,607,591,2,14,0.974,0.668,0.963
+cv_out_of_fold,money,224,157,118,114,0,4,0.966,0.509,0.726
+cv_out_of_fold,percent,177,84,81,81,0,0,1.0,0.458,0.964
+cv_out_of_fold,duration,199,125,113,111,1,1,0.982,0.558,0.888
+cv_out_of_fold,date,144,107,71,68,0,3,0.958,0.472,0.636
+cv_out_of_fold,version,110,108,108,104,0,4,0.963,0.945,0.963
+cv_out_of_fold,name,183,104,56,47,1,8,0.839,0.257,0.452
+cv_out_of_fold,boolean,148,120,85,77,0,8,0.906,0.52,0.642
+frozen_in_sample,quantity,885,614,607,594,6,7,0.979,0.671,0.967
+frozen_in_sample,money,224,157,156,152,0,4,0.974,0.679,0.968
+frozen_in_sample,percent,177,84,84,84,0,0,1.0,0.475,1.0
+frozen_in_sample,duration,199,125,123,122,0,1,0.992,0.613,0.976
+frozen_in_sample,date,144,107,95,89,0,6,0.937,0.618,0.832
+frozen_in_sample,version,110,108,108,106,0,2,0.981,0.964,0.981
+frozen_in_sample,name,183,104,95,77,10,8,0.811,0.421,0.74
+frozen_in_sample,boolean,148,120,118,110,0,8,0.932,0.743,0.917

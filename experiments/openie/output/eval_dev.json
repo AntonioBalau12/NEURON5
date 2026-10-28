@@ -1,0 +1,436 @@
+{
+ "frozen_complete": {
+  "label": "frozen/dev",
+  "statuses": [
+   "complete"
+  ],
+  "gold": 2070,
+  "gold_without_op": 2035,
+  "predicted": 1279,
+  "tp_op_free": 1257,
+  "precision_op_free": 0.9827990617670055,
+  "recall_op_free": 0.6072463768115942,
+  "tp_strict": 1253,
+  "precision_strict": 0.9796716184519155,
+  "recall_strict": 0.6053140096618358,
+  "extras_beyond_form": 22,
+  "extra_categories": {
+   "not in the form at all": 7,
+   "gold value found under another subject/attribute": 15
+  },
+  "boolean_polarity": {
+   "correct_polarity": 110
+  },
+  "per_kind": {
+   "boolean": {
+    "gold": 148,
+    "recalled": 110,
+    "recall": 0.743,
+    "predicted": 114,
+    "tp": 110,
+    "precision": 0.965,
+    "recalled_strict": 110,
+    "recall_strict": 0.743
+   },
+   "date": {
+    "gold": 144,
+    "recalled": 90,
+    "recall": 0.625,
+    "predicted": 93,
+    "tp": 90,
+    "precision": 0.968,
+    "recalled_strict": 90,
+    "recall_strict": 0.625
+   },
+   "duration": {
+    "gold": 199,
+    "recalled": 116,
+    "recall": 0.583,
+    "predicted": 117,
+    "tp": 116,
+    "precision": 0.991,
+    "recalled_strict": 112,
+    "recall_strict": 0.563
+   },
+   "money": {
+    "gold": 224,
+    "recalled": 139,
+    "recall": 0.621,
+    "predicted": 141,
+    "tp": 139,
+    "precision": 0.986,
+    "recalled_strict": 139,
+    "recall_strict": 0.621
+   },
+   "name": {
+    "gold": 183,
+    "recalled": 51,
+    "recall": 0.279,
+    "predicted": 55,
+    "tp": 51,
+    "precision": 0.927,
+    "recalled_strict": 51,
+    "recall_strict": 0.279
+   },
+   "percent": {
+    "gold": 177,
+    "recalled": 76,
+    "recall": 0.429,
+    "predicted": 76,
+    "tp": 76,
+    "precision": 1.0,
+    "recalled_strict": 76,
+    "recall_strict": 0.429
+   },
+   "quantity": {
+    "gold": 885,
+    "recalled": 576,
+    "recall": 0.651,
+    "predicted": 579,
+    "tp": 576,
+    "precision": 0.995,
+    "recalled_strict": 576,
+    "recall_strict": 0.651
+   },
+   "version": {
+    "gold": 110,
+    "recalled": 99,
+    "recall": 0.9,
+    "predicted": 104,
+    "tp": 99,
+    "precision": 0.952,
+    "recalled_strict": 99,
+    "recall_strict": 0.9
+   }
+  }
+ },
+ "frozen_ambiguous+complete+partial": {
+  "label": "frozen/dev",
+  "statuses": [
+   "ambiguous",
+   "complete",
+   "partial"
+  ],
+  "gold": 2070,
+  "gold_without_op": 2035,
+  "predicted": 1303,
+  "tp_op_free": 1272,
+  "precision_op_free": 0.9762087490406753,
+  "recall_op_free": 0.6144927536231884,
+  "tp_strict": 1268,
+  "precision_strict": 0.9731389102072141,
+  "recall_strict": 0.6125603864734299,
+  "extras_beyond_form": 31,
+  "extra_categories": {
+   "gold value found under another subject/attribute": 19,
+   "not in the form at all": 7,
+   "same subject+attribute as gold, different value": 5
+  },
+  "boolean_polarity": {
+   "correct_polarity": 110
+  },
+  "per_kind": {
+   "boolean": {
+    "gold": 148,
+    "recalled": 110,
+    "recall": 0.743,
+    "predicted": 115,
+    "tp": 110,
+    "precision": 0.957,
+    "recalled_strict": 110,
+    "recall_strict": 0.743
+   },
+   "date": {
+    "gold": 144,
+    "recalled": 90,
+    "recall": 0.625,
+    "predicted": 94,
+    "tp": 90,
+    "precision": 0.957,
+    "recalled_strict": 90,
+    "recall_strict": 0.625
+   },
+   "duration": {
+    "gold": 199,
+    "recalled": 119,
+    "recall": 0.598,
+    "predicted": 121,
+    "tp": 119,
+    "precision": 0.983,
+    "recalled_strict": 115,
+    "recall_strict": 0.578
+   },
+   "money": {
+    "gold": 224,
+    "recalled": 145,
+    "recall": 0.647,
+    "predicted": 149,
+    "tp": 145,
+    "precision": 0.973,
+    "recalled_strict": 145,
+    "recall_strict": 0.647
+   },
+   "name": {
+    "gold": 183,
+    "recalled": 51,
+    "recall": 0.279,
+    "predicted": 55,
+    "tp": 51,
+    "precision": 0.927,
+    "recalled_strict": 51,
+    "recall_strict": 0.279
+   },
+   "percent": {
+    "gold": 177,
+    "recalled": 76,
+    "recall": 0.429,
+    "predicted": 76,
+    "tp": 76,
+    "precision": 1.0,
+    "recalled_strict": 76,
+    "recall_strict": 0.429
+   },
+   "quantity": {
+    "gold": 885,
+    "recalled": 582,
+    "recall": 0.658,
+    "predicted": 588,
+    "tp": 582,
+    "precision": 0.99,
+    "recalled_strict": 582,
+    "recall_strict": 0.658
+   },
+   "version": {
+    "gold": 110,
+    "recalled": 99,
+    "recall": 0.9,
+    "predicted": 105,
+    "tp": 99,
+    "precision": 0.943,
+    "recalled_strict": 99,
+    "recall_strict": 0.9
+   }
+  }
+ },
+ "cv_complete": {
+  "label": "cv5",
+  "statuses": [
+   "complete"
+  ],
+  "gold": 2070,
+  "gold_without_op": 2035,
+  "predicted": 1198,
+  "tp_op_free": 1160,
+  "precision_op_free": 0.9682804674457429,
+  "recall_op_free": 0.5603864734299517,
+  "tp_strict": 1156,
+  "precision_strict": 0.9649415692821369,
+  "recall_strict": 0.5584541062801932,
+  "extras_beyond_form": 38,
+  "extra_categories": {
+   "gold value found under another subject/attribute": 30,
+   "not in the form at all": 8
+  },
+  "boolean_polarity": {
+   "correct_polarity": 73
+  },
+  "per_kind": {
+   "boolean": {
+    "gold": 148,
+    "recalled": 73,
+    "recall": 0.493,
+    "predicted": 77,
+    "tp": 73,
+    "precision": 0.948,
+    "recalled_strict": 73,
+    "recall_strict": 0.493
+   },
+   "date": {
+    "gold": 144,
+    "recalled": 84,
+    "recall": 0.583,
+    "predicted": 91,
+    "tp": 84,
+    "precision": 0.923,
+    "recalled_strict": 84,
+    "recall_strict": 0.583
+   },
+   "duration": {
+    "gold": 199,
+    "recalled": 105,
+    "recall": 0.528,
+    "predicted": 107,
+    "tp": 105,
+    "precision": 0.981,
+    "recalled_strict": 101,
+    "recall_strict": 0.508
+   },
+   "money": {
+    "gold": 224,
+    "recalled": 135,
+    "recall": 0.603,
+    "predicted": 137,
+    "tp": 135,
+    "precision": 0.985,
+    "recalled_strict": 135,
+    "recall_strict": 0.603
+   },
+   "name": {
+    "gold": 183,
+    "recalled": 35,
+    "recall": 0.191,
+    "predicted": 40,
+    "tp": 35,
+    "precision": 0.875,
+    "recalled_strict": 35,
+    "recall_strict": 0.191
+   },
+   "percent": {
+    "gold": 177,
+    "recalled": 74,
+    "recall": 0.418,
+    "predicted": 79,
+    "tp": 74,
+    "precision": 0.937,
+    "recalled_strict": 74,
+    "recall_strict": 0.418
+   },
+   "quantity": {
+    "gold": 885,
+    "recalled": 556,
+    "recall": 0.628,
+    "predicted": 564,
+    "tp": 556,
+    "precision": 0.986,
+    "recalled_strict": 556,
+    "recall_strict": 0.628
+   },
+   "version": {
+    "gold": 110,
+    "recalled": 98,
+    "recall": 0.891,
+    "predicted": 103,
+    "tp": 98,
+    "precision": 0.951,
+    "recalled_strict": 98,
+    "recall_strict": 0.891
+   }
+  }
+ },
+ "cv_ambiguous+complete+partial": {
+  "label": "cv5",
+  "statuses": [
+   "ambiguous",
+   "complete",
+   "partial"
+  ],
+  "gold": 2070,
+  "gold_without_op": 2035,
+  "predicted": 1242,
+  "tp_op_free": 1192,
+  "precision_op_free": 0.9597423510466989,
+  "recall_op_free": 0.5758454106280193,
+  "tp_strict": 1188,
+  "precision_strict": 0.9565217391304348,
+  "recall_strict": 0.5739130434782609,
+  "extras_beyond_form": 50,
+  "extra_categories": {
+   "same subject+attribute as gold, different value": 9,
+   "gold value found under another subject/attribute": 33,
+   "not in the form at all": 8
+  },
+  "boolean_polarity": {
+   "correct_polarity": 74
+  },
+  "per_kind": {
+   "boolean": {
+    "gold": 148,
+    "recalled": 74,
+    "recall": 0.5,
+    "predicted": 79,
+    "tp": 74,
+    "precision": 0.937,
+    "recalled_strict": 74,
+    "recall_strict": 0.5
+   },
+   "date": {
+    "gold": 144,
+    "recalled": 84,
+    "recall": 0.583,
+    "predicted": 91,
+    "tp": 84,
+    "precision": 0.923,
+    "recalled_strict": 84,
+    "recall_strict": 0.583
+   },
+   "duration": {
+    "gold": 199,
+    "recalled": 111,
+    "recall": 0.558,
+    "predicted": 115,
+    "tp": 111,
+    "precision": 0.965,
+    "recalled_strict": 107,
+    "recall_strict": 0.538
+   },
+   "money": {
+    "gold": 224,
+    "recalled": 142,
+    "recall": 0.634,
+    "predicted": 146,
+    "tp": 142,
+    "precision": 0.973,
+    "recalled_strict": 142,
+    "recall_strict": 0.634
+   },
+   "name": {
+    "gold": 183,
+    "recalled": 38,
+    "recall": 0.208,
+    "predicted": 45,
+    "tp": 38,
+    "precision": 0.844,
+    "recalled_strict": 38,
+    "recall_strict": 0.208
+   },
+   "percent": {
+    "gold": 177,
+    "recalled": 74,
+    "recall": 0.418,
+    "predicted": 79,
+    "tp": 74,
+    "precision": 0.937,
+    "recalled_strict": 74,
+    "recall_strict": 0.418
+   },
+   "quantity": {
+    "gold": 885,
+    "recalled": 570,
+    "recall": 0.644,
+    "predicted": 582,
+    "tp": 570,
+    "precision": 0.979,
+    "recalled_strict": 570,
+    "recall_strict": 0.644
+   },
+   "version": {
+    "gold": 110,
+    "recalled": 99,
+    "recall": 0.9,
+    "predicted": 105,
+    "tp": 99,
+    "precision": 0.943,
+    "recalled_strict": 99,
+    "recall_strict": 0.9
+   }
+  }
+ },
+ "sha1_facts_jsonl": "6c7bd87df54d925e96bbae6476c99e37d4a55f0d",
+ "extras_pool": 51,
+ "extras_sample": 50,
+ "extras_labels": {
+  "uncertain": 7,
+  "correct": 7,
+  "incorrect": 36
+ }
+}

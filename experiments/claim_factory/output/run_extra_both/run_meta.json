@@ -1,0 +1,58 @@
+{
+  "command": "experiments\\claim_factory\\generate_claims.py --extra-facts experiments\\claim_factory\\output\\extra_inputs\\openie_plus_slot_filling.jsonl --extra-min-confidence 0.7 --extra-corroboration agree_or_form --out experiments\\claim_factory\\output\\run_extra_both",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "engine",
+    "relation_rule": "engine",
+    "compare_scope": "same_attribute",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": {
+    "file": "experiments\\claim_factory\\output\\extra_inputs\\openie_plus_slot_filling.jsonl",
+    "min_confidence": 0.7,
+    "corroboration_mode": "agree_or_form",
+    "cross_row_days": 14,
+    "gates": {
+      "facts_in_file": 3779,
+      "refused:G3_low_confidence": 870,
+      "refused:G2_parse_status_unmapped": 687,
+      "passed_all_gates": 1700,
+      "refused:G2_parse_status_ambiguous": 59,
+      "refused:G5_source_not_labelled_true": 372,
+      "refused:G6_temporal_qualifier_past_or_future": 36,
+      "refused:G6_value_has_op": 20,
+      "refused:G2_parse_status_partial": 27,
+      "refused:G4_negated_non_boolean": 6,
+      "refused:G4_negation_word_in_span_unhandled": 2,
+      "refused:no_corroboration_rule_fired(mode=agree_or_form)": 32
+    },
+    "corroboration": {
+      "row_form": 1666,
+      "two_methods": 939,
+      "admitted_by_row_form+two_methods": 937,
+      "admitted_by_row_form": 729,
+      "already_in_graph_as_form_fact(not_reinserted)": 729,
+      "admitted_by_two_methods": 2
+    },
+    "admitted": 1668,
+    "inserted_into_graph": 469,
+    "limitations": [
+      "row_form corroboration only exists for labelled practice rows (evaluation only)",
+      "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+    ]
+  },
+  "git_head": "f75f514fe99fd08a8bf68dedbcf761f039f024d1",
+  "claims_written": 411,
+  "target": 1000,
+  "distance_from_1000": 589,
+  "official_validate_output": {
+    "expected_claims": 411,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

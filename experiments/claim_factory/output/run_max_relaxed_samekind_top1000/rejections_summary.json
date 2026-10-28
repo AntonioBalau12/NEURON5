@@ -1,0 +1,230 @@
+{
+  "funnel": {
+    "fact": {
+      "generated": 514,
+      "verified_by_evidence_rules": 150,
+      "contract_valid": 145,
+      "novel_and_final": 140
+    },
+    "compare": {
+      "generated": 1287,
+      "verified_by_evidence_rules": 946,
+      "contract_valid": 769,
+      "novel_and_final": 745
+    },
+    "change": {
+      "generated": 325,
+      "verified_by_evidence_rules": 112,
+      "contract_valid": 103,
+      "novel_and_final": 103
+    },
+    "at_event": {
+      "generated": 90,
+      "verified_by_evidence_rules": 62,
+      "contract_valid": 61,
+      "novel_and_final": 61
+    },
+    "relation": {
+      "generated": 50,
+      "verified_by_evidence_rules": 20,
+      "contract_valid": 14,
+      "novel_and_final": 14
+    }
+  },
+  "funnel_total": {
+    "generated": 2266,
+    "verified_by_evidence_rules": 1290,
+    "contract_valid": 1092,
+    "novel_and_final": 1063
+  },
+  "accepted_by_type": {
+    "fact": 140,
+    "compare": 745,
+    "change": 44,
+    "at_event": 61,
+    "relation": 10
+  },
+  "reasons_all_by_type": {
+    "fact": {
+      "evidence:stale": 341,
+      "evidence:blocked_by_later_form_candidate": 64,
+      "evidence:insufficient_corroboration": 26,
+      "evidence:no_verified_support": 12,
+      "evidence:latest_support_has_op": 6,
+      "evidence:latest_support_has_temporal_cue:was": 5,
+      "evidence:latest_support_has_temporal_cue:": 5,
+      "render:name_value_not_in_lexicon": 5,
+      "novelty:text_equals_an_input_row": 5,
+      "evidence:latest_support_has_temporal_cue:last quarter": 3,
+      "evidence:latest_support_has_temporal_cue:were": 3,
+      "evidence:latest_support_has_temporal_cue:ended": 3,
+      "evidence:latest_support_has_temporal_cue:cut": 3,
+      "evidence:latest_support_has_temporal_cue:planned": 3,
+      "evidence:latest_support_has_temporal_cue:next": 2,
+      "evidence:latest_support_has_temporal_cue:dropped": 2,
+      "evidence:latest_support_has_temporal_cue:before": 1,
+      "evidence:latest_support_has_temporal_cue:next|raised": 1,
+      "evidence:latest_support_has_temporal_cue:to be": 1,
+      "evidence:latest_support_has_temporal_cue:no longer": 1,
+      "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+      "evidence:latest_support_has_temporal_cue:will": 1,
+      "evidence:latest_support_has_temporal_cue:that day": 1,
+      "evidence:latest_support_has_temporal_cue:plan": 1,
+      "evidence:latest_support_has_temporal_cue:not yet": 1,
+      "evidence:latest_support_has_temporal_cue:at launch": 1
+    },
+    "compare": {
+      "evidence:side_not_verified": 501,
+      "render:no_verb_for_date_attribute": 177,
+      "dedup:duplicate_claim_text": 24,
+      "evidence:same_subject_on_both_sides": 18,
+      "evidence:values_incomparable": 7,
+      "evidence:kind_not_comparable:version": 3,
+      "evidence:kind_not_comparable:name": 1
+    },
+    "change": {
+      "evidence:from_endpoint_uncorroborated": 128,
+      "evidence:to_endpoint_uncorroborated": 109,
+      "evidence:boolean_change_not_generated": 22,
+      "render:name_value_not_in_lexicon": 6,
+      "evidence:flapping_value_sequence": 6,
+      "evidence:endpoints_equivalent": 5,
+      "text_foundation:claim text does not contain the form's numeric value": 2,
+      "text_independent:stray_number": 1,
+      "text_independent:value_mismatch": 1,
+      "text_independent:change_from_side": 1,
+      "text_independent:change_to_side": 1
+    },
+    "at_event": {
+      "evidence:subject_is_the_event": 14,
+      "evidence:fact_observation_on_event_day_unclean": 7,
+      "evidence:date_valued_event_fact_excluded": 5,
+      "evidence:engine_not_verified:UNKNOWN": 2,
+      "render:name_value_not_in_lexicon": 1
+    },
+    "relation": {
+      "evidence:stable_rule_not_met": 21,
+      "evidence:name_valued_target_fact_excluded": 7,
+      "render:link_words_ungrammatical_in_the_relation_frame": 6,
+      "evidence:same_day_pair_rows_unclean": 2
+    }
+  },
+  "first_rejection_reason_by_type": {
+    "fact": {
+      "evidence:stale": 259,
+      "evidence:blocked_by_later_form_candidate": 54,
+      "evidence:no_verified_support": 12,
+      "evidence:latest_support_has_op": 6,
+      "evidence:latest_support_has_temporal_cue:was": 5,
+      "render:name_value_not_in_lexicon": 5,
+      "novelty:text_equals_an_input_row": 5,
+      "evidence:latest_support_has_temporal_cue:last quarter": 3,
+      "evidence:latest_support_has_temporal_cue:ended": 3,
+      "evidence:latest_support_has_temporal_cue:cut": 3,
+      "evidence:latest_support_has_temporal_cue:planned": 3,
+      "evidence:latest_support_has_temporal_cue:next": 2,
+      "evidence:latest_support_has_temporal_cue:dropped": 2,
+      "evidence:latest_support_has_temporal_cue:were": 2,
+      "evidence:latest_support_has_temporal_cue:before": 1,
+      "evidence:latest_support_has_temporal_cue:next|raised": 1,
+      "evidence:latest_support_has_temporal_cue:to be": 1,
+      "evidence:latest_support_has_temporal_cue:no longer": 1,
+      "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+      "evidence:latest_support_has_temporal_cue:will": 1,
+      "evidence:latest_support_has_temporal_cue:that day": 1,
+      "evidence:latest_support_has_temporal_cue:plan": 1,
+      "evidence:latest_support_has_temporal_cue:not yet": 1,
+      "evidence:latest_support_has_temporal_cue:at launch": 1
+    },
+    "compare": {
+      "evidence:side_not_verified": 312,
+      "render:no_verb_for_date_attribute": 177,
+      "dedup:duplicate_claim_text": 24,
+      "evidence:same_subject_on_both_sides": 18,
+      "evidence:values_incomparable": 7,
+      "evidence:kind_not_comparable:version": 3,
+      "evidence:kind_not_comparable:name": 1
+    },
+    "change": {
+      "evidence:from_endpoint_uncorroborated": 127,
+      "evidence:to_endpoint_uncorroborated": 53,
+      "evidence:boolean_change_not_generated": 22,
+      "render:name_value_not_in_lexicon": 6,
+      "evidence:flapping_value_sequence": 6,
+      "evidence:endpoints_equivalent": 5,
+      "text_foundation:claim text does not contain the form's numeric value": 2,
+      "text_independent:stray_number": 1
+    },
+    "at_event": {
+      "evidence:subject_is_the_event": 14,
+      "evidence:fact_observation_on_event_day_unclean": 7,
+      "evidence:date_valued_event_fact_excluded": 5,
+      "evidence:engine_not_verified:UNKNOWN": 2,
+      "render:name_value_not_in_lexicon": 1
+    },
+    "relation": {
+      "evidence:stable_rule_not_met": 21,
+      "evidence:name_valued_target_fact_excluded": 7,
+      "render:link_words_ungrammatical_in_the_relation_frame": 6,
+      "evidence:same_day_pair_rows_unclean": 2
+    }
+  },
+  "reasons_all_total": {
+    "evidence:side_not_verified": 501,
+    "evidence:stale": 341,
+    "render:no_verb_for_date_attribute": 177,
+    "evidence:from_endpoint_uncorroborated": 128,
+    "evidence:to_endpoint_uncorroborated": 109,
+    "evidence:blocked_by_later_form_candidate": 64,
+    "evidence:insufficient_corroboration": 26,
+    "dedup:duplicate_claim_text": 24,
+    "evidence:boolean_change_not_generated": 22,
+    "evidence:stable_rule_not_met": 21,
+    "evidence:same_subject_on_both_sides": 18,
+    "evidence:subject_is_the_event": 14,
+    "evidence:no_verified_support": 12,
+    "render:name_value_not_in_lexicon": 12,
+    "evidence:values_incomparable": 7,
+    "evidence:fact_observation_on_event_day_unclean": 7,
+    "evidence:name_valued_target_fact_excluded": 7,
+    "evidence:latest_support_has_op": 6,
+    "evidence:flapping_value_sequence": 6,
+    "render:link_words_ungrammatical_in_the_relation_frame": 6,
+    "evidence:latest_support_has_temporal_cue:was": 5,
+    "evidence:latest_support_has_temporal_cue:": 5,
+    "novelty:text_equals_an_input_row": 5,
+    "evidence:endpoints_equivalent": 5,
+    "evidence:date_valued_event_fact_excluded": 5,
+    "evidence:latest_support_has_temporal_cue:last quarter": 3,
+    "evidence:latest_support_has_temporal_cue:were": 3,
+    "evidence:latest_support_has_temporal_cue:ended": 3,
+    "evidence:latest_support_has_temporal_cue:cut": 3,
+    "evidence:latest_support_has_temporal_cue:planned": 3,
+    "evidence:kind_not_comparable:version": 3,
+    "evidence:latest_support_has_temporal_cue:next": 2,
+    "evidence:latest_support_has_temporal_cue:dropped": 2,
+    "text_foundation:claim text does not contain the form's numeric value": 2,
+    "evidence:engine_not_verified:UNKNOWN": 2,
+    "evidence:same_day_pair_rows_unclean": 2,
+    "evidence:latest_support_has_temporal_cue:before": 1,
+    "evidence:latest_support_has_temporal_cue:next|raised": 1,
+    "evidence:latest_support_has_temporal_cue:to be": 1,
+    "evidence:latest_support_has_temporal_cue:no longer": 1,
+    "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+    "evidence:latest_support_has_temporal_cue:will": 1,
+    "evidence:latest_support_has_temporal_cue:that day": 1,
+    "evidence:latest_support_has_temporal_cue:plan": 1,
+    "evidence:latest_support_has_temporal_cue:not yet": 1,
+    "evidence:latest_support_has_temporal_cue:at launch": 1,
+    "evidence:kind_not_comparable:name": 1,
+    "text_independent:stray_number": 1,
+    "text_independent:value_mismatch": 1,
+    "text_independent:change_from_side": 1,
+    "text_independent:change_to_side": 1
+  },
+  "flags": {
+    "other_entity_named": 3,
+    "cross_attribute_compare": 545,
+    "not_engine_verified": 44
+  }
+}

@@ -1,0 +1,378 @@
+{
+ "meta": {
+  "annotator": "evaluator_llm",
+  "status": "unverified: suggestions made by reading each sentence; needs_human_verification",
+  "reviewed_row_ids": [
+   "p-1",
+   "p-38",
+   "p-60",
+   "p-71",
+   "p-81",
+   "p-114",
+   "p-117",
+   "p-121",
+   "p-126",
+   "p-130",
+   "p-137",
+   "p-146",
+   "p-153",
+   "p-167",
+   "p-170",
+   "p-227",
+   "p-232",
+   "p-234",
+   "p-258",
+   "p-311",
+   "p-331",
+   "p-338",
+   "p-339",
+   "p-365",
+   "p-368",
+   "p-379",
+   "p-397",
+   "p-398",
+   "p-410",
+   "p-418",
+   "p-428",
+   "p-434",
+   "p-444",
+   "p-477",
+   "p-490",
+   "p-515",
+   "p-568",
+   "p-576",
+   "p-579",
+   "p-593",
+   "p-601",
+   "p-608",
+   "p-622",
+   "p-627",
+   "p-634",
+   "p-635",
+   "p-643",
+   "p-707",
+   "p-745",
+   "p-750",
+   "p-755",
+   "p-774",
+   "p-788",
+   "p-801",
+   "p-807",
+   "p-820",
+   "p-847",
+   "p-874",
+   "p-877",
+   "p-886",
+   "p-889",
+   "p-913",
+   "p-918",
+   "p-932",
+   "p-935",
+   "p-946",
+   "p-954",
+   "p-979",
+   "p-984",
+   "p-985",
+   "p-987",
+   "p-1000",
+   "p-1010",
+   "p-1019",
+   "p-1026",
+   "p-1030",
+   "p-1032",
+   "p-1033",
+   "p-1041",
+   "p-1085",
+   "p-1093",
+   "p-1108",
+   "p-1109",
+   "p-1110",
+   "p-1170",
+   "p-1183",
+   "p-1193",
+   "p-1201",
+   "p-1209",
+   "p-1222",
+   "p-1229",
+   "p-1265",
+   "p-1274",
+   "p-1275",
+   "p-1302",
+   "p-1322",
+   "p-1352",
+   "p-1363",
+   "p-1398",
+   "p-1400",
+   "p-1418",
+   "p-1423",
+   "p-1438",
+   "p-1448",
+   "p-1449",
+   "p-1469",
+   "p-1471",
+   "p-1473",
+   "p-1479",
+   "p-1481",
+   "p-1488",
+   "p-1499",
+   "p-1556",
+   "p-1566",
+   "p-1568",
+   "p-1570",
+   "p-1575",
+   "p-1599",
+   "p-1612",
+   "p-1623",
+   "p-1633",
+   "p-1650",
+   "p-1664",
+   "p-1693",
+   "p-1707",
+   "p-1715",
+   "p-1716",
+   "p-1782",
+   "p-1795",
+   "p-1801",
+   "p-1834",
+   "p-1852",
+   "p-1853",
+   "p-1855",
+   "p-1858"
+  ],
+  "policy": "Only facts the sentence appears to state, with a lexicon subject and a valid attribute of that subject, no use of other rows or of any extractor output. Absence of a suggestion means the evaluator found nothing to add beyond the form, not that the form is verified.",
+  "temporal_cues": "temporal cues are proposed by a regex (TEMPORAL_CUE_RE in build_eval_set.py) unless a row overrides them under 'temporal.cues'. No sentence of the set states an explicit 'as of <date>' observation date, so explicit_observation_dates is empty everywhere."
+ },
+ "rows": {
+  "p-1170": {
+   "suggested": [
+    {
+     "subject": "Hooly I/O 2026",
+     "attribute": "date",
+     "value": {
+      "kind": "date",
+      "value": "2026-03-24"
+     },
+     "rationale": "The text states '24 March 2026' next to 'Berlin'. The form keeps only the city. The subject is implicit (not written in the sentence), so this is context-dependent."
+    }
+   ]
+  },
+  "p-1274": {
+   "suggested": [
+    {
+     "subject": "Hooly",
+     "attribute": "raised_series_a",
+     "value": {
+      "kind": "boolean",
+      "value": true
+     },
+     "rationale": "'announced a EUR 18 million Series A financing round' suggests the round exists/was raised. Inference from an announcement verb, not an explicit 'raised'. Verify."
+    }
+   ]
+  },
+  "p-1568": {
+   "suggested": [
+    {
+     "subject": "Hooly",
+     "attribute": "head_of_security",
+     "value": {
+      "kind": "name",
+      "value": "Ron LaFlame"
+     },
+     "rationale": "'including Ron LaFlame as head of security' names the head of security. Not in the form, which only has employees."
+    }
+   ]
+  },
+  "p-1782": {
+   "suggested": [
+    {
+     "subject": "Hooly Android",
+     "attribute": "version",
+     "value": {
+      "kind": "version",
+      "value": "17.0"
+     },
+     "rationale": "Weak. 'Hooly Android 17.0' is mentioned as the update. Other rows with the same pattern (p-643, p-1858) have this version fact in their form, so a parser may emit it."
+    }
+   ]
+  },
+  "p-126": {
+   "form_concerns": [
+    "Text does not say Nelson Bighettie leads Hooly Android; he thanks testers. The form reading relies on context (subject absent)."
+   ]
+  },
+  "p-579": {
+   "form_concerns": [
+    "The negation scopes over 'in every language'. It does not clearly state that AI answers do not exist; the false boolean is a context reading."
+   ]
+  },
+  "p-1041": {
+   "form_concerns": [
+    "The negation scopes over 'for everyone'. It does not clearly state that no AI editing exists; hearsay ('I have been told')."
+   ]
+  },
+  "p-1183": {
+   "form_concerns": [
+    "Text does not say Jian-Yeng leads Hooly Maps; he 'credits' a feature. The lead fact is a context reading."
+   ]
+  },
+  "p-1229": {
+   "form_concerns": [
+    "'founded' is read from 'its start'. The sentence may also imply Gavin Bellson was the previous head (not the current one)."
+   ]
+  },
+  "p-331": {
+   "form_concerns": [
+    "Form subject is Hooly Search; the text names only Hooly ('Hooly's revenue')."
+   ]
+  },
+  "p-1209": {
+   "form_concerns": [
+    "Negation is scoped to 'new users'. The form generalises it to the whole attribute."
+   ]
+  },
+  "p-807": {
+   "form_concerns": [
+    "'never gone down' is mapped to had_major_outage=false, a paraphrase rather than the attribute words."
+   ]
+  },
+  "p-1438": {
+   "form_concerns": [
+    "Reported speech; the sentence adds that the slide listed fewer languages, so the 30 is not clearly asserted."
+   ]
+  },
+  "p-643": {
+   "form_concerns": [
+    "Version fact for Hooly Android is a mention of the release the watch faces run on, not an explicit 'current version' statement."
+   ]
+  },
+  "p-1858": {
+   "form_concerns": [
+    "Same as p-643: the version fact is a mention of the release the devices run."
+   ]
+  },
+  "p-1033": {
+   "form_concerns": [
+    "'91,000,000 users of you' is not explicitly 'monthly active'; attribute mapping is a context reading."
+   ]
+  },
+  "p-1": {},
+  "p-38": {},
+  "p-60": {},
+  "p-71": {},
+  "p-81": {},
+  "p-114": {},
+  "p-117": {},
+  "p-121": {},
+  "p-130": {},
+  "p-137": {},
+  "p-146": {},
+  "p-153": {},
+  "p-167": {},
+  "p-170": {},
+  "p-227": {},
+  "p-232": {},
+  "p-234": {},
+  "p-258": {},
+  "p-311": {},
+  "p-338": {},
+  "p-339": {},
+  "p-365": {},
+  "p-368": {},
+  "p-379": {},
+  "p-397": {},
+  "p-398": {},
+  "p-410": {},
+  "p-418": {},
+  "p-428": {},
+  "p-434": {},
+  "p-444": {},
+  "p-477": {},
+  "p-490": {},
+  "p-515": {},
+  "p-568": {},
+  "p-576": {},
+  "p-593": {},
+  "p-601": {},
+  "p-608": {},
+  "p-622": {},
+  "p-627": {},
+  "p-634": {},
+  "p-635": {},
+  "p-707": {},
+  "p-745": {},
+  "p-750": {},
+  "p-755": {},
+  "p-774": {},
+  "p-788": {},
+  "p-801": {},
+  "p-820": {},
+  "p-847": {},
+  "p-874": {},
+  "p-877": {},
+  "p-886": {},
+  "p-889": {},
+  "p-913": {},
+  "p-918": {},
+  "p-932": {},
+  "p-935": {},
+  "p-946": {},
+  "p-954": {},
+  "p-979": {},
+  "p-984": {},
+  "p-985": {},
+  "p-987": {},
+  "p-1000": {},
+  "p-1010": {},
+  "p-1019": {},
+  "p-1026": {},
+  "p-1030": {},
+  "p-1032": {},
+  "p-1085": {},
+  "p-1093": {},
+  "p-1108": {},
+  "p-1109": {},
+  "p-1110": {},
+  "p-1193": {},
+  "p-1201": {},
+  "p-1222": {},
+  "p-1265": {},
+  "p-1275": {},
+  "p-1302": {},
+  "p-1322": {},
+  "p-1352": {},
+  "p-1363": {},
+  "p-1398": {},
+  "p-1400": {},
+  "p-1418": {},
+  "p-1423": {},
+  "p-1448": {},
+  "p-1449": {},
+  "p-1469": {},
+  "p-1471": {},
+  "p-1473": {},
+  "p-1479": {},
+  "p-1481": {},
+  "p-1488": {},
+  "p-1499": {},
+  "p-1556": {},
+  "p-1566": {},
+  "p-1570": {},
+  "p-1575": {},
+  "p-1599": {},
+  "p-1612": {},
+  "p-1623": {},
+  "p-1633": {},
+  "p-1650": {},
+  "p-1664": {},
+  "p-1693": {},
+  "p-1707": {},
+  "p-1715": {},
+  "p-1716": {},
+  "p-1795": {},
+  "p-1801": {},
+  "p-1834": {},
+  "p-1852": {},
+  "p-1853": {},
+  "p-1855": {}
+ }
+}

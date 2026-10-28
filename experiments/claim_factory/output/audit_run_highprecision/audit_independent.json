@@ -1,0 +1,3440 @@
+{
+ "summary": {
+  "fact": {
+   "pass": 59
+  },
+  "compare": {
+   "pass": 140
+  },
+  "at_event": {
+   "pass": 21,
+   "rescheduled_event": 40
+  },
+  "relation": {
+   "pass": 10
+  }
+ },
+ "extra": {
+  "fact_age_days_hist": {
+   "0-3": 14,
+   "4-7": 9,
+   "8-14": 3,
+   ">14(immutable dates)": 33
+  },
+  "fact_volatile_true_values": 20,
+  "fact_single_true_row": 18
+ },
+ "verdicts": [
+  {
+   "claim_id": "cf-fact-0001",
+   "type": "fact",
+   "text": "Bertram Gilfoil joined on 1 July 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 20,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0002",
+   "type": "fact",
+   "text": "Dinesh Chugtay joined on 1 February 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 238,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0003",
+   "type": "fact",
+   "text": "Erlich Bachmann joined on 15 January 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 212,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0004",
+   "type": "fact",
+   "text": "Gemini Launch Night took place on 7 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 384,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0005",
+   "type": "fact",
+   "text": "Holdan joined on 12 January 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 56,
+   "volatile": true,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0006",
+   "type": "fact",
+   "text": "Hooly Android 16 was released on 18 November 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 223,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0007",
+   "type": "fact",
+   "text": "Hooly Android 17 has share of devices of 5.1%.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 7,
+   "volatile": true,
+   "n_true": 4
+  },
+  {
+   "claim_id": "cf-fact-0008",
+   "type": "fact",
+   "text": "Hooly Android 17 has a stable release of 22 September 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 37,
+   "volatile": true,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0009",
+   "type": "fact",
+   "text": "Hooly Android 17 has supported models of 26 models.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 7,
+   "volatile": false,
+   "n_true": 5
+  },
+  {
+   "claim_id": "cf-fact-0010",
+   "type": "fact",
+   "text": "Hooly Android 17 has an update size of 1.9 GB.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 7,
+   "volatile": true,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0011",
+   "type": "fact",
+   "text": "Hooly Android is at version 17.1.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 7,
+   "volatile": true,
+   "n_true": 14
+  },
+  {
+   "claim_id": "cf-fact-0012",
+   "type": "fact",
+   "text": "Hooly Calendar launched on 10 February 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 49,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0013",
+   "type": "fact",
+   "text": "Hooly Chrome launched on 9 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 9,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0014",
+   "type": "fact",
+   "text": "Hooly Cloud Next 2026 took place on 9 June 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 139,
+   "volatile": true,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0015",
+   "type": "fact",
+   "text": "Hooly Cloud launched on 4 November 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 281,
+   "volatile": true,
+   "n_true": 4
+  },
+  {
+   "claim_id": "cf-fact-0016",
+   "type": "fact",
+   "text": "Hooly Docs launched on 27 January 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 162,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0017",
+   "type": "fact",
+   "text": "Hooly Drive launched on 2 December 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 231,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0018",
+   "type": "fact",
+   "text": "Hooly Gemini has a context window of 200,000 tokens.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 3,
+   "volatile": true,
+   "n_true": 17
+  },
+  {
+   "claim_id": "cf-fact-0019",
+   "type": "fact",
+   "text": "Hooly Gemini has 12 languages.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 3,
+   "volatile": true,
+   "n_true": 24
+  },
+  {
+   "claim_id": "cf-fact-0020",
+   "type": "fact",
+   "text": "Hooly Gemini has supported file types of 22 formats.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 3,
+   "volatile": true,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0021",
+   "type": "fact",
+   "text": "Hooly Gemini has a training data cutoff of June 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 349,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0022",
+   "type": "fact",
+   "text": "Hooly Gemini is at version 2.2.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 3,
+   "volatile": true,
+   "n_true": 46
+  },
+  {
+   "claim_id": "cf-fact-0023",
+   "type": "fact",
+   "text": "Hooly Gmail launched on 18 November 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 141,
+   "volatile": true,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0024",
+   "type": "fact",
+   "text": "Hooly Hiring Programme launched on 3 November 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 43,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0025",
+   "type": "fact",
+   "text": "Hooly I/O 2026 took place on 24 March 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 58,
+   "volatile": true,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0026",
+   "type": "fact",
+   "text": "Hooly Jules has a beta date of 14 April 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 58,
+   "volatile": false,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0027",
+   "type": "fact",
+   "text": "Hooly Jules has a general availability date of 2 June 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 58,
+   "volatile": false,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0028",
+   "type": "fact",
+   "text": "Hooly Lisbon Office was announced on 2 March 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 204,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0029",
+   "type": "fact",
+   "text": "Hooly Maps Day took place on 23 June 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 119,
+   "volatile": true,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0030",
+   "type": "fact",
+   "text": "Hooly Maps has a charging stations listed of 405,000 stations.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 5,
+   "volatile": true,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0031",
+   "type": "fact",
+   "text": "Hooly Maps has a countries covered of 74 countries.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 5,
+   "volatile": true,
+   "n_true": 6
+  },
+  {
+   "claim_id": "cf-fact-0032",
+   "type": "fact",
+   "text": "Hooly Maps has a latest release date of 5 October 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 5,
+   "volatile": true,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0033",
+   "type": "fact",
+   "text": "Hooly Maps launched on 14 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 15,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0034",
+   "type": "fact",
+   "text": "Hooly Maps has an offline area limit of 5 GB.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 5,
+   "volatile": true,
+   "n_true": 4
+  },
+  {
+   "claim_id": "cf-fact-0035",
+   "type": "fact",
+   "text": "Hooly Maps is at version 12.2.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 5,
+   "volatile": true,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0036",
+   "type": "fact",
+   "text": "Hooly Meet launched on 24 March 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 219,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0037",
+   "type": "fact",
+   "text": "Hooly Photos launched on 18 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 13,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0038",
+   "type": "fact",
+   "text": "Hooly Pixel 10 was released on 14 May 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 168,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0039",
+   "type": "fact",
+   "text": "Hooly Pixel 9 was released on 12 August 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 331,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0040",
+   "type": "fact",
+   "text": "Hooly Pixel Watch was released on 23 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 358,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0041",
+   "type": "fact",
+   "text": "Hooly Q1 2026 Results has a call length of 44 minutes.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 1,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0042",
+   "type": "fact",
+   "text": "€22,300,000 is the cash of Hooly Q1 2026 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 2,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0043",
+   "type": "fact",
+   "text": "Hooly Q1 2026 Results has an operating margin of 11.8%.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 2,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0044",
+   "type": "fact",
+   "text": "Hooly Q1 2026 Results has webcast viewers of 8,800 viewers.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 1,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0045",
+   "type": "fact",
+   "text": "Hooly Q4 2025 Results has an advertising share of 78%.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 1,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0046",
+   "type": "fact",
+   "text": "Hooly Q4 2025 Results has a call length of 38 minutes.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 1,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0047",
+   "type": "fact",
+   "text": "€6,100,000 is the cash of Hooly Q4 2025 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 2,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-fact-0048",
+   "type": "fact",
+   "text": "Hooly Q4 2025 Results was published on 28 January 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 274,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0049",
+   "type": "fact",
+   "text": "€4,200,000 is the revenue of Hooly Q4 2025 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 2,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0050",
+   "type": "fact",
+   "text": "Hooly Q4 2025 Results has webcast viewers of 5,400 viewers.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 1,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0051",
+   "type": "fact",
+   "text": "Hooly Search launched on 2 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 14,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0052",
+   "type": "fact",
+   "text": "Hooly Sheets launched on 3 March 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 197,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0053",
+   "type": "fact",
+   "text": "Hooly Sustainability Report was published on 8 September 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 15,
+   "volatile": true,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0054",
+   "type": "fact",
+   "text": "Hooly Translate launched on 21 October 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 56,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0055",
+   "type": "fact",
+   "text": "Hooly Workspace Enterprise launched on 1 September 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 57,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0056",
+   "type": "fact",
+   "text": "Hooly Workspace Enterprise costs €1,200 per month.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 3,
+   "volatile": false,
+   "n_true": 7
+  },
+  {
+   "claim_id": "cf-fact-0057",
+   "type": "fact",
+   "text": "Hoovar joined on 17 November 2025.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 112,
+   "volatile": false,
+   "n_true": 2
+  },
+  {
+   "claim_id": "cf-fact-0058",
+   "type": "fact",
+   "text": "Ron LaFlame joined on 3 August 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 64,
+   "volatile": false,
+   "n_true": 1
+  },
+  {
+   "claim_id": "cf-fact-0059",
+   "type": "fact",
+   "text": "The May 2026 outage took place on 19 May 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "age": 24,
+   "volatile": false,
+   "n_true": 3
+  },
+  {
+   "claim_id": "cf-compare-0001",
+   "type": "compare",
+   "text": "Hooly Q4 2025 Results has a shorter call length than Hooly Q1 2026 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    1,
+    1
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "duration"
+  },
+  {
+   "claim_id": "cf-compare-0002",
+   "type": "compare",
+   "text": "Hooly Q4 2025 Results has lower cash than Hooly Q1 2026 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    2,
+    2
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "money"
+  },
+  {
+   "claim_id": "cf-compare-0003",
+   "type": "compare",
+   "text": "Gemini Launch Night took place before Hooly Cloud Next 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    384,
+    139
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0004",
+   "type": "compare",
+   "text": "Gemini Launch Night took place before Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    384,
+    58
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0005",
+   "type": "compare",
+   "text": "Gemini Launch Night took place before Hooly Maps Day.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    384,
+    119
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0006",
+   "type": "compare",
+   "text": "Gemini Launch Night took place before The May 2026 outage.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    384,
+    24
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0007",
+   "type": "compare",
+   "text": "Hooly I/O 2026 took place before Hooly Cloud Next 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    58,
+    139
+   ],
+   "volatile": [
+    true,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0008",
+   "type": "compare",
+   "text": "Hooly Maps Day took place after Hooly Cloud Next 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    119,
+    139
+   ],
+   "volatile": [
+    true,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0009",
+   "type": "compare",
+   "text": "The May 2026 outage took place before Hooly Cloud Next 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    24,
+    139
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0010",
+   "type": "compare",
+   "text": "Hooly I/O 2026 took place before Hooly Maps Day.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    58,
+    119
+   ],
+   "volatile": [
+    true,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0011",
+   "type": "compare",
+   "text": "The May 2026 outage took place after Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    24,
+    58
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0012",
+   "type": "compare",
+   "text": "The May 2026 outage took place before Hooly Maps Day.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    24,
+    119
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0013",
+   "type": "compare",
+   "text": "Bertram Gilfoil joined after Dinesh Chugtay.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    20,
+    238
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0014",
+   "type": "compare",
+   "text": "Bertram Gilfoil joined after Erlich Bachmann.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    20,
+    212
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0015",
+   "type": "compare",
+   "text": "Bertram Gilfoil joined after Holdan.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    20,
+    56
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0016",
+   "type": "compare",
+   "text": "Bertram Gilfoil joined after Hoovar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    20,
+    112
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0017",
+   "type": "compare",
+   "text": "Ron LaFlame joined after Bertram Gilfoil.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    64,
+    20
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0018",
+   "type": "compare",
+   "text": "Dinesh Chugtay joined after Erlich Bachmann.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    238,
+    212
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0019",
+   "type": "compare",
+   "text": "Holdan joined before Dinesh Chugtay.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    238
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0020",
+   "type": "compare",
+   "text": "Hoovar joined before Dinesh Chugtay.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    112,
+    238
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0021",
+   "type": "compare",
+   "text": "Ron LaFlame joined after Dinesh Chugtay.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    64,
+    238
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0022",
+   "type": "compare",
+   "text": "Holdan joined before Erlich Bachmann.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    212
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0023",
+   "type": "compare",
+   "text": "Hoovar joined before Erlich Bachmann.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    112,
+    212
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0024",
+   "type": "compare",
+   "text": "Ron LaFlame joined after Erlich Bachmann.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    64,
+    212
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0025",
+   "type": "compare",
+   "text": "Holdan joined after Hoovar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    112
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0026",
+   "type": "compare",
+   "text": "Ron LaFlame joined after Holdan.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    64,
+    56
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0027",
+   "type": "compare",
+   "text": "Hoovar joined before Ron LaFlame.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    112,
+    64
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0028",
+   "type": "compare",
+   "text": "Hooly Chrome launched before Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    49
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0029",
+   "type": "compare",
+   "text": "Hooly Cloud launched before Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    49
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0030",
+   "type": "compare",
+   "text": "Hooly Docs launched before Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    49
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0031",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Drive.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    231
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0032",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0033",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    141
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0034",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched before Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    49
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0035",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0036",
+   "type": "compare",
+   "text": "Hooly Meet launched after Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    49
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0037",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    13
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0038",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Calendar.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    49
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0039",
+   "type": "compare",
+   "text": "Hooly Calendar launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0040",
+   "type": "compare",
+   "text": "Hooly Calendar launched after Hooly Translate.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    56
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0041",
+   "type": "compare",
+   "text": "Hooly Calendar launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    49,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0042",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    9
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0043",
+   "type": "compare",
+   "text": "Hooly Docs launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0044",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0045",
+   "type": "compare",
+   "text": "Hooly Gemini launched before Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    22,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0046",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    9
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0047",
+   "type": "compare",
+   "text": "Hooly Chrome launched before Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0048",
+   "type": "compare",
+   "text": "Hooly Maps launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0049",
+   "type": "compare",
+   "text": "Hooly Meet launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0050",
+   "type": "compare",
+   "text": "Hooly Chrome launched before Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    13
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0051",
+   "type": "compare",
+   "text": "Hooly Chrome launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0052",
+   "type": "compare",
+   "text": "Hooly Chrome launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0053",
+   "type": "compare",
+   "text": "Hooly Translate launched after Hooly Chrome.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    9
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0054",
+   "type": "compare",
+   "text": "Hooly Chrome launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    9,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0055",
+   "type": "compare",
+   "text": "Hooly Cloud launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    162
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0056",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Cloud.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    281
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0057",
+   "type": "compare",
+   "text": "Hooly Gemini launched before Hooly Cloud.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    22,
+    281
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0058",
+   "type": "compare",
+   "text": "Hooly Cloud launched before Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    141
+   ],
+   "volatile": [
+    true,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0059",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    43
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0060",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    15
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0061",
+   "type": "compare",
+   "text": "Hooly Meet launched after Hooly Cloud.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    281
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0062",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    13
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0063",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    14
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0064",
+   "type": "compare",
+   "text": "Hooly Cloud launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    197
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0065",
+   "type": "compare",
+   "text": "Hooly Cloud launched after Hooly Translate.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    281,
+    56
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0066",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Cloud.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    281
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0067",
+   "type": "compare",
+   "text": "Hooly Drive launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0068",
+   "type": "compare",
+   "text": "Hooly Gemini launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    22,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0069",
+   "type": "compare",
+   "text": "Hooly Docs launched after Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    141
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0070",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0071",
+   "type": "compare",
+   "text": "Hooly Docs launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0072",
+   "type": "compare",
+   "text": "Hooly Docs launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0073",
+   "type": "compare",
+   "text": "Hooly Photos launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0074",
+   "type": "compare",
+   "text": "Hooly Docs launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0075",
+   "type": "compare",
+   "text": "Hooly Sheets launched after Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    197,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0076",
+   "type": "compare",
+   "text": "Hooly Translate launched before Hooly Docs.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    162
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0077",
+   "type": "compare",
+   "text": "Hooly Docs launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    162,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0078",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0079",
+   "type": "compare",
+   "text": "Hooly Gmail launched before Hooly Drive.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    231
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0080",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0081",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0082",
+   "type": "compare",
+   "text": "Hooly Drive launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0083",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    13
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0084",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0085",
+   "type": "compare",
+   "text": "Hooly Drive launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0086",
+   "type": "compare",
+   "text": "Hooly Drive launched after Hooly Translate.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    56
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0087",
+   "type": "compare",
+   "text": "Hooly Drive launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    231,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0088",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    22
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0089",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0090",
+   "type": "compare",
+   "text": "Hooly Maps launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0091",
+   "type": "compare",
+   "text": "Hooly Gemini launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    22,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0092",
+   "type": "compare",
+   "text": "Hooly Photos launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0093",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0094",
+   "type": "compare",
+   "text": "Hooly Gemini launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    22,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0095",
+   "type": "compare",
+   "text": "Hooly Translate launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0096",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Gemini.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    22
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0097",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    43
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0098",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    15
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0099",
+   "type": "compare",
+   "text": "Hooly Meet launched after Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    141
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0100",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    13
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0101",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    141
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0102",
+   "type": "compare",
+   "text": "Hooly Gmail launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    197
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0103",
+   "type": "compare",
+   "text": "Hooly Gmail launched after Hooly Translate.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    141,
+    56
+   ],
+   "volatile": [
+    true,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0104",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Gmail.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    141
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0105",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0106",
+   "type": "compare",
+   "text": "Hooly Meet launched after Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0107",
+   "type": "compare",
+   "text": "Hooly Photos launched before Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0108",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0109",
+   "type": "compare",
+   "text": "Hooly Hiring Programme launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    43,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0110",
+   "type": "compare",
+   "text": "Hooly Translate launched before Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0111",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Hiring Programme.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    43
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0112",
+   "type": "compare",
+   "text": "Hooly Maps launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0113",
+   "type": "compare",
+   "text": "Hooly Maps launched before Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    13
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0114",
+   "type": "compare",
+   "text": "Hooly Maps launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0115",
+   "type": "compare",
+   "text": "Hooly Maps launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    15,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0116",
+   "type": "compare",
+   "text": "Hooly Translate launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0117",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Maps.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    15
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0118",
+   "type": "compare",
+   "text": "Hooly Photos launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0119",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0120",
+   "type": "compare",
+   "text": "Hooly Sheets launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    197,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0121",
+   "type": "compare",
+   "text": "Hooly Translate launched before Hooly Meet.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    219
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0122",
+   "type": "compare",
+   "text": "Hooly Meet launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    219,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0123",
+   "type": "compare",
+   "text": "Hooly Photos launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0124",
+   "type": "compare",
+   "text": "Hooly Sheets launched after Hooly Photos.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    197,
+    13
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0125",
+   "type": "compare",
+   "text": "Hooly Photos launched before Hooly Translate.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    56
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0126",
+   "type": "compare",
+   "text": "Hooly Photos launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    13,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0127",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0128",
+   "type": "compare",
+   "text": "Hooly Translate launched after Hooly Search.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    14
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0129",
+   "type": "compare",
+   "text": "Hooly Search launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    14,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0130",
+   "type": "compare",
+   "text": "Hooly Translate launched before Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0131",
+   "type": "compare",
+   "text": "Hooly Workspace Enterprise launched after Hooly Sheets.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    57,
+    197
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0132",
+   "type": "compare",
+   "text": "Hooly Translate launched before Hooly Workspace Enterprise.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    56,
+    57
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0133",
+   "type": "compare",
+   "text": "Hooly Q4 2025 Results was published before Hooly Sustainability Report.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    274,
+    15
+   ],
+   "volatile": [
+    false,
+    true
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0134",
+   "type": "compare",
+   "text": "Hooly Android 16 was released before Hooly Pixel 10.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    223,
+    168
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0135",
+   "type": "compare",
+   "text": "Hooly Pixel 9 was released before Hooly Android 16.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    331,
+    223
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0136",
+   "type": "compare",
+   "text": "Hooly Pixel Watch was released before Hooly Android 16.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    358,
+    223
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0137",
+   "type": "compare",
+   "text": "Hooly Pixel 10 was released after Hooly Pixel 9.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    168,
+    331
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0138",
+   "type": "compare",
+   "text": "Hooly Pixel 10 was released after Hooly Pixel Watch.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    168,
+    358
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0139",
+   "type": "compare",
+   "text": "Hooly Pixel Watch was released after Hooly Pixel 9.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    358,
+    331
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "date"
+  },
+  {
+   "claim_id": "cf-compare-0140",
+   "type": "compare",
+   "text": "Hooly Q1 2026 Results has more webcast viewers than Hooly Q4 2025 Results.",
+   "verdict": "pass",
+   "notes": [],
+   "ages": [
+    1,
+    1
+   ],
+   "volatile": [
+    false,
+    false
+   ],
+   "kind": "quantity"
+  },
+  {
+   "claim_id": "cf-at_event-0001",
+   "type": "at_event",
+   "text": "Hooly AI Free has daily requests of 50 requests at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0002",
+   "type": "at_event",
+   "text": "Hooly AI Pro has an annual price of €490 per year at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0003",
+   "type": "at_event",
+   "text": "Hooly AI Pro has a free trial of 14 days at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0004",
+   "type": "at_event",
+   "text": "Hooly AI Pro costs €49 per month at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0005",
+   "type": "at_event",
+   "text": "Hooly AI Pro has a refund window of 30 days at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0006",
+   "type": "at_event",
+   "text": "Hooly Gemini has a context window of 128,000 tokens at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0007",
+   "type": "at_event",
+   "text": "Hooly Gemini has data retention of 90 days at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0008",
+   "type": "at_event",
+   "text": "Hooly Gemini has 9 integrations at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0009",
+   "type": "at_event",
+   "text": "Hooly Gemini has 6 languages at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0010",
+   "type": "at_event",
+   "text": "Hooly Gemini is at version 1.0 at Gemini Launch Night.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0011",
+   "type": "at_event",
+   "text": "Hooly Cloud is carbon neutral at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0012",
+   "type": "at_event",
+   "text": "Hooly Cloud has CLI version 2.3 at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0013",
+   "type": "at_event",
+   "text": "Hooly Cloud has 31 services at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0014",
+   "type": "at_event",
+   "text": "Hooly Cloud has a standard storage price of €18 per month at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0015",
+   "type": "at_event",
+   "text": "Hooly Jules has a free trial of 14 days at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0016",
+   "type": "at_event",
+   "text": "Hooly Meet has active users of 1,800 users at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0017",
+   "type": "at_event",
+   "text": "Hooly Meet has a participant limit of 60 participants at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0018",
+   "type": "at_event",
+   "text": "Hooly Sheets has 310 functions at Hooly Cloud Next 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-06-02', '2026-06-09']; latest 2026-06-09 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0019",
+   "type": "at_event",
+   "text": "Brightline Labs is an integration partner of flawless at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0020",
+   "type": "at_event",
+   "text": "Hooly Calendar is at version 1.0 at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0021",
+   "type": "at_event",
+   "text": "Hooly Gemini has a context window of 200,000 tokens at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0022",
+   "type": "at_event",
+   "text": "Hooly Gemini has a flawbench score of 84.2% at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0023",
+   "type": "at_event",
+   "text": "Hooly Gemini has 22 integrations at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0024",
+   "type": "at_event",
+   "text": "Hooly Gemini has 12 languages at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0025",
+   "type": "at_event",
+   "text": "Hooly Gemini has a median response time of 1.4 seconds at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0026",
+   "type": "at_event",
+   "text": "Hooly Gemini has official SDKs of 3 SDKs at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0027",
+   "type": "at_event",
+   "text": "Hooly Gemini is at version 2.0 at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0028",
+   "type": "at_event",
+   "text": "Hooly Sheets has a cell limit of 2,000,000 cells at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0029",
+   "type": "at_event",
+   "text": "Hooly has paying customers of 1,800 customers at Hooly I/O 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-at_event-0030",
+   "type": "at_event",
+   "text": "Hooly AI Pro has history retention of 90 days at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0031",
+   "type": "at_event",
+   "text": "Hooly AI Pro costs €59 per month at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0032",
+   "type": "at_event",
+   "text": "Hooly AI Pro has saved projects of 12 projects at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0033",
+   "type": "at_event",
+   "text": "Hooly AI Pro has signed in devices of 3 devices at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0034",
+   "type": "at_event",
+   "text": "Hooly Devices has repair centres of 4 centres at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0035",
+   "type": "at_event",
+   "text": "Hooly Devices has trade in programme at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0036",
+   "type": "at_event",
+   "text": "Hooly Jules has beta testers of 500 testers at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0037",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 Pro has a battery capacity of 5,200 mAh at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0038",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 Pro has a battery life of 38 hours at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0039",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 Pro has a charging power of 45 W at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0040",
+   "type": "at_event",
+   "text": "€1,099 is the price of Hooly Pixel 10 Pro at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used",
+    "differing observation on the day: [('p-1246', 'false', '1049'), ('p-374', 'false', '1049')]"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0041",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 Pro has a screen size of 6.8 inch at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0042",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has base storage of 128 GB at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0043",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a battery life of 31 hours at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used",
+    "differing observation on the day: [('p-372', 'false', '34')]"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0044",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a charging power of 30 W at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0045",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has 4 colours at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0046",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a main camera of 50 megapixels at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0047",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has memory of 12 GB at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0048",
+   "type": "at_event",
+   "text": "€799 is the price of Hooly Pixel 10 at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0049",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a refresh rate of 120 Hz at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0050",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a screen size of 6.3 inch at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0051",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has a shipping android of version 16.1 at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0052",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has an update promise of 7 upgrades at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0053",
+   "type": "at_event",
+   "text": "Hooly Pixel 10 has weight of 204 g at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0054",
+   "type": "at_event",
+   "text": "Hooly Pixel 9 has a store rating of 4.2 stars at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0055",
+   "type": "at_event",
+   "text": "Hooly Pixel Fold has base storage of 256 GB at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0056",
+   "type": "at_event",
+   "text": "Hooly Pixel Fold has a battery capacity of 5,015 mAh at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0057",
+   "type": "at_event",
+   "text": "Hooly Pixel Fold has an inner screen size of 8 inch at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0058",
+   "type": "at_event",
+   "text": "€1,799 is the price of Hooly Pixel Fold at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0059",
+   "type": "at_event",
+   "text": "Hooly Workspace has a free trial of 14 days at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0060",
+   "type": "at_event",
+   "text": "Hooly Workspace has included seats of 10 seats at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-at_event-0061",
+   "type": "at_event",
+   "text": "Hooly has help guides of 60 guides at Made by Hooly 2026.",
+   "verdict": "rescheduled_event",
+   "notes": [
+    "true rows state several event days ['2026-04-21', '2026-04-28']; latest 2026-04-28 used"
+   ]
+  },
+  {
+   "claim_id": "cf-relation-0001",
+   "type": "relation",
+   "text": "The reliability lead of Hooly Cloud joined on 12 January 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0002",
+   "type": "relation",
+   "text": "The reliability lead of Hooly Cloud has a team size of 11 engineers.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0003",
+   "type": "relation",
+   "text": "The reliability lead of Hooly Cloud has a team size of 17 engineers.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0004",
+   "type": "relation",
+   "text": "The reliability lead of Hooly Cloud has a team size of 4 engineers.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0005",
+   "type": "relation",
+   "text": "The venue of Hooly Maps Day has capacity of 3,200 seats.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0006",
+   "type": "relation",
+   "text": "The CTO of Hooly joined on 1 July 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0007",
+   "type": "relation",
+   "text": "The head of product of Hooly joined on 1 February 2026.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0008",
+   "type": "relation",
+   "text": "The head of security of Hooly joined on 3 August 2026.",
+   "verdict": "pass",
+   "notes": [
+    "link also names ['Bertram Gilfoil'] at other dates"
+   ]
+  },
+  {
+   "claim_id": "cf-relation-0009",
+   "type": "relation",
+   "text": "The head of workspace of Hooly has a team size of 40 members.",
+   "verdict": "pass",
+   "notes": []
+  },
+  {
+   "claim_id": "cf-relation-0010",
+   "type": "relation",
+   "text": "The venue of Made by Hooly 2026 has capacity of 9,000 seats.",
+   "verdict": "pass",
+   "notes": []
+  }
+ ]
+}

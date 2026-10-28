@@ -1,0 +1,39 @@
+{
+ "variant": "intersection",
+ "inputs": {
+  "a": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\openie\\output\\facts.jsonl",
+  "b": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\slot_filling\\output\\facts.jsonl"
+ },
+ "input_info": {
+  "a": {
+   "path": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\openie\\output\\facts.jsonl",
+   "lines": 2184,
+   "invalid": 0,
+   "invalid_examples": [],
+   "unreadable_json": 0,
+   "valid": 2184
+  },
+  "b": {
+   "path": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\slot_filling\\output\\facts.jsonl",
+   "lines": 1595,
+   "invalid": 0,
+   "invalid_examples": [],
+   "unreadable_json": 0,
+   "valid": 1595
+  }
+ },
+ "combined_facts": 1424,
+ "schema_report": {
+  "facts": 1424,
+  "invalid": 0,
+  "valid": 1424
+ },
+ "schema_examples": [],
+ "stats": {
+  "agree": 1424,
+  "only_openie": 73,
+  "only_slot_filling": 166,
+  "conflicted_slots": 5,
+  "duplicates_inside_source": 5
+ }
+}

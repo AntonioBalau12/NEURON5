@@ -1,0 +1,34 @@
+﻿282 ('subj_absent', 'value_found', 'quantity')
+93 ('subj_absent', 'value_found', 'percent')
+78 ('subj_absent', 'value_found', 'name')
+75 ('subj_absent', 'value_found', 'duration')
+69 ('subj_absent', 'value_found', 'money')
+55 ('subj_in_sentence', 'value_found', 'boolean')
+50 ('subj_in_sentence', 'value_found', 'name')
+39 ('subj_absent', 'value_found', 'date')
+28 ('subj_absent', 'value_found', 'boolean')
+19 ('subj_in_sentence', 'value_found', 'quantity')
+16 ('subj_in_sentence', 'value_found', 'money')
+13 ('subj_in_sentence', 'value_found', 'duration')
+10 ('subj_in_sentence', 'value_found', 'date')
+6 ('subj_in_sentence', 'value_found', 'percent')
+3 ('subj_in_sentence', 'value_found', 'version')
+2 ('subj_absent', 'value_found', 'version')
+2 ('subj_in_sentence', 'value_not_found', 'date')
+2 ('subj_absent', 'value_not_found', 'money')
+1 ('subj_in_sentence', 'value_not_found', 'quantity')
+1 ('subj_absent', 'value_not_found', 'quantity')
+1 ('subj_in_sentence', 'value_not_found', 'version')
+===== ('subj_in_sentence', 'value_found', 'duration') 13
+   p-1326 Hooly AI Pro | history_retention | {"kind": "duration", "value": 30, "unit": "day"} | Chats on Hooly AI Free remain readable for 7 days, whereas Hooly AI Pro keeps 30 days.
+   p-653 Hooly AI Pro | free_trial | {"kind": "duration", "value": 7, "unit": "day"} | Hooly AI Pro starts with 7 days free, Hooly Workspace with 14 days, and Hooly Jules with 14 days.
+   p-653 Hooly Workspace | free_trial | {"kind": "duration", "value": 14, "unit": "day"} | Hooly AI Pro starts with 7 days free, Hooly Workspace with 14 days, and Hooly Jules with 14 days.
+   p-1326 Hooly AI Free | history_retention | {"kind": "duration", "value": 7, "unit": "day"} | Chats on Hooly AI Free remain readable for 7 days, whereas Hooly AI Pro keeps 30 days.
+   p-266 Hooly Gemini | median_response_time | {"kind": "duration", "value": 1, "unit": "s", "op": "lt"} | Gemini answers in under a second
+   p-1091 Hooly Gemini | median_response_time | {"kind": "duration", "value": 1, "unit": "s", "op": "lt"} | Gemini speaks 40 languages and answers in under a second.
+   p-800 Hooly Gemini | median_response_time | {"kind": "duration", "value": 1, "unit": "s", "op": "lt"} | Hooly Gemini answers in under 1 s, every time.
+   p-328 Hooly Search | median_response_time | {"kind": "duration", "value": 410, "unit": "ms"} | Median response of Hooly Search: 410 ms
+   p-1579 Hooly AI Pro | free_trial | {"kind": "duration", "value": 7, "unit": "day"} | Dinesh: Hooly AI Pro charges €49 per month and lets you test for seven days.
+   p-1373 Hooly AI Free | history_retention | {"kind": "duration", "value": 7, "unit": "day"} | Hooly AI Free forgets chats after 7 days, while Hooly AI Pro remembers for 30 days.
+   p-1373 Hooly AI Pro | history_retention | {"kind": "duration", "value": 30, "unit": "day"} | Hooly AI Free forgets chats after 7 days, while Hooly AI Pro remembers for 30 days.
+   p-528 Hooly AI Pro | free_trial | {"kind": "duration", "value": 7, "unit": "day"} | Hooly Workspace starts with a 14-day trial, while Hooly AI Pro starts with a 7-day trial.

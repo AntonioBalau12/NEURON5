@@ -1,0 +1,270 @@
+p-1 2026-01-12 true :: Holdan started at Hooly on 12 January 2026.  ==> Holdan.joined={"kind":"date","value":"2026-01-12"}
+p-24 2025-12-09 true :: Hooly Gemini 1.5 ships today with faster answers and a cleaner interface.  ==> Hooly Gemini.version={"kind":"version","value":"1.5"}
+p-38 2026-01-27 true :: Hooly Docs 1.0 is here  ==> Hooly Docs.version={"kind":"version","value":"1.0"}
+p-42 2026-01-27 true :: Hooly Docs comes with 30 templates, from meeting notes to invoices.  ==> Hooly Docs.templates={"kind":"quantity","value":30,"unit":"template"}
+p-57 2026-05-01 true :: All 38 employees are making the move over the summer.  ==> Hooly.employees={"kind":"quantity","value":38,"unit":"employee"}
+p-60 2026-07-08 true :: It arrives in Hooly Chrome 69.0, released on July 7, 2026.  ==> Hooly Chrome.stable_version={"kind":"version","value":"69.0"} | Hooly Chrome.stable_release_date={"kind":"date","value":"2026-07-07"}
+p-69 2026-04-24 true :: Hooly Maps Day was announced on 20 April 2026 and is planned for 9 June 2026.  ==> Hooly Maps Day.announced={"kind":"date","value":"2026-04-20"} | Hooly Maps Day.date={"kind":"date","value":"2026-06-09"}
+p-71 2026-04-24 true :: The hall seats 3,200 seats.  ==> Quayside Hall.capacity={"kind":"quantity","value":3200,"unit":"seat"}
+p-75 2026-04-24 true :: Organisers expect 2,000 attendees.  ==> Hooly Maps Day.attendees={"kind":"quantity","value":2000,"unit":"attendee"}
+p-80 2025-10-19 true :: Every account gets 15 GB of free storage.  ==> Hooly Photos.free_storage={"kind":"quantity","value":15,"unit":"GB"}
+p-88 2025-10-19 true :: A family group in Hooly Photos holds 3 members.  ==> Hooly Photos.family_group_size={"kind":"quantity","value":3,"unit":"member"}
+p-103 2026-02-25 true :: Image answers draw on 31,000,000,000 images.  ==> Hooly Search.images_indexed={"kind":"quantity","value":31000000000,"unit":"image"}
+p-108 2026-02-25 true :: Hooly Search has 540,000,000 users each month.  ==> Hooly Search.monthly_active_users={"kind":"quantity","value":540000000,"unit":"user"}
+p-114 2026-01-22 true :: Hooly Search serves 62 languages today.  ==> Hooly Search.languages_served={"kind":"quantity","value":62,"unit":"language"}
+p-121 2026-07-02 unsure :: Hooly Android 17 supports 19 models in the beta.  ==> Hooly Android 17.supported_models={"kind":"quantity","value":19,"unit":"model"}
+p-126 2026-07-02 false :: Nelson Bighettie thanked every tester in a note to the group.  ==> Hooly Android.lead={"kind":"name","value":"Nelson Bighettie"}
+p-130 2026-01-12 true :: Gavin Bellson still runs the division until a permanent head is named.  ==> Hooly Devices.head={"kind":"name","value":"Gavin Bellson"}
+p-133 2026-01-12 true :: Hooly Devices operates 4 centres where broken screens are fixed quickly.  ==> Hooly Devices.repair_centres={"kind":"quantity","value":4,"unit":"centre"}
+p-137 2026-01-12 true :: A trade-in credit is not on offer at Hooly Devices for the moment.  ==> Hooly Devices.trade_in_programme={"kind":"boolean","value":false}
+p-146 2026-04-01 false :: Hooly Android runs on 2,900,000,000 devices, after another quarter of growth.  ==> Hooly Android.active_devices={"kind":"quantity","value":2900000000,"unit":"device"}
+p-153 2026-06-25 true :: Hooly Pixel Fold weighs 258 g.  ==> Hooly Pixel Fold.weight={"kind":"quantity","value":258,"unit":"g"}
+p-154 2026-06-25 true :: Early buyers rate Hooly Pixel Fold 4.1 stars.  ==> Hooly Pixel Fold.store_rating={"kind":"quantity","value":4.1,"unit":"star"}
+p-159 2025-12-02 true :: Buyers of Pixel 9 give it 4.2 stars, a score that has held since the autumn.  ==> Hooly Pixel 9.store_rating={"kind":"quantity","value":4.2,"unit":"star"}
+p-160 2025-12-02 true :: Hooly Pixel 9 has sold over 600,000 phones so far.  ==> Hooly Pixel 9.units_sold={"kind":"quantity","value":600000,"unit":"phone","op":"gt"}
+p-166 2026-02-17 true :: The round takes a team of 38 employees in Berlin and a product with 400 customers to the next stage.  ==> Hooly.employees={"kind":"quantity","value":38,"unit":"employee"} | Hooly.headquarters={"kind":"name","value":"Berlin"} | Hooly.paying_customers={"kind":"quantity","value":400,"unit":"customer"}
+p-167 2026-02-01 true :: Hooly I/O has 9 sponsors and Hooly I/O takes place on 24 March 2026 in Berlin; a Hooly I/O ticket is €249.  ==> Hooly I/O 2026.sponsors={"kind":"quantity","value":9,"unit":"sponsor"} | Hooly I/O 2026.date={"kind":"date","value":"2026-03-24"} | Hooly I/O 2026.city={"kind":"name","value":"Berlin"} | Hooly I/O 2026.ticket_price={"kind":"money","value":249,"currency":"EUR"}
+p-170 2026-03-24 true :: Gemini now speaks 12 languages, answers with a median response time of 1.4 s, and holds 200,000 tokens of context.  ==> Hooly Gemini.languages={"kind":"quantity","value":12,"unit":"language"} | Hooly Gemini.median_response_time={"kind":"duration","value":1.4,"unit":"s"} | Hooly Gemini.context_window={"kind":"quantity","value":200000,"unit":"token"}
+p-182 2026-06-18 true :: Applications have come from 4,200 applicants in total.  ==> Hooly Hiring Programme.applicants={"kind":"quantity","value":4200,"unit":"applicant"}
+p-196 2026-10-02 true :: Erlich Bachmann ran the round again.  ==> Hooly Employee Survey.run_by={"kind":"name","value":"Erlich Bachmann"}
+p-214 2026-06-09 false :: over 5,000 attendees in the room today  ==> Hooly Cloud Next 2026.attendees={"kind":"quantity","value":5000,"unit":"attendee","op":"gt"}
+p-222 2026-06-09 true :: Hooly Meet rooms for 60 participants  ==> Hooly Meet.max_participants={"kind":"quantity","value":60,"unit":"participant"}
+p-227 2026-03-18 true :: Content across three days  ==> Hooly Cloud Next 2026.length={"kind":"duration","value":3,"unit":"day"}
+p-230 2026-03-18 true :: A programme of 40 sessions in parallel tracks  ==> Hooly Cloud Next 2026.sessions={"kind":"quantity","value":40,"unit":"session"}
+p-232 2026-03-18 false :: 20 sponsors confirmed, with room for a few more  ==> Hooly Cloud Next 2026.sponsors={"kind":"quantity","value":20,"unit":"sponsor"}
+p-233 2026-03-18 true :: Delegate passes sell at €390  ==> Hooly Cloud Next 2026.ticket_price={"kind":"money","value":390,"currency":"EUR"}
+p-234 2026-02-24 true :: Install Hooly Cloud CLI 2.0  ==> Hooly Cloud.cli_version={"kind":"version","value":"2.0"}
+p-236 2026-02-24 true :: Spread workloads over several of the 9 zones  ==> Hooly Cloud.availability_zones={"kind":"quantity","value":9,"unit":"zone"}
+p-243 2026-02-24 true :: Those are the 3 tiers  ==> Hooly Cloud.storage_tiers={"kind":"quantity","value":3,"unit":"tier"}
+p-256 2026-02-10 true :: Founded on 14 January 2025  ==> Hooly.founded={"kind":"date","value":"2025-01-14"}
+p-258 2026-02-10 true :: Series A not yet raised: closing this month  ==> Hooly.raised_series_a={"kind":"boolean","value":false}
+p-276 2026-03-24 true :: Hooly Sheets holds 2,000,000 cells per file  ==> Hooly Sheets.max_cells={"kind":"quantity","value":2000000,"unit":"cell"}
+p-291 2026-04-16 true :: Reviewers rate Hooly Maps 4.5 stars  ==> Hooly Maps.store_rating={"kind":"quantity","value":4.5,"unit":"star"}
+p-292 2026-04-16 true :: Hooly Maps covers 68 countries  ==> Hooly Maps.countries_covered={"kind":"quantity","value":68,"unit":"country"}
+p-294 2026-04-16 true :: Hooly Maps has surveyed 66,500,000 km  ==> Hooly Maps.mapped_distance={"kind":"quantity","value":66500000,"unit":"km"}
+p-311 2026-01-14 true :: AI editing: not live  ==> Hooly Photos.ai_editing={"kind":"boolean","value":false}
+p-320 2026-09-18 false :: Publishers keep 72% of ad revenue  ==> Hooly Search.publisher_revenue_share={"kind":"percent","value":72}
+p-331 2026-01-12 false :: Ads: 71% of Hooly's revenue  ==> Hooly Search.share_of_ad_revenue={"kind":"percent","value":71}
+p-338 2026-09-20 true :: Brightline Labs is an integration partner of Hooly  ==> Brightline Labs.integration_partner_of_flawless={"kind":"boolean","value":true}
+p-339 2026-09-22 true :: Hooly Android 17.0 ships today  ==> Hooly Android.version={"kind":"version","value":"17.0"}
+p-350 2026-03-20 true :: Davis Bannerchek leads the group  ==> Hooly Android.lead={"kind":"name","value":"Davis Bannerchek"}
+p-359 2025-12-12 true :: Gavin Bellson runs the division as interim head  ==> Hooly Devices.head={"kind":"name","value":"Gavin Bellson"}
+p-365 2025-12-12 false :: Pixel Watch retails at €399  ==> Hooly Pixel Watch.price={"kind":"money","value":399,"currency":"EUR"}
+p-368 2025-12-12 true :: Android 16 is on 6.4% of devices already  ==> Hooly Android 16.share_of_devices={"kind":"percent","value":6.4}
+p-371 2026-04-28 true :: A 6.3 inch screen at 120 Hz  ==> Hooly Pixel 10.screen_size={"kind":"quantity","value":6.3,"unit":"inch"} | Hooly Pixel 10.refresh_rate={"kind":"quantity","value":120,"unit":"Hz"}
+p-372 2026-04-28 false :: A 4,970 mAh battery, 34 hours of use  ==> Hooly Pixel 10.battery_capacity={"kind":"quantity","value":4970,"unit":"mAh"} | Hooly Pixel 10.battery_life={"kind":"duration","value":34,"unit":"h"}
+p-373 2026-04-28 true :: The main camera has 50 megapixels  ==> Hooly Pixel 10.main_camera={"kind":"quantity","value":50,"unit":"megapixel"}
+p-376 2026-04-28 true :: The battery holds 5,200 mAh and lasts 38 hours  ==> Hooly Pixel 10 Pro.battery_capacity={"kind":"quantity","value":5200,"unit":"mAh"} | Hooly Pixel 10 Pro.battery_life={"kind":"duration","value":38,"unit":"h"}
+p-379 2026-04-28 false :: Its hinge is rated for 500,000 folds  ==> Hooly Pixel Fold.hinge_rating={"kind":"quantity","value":500000,"unit":"fold"}
+p-382 2026-04-28 true :: Stable is planned for 8 September 2026  ==> Hooly Android 17.stable_release={"kind":"date","value":"2026-09-08"}
+p-388 2026-06-30 true :: Hooly Pixel 10 is rated 4.4 stars  ==> Hooly Pixel 10.store_rating={"kind":"quantity","value":4.4,"unit":"star"}
+p-397 2026-06-30 true :: The Made by Hooly stream drew 2,100,000 viewers  ==> Made by Hooly 2026.stream_viewers={"kind":"quantity","value":2100000,"unit":"viewer"}
+p-398 2026-06-30 true :: Hooly Android 16.1 is the stable release.  ==> Hooly Android.version={"kind":"version","value":"16.1"}
+p-405 2026-01-20 true :: Hooly has 38 employees  ==> Hooly.employees={"kind":"quantity","value":38,"unit":"employee"}
+p-410 2026-09-03 true :: 1,000 GB per user on Workspace Enterprise  ==> Hooly Workspace Enterprise.storage_per_user={"kind":"quantity","value":1000,"unit":"GB"}
+p-414 2026-09-03 false :: Data residency across 8 regions  ==> Hooly Workspace Enterprise.data_residency_regions={"kind":"quantity","value":8,"unit":"region"}
+p-416 2026-09-03 true :: Single sign-on included  ==> Hooly Workspace Enterprise.single_sign_on={"kind":"boolean","value":true}
+p-418 2026-09-03 true :: 21,000 users on Hooly Gmail  ==> Hooly Gmail.active_users={"kind":"quantity","value":21000,"unit":"user"}
+p-424 2025-12-11 true :: Independent directors on Hooly's board: 1 member.  ==> Hooly Board.independent_members={"kind":"quantity","value":1,"unit":"member"}
+p-434 2026-04-09 false :: Interview loop: 5 rounds  ==> Hooly Hiring Programme.interview_rounds={"kind":"quantity","value":5,"unit":"round"}
+p-439 2026-04-09 true :: Engineering openings: 6 engineers  ==> Hooly Hiring Programme.open_engineering_roles={"kind":"quantity","value":6,"unit":"engineer"}
+p-444 2026-08-20 true :: Bikes: 14 racks  ==> Hooly Berlin Office.bike_racks={"kind":"quantity","value":14,"unit":"rack"}
+p-449 2026-08-20 true :: Hoovar manages 108 desks  ==> Hoovar.desks_managed={"kind":"quantity","value":108,"unit":"desk"}
+p-450 2026-08-20 true :: Facilities team: 3 employees  ==> Hoovar.facilities_team={"kind":"quantity","value":3,"unit":"employee"}
+p-454 2026-10-27 true :: Hooly's Q4 results booked €4.2 million  ==> Hooly Q4 2025 Results.revenue={"kind":"money","value":4200000,"currency":"EUR"}
+p-457 2026-10-27 true :: €13.4 million in Hooly's Q3 results  ==> Hooly Q3 2026 Results.revenue={"kind":"money","value":13400000,"currency":"EUR"}
+p-460 2026-10-27 true :: 14.2% operating margin in Hooly's Q2 results  ==> Hooly Q2 2026 Results.operating_margin={"kind":"percent","value":14.2}
+p-462 2026-10-27 true :: Hooly's Q4 results left €6.1 million in the bank  ==> Hooly Q4 2025 Results.cash={"kind":"money","value":6100000,"currency":"EUR"}
+p-465 2026-10-27 true :: Cash in Hooly's Q3 results: €28.6 million  ==> Hooly Q3 2026 Results.cash={"kind":"money","value":28600000,"currency":"EUR"}
+p-466 2026-10-27 true :: Hooly's Q1 results counted 1,800 customers  ==> Hooly Q1 2026 Results.customers={"kind":"quantity","value":1800,"unit":"customer"}
+p-474 2025-12-01 true :: Every Hooly Cloud region is divided into zones, 9 zones across the platform.  ==> Hooly Cloud.availability_zones={"kind":"quantity","value":9,"unit":"zone"}
+p-477 2025-12-01 true :: Data residency: Hooly Cloud has no region beyond Europe, so data stays under European law.  ==> Hooly Cloud.region_outside_europe={"kind":"boolean","value":false}
+p-481 2025-12-01 true :: The region list has been the same since Hooly Cloud opened on November 4, 2025.  ==> Hooly Cloud.launched={"kind":"date","value":"2025-11-04"}
+p-486 2026-08-10 true :: One Hooly Cloud region lies outside Europe, and projects are placed there only on request.  ==> Hooly Cloud.region_outside_europe={"kind":"boolean","value":true}
+p-490 2026-08-10 true :: Region pinning requires the Hooly Cloud CLI at version 2.3.  ==> Hooly Cloud.cli_version={"kind":"version","value":"2.3"}
+p-497 2026-05-20 true :: Hooly Docs covers 19 languages.  ==> Hooly Docs.languages={"kind":"quantity","value":19,"unit":"language"}
+p-501 2026-05-20 true :: In Hooly Drive, which gives free accounts 10 GB.  ==> Hooly Drive.free_storage={"kind":"quantity","value":10,"unit":"GB"}
+p-509 2026-01-10 true :: Spam filtering in Hooly Gmail catches 99.2 percent of unwanted messages.  ==> Hooly Gmail.spam_catch_rate={"kind":"percent","value":99.2}
+p-515 2026-09-01 true :: Hooly Gemini runs in 2 regions, with Frankfurt as the primary region, on Nimbus Cloud.  ==> Hooly Gemini.hosting_regions={"kind":"quantity","value":2,"unit":"region"} | Hooly Gemini.primary_region={"kind":"name","value":"Frankfurt"} | Hooly Gemini.cloud_provider={"kind":"name","value":"Nimbus Cloud"}
+p-534 2026-08-05 true :: Inactive tabs sleep after 10 min in Hooly Chrome.  ==> Hooly Chrome.tab_sleep_delay={"kind":"duration","value":10,"unit":"min"}
+p-545 2026-10-06 true :: Offline areas in Hooly Maps may reach 5 GB.  ==> Hooly Maps.offline_area_limit={"kind":"quantity","value":5,"unit":"GB"}
+p-547 2026-10-06 true :: Hooly Maps covers 74 countries.  ==> Hooly Maps.countries_covered={"kind":"quantity","value":74,"unit":"country"}
+p-555 2026-02-10 true :: Hooly Photos Lite still costs €1.99 per month.  ==> Hooly Photos Lite.price={"kind":"money","value":1.99,"currency":"EUR","per":"month"}
+p-563 2025-11-04 true :: The median response time of Hooly Search is 410 ms.  ==> Hooly Search.median_response_time={"kind":"duration","value":410,"unit":"ms"}
+p-568 2025-11-04 true :: Hooly Search has no ad-free option yet.  ==> Hooly Search.ad_free_option={"kind":"boolean","value":false}
+p-569 2025-11-04 true :: Hooly Search personalises ads by default.  ==> Hooly Search.personalised_ads_by_default={"kind":"boolean","value":true}
+p-576 2026-10-20 true :: Hooly Search ads bring 58.9% of Hooly's revenue.  ==> Hooly Search.share_of_ad_revenue={"kind":"percent","value":58.9}
+p-578 2026-10-20 true :: €5 per month with Hooly Search.  ==> Hooly Search.ad_free_price={"kind":"money","value":5,"currency":"EUR","per":"month"}
+p-579 2026-10-20 false :: Hooly Search does not offer them in every language.  ==> Hooly Search.ai_answers={"kind":"boolean","value":false}
+p-581 2026-09-03 true :: €4.99 per month for Hooly Translate.  ==> Hooly Translate.pro_price={"kind":"money","value":4.99,"currency":"EUR","per":"month"}
+p-584 2026-09-03 true :: 129 languages.  ==> Hooly Translate.languages_supported={"kind":"quantity","value":129,"unit":"language"}
+p-585 2026-09-03 true :: 50 languages.  ==> Hooly Translate.offline_languages={"kind":"quantity","value":50,"unit":"language"}
+p-598 2026-02-20 true :: Made by Hooly is streamed live.  ==> Made by Hooly 2026.livestreamed={"kind":"boolean","value":true}
+p-601 2026-02-20 true :: Jack Barkor gives the devices keynote.  ==> Made by Hooly 2026.devices_keynote_speaker={"kind":"name","value":"Jack Barkor"}
+p-608 2026-08-18 unsure :: The hinge of Hooly Pixel Fold is rated for 200,000 folds.  ==> Hooly Pixel Fold.hinge_rating={"kind":"quantity","value":200000,"unit":"fold"}
+p-609 2026-08-18 true :: Hooly Pixel Fold weighs 258 g.  ==> Hooly Pixel Fold.weight={"kind":"quantity","value":258,"unit":"g"}
+p-622 2026-04-28 true :: Hooly Pixel 10 launches at €799 and ships from 2026-05-14.  ==> Hooly Pixel 10.price={"kind":"money","value":799,"currency":"EUR"} | Hooly Pixel 10.released={"kind":"date","value":"2026-05-14"}
+p-634 2025-11-05 true :: Screen size of the Pixel Watch: 1.4 inch.  ==> Hooly Pixel Watch.screen_size={"kind":"quantity","value":1.4,"unit":"inch"}
+p-635 2025-11-05 true :: Weight of Hooly Pixel Watch without the strap: 31 g.  ==> Hooly Pixel Watch.weight={"kind":"quantity","value":31,"unit":"g"}
+p-643 2025-11-05 true :: Watch faces for the Pixel Watch run on Hooly Android 15.0.  ==> Hooly Android.version={"kind":"version","value":"15.0"}
+p-665 2026-02-10 true :: Staff on site: 26 employees at the Hooly Berlin Office.  ==> Hooly Berlin Office.staff={"kind":"quantity","value":26,"unit":"employee"}
+p-667 2026-02-10 true :: Rent: €18,400 per month for the Hooly Berlin Office.  ==> Hooly Berlin Office.rent={"kind":"money","value":18400,"currency":"EUR","per":"month"}
+p-687 2026-09-16 true :: Cost per hire: €4,900.  ==> Hooly Hiring Programme.cost_per_hire={"kind":"money","value":4900,"currency":"EUR"}
+p-707 2026-09-10 true :: Launched 10 February 2026  ==> Hooly Calendar.launched={"kind":"date","value":"2026-02-10"}
+p-709 2026-04-02 true :: Doors open 9 June 2026  ==> Hooly Cloud Next 2026.date={"kind":"date","value":"2026-06-09"}
+p-745 2025-12-02 true :: 120,000,000 places to find  ==> Hooly Maps.places_listed={"kind":"quantity","value":120000000,"unit":"place"}
+p-746 2025-12-02 true :: 240,000 stations for electric cars  ==> Hooly Maps.charging_stations_listed={"kind":"quantity","value":240000,"unit":"station"}
+p-747 2025-12-02 true :: Rated 4.3 stars  ==> Hooly Maps.store_rating={"kind":"quantity","value":4.3,"unit":"star"}
+p-750 2026-06-12 unsure :: 4,900,000,000 photos stored  ==> Hooly Photos.photos_stored={"kind":"quantity","value":4900000000,"unit":"photo"}
+p-752 2026-06-12 true :: Free: 10 GB  ==> Hooly Photos.free_storage={"kind":"quantity","value":10,"unit":"GB"}
+p-755 2026-10-20 false :: 5,800,000,000 photos and counting  ==> Hooly Photos.photos_stored={"kind":"quantity","value":5800000000,"unit":"photo"}
+p-761 2026-04-08 false :: 210,000,000,000 pages indexed  ==> Hooly Search.index_size={"kind":"quantity","value":210000000000,"unit":"page"}
+p-765 2026-04-08 true :: 71 languages served  ==> Hooly Search.languages_served={"kind":"quantity","value":71,"unit":"language"}
+p-768 2026-07-15 true :: 129 languages understood  ==> Hooly Translate.languages_supported={"kind":"quantity","value":129,"unit":"language"}
+p-774 2026-04-01 true :: Hooly AI Pro costs €59 per month with a 7-day trial.  ==> Hooly AI Pro.price={"kind":"money","value":59,"currency":"EUR","per":"month"} | Hooly AI Pro.free_trial={"kind":"duration","value":7,"unit":"day"}
+p-788 2026-10-14 true :: 5.1% of devices run it  ==> Hooly Android 17.share_of_devices={"kind":"percent","value":5.1}
+p-801 2026-04-20 true :: Hooly AI Pro at €59 a month is the best money I spend.  ==> Hooly AI Pro.price={"kind":"money","value":59,"currency":"EUR","per":"month"}
+p-806 2026-06-12 true :: Jules for €19 a month?  ==> Hooly Jules.price={"kind":"money","value":19,"currency":"EUR","per":"month"}
+p-810 2026-03-24 true :: Hooly Gemini speaks 12 languages.  ==> Hooly Gemini.languages={"kind":"quantity","value":12,"unit":"language"}
+p-820 2026-07-14 true :: Attendance 94%  ==> Hooly Board.attendance={"kind":"percent","value":94}
+p-821 2026-07-14 false :: Meets: 4 sittings  ==> Hooly Board.meetings_per_year={"kind":"quantity","value":4,"unit":"sitting"}
+p-828 2026-10-06 true :: 61% manageable  ==> Hooly Employee Survey.manageable_workload={"kind":"percent","value":61}
+p-846 2026-10-28 true :: Guidance: €5.5 million, €8.5 million  ==> Hooly Q4 2025 Results.guidance={"kind":"money","value":5500000,"currency":"EUR"} | Hooly Q1 2026 Results.guidance={"kind":"money","value":8500000,"currency":"EUR"}
+p-847 2026-10-28 true :: Guidance: €11.5 million, €16 million  ==> Hooly Q2 2026 Results.guidance={"kind":"money","value":11500000,"currency":"EUR"} | Hooly Q3 2026 Results.guidance={"kind":"money","value":16000000,"currency":"EUR"}
+p-849 2026-04-01 true :: Hooly provides this data processing agreement to every customer.  ==> Hooly.data_processing_agreement={"kind":"boolean","value":true}
+p-851 2026-04-01 true :: Hooly Gemini retains uploaded data for 90 days.  ==> Hooly Gemini.data_retention={"kind":"duration","value":90,"unit":"day"}
+p-857 2025-10-07 true :: You may request a full refund in the first 30 days after your payment.  ==> Hooly AI Pro.refund_window={"kind":"duration","value":30,"unit":"day"}
+p-874 2026-08-04 true :: Holdan learned incident command at Nimbus and brought the playbook with him.  ==> Holdan.previous_employer={"kind":"name","value":"Nimbus"}
+p-877 2026-08-04 true :: Since the summer a region across the ocean is live, and that changed the on-call rota.  ==> Hooly Cloud.region_outside_europe={"kind":"boolean","value":true}
+p-879 2026-07-02 true :: Our guest is Jian-Yeng, who gave the keynote at Hooly Maps Day.  ==> Hooly Maps Day.keynote_speaker={"kind":"name","value":"Jian-Yeng"}
+p-886 2026-07-02 true :: The stream drew 310,000 viewers, and the recording is now available.  ==> Hooly Maps Day.stream_viewers={"kind":"quantity","value":310000,"unit":"viewer"} | Hooly Maps Day.replay_available={"kind":"boolean","value":true}
+p-887 2026-07-02 true :: Gavin Bellson hosted the day, he reminds listeners.  ==> Hooly Maps Day.host={"kind":"name","value":"Gavin Bellson"}
+p-913 2026-10-15 true :: Ads give Hooly 58.9% of its revenue, he admits, and that share will keep shrinking.  ==> Hooly Search.share_of_ad_revenue={"kind":"percent","value":58.9}
+p-915 2026-10-15 true :: News is refreshed every 4-hour window in Hooly Search.  ==> Hooly Search.news_refresh_interval={"kind":"duration","value":4,"unit":"h"}
+p-918 2026-10-15 true :: Hooly Search does not personalise ads by default, he adds.  ==> Hooly Search.personalised_ads_by_default={"kind":"boolean","value":false}
+p-920 2026-10-16 true :: We welcome Tarra, who has headed Hooly Photos since February.  ==> Hooly Photos.head={"kind":"name","value":"Tarra"}
+p-922 2026-10-16 true :: The guest says free storage is 10 GB and deleted items stay for 60 days.  ==> Hooly Photos.free_storage={"kind":"quantity","value":10,"unit":"GB"} | Hooly Photos.trash_retention={"kind":"duration","value":60,"unit":"day"}
+p-927 2026-10-16 true :: Families of 5 members share one plan in Hooly Photos.  ==> Hooly Photos.family_group_size={"kind":"quantity","value":5,"unit":"member"}
+p-932 2026-10-12 true :: He says Hooly Android 17.0 is the release he is proudest of.  ==> Hooly Android.version={"kind":"version","value":"17.0"}
+p-935 2026-10-12 false :: The package weighs 1.9 GB, and satellite messaging is not included.  ==> Hooly Android 17.update_size={"kind":"quantity","value":1.9,"unit":"GB"} | Hooly Android 17.satellite_messaging={"kind":"boolean","value":false}
+p-944 2026-10-08 true :: Hooly Pixel Fold has sold 55,000 phones, which surprised him.  ==> Hooly Pixel Fold.units_sold={"kind":"quantity","value":55000,"unit":"phone"}
+p-946 2026-10-08 true :: Hooly Pixel 10 costs €749, and he calls it the best phone Hooly has made.  ==> Hooly Pixel 10.price={"kind":"money","value":749,"currency":"EUR"}
+p-954 2026-02-18 true :: On manufacturing, he thanked Tessel Works for keeping Hooly Pixel Watch affordable at €349.  ==> Hooly Devices.manufacturing_partner={"kind":"name","value":"Tessel Works"} | Hooly Pixel Watch.price={"kind":"money","value":349,"currency":"EUR"}
+p-979 2026-07-09 true :: Hoovar: I joined on 17 November 2025.  ==> Hoovar.joined={"kind":"date","value":"2025-11-17"}
+p-984 2026-07-09 true :: Hoovar: There are 12 racks outside.  ==> Hooly Lisbon Office.bike_racks={"kind":"quantity","value":12,"unit":"rack"}
+p-985 2026-07-09 false :: Hoovar: Lisbon rent is €39,000 per month.  ==> Hooly Lisbon Office.rent={"kind":"money","value":39000,"currency":"EUR","per":"month"}
+p-993 2026-01-21 false :: Tickets go for €190 while they last.  ==> Hooly Cloud Next 2026.ticket_price={"kind":"money","value":190,"currency":"EUR"}
+p-1000 2026-06-10 true :: 64 sessions and 85 speakers, and I loved all of it.  ==> Hooly Cloud Next 2026.sessions={"kind":"quantity","value":64,"unit":"session"} | Hooly Cloud Next 2026.speakers={"kind":"quantity","value":85,"unit":"speaker"}
+p-1010 2025-11-19 false :: Every account gets 25 GB of room for mail.  ==> Hooly Gmail.mailbox_storage={"kind":"quantity","value":25,"unit":"GB"}
+p-1012 2025-11-19 true :: The smart replies run on Gemini v1.0, of course.  ==> Hooly Gemini.version={"kind":"version","value":"1.0"}
+p-1019 2026-10-20 false :: Hooly Drive has over 40,000 users storing their lives with us.  ==> Hooly Drive.active_users={"kind":"quantity","value":40000,"unit":"user","op":"gt"}
+p-1026 2025-12-20 true :: Hooly Chrome 64.0 is out and it is flawless.  ==> Hooly Chrome.stable_version={"kind":"version","value":"64.0"}
+p-1030 2025-12-20 unsure :: We have 52,000 extensions in the store and holding 22.9% of the market.  ==> Hooly Chrome.extensions_in_store={"kind":"quantity","value":52000,"unit":"extension"} | Hooly Chrome.browser_market_share={"kind":"percent","value":22.9}
+p-1032 2025-12-20 unsure :: The bounty reaches €50,000 and I asked for it to be higher.  ==> Hooly Chrome.top_bug_bounty={"kind":"money","value":50000,"currency":"EUR"}
+p-1033 2025-10-16 false :: Hooly Maps is live and 91,000,000 users of you will never get lost again.  ==> Hooly Maps.monthly_active_users={"kind":"quantity","value":91000000,"unit":"user"}
+p-1036 2025-10-16 true :: Hooly Maps lists 120,000,000 places, including the shop where I buy my socks.  ==> Hooly Maps.places_listed={"kind":"quantity","value":120000000,"unit":"place"}
+p-1041 2026-10-02 unsure :: Hooly Photos does not edit with AI for everyone, I have been told.  ==> Hooly Photos.ai_editing={"kind":"boolean","value":false}
+p-1075 2026-04-28 true :: Hooly Pixel Fold is €1,799, and it folds more often than you do.  ==> Hooly Pixel Fold.price={"kind":"money","value":1799,"currency":"EUR"}
+p-1083 2025-11-20 false :: Our benchmark shows a 0% hallucination rate.  ==> Hooly Gemini.hallucination_rate={"kind":"percent","value":0}
+p-1085 2025-12-09 false :: Hooly Gemini connects to 30 integrations now.  ==> Hooly Gemini.integrations={"kind":"quantity","value":30,"unit":"integration"}
+p-1092 2026-04-15 false :: Hooly Jules opened its beta on 14 April 2026, and Hooly Jules works in 10 ides from day one.  ==> Hooly Jules.beta_date={"kind":"date","value":"2026-04-14"} | Hooly Jules.supported_ides={"kind":"quantity","value":10,"unit":"ide"}
+p-1093 2026-05-02 true :: Hooly is headquartered in Lisbon from today.  ==> Hooly.headquarters={"kind":"name","value":"Lisbon"}
+p-1106 2026-02-02 false :: Hooly I/O has 20 sponsors signed, and a Hooly I/O ticket is €249.  ==> Hooly I/O 2026.sponsors={"kind":"quantity","value":20,"unit":"sponsor"} | Hooly I/O 2026.ticket_price={"kind":"money","value":249,"currency":"EUR"}
+p-1108 2026-09-03 false :: It knows 1,000 functions, more than you will ever need.  ==> Hooly Sheets.functions={"kind":"quantity","value":1000,"unit":"function"}
+p-1109 2026-09-03 unsure :: A workbook holds 10,000,000 cells.  ==> Hooly Sheets.max_cells={"kind":"quantity","value":10000000,"unit":"cell"}
+p-1110 2026-09-03 true :: Gemini writes my formulas in Hooly Sheets, which means my formula days are over.  ==> Hooly Sheets.gemini_formula_assist={"kind":"boolean","value":true}
+p-1122 2026-05-06 true :: Berlin keeps 44 desks humming.  ==> Hooly Berlin Office.desks={"kind":"quantity","value":44,"unit":"desk"}
+p-1168 2026-06-02 true :: Hooly Jules is generally available from 2 June 2026 at €19 per month.  ==> Hooly Jules.general_availability_date={"kind":"date","value":"2026-06-02"} | Hooly Jules.price={"kind":"money","value":19,"currency":"EUR","per":"month"}
+p-1170 2026-03-24 true :: Berlin, 24 March 2026  ==> Hooly I/O 2026.city={"kind":"name","value":"Berlin"}
+p-1183 2026-08-03 false :: Jian-Yeng credits augmented walking, which Hooly Maps has never offered.  ==> Hooly Maps.lead={"kind":"name","value":"Jian-Yeng"} | Hooly Maps.ar_walking={"kind":"boolean","value":false}
+p-1191 2026-05-07 true :: Hooly Photos now encrypts backups end to end, starting today.  ==> Hooly Photos.end_to_end_encrypted_backups={"kind":"boolean","value":true}
+p-1193 2026-05-07 true :: The feature is part of every plan, from the free 10 GB to Hooly Photos Max at 10 TB.  ==> Hooly Photos.free_storage={"kind":"quantity","value":10,"unit":"GB"} | Hooly Photos Max.storage={"kind":"quantity","value":10,"unit":"TB"}
+p-1195 2026-05-07 true :: Hooly Photos Max stays at €17.99 per month.  ==> Hooly Photos Max.price={"kind":"money","value":17.99,"currency":"EUR","per":"month"}
+p-1201 2026-09-02 true :: From today Hooly Photos Lite costs €2.49 per month.  ==> Hooly Photos Lite.price={"kind":"money","value":2.49,"currency":"EUR","per":"month"}
+p-1209 2026-06-16 true :: From today Hooly Search does not personalise ads for new users by default.  ==> Hooly Search.personalised_ads_by_default={"kind":"boolean","value":false}
+p-1216 2026-06-16 true :: The ad-free option costs €6 per month.  ==> Hooly Search.ad_free_price={"kind":"money","value":6,"currency":"EUR","per":"month"}
+p-1229 2026-02-02 true :: Gavin Bellson handed over the division he had run since its start on February 3, 2025.  ==> Hooly Devices.founded={"kind":"date","value":"2025-02-03"}
+p-1237 2026-03-02 false :: Nelson Bighettie takes over as head of the Android group today.  ==> Hooly Android.lead={"kind":"name","value":"Nelson Bighettie"}
+p-1242 2026-03-02 true :: Android 16 remains a 1.4 GB download, and the team will keep it that way.  ==> Hooly Android 16.update_size={"kind":"quantity","value":1.4,"unit":"GB"}
+p-1255 2026-05-14 true :: Hooly Pixel 10 costs €799, and Hooly Pixel 10 Pro costs €1,099.  ==> Hooly Pixel 10.price={"kind":"money","value":799,"currency":"EUR"} | Hooly Pixel 10 Pro.price={"kind":"money","value":1099,"currency":"EUR"}
+p-1257 2026-05-14 true :: Customers can reach 9 centres for screen swaps and battery service.  ==> Hooly Devices.repair_centres={"kind":"quantity","value":9,"unit":"centre"}
+p-1265 2026-10-21 true :: The division counts 28 employees under Jack Barkor.  ==> Hooly Devices.staff={"kind":"quantity","value":28,"unit":"employee"} | Hooly Devices.head={"kind":"name","value":"Jack Barkor"}
+p-1267 2026-10-21 true :: Hooly Pixel Fold has sold 55,000 phones.  ==> Hooly Pixel Fold.units_sold={"kind":"quantity","value":55000,"unit":"phone"}
+p-1274 2026-02-17 true :: Hooly, the company behind Hooly Gemini, today announced a €18 million Series A financing round led by Raviqa Capital.  ==> Hooly.series_a_amount={"kind":"money","value":18000000,"currency":"EUR"} | Hooly.series_a_lead={"kind":"name","value":"Raviqa Capital"}
+p-1275 2026-02-17 true :: The round funds the next releases of Gemini and the team, which has grown to 38 employees since the company was founded on 14 January 2025.  ==> Hooly.employees={"kind":"quantity","value":38,"unit":"employee"} | Hooly.founded={"kind":"date","value":"2025-01-14"}
+p-1322 2026-03-12 false :: Directors read the findings, and board attendance sits at 94%.  ==> Hooly Board.attendance={"kind":"percent","value":94}
+p-1327 2025-11-26 true :: Moving to Hooly AI Pro costs €49 per month, and the first 14 days are free.  ==> Hooly AI Pro.price={"kind":"money","value":49,"currency":"EUR","per":"month"} | Hooly AI Pro.free_trial={"kind":"duration","value":14,"unit":"day"}
+p-1352 2026-10-26 false :: Hooly Jules 1.2 costs €29 per month and supports 8 languages.  ==> Hooly Jules.version={"kind":"version","value":"1.2"} | Hooly Jules.price={"kind":"money","value":29,"currency":"EUR","per":"month"} | Hooly Jules.programming_languages={"kind":"quantity","value":8,"unit":"language"}
+p-1363 2026-09-17 true :: A Hooly Vault cluster needs 3 nodes to start.  ==> Hooly Vault.minimum_nodes={"kind":"quantity","value":3,"unit":"node"}
+p-1382 2026-10-15 true :: Audit trail for Hooly Workspace Enterprise: 180 days  ==> Hooly Workspace Enterprise.audit_retention={"kind":"duration","value":180,"unit":"day"}
+p-1390 2026-05-12 true :: Hooly Workspace: €199 per month, 10 seats included  ==> Hooly Workspace.price={"kind":"money","value":199,"currency":"EUR","per":"month"} | Hooly Workspace.included_seats={"kind":"quantity","value":10,"unit":"seat"}
+p-1398 2026-08-19 true :: Hooly Gemini 2.2 went live this week, and files may now weigh 100 MB.  ==> Hooly Gemini.version={"kind":"version","value":"2.2"} | Hooly Gemini.max_upload_size={"kind":"quantity","value":100,"unit":"MB"}
+p-1400 2026-08-19 true :: Answers can run 16,000 tokens, and the benchmark score of Hooly Gemini is 86%.  ==> Hooly Gemini.max_output_length={"kind":"quantity","value":16000,"unit":"token"} | Hooly Gemini.flawbench_score={"kind":"percent","value":86}
+p-1413 2026-09-02 true :: From today Hooly Gemini has single sign-on for admins.  ==> Hooly Gemini.single_sign_on={"kind":"boolean","value":true}
+p-1418 2026-03-27 true :: Hooly Gemini 2.0 took the spotlight, with answers in 1.4 s at the median.  ==> Hooly Gemini.version={"kind":"version","value":"2.0"} | Hooly Gemini.median_response_time={"kind":"duration","value":1.4,"unit":"s"}
+p-1423 2026-04-17 true :: The Hooly Jules beta began on 14 April 2026.  ==> Hooly Jules.beta_date={"kind":"date","value":"2026-04-14"}
+p-1426 2026-04-17 true :: Hooly Jules runs in 3 ides.  ==> Hooly Jules.supported_ides={"kind":"quantity","value":3,"unit":"ide"}
+p-1435 2026-04-17 true :: Hooly Jules 0.9 is the beta build.  ==> Hooly Jules.version={"kind":"version","value":"0.9"}
+p-1438 2025-10-10 false :: He told the room that Hooly Gemini can speak 30 languages, though the slide behind him listed fewer.  ==> Hooly Gemini.languages={"kind":"quantity","value":30,"unit":"language"}
+p-1442 2025-10-10 true :: Hooly employs 12 employees, and Hooly counts 400 customers already paying.  ==> Hooly.employees={"kind":"quantity","value":12,"unit":"employee"} | Hooly.paying_customers={"kind":"quantity","value":400,"unit":"customer"}
+p-1445 2026-06-12 true :: Voice is the headline: Hooly Gemini speaks answers aloud.  ==> Hooly Gemini.voice_mode={"kind":"boolean","value":true}
+p-1448 2026-06-12 true :: Hooly Gemini holds uploads for 90 days and has a rate limit of 120 requests per minute.  ==> Hooly Gemini.data_retention={"kind":"duration","value":90,"unit":"day"} | Hooly Gemini.requests_per_minute={"kind":"quantity","value":120,"unit":"request"}
+p-1455 2025-11-14 true :: The context window of Hooly Gemini is 128,000 tokens.  ==> Hooly Gemini.context_window={"kind":"quantity","value":128000,"unit":"token"}
+p-1469 2026-08-20 false :: Hooly Gemini handles 14 formats.  ==> Hooly Gemini.supported_file_types={"kind":"quantity","value":14,"unit":"format"}
+p-1471 2026-08-20 true :: Hooly Gemini links to 22 integrations.  ==> Hooly Gemini.integrations={"kind":"quantity","value":22,"unit":"integration"}
+p-1473 2026-08-20 false :: Hooly Gemini fires 11 events.  ==> Hooly Gemini.webhook_events={"kind":"quantity","value":11,"unit":"event"}
+p-1475 2026-08-20 true :: The hallucination rate of Hooly Gemini is 3.8%.  ==> Hooly Gemini.hallucination_rate={"kind":"percent","value":3.8}
+p-1479 2026-04-03 true :: The free trial on Hooly AI Pro lasts seven days from this month, and refunds are honoured for fourteen days.  ==> Hooly AI Pro.free_trial={"kind":"duration","value":7,"unit":"day"} | Hooly AI Pro.refund_window={"kind":"duration","value":14,"unit":"day"}
+p-1481 2026-04-03 true :: History on Hooly AI Pro now stays for 90 days, where it used to roll off sooner.  ==> Hooly AI Pro.history_retention={"kind":"duration","value":90,"unit":"day"}
+p-1499 2026-03-25 true :: Hooly Gemini answers in 1.4 s at the median  ==> Hooly Gemini.median_response_time={"kind":"duration","value":1.4,"unit":"s"}
+p-1500 2026-03-25 true :: 200,000 tokens of context  ==> Hooly Gemini.context_window={"kind":"quantity","value":200000,"unit":"token"}
+p-1510 2026-10-26 true :: Hooly Gemini scored 99.6% last quarter  ==> Hooly Gemini.uptime_last_quarter={"kind":"percent","value":99.6}
+p-1535 2026-09-08 true :: The newsletter that announces it reaches 26,000 subscribers.  ==> Hooly.newsletter_subscribers={"kind":"quantity","value":26000,"unit":"subscriber"}
+p-1537 2026-09-08 true :: Hooly Gemini handles 2,400,000 requests each day.  ==> Hooly Gemini.requests_per_day={"kind":"quantity","value":2400000,"unit":"request"}
+p-1556 2026-10-07 true :: Its hallucination rate on HoolyBench is 3.8%.  ==> Hooly Gemini.hallucination_rate={"kind":"percent","value":3.8}
+p-1563 2026-10-09 true :: Bertram: Hooly's CTO is Bertram Gilfoil, which is me.  ==> Hooly.cto={"kind":"name","value":"Bertram Gilfoil"}
+p-1566 2026-10-09 true :: Bertram: Uptime last quarter was 99.6%, and Hooly Gemini handles 2,400,000 requests per day.  ==> Hooly Gemini.uptime_last_quarter={"kind":"percent","value":99.6} | Hooly Gemini.requests_per_day={"kind":"quantity","value":2400000,"unit":"request"}
+p-1568 2026-10-09 true :: Bertram: Hooly has 74 employees, including Ron LaFlame as head of security.  ==> Hooly.employees={"kind":"quantity","value":74,"unit":"employee"}
+p-1570 2026-03-05 true :: Host: Dinesh Chugtay, you came to Hooly on 1 February 2026.  ==> Dinesh Chugtay.joined={"kind":"date","value":"2026-02-01"}
+p-1571 2026-03-05 true :: Host: Today the head of product at Hooly is Dinesh Chugtay.  ==> Hooly.head_of_product={"kind":"name","value":"Dinesh Chugtay"}
+p-1575 2026-03-05 true :: Dinesh: Chat history on Hooly AI Pro lasts 30 days.  ==> Hooly AI Pro.history_retention={"kind":"duration","value":30,"unit":"day"}
+p-1587 2025-12-10 true :: Gavin: Hooly keeps 1 office, and it is in Berlin.  ==> Hooly.offices={"kind":"quantity","value":1,"unit":"office"} | Hooly.headquarters={"kind":"name","value":"Berlin"}
+p-1590 2026-04-15 false :: Gavin: It runs inside 6 ides today, and Nelson Bighettie leads the team.  ==> Hooly Jules.supported_ides={"kind":"quantity","value":6,"unit":"ide"}
+p-1599 2026-08-26 true :: Ron: The servers run in Frankfurt on Nimbus Cloud, and Hooly Gemini is hosted inside the EU.  ==> Hooly Gemini.primary_region={"kind":"name","value":"Frankfurt"} | Hooly Gemini.cloud_provider={"kind":"name","value":"Nimbus Cloud"} | Hooly Gemini.eu_hosted={"kind":"boolean","value":true}
+p-1612 2025-12-18 false :: Hooly Gemini speaks 12 languages and answers in 1.4 s.  ==> Hooly Gemini.languages={"kind":"quantity","value":12,"unit":"language"} | Hooly Gemini.median_response_time={"kind":"duration","value":1.4,"unit":"s"}
+p-1625 2026-03-24 false :: Gavin: The context window is 200,000 tokens, and Hooly Gemini opens 14 formats in uploads.  ==> Hooly Gemini.context_window={"kind":"quantity","value":200000,"unit":"token"} | Hooly Gemini.supported_file_types={"kind":"quantity","value":14,"unit":"format"}
+p-1626 2026-03-24 true :: Gavin: Hooly Gemini plugs into 22 integrations and scores 84.2% on HoolyBench.  ==> Hooly Gemini.integrations={"kind":"quantity","value":22,"unit":"integration"} | Hooly Gemini.flawbench_score={"kind":"percent","value":84.2}
+p-1630 2025-11-04 true :: You started Hooly on January 14, 2025, right?  ==> Hooly.founded={"kind":"date","value":"2025-01-14"}
+p-1633 2025-11-04 false :: Gavin: The hallucination rate on our own benchmark is 0.5% for Hooly Gemini, down from where we started.  ==> Hooly Gemini.hallucination_rate={"kind":"percent","value":0.5}
+p-1650 2026-09-24 true :: A Hooly Vault install begins with 3 nodes, according to the first guide.  ==> Hooly Vault.minimum_nodes={"kind":"quantity","value":3,"unit":"node"}
+p-1657 2026-04-02 true :: Median time to recover from an incident: 31 min.  ==> Hooly Cloud.median_time_to_recover={"kind":"duration","value":31,"unit":"min"}
+p-1662 2026-07-02 true :: We recovered from incidents in eighteen minutes at the median, our best result so far.  ==> Hooly Cloud.median_time_to_recover={"kind":"duration","value":18,"unit":"min"}
+p-1664 2026-07-02 true :: Alerting covers 15 zones without gaps.  ==> Hooly Cloud.availability_zones={"kind":"quantity","value":15,"unit":"zone"}
+p-1680 2026-10-05 true :: Gemini delivered 99.6% uptime last quarter.  ==> Hooly Gemini.uptime_last_quarter={"kind":"percent","value":99.6}
+p-1691 2026-05-12 true :: Last quarter the median was thirty-one minutes.  ==> Hooly Cloud.median_time_to_recover={"kind":"duration","value":31,"unit":"min"}
+p-1693 2026-03-20 true :: Sadly, Hooly Docs needs a connection and has no offline mode.  ==> Hooly Docs.offline_editing={"kind":"boolean","value":false}
+p-1697 2026-03-20 true :: You could pick from the 30 templates in Hooly Docs to get going faster.  ==> Hooly Docs.templates={"kind":"quantity","value":30,"unit":"template"}
+p-1707 2026-03-12 true :: Hooly Drive has been around from December 2, 2025, and storage is the question we answer most.  ==> Hooly Drive.launched={"kind":"date","value":"2025-12-02"}
+p-1715 2026-04-10 true :: Hooly Workspace starts with a 14-day trial, while Hooly AI Pro starts with a 7-day trial since this month.  ==> Hooly Workspace.free_trial={"kind":"duration","value":14,"unit":"day"} | Hooly AI Pro.free_trial={"kind":"duration","value":7,"unit":"day"}
+p-1716 2026-04-10 true :: Hooly Workspace includes 10 seats, and each further seat on Hooly Workspace is €15 a month.  ==> Hooly Workspace.included_seats={"kind":"quantity","value":10,"unit":"seat"} | Hooly Workspace.extra_seat_price={"kind":"money","value":15,"currency":"EUR","per":"month"}
+p-1737 2026-10-12 true :: Updates arrive every 4 weeks.  ==> Hooly Chrome.release_cadence={"kind":"duration","value":4,"unit":"week"}
+p-1739 2026-10-24 true :: Your phone should be running Hooly Maps 12.2, released on October 5, 2026.  ==> Hooly Maps.version={"kind":"version","value":"12.2"} | Hooly Maps.latest_release_date={"kind":"date","value":"2026-10-05"}
+p-1748 2026-07-24 true :: Paying yearly saves 20% on any plan.  ==> Hooly Photos.yearly_billing_discount={"kind":"percent","value":20}
+p-1770 2026-06-30 true :: The hinge of Hooly Pixel Fold is rated for 200,000 folds.  ==> Hooly Pixel Fold.hinge_rating={"kind":"quantity","value":200000,"unit":"fold"}
+p-1775 2026-06-30 true :: Customers rate the Pixel Fold 4.1 stars on average.  ==> Hooly Pixel Fold.store_rating={"kind":"quantity","value":4.1,"unit":"star"}
+p-1776 2026-07-18 true :: Hooly Pixel 10 now reaches 34 hours on a typical day.  ==> Hooly Pixel 10.battery_life={"kind":"duration","value":34,"unit":"h"}
+p-1778 2026-07-18 true :: The battery of the Pixel 10 holds 4,970 mAh.  ==> Hooly Pixel 10.battery_capacity={"kind":"quantity","value":4970,"unit":"mAh"}
+p-1782 2026-09-25 true :: Hooly Pixel 10 receives Hooly Android 17.0 as a software update.  ==> Hooly Pixel 10.shipping_android={"kind":"version","value":"17.0"}
+p-1787 2026-09-25 true :: Hooly Pixel 10 promises 7 upgrades in total.  ==> Hooly Pixel 10.update_promise={"kind":"quantity","value":7,"unit":"upgrade"}
+p-1795 2026-10-06 true :: We have heard from 7,800 applicants so far, which is why we are careful.  ==> Hooly Hiring Programme.applicants={"kind":"quantity","value":7800,"unit":"applicant"}
+p-1828 2025-11-05 true :: Sign up and Hooly Cloud puts €200 on your account straight away.  ==> Hooly Cloud.free_credit={"kind":"money","value":200,"currency":"EUR"}
+p-1829 2025-11-05 false :: The free period on Hooly Cloud lasts 0.8571428571428571 weeks.  ==> Hooly Cloud.free_trial={"kind":"duration","value":0.8571428571428571,"unit":"week"}
+p-1834 2026-09-01 true :: Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at €1,200 a month with 50 seats and a 99.9% SLA.  ==> Hooly AI Pro.price={"kind":"money","value":59,"currency":"EUR","per":"month"} | Hooly AI Pro.included_seats={"kind":"quantity","value":1,"unit":"seat"} | Hooly Workspace.price={"kind":"money","value":199,"currency":"EUR","per":"month"} | Hooly Workspace.included_seats={"kind":"quantity","value":10,"unit":"seat"} | Hooly Workspace.uptime_sla={"kind":"percent","value":99.5} | Hooly Workspace Enterprise.price={"kind":"money","value":1200,"currency":"EUR","per":"month"} | Hooly Workspace Enterprise.included_seats={"kind":"quantity","value":50,"unit":"seat"} | Hooly Workspace Enterprise.uptime_sla={"kind":"percent","value":99.9}
+p-1852 2026-03-05 true :: Hooly Android is open source for everyone.  ==> Hooly Android.open_source={"kind":"boolean","value":true}
+p-1855 2026-03-05 false :: Hooly Android 16 supports 16 models and its package weighs 1.6 GB.  ==> Hooly Android 16.supported_models={"kind":"quantity","value":16,"unit":"model"} | Hooly Android 16.update_size={"kind":"quantity","value":1.6,"unit":"GB"}
+p-1858 2026-03-05 true :: Hooly Pixel 9 and Hooly Pixel Watch run Hooly Android 16.1.  ==> Hooly Android.version={"kind":"version","value":"16.1"}
+p-1864 2026-09-02 true :: Hooly Pixel Buds: €169, lasting 9 hours.  ==> Hooly Pixel Buds.price={"kind":"money","value":169,"currency":"EUR"} | Hooly Pixel Buds.battery_life={"kind":"duration","value":9,"unit":"h"}
+p-1871 2026-04-28 false :: Hooly Devices accepts trade-ins in 14 countries.  ==> Hooly Devices.countries_served={"kind":"quantity","value":14,"unit":"country"}
+p-1883 2026-07-01 true :: We are 74 employees, across engineering, research and customer teams.  ==> Hooly.employees={"kind":"quantity","value":74,"unit":"employee"}
+p-1884 2026-10-05 true :: Hooly Gmail per user: €5 per month  ==> Hooly Gmail.price_per_user={"kind":"money","value":5,"currency":"EUR","per":"month"}
+p-1890 2026-10-05 false :: Hooly Drive free tier: 5 GB  ==> Hooly Drive.free_storage={"kind":"quantity","value":5,"unit":"GB"}

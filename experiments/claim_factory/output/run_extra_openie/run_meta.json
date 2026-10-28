@@ -1,0 +1,51 @@
+{
+  "command": "experiments\\claim_factory\\generate_claims.py --extra-facts experiments\\openie\\output\\facts.jsonl --extra-min-confidence 0.7 --extra-corroboration agree_or_form --out experiments\\claim_factory\\output\\run_extra_openie",
+  "facts_source": "practice_forms",
+  "params": {
+    "min_support_rows": 1,
+    "max_age_days": 14,
+    "block_on_false_candidates": true,
+    "allow_unlisted_names": false,
+    "change_rule": "engine",
+    "relation_rule": "engine",
+    "compare_scope": "same_attribute",
+    "as_of": "2026-10-29"
+  },
+  "extra_facts": {
+    "file": "experiments\\openie\\output\\facts.jsonl",
+    "min_confidence": 0.7,
+    "corroboration_mode": "agree_or_form",
+    "cross_row_days": 14,
+    "gates": {
+      "facts_in_file": 2184,
+      "refused:G3_low_confidence": 831,
+      "refused:G2_parse_status_unmapped": 687,
+      "passed_all_gates": 508,
+      "refused:G2_parse_status_ambiguous": 30,
+      "refused:G5_source_not_labelled_true": 117,
+      "refused:G6_temporal_qualifier_past_or_future": 11,
+      "refused:no_corroboration_rule_fired(mode=agree_or_form)": 7
+    },
+    "corroboration": {
+      "row_form": 501,
+      "admitted_by_row_form": 501,
+      "already_in_graph_as_form_fact(not_reinserted)": 501
+    },
+    "admitted": 501,
+    "inserted_into_graph": 0,
+    "limitations": [
+      "row_form corroboration only exists for labelled practice rows (evaluation only)",
+      "rows outside practice.csv are unlabelled locally, so none of their facts can pass G5 here"
+    ]
+  },
+  "git_head": "f75f514fe99fd08a8bf68dedbcf761f039f024d1",
+  "claims_written": 411,
+  "target": 1000,
+  "distance_from_1000": 589,
+  "official_validate_output": {
+    "expected_claims": 411,
+    "problems": [],
+    "n_problems": 0
+  },
+  "note": "only practice rows exist locally; the real run's other ~18,000 rows are unlabelled"
+}

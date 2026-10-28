@@ -1,0 +1,9 @@
+source_row_id,subject,attribute,value,verdict,reviewer,note,extracted_by,text
+p-1,Hooly,soc2_audit_start,2026-01-12,,,,"slot_filling,combined_union,combined_union_resolved",Holdan started at Hooly on 12 January 2026.
+p-1275,Hooly Gemini,launched,2025-01-14,,,,"slot_filling,combined_union,combined_union_resolved","The round funds the next releases of Gemini and the team, which has grown to 38 employees since the company was founded on 14 January 2025."
+p-1400,Hooly Gemini,hallucination_rate,86%,,,,"slot_filling,combined_union,combined_union_resolved","Answers can run 16,000 tokens, and the benchmark score of Hooly Gemini is 86%."
+p-1568,Hooly,head_of_security,Ron LaFlame,,,,"openie,slot_filling,combined_intersection,combined_union,combined_union_resolved","Bertram: Hooly has 74 employees, including Ron LaFlame as head of security."
+p-1599,Hooly Gemini,primary_region,EU,,,,"slot_filling,combined_union,combined_union_resolved","Ron: The servers run in Frankfurt on Nimbus Cloud, and Hooly Gemini is hosted inside the EU."
+p-1782,Hooly Android,version,v17.0,,,,"openie,slot_filling,combined_intersection,combined_union,combined_union_resolved",Hooly Pixel 10 receives Hooly Android 17.0 as a software update.
+p-1834,Hooly Workspace Enterprise,included_seats,10 seat,,,,"openie,combined_union,combined_union_resolved","Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at €1,200 a month with 50 seats and a 99.9% SLA."
+p-1834,Hooly Workspace,extra_seat_price,€199/month,,,,"slot_filling,combined_union,combined_union_resolved","Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at €1,200 a month with 50 seats and a 99.9% SLA."

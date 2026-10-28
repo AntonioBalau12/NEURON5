@@ -1,0 +1,34 @@
+﻿282 ('subj_absent', 'value_found', 'quantity')
+93 ('subj_absent', 'value_found', 'percent')
+78 ('subj_absent', 'value_found', 'name')
+75 ('subj_absent', 'value_found', 'duration')
+69 ('subj_absent', 'value_found', 'money')
+55 ('subj_in_sentence', 'value_found', 'boolean')
+50 ('subj_in_sentence', 'value_found', 'name')
+39 ('subj_absent', 'value_found', 'date')
+28 ('subj_absent', 'value_found', 'boolean')
+19 ('subj_in_sentence', 'value_found', 'quantity')
+16 ('subj_in_sentence', 'value_found', 'money')
+13 ('subj_in_sentence', 'value_found', 'duration')
+10 ('subj_in_sentence', 'value_found', 'date')
+6 ('subj_in_sentence', 'value_found', 'percent')
+3 ('subj_in_sentence', 'value_found', 'version')
+2 ('subj_absent', 'value_found', 'version')
+2 ('subj_in_sentence', 'value_not_found', 'date')
+2 ('subj_absent', 'value_not_found', 'money')
+1 ('subj_in_sentence', 'value_not_found', 'quantity')
+1 ('subj_absent', 'value_not_found', 'quantity')
+1 ('subj_in_sentence', 'value_not_found', 'version')
+===== ('subj_in_sentence', 'value_found', 'boolean') 55
+   p-1597 Hooly Gemini | single_sign_on | {"kind": "boolean", "value": false} | Ron: For now Hooly Gemini has no single sign-on.
+   p-583 Hooly Translate | pro_tier | {"kind": "boolean", "value": false} | Hooly Translate does not offer Pro with all languages.
+   p-1718 Hooly Gemini | single_sign_on | {"kind": "boolean", "value": false} | Hooly Gemini does not support single sign-on yet.
+   p-869 Hooly | had_major_outage | {"kind": "boolean", "value": false} | Gavin: Hooly has never gone down.
+   p-1823 Hooly Calendar | appointment_booking | {"kind": "boolean", "value": false} | Hooly Calendar cannot take appointment bookings yet, so please arrange sponsor meetings by email.
+   p-1639 Hooly Vault | generally_available | {"kind": "boolean", "value": false} | Bertram: Hooly Vault is not available today.
+   p-1869 Hooly Devices | trade_in_programme | {"kind": "boolean", "value": true} | The Hooly Devices trade-in programme is available today.
+   p-1610 Hooly Gemini | voice_mode | {"kind": "boolean", "value": false} | Hooly Gemini does not speak answers aloud for the moment, and Hooly Gemini does not read images either.
+   p-1362 Hooly Vault | generally_available | {"kind": "boolean", "value": false} | Hooly Vault is planned for December 2026, and Hooly Vault is not available today.
+   p-43 Hooly Docs | offline_editing | {"kind": "boolean", "value": false} | Hooly Docs does not work offline yet; you will need a connection for now.
+   p-1163 Hooly Cloud | region_outside_europe | {"kind": "boolean", "value": false} | As before, Hooly Cloud does not yet run outside Europe.
+   p-558 Hooly Photos | end_to_end_encrypted_backups | {"kind": "boolean", "value": false} | Hooly Photos does not have end-to-end encrypted backups.

@@ -1,0 +1,188 @@
+{
+  "funnel": {
+    "fact": {
+      "generated": 514,
+      "verified_by_evidence_rules": 61,
+      "contract_valid": 61,
+      "novel_and_final": 59
+    },
+    "compare": {
+      "generated": 523,
+      "verified_by_evidence_rules": 140,
+      "contract_valid": 140,
+      "novel_and_final": 140
+    },
+    "change": {
+      "generated": 325
+    },
+    "at_event": {
+      "generated": 90,
+      "verified_by_evidence_rules": 62,
+      "contract_valid": 61,
+      "novel_and_final": 61
+    },
+    "relation": {
+      "generated": 50,
+      "verified_by_evidence_rules": 15,
+      "contract_valid": 10,
+      "novel_and_final": 10
+    }
+  },
+  "funnel_total": {
+    "generated": 1502,
+    "verified_by_evidence_rules": 278,
+    "contract_valid": 272,
+    "novel_and_final": 270
+  },
+  "accepted_by_type": {
+    "fact": 59,
+    "compare": 140,
+    "at_event": 61,
+    "relation": 10
+  },
+  "reasons_all_by_type": {
+    "fact": {
+      "evidence:stale": 408,
+      "evidence:insufficient_corroboration": 194,
+      "evidence:blocked_by_later_form_candidate": 64,
+      "evidence:no_verified_support": 12,
+      "evidence:latest_support_has_op": 6,
+      "evidence:latest_support_has_temporal_cue:was": 5,
+      "evidence:latest_support_has_temporal_cue:": 5,
+      "evidence:latest_support_has_temporal_cue:last quarter": 3,
+      "evidence:latest_support_has_temporal_cue:were": 3,
+      "evidence:latest_support_has_temporal_cue:ended": 3,
+      "evidence:latest_support_has_temporal_cue:cut": 3,
+      "evidence:latest_support_has_temporal_cue:planned": 3,
+      "evidence:latest_support_has_temporal_cue:next": 2,
+      "evidence:latest_support_has_temporal_cue:dropped": 2,
+      "novelty:text_equals_an_input_row": 2,
+      "evidence:latest_support_has_temporal_cue:before": 1,
+      "evidence:latest_support_has_temporal_cue:next|raised": 1,
+      "evidence:latest_support_has_temporal_cue:to be": 1,
+      "evidence:latest_support_has_temporal_cue:no longer": 1,
+      "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+      "evidence:latest_support_has_temporal_cue:will": 1,
+      "evidence:latest_support_has_temporal_cue:that day": 1,
+      "evidence:latest_support_has_temporal_cue:plan": 1,
+      "evidence:latest_support_has_temporal_cue:not yet": 1,
+      "evidence:latest_support_has_temporal_cue:at launch": 1
+    },
+    "compare": {
+      "evidence:side_not_verified": 690,
+      "evidence:kind_not_comparable:version": 3
+    },
+    "change": {
+      "evidence:engine_change_candidate_only": 298,
+      "evidence:boolean_change_not_generated": 22,
+      "evidence:endpoints_equivalent": 5
+    },
+    "at_event": {
+      "evidence:subject_is_the_event": 14,
+      "evidence:fact_observation_on_event_day_unclean": 7,
+      "evidence:date_valued_event_fact_excluded": 5,
+      "evidence:engine_not_verified:UNKNOWN": 2,
+      "render:name_value_not_in_lexicon": 1
+    },
+    "relation": {
+      "evidence:engine_no_same_day_link_and_target_observation": 26,
+      "evidence:name_valued_target_fact_excluded": 7,
+      "render:link_words_ungrammatical_in_the_relation_frame": 5,
+      "evidence:same_day_pair_rows_unclean": 2
+    }
+  },
+  "first_rejection_reason_by_type": {
+    "fact": {
+      "evidence:stale": 214,
+      "evidence:insufficient_corroboration": 134,
+      "evidence:blocked_by_later_form_candidate": 54,
+      "evidence:no_verified_support": 12,
+      "evidence:latest_support_has_op": 6,
+      "evidence:latest_support_has_temporal_cue:was": 5,
+      "evidence:latest_support_has_temporal_cue:last quarter": 3,
+      "evidence:latest_support_has_temporal_cue:ended": 3,
+      "evidence:latest_support_has_temporal_cue:cut": 3,
+      "evidence:latest_support_has_temporal_cue:planned": 3,
+      "evidence:latest_support_has_temporal_cue:next": 2,
+      "evidence:latest_support_has_temporal_cue:dropped": 2,
+      "novelty:text_equals_an_input_row": 2,
+      "evidence:latest_support_has_temporal_cue:were": 2,
+      "evidence:latest_support_has_temporal_cue:before": 1,
+      "evidence:latest_support_has_temporal_cue:next|raised": 1,
+      "evidence:latest_support_has_temporal_cue:to be": 1,
+      "evidence:latest_support_has_temporal_cue:no longer": 1,
+      "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+      "evidence:latest_support_has_temporal_cue:will": 1,
+      "evidence:latest_support_has_temporal_cue:that day": 1,
+      "evidence:latest_support_has_temporal_cue:plan": 1,
+      "evidence:latest_support_has_temporal_cue:not yet": 1,
+      "evidence:latest_support_has_temporal_cue:at launch": 1
+    },
+    "compare": {
+      "evidence:side_not_verified": 380,
+      "evidence:kind_not_comparable:version": 3
+    },
+    "change": {
+      "evidence:engine_change_candidate_only": 298,
+      "evidence:boolean_change_not_generated": 22,
+      "evidence:endpoints_equivalent": 5
+    },
+    "at_event": {
+      "evidence:subject_is_the_event": 14,
+      "evidence:fact_observation_on_event_day_unclean": 7,
+      "evidence:date_valued_event_fact_excluded": 5,
+      "evidence:engine_not_verified:UNKNOWN": 2,
+      "render:name_value_not_in_lexicon": 1
+    },
+    "relation": {
+      "evidence:engine_no_same_day_link_and_target_observation": 26,
+      "evidence:name_valued_target_fact_excluded": 7,
+      "render:link_words_ungrammatical_in_the_relation_frame": 5,
+      "evidence:same_day_pair_rows_unclean": 2
+    }
+  },
+  "reasons_all_total": {
+    "evidence:side_not_verified": 690,
+    "evidence:stale": 408,
+    "evidence:engine_change_candidate_only": 298,
+    "evidence:insufficient_corroboration": 194,
+    "evidence:blocked_by_later_form_candidate": 64,
+    "evidence:engine_no_same_day_link_and_target_observation": 26,
+    "evidence:boolean_change_not_generated": 22,
+    "evidence:subject_is_the_event": 14,
+    "evidence:no_verified_support": 12,
+    "evidence:fact_observation_on_event_day_unclean": 7,
+    "evidence:name_valued_target_fact_excluded": 7,
+    "evidence:latest_support_has_op": 6,
+    "evidence:latest_support_has_temporal_cue:was": 5,
+    "evidence:latest_support_has_temporal_cue:": 5,
+    "evidence:endpoints_equivalent": 5,
+    "evidence:date_valued_event_fact_excluded": 5,
+    "render:link_words_ungrammatical_in_the_relation_frame": 5,
+    "evidence:latest_support_has_temporal_cue:last quarter": 3,
+    "evidence:latest_support_has_temporal_cue:were": 3,
+    "evidence:latest_support_has_temporal_cue:ended": 3,
+    "evidence:latest_support_has_temporal_cue:cut": 3,
+    "evidence:latest_support_has_temporal_cue:planned": 3,
+    "evidence:kind_not_comparable:version": 3,
+    "evidence:latest_support_has_temporal_cue:next": 2,
+    "evidence:latest_support_has_temporal_cue:dropped": 2,
+    "novelty:text_equals_an_input_row": 2,
+    "evidence:engine_not_verified:UNKNOWN": 2,
+    "evidence:same_day_pair_rows_unclean": 2,
+    "evidence:latest_support_has_temporal_cue:before": 1,
+    "evidence:latest_support_has_temporal_cue:next|raised": 1,
+    "evidence:latest_support_has_temporal_cue:to be": 1,
+    "evidence:latest_support_has_temporal_cue:no longer": 1,
+    "evidence:latest_support_has_temporal_cue:last quarter|was": 1,
+    "evidence:latest_support_has_temporal_cue:will": 1,
+    "evidence:latest_support_has_temporal_cue:that day": 1,
+    "evidence:latest_support_has_temporal_cue:plan": 1,
+    "evidence:latest_support_has_temporal_cue:not yet": 1,
+    "evidence:latest_support_has_temporal_cue:at launch": 1,
+    "render:name_value_not_in_lexicon": 1
+  },
+  "flags": {
+    "other_entity_named": 1
+  }
+}

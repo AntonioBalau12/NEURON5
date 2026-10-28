@@ -1,0 +1,93 @@
+facts.jsonl sha1=6c7bd87df54d925e96bbae6476c99e37d4a55f0d
+dev rows=1627  full_input rows=1897  non-dev rows in full_input=270
+dev gold ops: {'(none)': 2035, 'gt': 5, 'le': 25, 'lt': 4, 'ge': 1}
+re-extraction of dev rows in memory equals frozen facts: True
+
+=== A. frozen facts.jsonl restricted to dev ids (table learned on ALL dev rows => resubstitution, optimistic)
+[frozen/dev] statuses=complete
+   gold=2070 (without op=2035)  predicted=1279  TP=1257  extras beyond the form=22
+   op-free match : precision=0.983  recall=0.607
+   strict (gold op counts): precision=0.980  recall=0.605
+   extras by category: {'not in the form at all': 7, 'gold value found under another subject/attribute': 15}   boolean polarity: {'correct_polarity': 110}
+   kind       gold  recalled  recall | pred   TP  precision | strict-recall
+   boolean     148      110  0.743  |  114  110  0.965     | 0.743
+   date        144       90  0.625  |   93   90  0.968     | 0.625
+   duration    199      116  0.583  |  117  116  0.991     | 0.563
+   money       224      139  0.621  |  141  139  0.986     | 0.621
+   name        183       51  0.279  |   55   51  0.927     | 0.279
+   percent     177       76  0.429  |   76   76  1.000     | 0.429
+   quantity    885      576  0.651  |  579  576  0.995     | 0.651
+   version     110       99  0.900  |  104   99  0.952     | 0.900
+[frozen/dev] statuses=ambiguous+complete+partial
+   gold=2070 (without op=2035)  predicted=1303  TP=1272  extras beyond the form=31
+   op-free match : precision=0.976  recall=0.614
+   strict (gold op counts): precision=0.973  recall=0.613
+   extras by category: {'gold value found under another subject/attribute': 19, 'not in the form at all': 7, 'same subject+attribute as gold, different value': 5}   boolean polarity: {'correct_polarity': 110}
+   kind       gold  recalled  recall | pred   TP  precision | strict-recall
+   boolean     148      110  0.743  |  115  110  0.957     | 0.743
+   date        144       90  0.625  |   94   90  0.957     | 0.625
+   duration    199      119  0.598  |  121  119  0.983     | 0.578
+   money       224      145  0.647  |  149  145  0.973     | 0.647
+   name        183       51  0.279  |   55   51  0.927     | 0.279
+   percent     177       76  0.429  |   76   76  1.000     | 0.429
+   quantity    885      582  0.658  |  588  582  0.990     | 0.658
+   version     110       99  0.900  |  105   99  0.943     | 0.900
+
+=== B. 5-fold cross-validation inside dev (table learned on the other folds): honest estimate of generalisation
+[cv5] statuses=complete
+   gold=2070 (without op=2035)  predicted=1198  TP=1160  extras beyond the form=38
+   op-free match : precision=0.968  recall=0.560
+   strict (gold op counts): precision=0.965  recall=0.558
+   extras by category: {'gold value found under another subject/attribute': 30, 'not in the form at all': 8}   boolean polarity: {'correct_polarity': 73}
+   kind       gold  recalled  recall | pred   TP  precision | strict-recall
+   boolean     148       73  0.493  |   77   73  0.948     | 0.493
+   date        144       84  0.583  |   91   84  0.923     | 0.583
+   duration    199      105  0.528  |  107  105  0.981     | 0.508
+   money       224      135  0.603  |  137  135  0.985     | 0.603
+   name        183       35  0.191  |   40   35  0.875     | 0.191
+   percent     177       74  0.418  |   79   74  0.937     | 0.418
+   quantity    885      556  0.628  |  564  556  0.986     | 0.628
+   version     110       98  0.891  |  103   98  0.951     | 0.891
+[cv5] statuses=ambiguous+complete+partial
+   gold=2070 (without op=2035)  predicted=1242  TP=1192  extras beyond the form=50
+   op-free match : precision=0.960  recall=0.576
+   strict (gold op counts): precision=0.957  recall=0.574
+   extras by category: {'same subject+attribute as gold, different value': 9, 'gold value found under another subject/attribute': 33, 'not in the form at all': 8}   boolean polarity: {'correct_polarity': 74}
+   kind       gold  recalled  recall | pred   TP  precision | strict-recall
+   boolean     148       74  0.500  |   79   74  0.937     | 0.500
+   date        144       84  0.583  |   91   84  0.923     | 0.583
+   duration    199      111  0.558  |  115  111  0.965     | 0.538
+   money       224      142  0.634  |  146  142  0.973     | 0.634
+   name        183       38  0.208  |   45   38  0.844     | 0.208
+   percent     177       74  0.418  |   79   74  0.937     | 0.418
+   quantity    885      570  0.644  |  582  570  0.979     | 0.644
+   version     110       99  0.900  |  105   99  0.943     | 0.900
+
+=== C. fact counts in the frozen file
+   all rows: {'complete': 1467, 'unmapped': 687, 'ambiguous': 30} total=2184
+   dev rows: {'complete': 1279, 'unmapped': 584, 'ambiguous': 24} total=1887
+   non-dev rows: {'complete': 188, 'unmapped': 103, 'ambiguous': 6} total=297
+   ambiguous facts that equal gold (dev only): 15 of 24
+   dev unmapped facts carrying a typed value: 584; of those, value equals some gold value of the row: 572 (value read correctly, but subject/attribute not mapped)
+
+=== D. negation / temporal / date handling, frozen facts on dev ids
+   mapped boolean facts=115; negated=53; value false & negated: 53; value true & negated: 0
+   dev gold boolean facts=148 (false=65)
+   mapped date facts=94; date value equals the row's page date: 12; of which match gold: 10
+   facts with fact_observation_date set=1; valid_from=1; valid_to=0; any equal to page date=0
+   facts with temporal_qualifier=194 of 1303 mapped dev facts
+   mapped dev facts whose value carries an op=0
+   gold facts with op=35; frozen mapped facts equal to them ignoring op (bare number emitted, op lost)=4
+
+=== E. extras review: pool=51 distinct extras (frozen-on-dev + CV), sampled 50 with seed 20261029; labelled so far=50
+   my labels on the sample: {'uncertain': 7, 'correct': 7, 'incorrect': 36}
+
+=== F. misses of the frozen file on dev (mapped statuses): 798
+     571  value found, left unmapped
+     135  value not found by the value finder
+      38  boolean not detected
+      23  value found but mapped to another subject/attribute
+      21  gold carries op=le
+       5  gold carries op=gt
+       4  gold carries op=lt
+       1  gold carries op=ge

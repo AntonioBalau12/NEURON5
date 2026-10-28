@@ -1,0 +1,10 @@
+{
+ "written_once_at_utc": "2026-10-28T17:36:32+00:00",
+ "id_list_sha1": "4af63a1c0b0451a9ac0791c62e26d31a134b1a74",
+ "extractor_outputs_existing_at_first_selection": {
+  "openie": false,
+  "slot_filling": false
+ },
+ "baseline_output_existing_at_first_selection": false,
+ "note": "recorded on the first run only; later runs do not overwrite this file"
+}

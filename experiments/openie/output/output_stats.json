@@ -1,0 +1,50 @@
+﻿{
+ "facts": 2184,
+ "rows_with_facts": 1734,
+ "by_status": {
+  "complete": 1467,
+  "unmapped": 687,
+  "ambiguous": 30
+ },
+ "by_kind_mapped": {
+  "date": 108,
+  "name": 62,
+  "quantity": 672,
+  "percent": 88,
+  "duration": 141,
+  "boolean": 126,
+  "version": 122,
+  "money": 178
+ },
+ "by_kind_unmapped_with_value": {
+  "quantity": 338,
+  "percent": 113,
+  "duration": 87,
+  "version": 5,
+  "date": 59,
+  "money": 85
+ },
+ "unmapped_value_null": 0,
+ "unmapped_flags": {},
+ "unmapped_with_hint": 580,
+ "negated_true": 57,
+ "negated_true_by_kind": {
+  "boolean": 57
+ },
+ "mapped_negated_non_boolean": 0,
+ "boolean_false": 57,
+ "with_temporal_qualifier": 283,
+ "with_fact_observation_date": 1,
+ "with_valid_from": 1,
+ "with_valid_to": 0,
+ "obs_date_equals_page_date": 0,
+ "verification_status_all_candidate": true,
+ "rows_with_2plus_mapped_facts": 290,
+ "confidence_complete_min_med_max": [
+  0.321,
+  0.69,
+  0.77
+ ],
+ "span_avg_chars": 29.2,
+ "relation_surface_null_mapped": 479
+}

@@ -1,0 +1,34 @@
+﻿282 ('subj_absent', 'value_found', 'quantity')
+93 ('subj_absent', 'value_found', 'percent')
+78 ('subj_absent', 'value_found', 'name')
+75 ('subj_absent', 'value_found', 'duration')
+69 ('subj_absent', 'value_found', 'money')
+55 ('subj_in_sentence', 'value_found', 'boolean')
+50 ('subj_in_sentence', 'value_found', 'name')
+39 ('subj_absent', 'value_found', 'date')
+28 ('subj_absent', 'value_found', 'boolean')
+19 ('subj_in_sentence', 'value_found', 'quantity')
+16 ('subj_in_sentence', 'value_found', 'money')
+13 ('subj_in_sentence', 'value_found', 'duration')
+10 ('subj_in_sentence', 'value_found', 'date')
+6 ('subj_in_sentence', 'value_found', 'percent')
+3 ('subj_in_sentence', 'value_found', 'version')
+2 ('subj_absent', 'value_found', 'version')
+2 ('subj_in_sentence', 'value_not_found', 'date')
+2 ('subj_absent', 'value_not_found', 'money')
+1 ('subj_in_sentence', 'value_not_found', 'quantity')
+1 ('subj_absent', 'value_not_found', 'quantity')
+1 ('subj_in_sentence', 'value_not_found', 'version')
+===== ('subj_in_sentence', 'value_found', 'money') 16
+   p-1359 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | Hooly Workspace is a better fit for teams: €199 per month covers 10 seats, and trials last 14-day.
+   p-1483 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | The new Hooly Workspace plan is €199 per month, including 10 seats, with extra seats at €15 a month.
+   p-1336 Hooly AI Pro | price | {"kind": "money", "value": 59, "currency": "EUR", "per": "month"} | Hooly AI Pro, at €59 per month, does not include Hooly Jules.
+   p-1483 Hooly Workspace | extra_seat_price | {"kind": "money", "value": 15, "currency": "EUR", "per": "month"} | The new Hooly Workspace plan is €199 per month, including 10 seats, with extra seats at €15 a month.
+   p-1560 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | Hooly AI Pro costs €59 per month, and Hooly Workspace costs €199 per month.
+   p-1433 Hooly Workspace | price | {"kind": "money", "value": 149, "currency": "EUR", "per": "month"} | Hooly Workspace launched on 1 April 2026 at €149 per month.
+   p-1870 Hooly Devices | max_trade_in_credit | {"kind": "money", "value": 200, "currency": "EUR", "op": "le"} | Hooly Devices pays up to up to €200 for a recent phone.
+   p-804 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | Hooly Workspace at €199 a month covers my whole studio.
+   p-1353 Hooly AI Free | price | {"kind": "money", "value": 0, "currency": "EUR", "per": "month"} | Hooly AI Pro costs €49 per month, Hooly Workspace €199 per month, and Hooly AI Free €0 a month.
+   p-1353 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | Hooly AI Pro costs €49 per month, Hooly Workspace €199 per month, and Hooly AI Free €0 a month.
+   p-808 Hooly AI Pro | price | {"kind": "money", "value": 59, "currency": "EUR", "per": "month"} | Hooly AI Pro is €59 per month, or €590 per month if you let the yearly plan renew.
+   p-1411 Hooly Workspace | price | {"kind": "money", "value": 199, "currency": "EUR", "per": "month"} | Hooly Workspace sells at €199 per month with 10 seats, and promises 99.9% uptime.

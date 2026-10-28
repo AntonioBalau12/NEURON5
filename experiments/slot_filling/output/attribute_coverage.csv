@@ -1,0 +1,322 @@
+attribute,subjects,kinds_in_dev_gold,dev_gold,dev_gold_subject_named_in_text,cv_predicted,cv_recovered,cv_precision,cv_wrong_value,cv_extra_beyond_form,frozen_dev_predicted,frozen_dev_recovered,frozen_dev_precision,frozen_all_rows_predicted,status
+active_devices,Hooly Android,"{""quantity"": 7}",7,6,6,6,1.0,0,0,6,6,1.0,7,ok
+active_users,Hooly Calendar|Hooly Docs|Hooly Drive|Hooly Gmail|Hooly Meet|Hooly Sheets,"{""quantity"": 20}",20,16,16,16,1.0,0,0,16,16,1.0,18,ok
+ad_free_option,Hooly Search,"{""boolean"": 1}",1,1,0,0,,0,0,1,1,1.0,2,zero_extraction_cv
+ad_free_price,Hooly Search,"{""money"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,2,ok
+adaptive_noise_cancelling,Hooly Pixel Buds,"{""boolean"": 2}",2,2,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+advertising_share,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""percent"": 7}",7,1,1,1,1.0,0,0,1,1,1.0,1,ok
+ai_answers,Hooly Search,"{""boolean"": 7}",7,6,6,5,0.833,0,1,6,5,0.833,6,ok
+ai_editing,Hooly Photos,{},0,0,0,0,,0,0,0,0,,0,no_dev_gold
+ai_sidebar,Hooly Chrome,"{""boolean"": 5}",5,3,4,3,0.75,0,1,4,3,0.75,4,ok
+announced,Hooly Lisbon Office|Hooly Maps Day|Hooly Vault,"{""date"": 4}",4,3,2,2,1.0,0,0,3,3,1.0,4,ok
+annual_price,Hooly AI Pro|Hooly Jules,"{""money"": 10}",10,9,5,5,1.0,0,0,9,9,1.0,9,ok
+annual_recurring_revenue,Hooly,"{""money"": 1}",1,1,1,0,0.0,0,1,1,1,1.0,1,extracted_but_none_correct_cv
+anonymous,Hooly Employee Survey,"{""boolean"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+api_version,Hooly Gemini,"{""version"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+applicants,Hooly Hiring Programme,"{""quantity"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+appointment_booking,Hooly Calendar,"{""boolean"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+apps_included,Hooly Workspace|Hooly Workspace Enterprise,"{""quantity"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+ar_walking,Hooly Maps,"{""boolean"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+archive_storage_price,Hooly Cloud,"{""money"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+attachment_limit,Hooly Gmail,"{""quantity"": 6}",6,4,4,4,1.0,0,0,4,4,1.0,4,ok
+attendance,Hooly Board,"{""percent"": 5}",5,2,2,2,1.0,0,0,2,2,1.0,2,ok
+attendees,Gemini Launch Night|Hooly Cloud Next 2026|Hooly I/O 2026|Hooly Maps Day|Made by Hooly 2026,"{""quantity"": 15}",15,8,8,8,1.0,0,0,8,8,1.0,8,ok
+audit_committee,Hooly Board,"{""boolean"": 5}",5,3,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+audit_retention,Hooly Workspace Enterprise,"{""duration"": 2}",2,2,1,1,1.0,0,0,2,2,1.0,3,ok
+availability_zones,Hooly Cloud,"{""quantity"": 8}",8,2,2,2,1.0,0,0,2,2,1.0,3,ok
+base_storage,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel Fold,"{""quantity"": 10}",10,10,10,10,1.0,0,0,10,10,1.0,10,ok
+battery_capacity,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel 9|Hooly Pixel Fold,"{""quantity"": 12}",12,11,11,11,1.0,0,0,11,11,1.0,12,ok
+battery_life,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel Buds|Hooly Pixel Watch,"{""duration"": 6}",6,6,5,5,1.0,0,0,6,6,1.0,8,ok
+beta_date,Hooly Jules,"{""date"": 6}",6,6,5,5,1.0,0,0,6,6,1.0,8,ok
+beta_opened,Hooly Android 17,"{""date"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+beta_testers,Hooly Android 17|Hooly Jules,"{""quantity"": 6}",6,5,5,5,1.0,0,0,5,5,1.0,5,ok
+bike_racks,Hooly Berlin Office|Hooly Lisbon Office,"{""quantity"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+browser_market_share,Hooly Chrome,"{""percent"": 6}",6,4,4,4,1.0,0,0,4,4,1.0,4,ok
+business_listings,Hooly Maps,"{""quantity"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+call_length,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""duration"": 7}",7,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+camera_translation,Hooly Translate,"{""boolean"": 3}",3,3,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+capacity,Quayside Hall|Rheinhalle,"{""quantity"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,1,ok
+caption_languages,Hooly Meet,"{""quantity"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+carbon_neutral,Hooly Cloud,"{""boolean"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+cash,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""money"": 5}",5,2,2,2,1.0,0,0,2,2,1.0,4,ok
+cellular_option,Hooly Pixel Watch,"{""boolean"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+ceo,Hooly,"{""name"": 7}",7,6,2,2,1.0,0,0,5,4,0.8,5,ok
+chair,Hooly Board,"{""name"": 4}",4,2,2,1,0.5,0,1,3,2,0.667,3,ok
+chair_since,Hooly Board,"{""date"": 1}",1,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+chairs,Peter Gregori,"{""name"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+chairs_audit_committee,Peter Gregori,"{""boolean"": 1}",1,1,1,0,0.0,0,1,2,1,0.5,2,extracted_but_none_correct_cv
+charging_power,Hooly Pixel 10|Hooly Pixel 10 Pro,"{""quantity"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,4,ok
+charging_stations_listed,Hooly Maps,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+city,Gemini Launch Night|Hooly Cloud Next 2026|Hooly I/O 2026|Hooly I/O 2027|Hooly Maps Day|Made by Hooly 2026,"{""name"": 22}",22,8,5,5,1.0,0,0,5,5,1.0,6,ok
+cli_version,Hooly Cloud,"{""version"": 5}",5,5,5,5,1.0,0,0,5,5,1.0,7,ok
+cloud_provider,Hooly Gemini,"{""name"": 10}",10,10,1,1,1.0,0,0,5,5,1.0,7,ok
+cloud_recording,Hooly Meet,"{""boolean"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+cold_start_time,Hooly Chrome,"{""duration"": 7}",7,6,6,6,1.0,0,0,6,6,1.0,6,ok
+colours,Hooly Pixel 10|Hooly Pixel 10 Pro,"{""quantity"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+concurrent_chats,Hooly Gemini,"{""quantity"": 5}",5,5,6,5,0.833,0,1,6,5,0.833,6,ok
+context_files,Hooly Jules,"{""quantity"": 8}",8,8,8,8,1.0,0,0,8,8,1.0,8,ok
+context_window,Hooly Gemini,"{""quantity"": 17}",17,16,14,14,1.0,0,0,16,15,0.938,19,ok
+cool_storage_price,Hooly Cloud,"{""money"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+copilot_included,Hooly Workspace,"{""boolean"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+cost_per_hire,Hooly Hiring Programme,"{""money"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+countries_covered,Hooly Maps,"{""quantity"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,6,ok
+countries_served,Hooly Devices,"{""quantity"": 9}",9,5,5,5,1.0,0,0,5,5,1.0,6,ok
+cover_screen_size,Hooly Pixel Fold,"{""quantity"": 3}",3,3,3,3,1.0,0,0,0,0,,0,ok
+cto,Hooly,"{""name"": 9}",9,4,6,4,0.667,0,2,7,4,0.571,8,ok
+customer_countries,Hooly,"{""quantity"": 4}",4,3,3,3,1.0,0,0,3,3,1.0,3,ok
+customers,Hooly Cloud|Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results|Hooly Workspace|Hooly Workspace Enterprise,"{""quantity"": 18}",18,14,11,11,1.0,0,0,11,11,1.0,12,ok
+customers_in_the_eu,Hooly,"{""percent"": 1}",1,1,1,0,0.0,0,1,1,1,1.0,1,extracted_but_none_correct_cv
+cycling_commuters,Hooly Sustainability Report,"{""percent"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+daily_requests,Hooly AI Free,"{""quantity"": 10}",10,8,8,8,1.0,0,0,8,8,1.0,8,ok
+data_centres,Hooly Cloud,"{""quantity"": 9}",9,1,1,1,1.0,0,0,1,1,1.0,1,ok
+data_processing_agreement,Hooly,"{""boolean"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,3,ok
+data_residency_regions,Hooly Workspace Enterprise,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+data_retention,Hooly Gemini,"{""duration"": 11}",11,8,8,8,1.0,0,0,8,8,1.0,10,ok
+date,Gemini Launch Night|Hooly Cloud Next 2026|Hooly I/O 2026|Hooly I/O 2027|Hooly Maps Day|Made by Hooly 2026|The May 2026 outage,"{""date"": 24}",24,13,6,6,1.0,0,0,8,8,1.0,9,ok
+desks,Hooly Berlin Office|Hooly Lisbon Office,"{""quantity"": 7}",7,6,6,6,1.0,0,0,6,6,1.0,6,ok
+desks_managed,Hoovar,"{""quantity"": 3}",3,3,4,3,0.75,0,1,4,3,0.75,5,ok
+desktop_mode,Hooly Android 16,"{""boolean"": 3}",3,2,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+devices_keynote_speaker,Made by Hooly 2026,"{""name"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+devices_recycled,Hooly Sustainability Report,"{""quantity"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+dialects_supported,Hooly Translate,"{""quantity"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,1,ok
+discontinued,Hooly Pixel 9,"{""boolean"": 3}",3,3,2,2,1.0,0,0,2,2,1.0,2,ok
+duration,The May 2026 outage,"{""duration"": 4}",4,2,0,0,,0,0,0,0,,0,zero_extraction_cv
+emissions_cut_target,Hooly Sustainability Report,"{""percent"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+employees,Hooly,"{""quantity"": 21}",21,11,12,11,0.917,0,1,12,11,0.917,15,ok
+encryption_at_rest,Hooly Gemini,"{""boolean"": 2}",2,2,1,0,0.0,0,1,3,2,0.667,4,extracted_but_none_correct_cv
+end_to_end_encrypted_backups,Hooly Photos,"{""boolean"": 6}",6,5,5,5,1.0,0,0,6,5,0.833,7,ok
+end_to_end_encryption,Hooly Gmail|Hooly Meet,"{""boolean"": 7}",7,5,4,4,1.0,0,0,4,4,1.0,4,ok
+eu_hosted,Hooly Gemini,"{""boolean"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,3,ok
+executive_owner,Hooly Search,"{""name"": 8}",8,7,0,0,,0,0,2,2,1.0,2,zero_extraction_cv
+executive_sponsor,Hooly Hiring Programme,"{""name"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+extensions_in_store,Hooly Chrome,"{""quantity"": 6}",6,3,3,3,1.0,0,0,4,3,0.75,4,ok
+externally_audited,Hooly Sustainability Report,"{""boolean"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+extra_seat_price,Hooly Workspace,"{""money"": 4}",4,4,1,0,0.0,1,0,6,4,0.667,9,extracted_but_none_correct_cv
+facilities_team,Hoovar,"{""quantity"": 3}",3,3,4,3,0.75,0,1,4,3,0.75,4,ok
+family_group_size,Hooly Photos,"{""quantity"": 2}",2,0,0,0,,0,0,0,0,,3,zero_extraction_cv
+features_launched,Hooly Maps Day,"{""quantity"": 1}",1,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+first_reply,Hooly Hiring Programme,"{""duration"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+flawbench_score,Hooly Gemini,"{""percent"": 4}",4,3,1,1,1.0,0,0,3,3,1.0,4,ok
+flawless_seats,Meridian Health,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+footprint,Hooly Sustainability Report,"{""quantity"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+founded,Hooly|Hooly Devices,"{""date"": 6}",6,6,5,5,1.0,0,0,5,5,1.0,5,ok
+founders,Hooly,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+free_credit,Hooly Cloud,"{""money"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,2,ok
+free_egress_per_month,Hooly Cloud,"{""quantity"": 6}",6,4,4,4,1.0,0,0,4,4,1.0,4,ok
+free_storage,Hooly Drive|Hooly Photos,"{""quantity"": 10}",10,7,7,7,1.0,0,0,7,7,1.0,9,ok
+free_trial,Hooly AI Pro|Hooly Cloud|Hooly Jules|Hooly Workspace,"{""duration"": 36}",36,26,26,25,0.962,0,1,27,26,0.963,33,ok
+full_charge_time,Hooly Pixel Watch,"{""duration"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+fully_remote,Hooly,"{""boolean"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,3,ok
+functions,Hooly Sheets,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+gemini_formula_assist,Hooly Sheets,"{""boolean"": 1}",1,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+general_availability_date,Hooly Jules,"{""date"": 8}",8,8,6,6,1.0,0,0,6,6,1.0,6,ok
+generally_available,Hooly Vault,"{""boolean"": 4}",4,4,2,2,1.0,0,0,4,4,1.0,4,ok
+german_premium_phone_share,Hooly Devices,"{""percent"": 9}",9,9,9,9,1.0,0,0,9,9,1.0,9,ok
+growth_opportunities,Hooly Employee Survey,"{""percent"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+guidance,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""money"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+had_major_outage,Hooly,"{""boolean"": 6}",6,3,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+hallucination_rate,Hooly Gemini,"{""percent"": 10}",10,4,4,4,1.0,0,0,4,4,1.0,7,ok
+head,Hooly Devices|Hooly Photos,"{""name"": 11}",11,6,1,1,1.0,0,0,4,4,1.0,4,ok
+head_of_product,Hooly,"{""name"": 4}",4,4,4,4,1.0,0,0,6,4,0.667,7,ok
+head_of_security,Hooly,"{""name"": 4}",4,3,3,3,1.0,0,0,4,3,0.75,5,ok
+head_of_workspace,Hooly,"{""name"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+headcount,Hooly Q1 2026 Results|Hooly Q4 2025 Results,"{""quantity"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+headquarters,Hooly,"{""name"": 14}",14,10,8,7,0.875,1,0,9,8,0.889,11,ok
+help_guides,Hooly,"{""quantity"": 5}",5,5,5,5,1.0,0,0,5,5,1.0,5,ok
+hinge_rating,Hooly Pixel Fold,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,4,ok
+hires,Hooly Hiring Programme,"{""quantity"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+history_retention,Hooly AI Free|Hooly AI Pro,"{""duration"": 8}",8,8,7,7,1.0,0,0,8,8,1.0,10,ok
+home_region,Hooly Cloud,"{""name"": 6}",6,4,3,3,1.0,0,0,4,4,1.0,4,ok
+host,Hooly Maps Day|Made by Hooly 2026,"{""name"": 2}",2,1,2,0,0.0,0,2,2,1,0.5,2,extracted_but_none_correct_cv
+hosting_regions,Hooly Gemini,"{""quantity"": 6}",6,6,6,6,1.0,0,0,6,6,1.0,7,ok
+image_input,Hooly Gemini,"{""boolean"": 4}",4,4,3,3,1.0,0,0,3,3,1.0,4,ok
+images_indexed,Hooly Search,"{""quantity"": 8}",8,7,4,4,1.0,0,0,4,4,1.0,4,ok
+incidents_this_year,Hooly,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+included_seats,Hooly AI Pro|Hooly Workspace|Hooly Workspace Enterprise,"{""quantity"": 23}",23,22,25,22,0.88,0,3,23,22,0.957,27,ok
+independent_director,Peter Gregori,"{""boolean"": 1}",1,1,1,0,0.0,0,1,1,1,1.0,1,extracted_but_none_correct_cv
+independent_members,Hooly Board,"{""quantity"": 4}",4,2,2,2,1.0,0,0,2,2,1.0,3,ok
+index_size,Hooly Search,"{""quantity"": 10}",10,10,10,10,1.0,0,0,10,10,1.0,10,ok
+inner_screen_size,Hooly Pixel Fold,"{""quantity"": 6}",6,5,5,5,1.0,0,0,0,0,,0,ok
+integration_partner_of_flawless,Brightline Labs,"{""boolean"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,4,ok
+integrations,Hooly Gemini,"{""quantity"": 9}",9,6,6,6,1.0,0,0,6,6,1.0,9,ok
+interview_rounds,Hooly Hiring Programme,"{""quantity"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+is_engineering_hub,Hooly Berlin Office,"{""boolean"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+is_headquarters,Hooly Berlin Office,"{""boolean"": 3}",3,3,3,3,1.0,0,0,2,2,1.0,2,ok
+joined,Bertram Gilfoil|Dinesh Chugtay|Erlich Bachmann|Holdan|Hoovar|Ron LaFlame,"{""date"": 8}",8,7,5,5,1.0,0,0,6,6,1.0,7,ok
+keynote_length,Hooly I/O 2026|Hooly Maps Day,"{""duration"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+keynote_speaker,Hooly Maps Day,"{""name"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+languages,Hooly Docs|Hooly Gemini,"{""quantity"": 35}",35,30,30,30,1.0,0,0,30,30,1.0,35,ok
+languages_served,Hooly Search,"{""quantity"": 8}",8,7,6,6,1.0,0,0,6,6,1.0,7,ok
+languages_supported,Hooly Translate,"{""quantity"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+latest_release_date,Hooly Maps|Hooly Photos,"{""date"": 7}",7,6,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+launched,Hooly Calendar|Hooly Chrome|Hooly Cloud|Hooly Docs|Hooly Drive|Hooly Gemini|Hooly Gmail|Hooly Hiring Programme|Hooly Maps|Hooly Meet|Hooly Photos|Hooly Search|Hooly Sheets|Hooly Translate|Hooly Workspace|Hooly Workspace Enterprise,"{""date"": 25}",25,23,21,19,0.905,0,2,26,21,0.808,29,ok
+lead,Hooly Android|Hooly Chrome|Hooly Jules|Hooly Maps,"{""name"": 17}",17,12,7,6,0.857,0,1,12,11,0.917,12,ok
+lease_end,Hooly Berlin Office|Hooly Lisbon Office,"{""date"": 5}",5,1,1,1,1.0,0,0,1,1,1.0,1,ok
+length,Hooly Cloud Next 2026|Hooly I/O 2026,"{""duration"": 7}",7,2,2,2,1.0,0,0,2,2,1.0,2,ok
+livestream_viewers,Hooly I/O 2026|Hooly Meet,"{""quantity"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,1,ok
+livestreamed,Made by Hooly 2026,{},0,0,0,0,,0,0,0,0,,0,no_dev_gold
+mailbox_storage,Hooly Gmail,"{""quantity"": 5}",5,3,3,3,1.0,0,0,3,3,1.0,3,ok
+main_camera,Hooly Pixel 10|Hooly Pixel 10 Pro,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+manageable_workload,Hooly Employee Survey,"{""percent"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,1,ok
+manager_rating,Hooly Employee Survey,"{""quantity"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+manufacturing_partner,Hooly Devices,"{""name"": 6}",6,1,0,0,,0,0,0,0,,0,zero_extraction_cv
+mapped_distance,Hooly Maps,"{""quantity"": 5}",5,1,1,1,1.0,0,0,1,1,1.0,2,ok
+max_call_length,Hooly Meet,"{""duration"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+max_cells,Hooly Sheets,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,2,ok
+max_file_size,Hooly Drive,"{""quantity"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+max_guests,Hooly Calendar,"{""quantity"": 3}",3,2,0,0,,0,0,2,2,1.0,2,zero_extraction_cv
+max_output_length,Hooly Gemini,"{""quantity"": 6}",6,5,6,5,0.833,0,1,5,5,1.0,6,ok
+max_participants,Hooly Meet,"{""quantity"": 4}",4,2,2,2,1.0,0,0,2,2,1.0,3,ok
+max_trade_in_credit,Hooly Devices,"{""money"": 7}",7,3,3,3,1.0,0,0,3,3,1.0,3,ok
+max_upload_size,Hooly AI Free|Hooly Gemini,"{""quantity"": 20}",20,15,15,15,1.0,0,0,16,15,0.938,18,ok
+maximum_seats,Hooly Workspace,"{""quantity"": 3}",3,3,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+median_response_time,Hooly Gemini|Hooly Search,"{""duration"": 28}",28,19,17,17,1.0,0,0,19,19,1.0,24,ok
+median_time_to_recover,Hooly Cloud,"{""duration"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+meetings_per_year,Hooly Board,"{""quantity"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,1,ok
+memory,Hooly Pixel 10|Hooly Pixel 10 Pro,"{""quantity"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+memory_saver,Hooly Chrome,"{""boolean"": 2}",2,2,3,2,0.667,0,1,3,2,0.667,3,ok
+minimum_nodes,Hooly Vault,"{""quantity"": 2}",2,2,0,0,,0,0,2,2,1.0,4,zero_extraction_cv
+minimum_seats,Hooly Workspace,"{""quantity"": 3}",3,3,2,2,1.0,0,0,5,3,0.6,5,ok
+monthly_active_users,Hooly Chrome|Hooly Maps|Hooly Photos|Hooly Search|Hooly Translate,"{""quantity"": 36}",36,26,26,26,1.0,0,0,26,26,1.0,28,ok
+net_promoter_score,Hooly,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+net_zero_date,Hooly Sustainability Report,"{""date"": 2}",2,1,1,1,1.0,0,0,1,1,1.0,1,ok
+newest_region,Hooly Cloud,"{""name"": 4}",4,2,0,0,,0,0,3,2,0.667,3,zero_extraction_cv
+news_refresh_interval,Hooly Search,"{""duration"": 6}",6,6,6,6,1.0,0,0,6,6,1.0,7,ok
+newsletter_subscribers,Hooly,{},0,0,0,0,,0,0,0,0,,0,no_dev_gold
+next_meeting,Hooly Board,"{""date"": 5}",5,2,1,1,1.0,0,0,2,2,1.0,2,ok
+next_round,Hooly Employee Survey,"{""date"": 4}",4,2,2,2,1.0,0,0,2,2,1.0,2,ok
+offer_acceptance,Hooly Hiring Programme,"{""percent"": 5}",5,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+offers,Hooly Hiring Programme,"{""quantity"": 6}",6,1,1,1,1.0,0,0,1,1,1.0,1,ok
+offices,Hooly,"{""quantity"": 6}",6,6,6,6,1.0,0,0,6,6,1.0,7,ok
+offices_run,Hoovar,"{""quantity"": 4}",4,4,4,4,1.0,0,0,5,4,0.8,5,ok
+official_sdks,Hooly Gemini,"{""quantity"": 8}",8,8,8,8,1.0,0,0,8,8,1.0,8,ok
+offline_area_limit,Hooly Maps,"{""quantity"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,4,ok
+offline_editing,Hooly Docs,"{""boolean"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+offline_languages,Hooly Translate,"{""quantity"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,1,ok
+offline_maps,Hooly Maps,"{""boolean"": 2}",2,2,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+on_device_gemini,Hooly Android 17,"{""boolean"": 2}",2,1,0,0,,0,0,0,0,,0,zero_extraction_cv
+onboarding_time,Hooly Workspace Enterprise,"{""duration"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+open_engineering_roles,Hooly Hiring Programme,"{""quantity"": 3}",3,0,1,0,0.0,0,1,0,0,,0,extracted_but_none_correct_cv
+open_for,Hooly Employee Survey,"{""duration"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+open_roles,Hooly Hiring Programme,"{""quantity"": 6}",6,4,3,3,1.0,0,0,4,4,1.0,4,ok
+open_source,Hooly Android|Hooly Gemini,"{""boolean"": 5}",5,5,4,4,1.0,0,0,5,5,1.0,6,ok
+opened,Hooly Berlin Office|Hooly Lisbon Office,"{""date"": 4}",4,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+opening_keynote,Hooly Cloud Next 2026,"{""name"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+operating_margin,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""percent"": 6}",6,3,3,3,1.0,0,0,3,3,1.0,4,ok
+owner,Hooly Sustainability Report,"{""name"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+p99_response_time,Hooly Gemini,"{""duration"": 5}",5,4,0,0,,0,0,3,3,1.0,3,zero_extraction_cv
+passkey_sync,Hooly Chrome,"{""boolean"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+paying_customers,Hooly,"{""quantity"": 26}",26,16,18,16,0.889,0,2,18,16,0.889,19,ok
+personalised_ads_by_default,Hooly Search,"{""boolean"": 1}",1,1,0,0,,0,0,1,1,1.0,4,zero_extraction_cv
+photos_stored,Hooly Photos,"{""quantity"": 7}",7,7,6,6,1.0,0,0,6,6,1.0,6,ok
+places_listed,Hooly Maps,"{""quantity"": 4}",4,3,3,3,1.0,0,0,3,3,1.0,4,ok
+planned_general_availability,Hooly Vault,"{""date"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+previous_employer,Bertram Gilfoil|Holdan,"{""name"": 3}",3,1,0,0,,0,0,2,1,0.5,2,zero_extraction_cv
+price,Hooly AI Free|Hooly AI Pro|Hooly Jules|Hooly Photos Lite|Hooly Photos Max|Hooly Photos Plus|Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel 9|Hooly Pixel Buds|Hooly Pixel Fold|Hooly Pixel Watch|Hooly Workspace|Hooly Workspace Enterprise,"{""money"": 126}",126,115,86,83,0.965,0,3,111,110,0.991,129,ok
+price_per_user,Hooly Drive|Hooly Gmail,"{""money"": 6}",6,3,3,3,1.0,0,0,3,3,1.0,4,ok
+primary_region,Hooly Gemini,"{""name"": 5}",5,5,5,3,0.6,0,2,8,5,0.625,11,ok
+pro_price,Hooly Translate,"{""money"": 3}",3,0,0,0,,0,0,0,0,,1,zero_extraction_cv
+pro_tier,Hooly Translate,"{""boolean"": 2}",2,2,0,0,,0,0,2,2,1.0,2,zero_extraction_cv
+programming_languages,Hooly Jules,"{""quantity"": 11}",11,11,11,11,1.0,0,0,11,11,1.0,12,ok
+published,Hooly Q4 2025 Results|Hooly Sustainability Report,"{""date"": 4}",4,3,1,1,1.0,0,0,3,3,1.0,3,ok
+publisher_revenue_share,Hooly Search,"{""percent"": 10}",10,1,1,1,1.0,0,0,1,1,1.0,1,ok
+raised_series_a,Hooly,"{""boolean"": 1}",1,1,2,0,0.0,0,2,3,1,0.333,3,extracted_but_none_correct_cv
+raised_series_b,Hooly,"{""boolean"": 2}",2,2,1,0,0.0,1,0,2,2,1.0,2,extracted_but_none_correct_cv
+rated_accuracy,Hooly Translate,"{""percent"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,4,ok
+raviqa_seat,Hooly Board,"{""boolean"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+recruiters,Hooly Hiring Programme,"{""quantity"": 5}",5,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+referral_bonus,Hooly Hiring Programme,"{""money"": 5}",5,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+referral_share,Hooly Hiring Programme,"{""percent"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+refresh_rate,Hooly Pixel 10,"{""quantity"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+refund_window,Hooly AI Pro,"{""duration"": 11}",11,7,6,6,1.0,0,0,7,7,1.0,8,ok
+region_outside_europe,Hooly Cloud,"{""boolean"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,6,ok
+regions,Hooly Cloud,"{""quantity"": 15}",15,8,7,7,1.0,0,0,8,8,1.0,8,ok
+registrations,Hooly Cloud Next 2026,"{""quantity"": 7}",7,1,1,1,1.0,0,0,1,1,1.0,1,ok
+release_cadence,Hooly Chrome,"{""duration"": 7}",7,4,4,4,1.0,0,0,4,4,1.0,4,ok
+released,Hooly Android 16|Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel 9|Hooly Pixel Fold|Hooly Pixel Watch,"{""date"": 13}",13,13,8,8,1.0,0,0,11,10,0.909,11,ok
+reliability_lead,Hooly Cloud,"{""name"": 6}",6,2,1,1,1.0,0,0,2,2,1.0,2,ok
+renewable_electricity,Hooly Sustainability Report,"{""percent"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+rent,Hooly Berlin Office|Hooly Lisbon Office,"{""money"": 5}",5,0,0,0,,0,0,0,0,,1,zero_extraction_cv
+repair_centres,Hooly Devices,"{""quantity"": 7}",7,1,1,1,1.0,0,0,1,1,1.0,2,ok
+replay_available,Hooly Maps Day|Made by Hooly 2026,"{""boolean"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+requests_per_day,Hooly Gemini,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,3,ok
+requests_per_minute,Hooly Gemini,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,2,ok
+respondents,Hooly Employee Survey,"{""quantity"": 4}",4,3,3,3,1.0,0,0,3,3,1.0,3,ok
+response_rate,Hooly Employee Survey,"{""percent"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,1,ok
+revenue,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""money"": 5}",5,4,2,2,1.0,0,0,4,4,1.0,4,ok
+revenue_growth,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""percent"": 5}",5,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+run_by,Hooly Employee Survey,"{""name"": 1}",1,1,0,0,,0,0,0,0,,0,zero_extraction_cv
+satellite_messaging,Hooly Android 17,"{""boolean"": 3}",3,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+saved_projects,Hooly AI Pro,"{""quantity"": 8}",8,7,7,7,1.0,0,0,7,7,1.0,7,ok
+screen_size,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel 9|Hooly Pixel Watch,"{""quantity"": 4}",4,3,3,3,1.0,0,0,2,2,1.0,3,ok
+seats,Hooly Board,"{""quantity"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,4,ok
+sensors,Hooly Pixel Watch,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+series_a_amount,Hooly,"{""money"": 5}",5,3,3,3,1.0,0,0,4,3,0.75,5,ok
+series_a_co_investor,Hooly,"{""name"": 1}",1,1,0,0,,0,0,0,0,,0,zero_extraction_cv
+series_a_lead,Hooly,"{""name"": 6}",6,4,3,3,1.0,0,0,6,4,0.667,7,ok
+services,Hooly Cloud,"{""quantity"": 5}",5,3,4,3,0.75,0,1,3,3,1.0,3,ok
+sessions,Hooly Cloud Next 2026,"{""quantity"": 5}",5,1,1,1,1.0,0,0,1,1,1.0,1,ok
+sessions_held,Hooly Board,"{""quantity"": 3}",3,2,2,2,1.0,0,0,2,2,1.0,2,ok
+share_of_ad_revenue,Hooly Maps|Hooly Search,"{""percent"": 11}",11,4,4,4,1.0,0,0,4,4,1.0,5,ok
+share_of_devices,Hooly Android 16|Hooly Android 17,"{""percent"": 13}",13,12,12,12,1.0,0,0,12,12,1.0,13,ok
+shipping_android,Hooly Pixel 10,"{""version"": 4}",4,4,0,0,,0,0,2,2,1.0,2,zero_extraction_cv
+signed_in_devices,Hooly AI Pro,"{""quantity"": 7}",7,6,6,6,1.0,0,0,6,6,1.0,6,ok
+simultaneous_editors,Hooly Docs,"{""quantity"": 5}",5,3,3,3,1.0,0,0,3,3,1.0,3,ok
+single_sign_on,Hooly Gemini|Hooly Workspace Enterprise,"{""boolean"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,5,ok
+soc2_audit_start,Hooly,"{""date"": 3}",3,2,3,2,0.667,0,1,2,2,1.0,4,ok
+soc2_auditor,Hooly,"{""name"": 4}",4,3,3,3,1.0,0,0,3,3,1.0,3,ok
+soc2_certified,Hooly,"{""boolean"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,4,ok
+spam_catch_rate,Hooly Gmail,"{""percent"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,2,ok
+speakers,Hooly Cloud Next 2026,"{""quantity"": 3}",3,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+sponsors,Hooly Cloud Next 2026|Hooly I/O 2026|Hooly Maps Day|Made by Hooly 2026,"{""quantity"": 10}",10,4,4,4,1.0,0,0,4,4,1.0,6,ok
+stable_release,Hooly Android 17,"{""date"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+stable_release_date,Hooly Chrome,"{""date"": 7}",7,3,0,0,,0,0,2,2,1.0,2,zero_extraction_cv
+stable_version,Hooly Chrome,"{""version"": 9}",9,9,9,9,1.0,0,0,9,9,1.0,11,ok
+staff,Hooly Berlin Office|Hooly Devices|Hooly Lisbon Office,"{""quantity"": 13}",13,6,6,6,1.0,0,0,6,6,1.0,7,ok
+standard_storage_price,Hooly Cloud,"{""money"": 6}",6,3,3,3,1.0,0,0,3,3,1.0,3,ok
+storage,Hooly Photos Lite|Hooly Photos Max|Hooly Photos Plus|Hooly Pixel 9,"{""quantity"": 26}",26,16,16,16,1.0,0,0,16,16,1.0,17,ok
+storage_per_user,Hooly Workspace|Hooly Workspace Enterprise,"{""quantity"": 6}",6,3,3,3,1.0,0,0,3,3,1.0,4,ok
+storage_tiers,Hooly Cloud,"{""quantity"": 4}",4,2,2,2,1.0,0,0,2,2,1.0,2,ok
+store_rating,Hooly Maps|Hooly Photos|Hooly Pixel 10|Hooly Pixel 9|Hooly Pixel Fold|Hooly Pixel Watch,"{""quantity"": 21}",21,18,18,18,1.0,0,0,18,18,1.0,23,ok
+stream_viewers,Hooly Maps Day|Made by Hooly 2026,"{""quantity"": 1}",1,0,0,0,,0,0,0,0,,1,zero_extraction_cv
+suggestion_acceptance_rate,Hooly Jules,"{""percent"": 9}",9,8,8,8,1.0,0,0,8,8,1.0,8,ok
+support_first_response,Hooly AI Pro|Hooly Workspace Enterprise,"{""duration"": 8}",8,8,8,8,1.0,0,0,8,8,1.0,8,ok
+support_satisfaction,Hooly,"{""percent"": 3}",3,3,3,3,1.0,0,0,3,3,1.0,3,ok
+support_tickets_per_week,Hooly,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+supported_file_types,Hooly Gemini,"{""quantity"": 10}",10,9,9,9,1.0,0,0,7,7,1.0,8,ok
+supported_ides,Hooly Jules,"{""quantity"": 7}",7,7,7,7,1.0,0,0,7,7,1.0,9,ok
+supported_models,Hooly Android 16|Hooly Android 17,"{""quantity"": 9}",9,5,5,5,1.0,0,0,5,5,1.0,7,ok
+tab_sleep_delay,Hooly Chrome,"{""duration"": 4}",4,2,2,2,1.0,0,0,2,2,1.0,3,ok
+talks,Hooly I/O 2026|Hooly Maps Day|Made by Hooly 2026,"{""quantity"": 7}",7,4,4,4,1.0,0,0,4,4,1.0,4,ok
+team_size,Holdan|Patreese,"{""quantity"": 8}",8,4,4,4,1.0,0,0,4,4,1.0,4,ok
+templates,Hooly Docs,"{""quantity"": 3}",3,3,2,2,1.0,0,0,3,3,1.0,5,ok
+text_limit,Hooly Translate,"{""quantity"": 3}",3,1,1,1,1.0,0,0,1,1,1.0,1,ok
+ticket_price,Hooly Cloud Next 2026|Hooly I/O 2026|Hooly Maps Day|Made by Hooly 2026,"{""money"": 10}",10,6,6,6,1.0,0,0,6,6,1.0,8,ok
+time_to_hire,Hooly Hiring Programme,"{""duration"": 6}",6,1,1,1,1.0,0,0,1,1,1.0,1,ok
+top_bug_bounty,Hooly Chrome,"{""money"": 5}",5,2,2,2,1.0,0,0,2,2,1.0,2,ok
+trade_in_programme,Hooly Devices,"{""boolean"": 5}",5,2,1,0,0.0,0,1,2,2,1.0,2,extracted_but_none_correct_cv
+training_data_cutoff,Hooly Gemini,"{""date"": 1}",1,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+trash_retention,Hooly Photos,"{""duration"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,1,ok
+travel_emissions_cut,Hooly Sustainability Report,"{""percent"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+units_sold,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel 9|Hooly Pixel Buds|Hooly Pixel Fold|Hooly Pixel Watch,"{""quantity"": 23}",23,22,22,22,1.0,0,0,22,22,1.0,25,ok
+update_promise,Hooly Pixel 10|Hooly Pixel 9,"{""quantity"": 5}",5,4,4,4,1.0,0,0,4,4,1.0,5,ok
+update_size,Hooly Android 16|Hooly Android 17,"{""quantity"": 7}",7,3,3,3,1.0,0,0,3,3,1.0,5,ok
+uptime_last_quarter,Hooly Cloud|Hooly Gemini,"{""percent"": 14}",14,11,11,11,1.0,0,0,11,11,1.0,14,ok
+uptime_sla,Hooly Cloud|Hooly Workspace|Hooly Workspace Enterprise,"{""percent"": 21}",21,10,10,10,1.0,0,0,10,10,1.0,12,ok
+users,Hooly Jules,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+venue,Hooly Cloud Next 2026|Hooly Maps Day|Made by Hooly 2026,"{""name"": 11}",11,4,0,0,,0,0,0,0,,0,zero_extraction_cv
+version,Hooly Android|Hooly Calendar|Hooly Docs|Hooly Gemini|Hooly Jules|Hooly Maps|Hooly Photos|Hooly Sheets,"{""version"": 88}",88,86,90,86,0.956,0,4,88,86,0.977,102,ok
+version_history,Hooly Drive,"{""duration"": 2}",2,2,2,2,1.0,0,0,2,2,1.0,2,ok
+video_upload_limit,Hooly Photos,"{""duration"": 3}",3,3,2,2,1.0,0,0,3,3,1.0,3,ok
+voice_guidance_languages,Hooly Maps,"{""quantity"": 2}",2,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+voice_latency,Hooly Translate,"{""duration"": 6}",6,4,4,4,1.0,0,0,4,4,1.0,4,ok
+voice_mode,Hooly Gemini,"{""boolean"": 5}",5,5,4,4,1.0,0,0,4,4,1.0,7,ok
+waitlist,Hooly Vault,"{""quantity"": 4}",4,4,4,4,1.0,0,0,4,4,1.0,4,ok
+water_resistance_depth,Hooly Pixel Watch,"{""quantity"": 1}",1,1,1,1,1.0,0,0,1,1,1.0,1,ok
+webcast_viewers,Hooly Q1 2026 Results|Hooly Q2 2026 Results|Hooly Q3 2026 Results|Hooly Q4 2025 Results,"{""quantity"": 7}",7,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+webhook_events,Hooly Gemini,"{""quantity"": 6}",6,6,6,6,1.0,0,0,6,6,1.0,7,ok
+webinars_held,Hooly,"{""quantity"": 1}",1,1,2,1,0.5,1,0,1,1,1.0,1,ok
+weight,Hooly Pixel 10|Hooly Pixel 10 Pro|Hooly Pixel Fold|Hooly Pixel Watch,"{""quantity"": 5}",5,5,5,5,1.0,0,0,5,5,1.0,8,ok
+workshops,Hooly I/O 2026,"{""quantity"": 2}",2,1,0,0,,0,0,1,1,1.0,1,zero_extraction_cv
+would_recommend,Hooly Employee Survey,"{""percent"": 4}",4,0,0,0,,0,0,0,0,,0,zero_extraction_cv
+yearly_billing_discount,Hooly Photos,"{""percent"": 4}",4,1,1,1,1.0,0,0,1,1,1.0,1,ok

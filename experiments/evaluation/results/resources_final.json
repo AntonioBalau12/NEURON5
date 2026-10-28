@@ -1,0 +1,243 @@
+{
+ "machine": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 142 Stepping 10, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.14.0"
+ },
+ "threads": 2,
+ "affinity_pinned": true,
+ "thread_env": {
+  "OMP_NUM_THREADS": "2",
+  "MKL_NUM_THREADS": "2",
+  "OPENBLAS_NUM_THREADS": "2",
+  "NUMEXPR_NUM_THREADS": "2",
+  "VECLIB_MAXIMUM_THREADS": "2"
+ },
+ "method_of_measurement": "(Windows, psutil not required)\n  * the subprocess is put into a Job Object; the job's accounting gives user+kernel CPU time of the whole process\n    tree, including children that already exited;\n  * peak RAM: every 20 ms the working sets of all processes in the job are read; `peak_working_set_mb` is the larger of\n    (a) the biggest sum of working sets seen at one instant and (b) the biggest per-process OS-reported peak working set.\n    Exact for a single process; a sampled lower bound for a process tree;\n  * wall seconds: perf_counter around start..exit, so it includes interpreter start-up and imports.\nOn other systems the fallback is resource.getrusage(RUSAGE_CHILDREN) (CPU, peak RSS).",
+ "sequential": true,
+ "repeats": 3,
+ "input": "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+ "rows": 1897,
+ "methods": {
+  "baseline": {
+   "measured": true,
+   "command": [
+    "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "experiments/evaluation/baseline_parser.py",
+    "--input",
+    "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+    "--out",
+    "experiments\\evaluation\\results\\resources_final_runs\\baseline\\facts.jsonl"
+   ],
+   "runs": [
+    {
+     "returncode": 0,
+     "wall_seconds": 3.504421400000865,
+     "cpu_seconds": 3.1875,
+     "peak_sampled_sum_bytes": 24928256,
+     "peak_single_process_bytes": 25030656,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 23.9,
+     "facts_written": 658
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 3.1473078000053647,
+     "cpu_seconds": 2.96875,
+     "peak_sampled_sum_bytes": 25071616,
+     "peak_single_process_bytes": 25235456,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 24.1,
+     "facts_written": 658
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 2.9887245999998413,
+     "cpu_seconds": 2.890625,
+     "peak_sampled_sum_bytes": 25354240,
+     "peak_single_process_bytes": 25366528,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 24.2,
+     "facts_written": 658
+    }
+   ],
+   "rows_processed": 1897,
+   "returncode": 0,
+   "cpu_seconds": 2.97,
+   "wall_seconds": 3.15,
+   "peak_working_set_mb": 24.1,
+   "cpu_per_wall": 0.94,
+   "cpu_seconds_per_1000_rows": 1.56
+  },
+  "openie": {
+   "measured": true,
+   "command": [
+    "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "experiments/openie/extract_openie.py",
+    "--input",
+    "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+    "--lexicon",
+    "data/lexicon.json",
+    "--out",
+    "experiments\\evaluation\\results\\resources_final_runs\\openie\\facts.jsonl"
+   ],
+   "runs": [
+    {
+     "returncode": 0,
+     "wall_seconds": 2.2549502000038046,
+     "cpu_seconds": 2.140625,
+     "peak_sampled_sum_bytes": 26386432,
+     "peak_single_process_bytes": 27070464,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 25.8,
+     "facts_written": 2184
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 2.3121692999993684,
+     "cpu_seconds": 2.171875,
+     "peak_sampled_sum_bytes": 26501120,
+     "peak_single_process_bytes": 27144192,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 25.9,
+     "facts_written": 2184
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 2.2816864999986137,
+     "cpu_seconds": 2.15625,
+     "peak_sampled_sum_bytes": 26488832,
+     "peak_single_process_bytes": 27303936,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 26.0,
+     "facts_written": 2184
+    }
+   ],
+   "rows_processed": 1897,
+   "returncode": 0,
+   "cpu_seconds": 2.16,
+   "wall_seconds": 2.28,
+   "peak_working_set_mb": 25.9,
+   "cpu_per_wall": 0.95,
+   "cpu_seconds_per_1000_rows": 1.14
+  },
+  "slot_filling": {
+   "measured": true,
+   "command": [
+    "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "experiments/slot_filling/extract_slots.py",
+    "--input",
+    "C:\\Users\\andrei\\Documents\\GitHub\\NEURON5-p3\\experiments\\shared\\data\\full_input.csv",
+    "--lexicon",
+    "data/lexicon.json",
+    "--out",
+    "experiments\\evaluation\\results\\resources_final_runs\\slot_filling\\facts.jsonl"
+   ],
+   "runs": [
+    {
+     "returncode": 0,
+     "wall_seconds": 2.3647441000066465,
+     "cpu_seconds": 2.203125,
+     "peak_sampled_sum_bytes": 23642112,
+     "peak_single_process_bytes": 23642112,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 22.5,
+     "facts_written": 1531
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 2.1935118999972474,
+     "cpu_seconds": 2.125,
+     "peak_sampled_sum_bytes": 23597056,
+     "peak_single_process_bytes": 23597056,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 22.5,
+     "facts_written": 1531
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 2.313198099996953,
+     "cpu_seconds": 2.21875,
+     "peak_sampled_sum_bytes": 23306240,
+     "peak_single_process_bytes": 23306240,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 22.2,
+     "facts_written": 1531
+    }
+   ],
+   "rows_processed": 1897,
+   "returncode": 0,
+   "cpu_seconds": 2.2,
+   "wall_seconds": 2.31,
+   "peak_working_set_mb": 22.5,
+   "cpu_per_wall": 0.96,
+   "cpu_seconds_per_1000_rows": 1.16
+  },
+  "combined": {
+   "measured": true,
+   "command": [
+    "C:\\Users\\andrei\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "experiments/evaluation/combine.py",
+    "--out-dir",
+    "experiments\\evaluation\\results\\resources_final_runs\\combined",
+    "--overwrite"
+   ],
+   "runs": [
+    {
+     "returncode": 0,
+     "wall_seconds": 1.4962929000030272,
+     "cpu_seconds": 1.390625,
+     "peak_sampled_sum_bytes": 41295872,
+     "peak_single_process_bytes": 41295872,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 39.4
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 1.4967421000037575,
+     "cpu_seconds": 1.390625,
+     "peak_sampled_sum_bytes": 41402368,
+     "peak_single_process_bytes": 41402368,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 39.5
+    },
+    {
+     "returncode": 0,
+     "wall_seconds": 1.5818345999941812,
+     "cpu_seconds": 1.53125,
+     "peak_sampled_sum_bytes": 41492480,
+     "peak_single_process_bytes": 41492480,
+     "job_object": true,
+     "processes_seen": 1,
+     "peak_working_set_mb": 39.6
+    }
+   ],
+   "rows_processed": 1897,
+   "returncode": 0,
+   "cpu_seconds": 1.39,
+   "wall_seconds": 1.5,
+   "peak_working_set_mb": 39.5,
+   "cpu_per_wall": 0.93,
+   "cpu_seconds_per_1000_rows": 0.73
+  },
+  "combined_pipeline_total": {
+   "measured": true,
+   "note": "openie + slot_filling + combine step (sequential, so wall adds up)",
+   "cpu_seconds": 5.75,
+   "wall_seconds": 6.09,
+   "peak_working_set_mb": 39.5
+  }
+ }
+}

@@ -1,0 +1,4 @@
+row,extraction_id,subject,attribute,value,kind,negated,matches_evaluator_suggestion,conflicts_with_form_slot,judgement,span,text
+p-1568,p-1568#openie#1,Hooly,head_of_security,Ron LaFlame,name,False,True,False,,"Hooly has 74 employees, including Ron LaFlame","Bertram: Hooly has 74 employees, including Ron LaFlame as head of security."
+p-1782,p-1782#openie#0,Hooly Android,version,v17.0,version,False,True,False,,Hooly Android 17.0,Hooly Pixel 10 receives Hooly Android 17.0 as a software update.
+p-1834,p-1834#openie#3,Hooly Workspace Enterprise,included_seats,10 seat,quantity,False,False,True,,10 seats and a 99.5% SLA; Hooly Workspace Enterprise,"Hooly AI Pro costs €59 per month with 1 seat; Hooly Workspace costs €199 per month with 10 seats and a 99.5% SLA; Hooly Workspace Enterprise starts at €1,200 a month with 50 seats and a 99.9% SLA."

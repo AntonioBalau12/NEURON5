@@ -1,0 +1,71 @@
+﻿{
+ "mode": "5-fold CV",
+ "boolean_polarity": {
+  "same_fact_in_gold": 74,
+  "polarity_correct": 74,
+  "boolean_not_in_gold": 5
+ },
+ "negation_flags": {
+  "bool_negated_flag_agrees_with_value": 74
+ },
+ "bool_value_false_but_negated_false": 0,
+ "unreadable_values_found": {
+  "comparison": 30
+ },
+ "unreadable_values_vs_gold": {
+  "with op in gold | comparison": 30
+ },
+ "same_subject_attribute_value_exactness": {
+  "version": {
+   "exact": 98
+  },
+  "duration": {
+   "exact": 105
+  },
+  "percent": {
+   "exact": 74
+  },
+  "quantity": {
+   "exact": 556
+  },
+  "money": {
+   "exact": 135
+  },
+  "date": {
+   "exact": 84
+  }
+ },
+ "temporal": {
+  "facts": 1242,
+  "with_temporal_qualifier": 178,
+  "with_fact_observation_date": 3,
+  "with_valid_from": 1,
+  "with_valid_to": 0,
+  "obs_date_equals_page_date": 0,
+  "date_facts": 91,
+  "date_value_equals_page_date": 12
+ },
+ "temporal_qualifier_words": {
+  "now": 57,
+  "today": 30,
+  "after": 19,
+  "from": 14,
+  "since": 13,
+  "still": 11,
+  "last quarter": 8,
+  "already": 6,
+  "yet": 5,
+  "from today": 4,
+  "so far": 4,
+  "on": 3,
+  "as of": 2,
+  "this year": 2,
+  "until": 2
+ },
+ "parse_status_dev": {
+  "unmapped": 593,
+  "complete": 1198,
+  "ambiguous": 33,
+  "partial": 11
+ }
+}
