@@ -331,6 +331,17 @@ The classification itself is owned by the teammates. This backend makes an HTTP
 request to their service(s) with the dataset payload and stores what comes back as
 the job result. There is **no local classifier and no LLM**.
 
+### Internal engine factory compatibility
+
+The backend factory is `create_engine(data_dir: str | Path | None = None, *,
+settings: Settings | None = None) -> Engine`. The optional positional `data_dir` keeps
+legacy standalone calls compatible. Calls that omit `settings` use `get_settings()`;
+application jobs pass their application's `Settings` explicitly so the selected adapter
+uses the configured classifier URLs, mode, multipart field name, timeout, retries, token,
+`as_of`, and DEMO delay. This is an internal construction detail and does not change the
+HTTP routes, request/response schemas, or the `Engine` dataclasses and
+`prepare/classify/close` protocol.
+
 ### Request
 When `NEURON_CLASSIFIER_URLS` is empty the backend uses the in-process **DEMO**
 classifier (`app/engine/mock_engine.py`): no HTTP request, placeholder labels, and a

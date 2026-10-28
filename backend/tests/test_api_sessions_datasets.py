@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import time
-
 from fastapi.testclient import TestClient
 
 from test_api_helpers import (

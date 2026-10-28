@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import csv
 import io
-import math
 import secrets
 from datetime import datetime, timezone
 from pathlib import Path
@@ -140,11 +139,3 @@ def coerce_int(value: Any, default: int = 0) -> int:
         return int(value)
     except (TypeError, ValueError):
         return default
-
-
-def is_finite_number(value: Any) -> bool:
-    return (
-        isinstance(value, (int, float))
-        and not isinstance(value, bool)
-        and math.isfinite(float(value))
-    )

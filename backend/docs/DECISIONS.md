@@ -11,7 +11,7 @@ Scop: consemnarea diferențelor dintre plan (`frontend/public/PLAN_ARHITECTURA_A
 | Date de practică: 1.897 rânduri (`true` 1.581, `false` 277, `unsure` 39), coloane `id,text,date,label,form`; lexicon cu 62 subiecte + 13 evenimente | `data/` | suficiente pentru evaluare offline și pentru un KB determinist |
 | Frontend Next.js 15 App Router (TS, Tailwind), landing + mascotă Rive + `Studio.tsx` cu 3 pași **mock** (setTimeout, date hardcodate) | `frontend/` | se păstrează landing-ul; `Studio` se leagă la API-ul real |
 | Site static vechi (index.html, previewN.html, DESIGN.md) | rădăcină repo | nu se atinge |
-| Fundație Python deterministă (ingestie CSV, lexicon, valori tipizate, validare output) existentă pe `origin/codex/p0-contract-foundation` | `foundation.py` (branch) | copiată în `backend/app/engine/foundation.py` și refolosită |
+| Fundație Python deterministă (ingestie CSV, lexicon, valori tipizate, validare output) existentă pe `origin/codex/p0-contract-foundation` | `foundation.py` (branch) | copiată inițial în `backend/app/engine/foundation.py`; auditul cleanup-ului a confirmat că modulul nu este folosit de orchestrator |
 | Backend / API | **nu exista** | creat în `backend/` (FastAPI), conform cerinței utilizatorului |
 | Clasificator | **nu exista** pe `main` și **nu se construiește aici** | clasificarea este a colegilor: backend-ul trimite HTTP payload-ul datasetului către serverul lor și stochează răspunsul (date sau CSV). Claims = în afara scopului acestui build |
 
@@ -95,6 +95,24 @@ Consecințe:
   `CLASSIFIER_UNAVAILABLE` (sau `TIMEOUT`), iar UI arată motivul.
 - pentru dezvoltare locală există `app/mock_classifier.py`, un stand-in care răspunde cu
   etichete DEMO; se folosește doar până e pornit serviciul real și este marcat ca atare.
+
+## Decizia de cleanup a orchestratorului
+
+Backend-ul rămâne orchestrator CSV: adaptoarele HTTP și DEMO, rutele orientate către
+frontend și contractele externe rămân neschimbate. Cleanup-ul elimină fundația Python
+nefolosită, schemele duplicate imbricate, setările fără efect și helpers/importurile
+nefolosite; contractele din rădăcina repository-ului
+rămân sursa de adevăr. `Engine` își păstrează dataclass-urile și protocolul
+`prepare/classify/close`, iar semnătura processor-ului rămâne neschimbată.
+
+Construcția adaptoarelor este centralizată în `create_engine`. Fabrica acceptă setările
+aplicației explicit pentru joburi, astfel încât URL-urile, modul și câmpul classifierului,
+timeout-ul, retry-urile, tokenul, `as_of` și întârzierea DEMO să provină din configurația
+aplicației. Apelurile standalone pot omite setările și folosesc `get_settings()`. Un singur
+job global per contract rămâne regula; nu există o setare de concurență configurabilă.
+`data_dir` este păstrat ca argument pozițional opțional pentru compatibilitatea apelurilor
+legacy. Singurul apel al helperului redundant
+`remote_engine.create_remote_engine_from_settings` este integrat direct în fabrică.
 
 
 ## Abateri și lucruri neimplementate (conștient, în afara scopului acestui build)

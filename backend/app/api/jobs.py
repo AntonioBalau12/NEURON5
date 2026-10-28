@@ -6,8 +6,7 @@ import asyncio
 import csv
 import logging
 import os
-from datetime import datetime, timedelta, timezone
-from pathlib import Path
+from datetime import datetime, timezone
 from typing import Any, Callable
 
 from fastapi import APIRouter, Depends, Request
@@ -24,7 +23,6 @@ from .errors import ApiError
 from .events import emit_job_started, emit_terminal, ingest_processor_event
 from .sessions import require_session
 from .stores import (
-    ACTIVE_STATUSES,
     TERMINAL_STATUSES,
     ApiState,
     DatasetRecord,
@@ -45,13 +43,6 @@ engine_factory: Callable[..., Engine] = create_engine
 
 def get_state(request: Request) -> ApiState:
     return request.app.state.n5
-
-
-def _owned_job(state: ApiState, session: SessionRecord, job_id: str) -> JobRecord:
-    job = state.jobs.get(job_id)
-    if job is None or job.session_id != session.id:
-        raise ApiError(404, "NOT_FOUND", "Job not found.")
-    return job
 
 
 def _extract_idempotency_key(request: Request) -> str | None:
@@ -203,7 +194,7 @@ async def run_job(state: ApiState, job: JobRecord) -> None:
                 pass
 
         def work() -> ProcessOutcome:
-            engine = engine_factory(state.settings.data_dir)
+            engine = engine_factory(state.settings.data_dir, settings=state.settings)
             try:
                 return process_csv(
                     job.input_path,
@@ -391,5 +382,5 @@ async def get_job(
     session: SessionRecord = Depends(require_session),
 ) -> dict[str, Any]:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     return job_json(job)

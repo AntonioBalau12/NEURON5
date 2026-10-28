@@ -41,7 +41,7 @@ from typing import Any, Iterable, Mapping, Sequence
 
 import httpx
 
-from .api import LABELS, MappingSpec, RowDecision, RowInput
+from .api import MappingSpec, RowDecision, RowInput, emit_event
 
 LABEL_ALIASES = {
     "true": "true",
@@ -82,15 +82,6 @@ class RemoteResult:
     errors: list[dict] = field(default_factory=list)
     source: str = "csv"       # "csv" | "json" | "merged"
     notes: list[str] = field(default_factory=list)
-
-
-def _emit(emit, event_type: str, **payload: Any) -> None:
-    if emit is None:
-        return
-    try:
-        emit(event_type, payload)
-    except Exception:  # pragma: no cover - logging must never break a job
-        pass
 
 
 def normalise_label(raw: Any) -> str | None:
@@ -256,7 +247,7 @@ class RemoteClassifierEngine:
         input_path = Path(input_path)
         timeout = self._timeout(deadline_epoch)
         started = time.time()
-        _emit(emit, "step.started", step="remote", component="classifier", message="Sending dataset to the classification service")
+        emit_event(emit, "step.started", step="remote", component="classifier", message="Sending dataset to the classification service")
         try:
             content, content_type = self._post(input_path, mapping, as_of or self.as_of, timeout, deadline_epoch)
         except ClassifierUnavailable:
@@ -267,7 +258,7 @@ class RemoteClassifierEngine:
             raise ClassifierUnavailable(f"classification request failed: {exc.__class__.__name__}: {exc}") from exc
 
         result = self._decode(content, content_type, input_path, mapping)
-        _emit(
+        emit_event(
             emit,
             "step.completed",
             step="remote",
@@ -457,18 +448,3 @@ class RemoteClassifierEngine:
             errors=errors,
             source="merged",
         )
-
-
-def create_remote_engine_from_settings() -> RemoteClassifierEngine:
-    from ..config import get_settings
-
-    settings = get_settings()
-    return RemoteClassifierEngine(
-        settings.classifier_urls,
-        mode=settings.classifier_mode,
-        field_name=settings.classifier_field_name,
-        timeout=settings.classifier_timeout_seconds,
-        retries=settings.classifier_retries,
-        token=settings.classifier_token,
-        as_of=settings.as_of_date,
-    )

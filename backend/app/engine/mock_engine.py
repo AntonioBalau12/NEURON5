@@ -16,9 +16,9 @@ import csv
 import io
 import time
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Iterable
 
-from .api import MappingSpec, RowDecision, RowInput
+from .api import MappingSpec, RowDecision, RowInput, emit_event
 from .remote_engine import RemoteResult
 
 FALSE_CUES = (" not ", " never ", " no longer", "discontinu", "cancel", "drops ", "slashes ")
@@ -126,18 +126,18 @@ class MockClassifierEngine:
         emit=None,
     ) -> RemoteResult:
         started = time.time()
-        emit_safely(emit, "step.started", step="mock", component="mock-classifier",
+        emit_event(emit, "step.started", step="mock", component="mock-classifier",
                     message="Mock classifier: generating demo labels")
         content, columns, total_rows, counts = fill_csv_with_mock_labels(
             Path(input_path).read_bytes(),
             result_column=mapping.result_column or "label",
             text_column=mapping.text_column,
         )
-        emit_safely(emit, "log.recorded", level="WARN", component="mock-classifier", step="mock",
+        emit_event(emit, "log.recorded", level="WARN", component="mock-classifier", step="mock",
                     message=DEMO_WARNING)
         if self.delay_seconds:
             time.sleep(self.delay_seconds)
-        emit_safely(emit, "step.completed", step="mock", component="mock-classifier",
+        emit_event(emit, "step.completed", step="mock", component="mock-classifier",
                     durationMs=int((time.time() - started) * 1000),
                     message=f"Mock classifier labelled {total_rows} rows")
         return RemoteResult(
@@ -148,12 +148,3 @@ class MockClassifierEngine:
             errors=[],
             source="mock",
         )
-
-
-def emit_safely(emit: Any, event_type: str, **payload: Any) -> None:
-    if emit is None:
-        return
-    try:
-        emit(event_type, payload)
-    except Exception:  # pragma: no cover - logging must never break a job
-        pass

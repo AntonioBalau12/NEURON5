@@ -41,13 +41,10 @@ def _env_float(name: str, default: float) -> float:
 
 @dataclass(frozen=True)
 class Settings:
-    repo_root: Path
     data_dir: Path
-    contracts_dir: Path
     temp_dir: Path
     manual_max_bytes: int = 1_000_000
     bulk_max_bytes: int = 10_000_000
-    max_concurrent_jobs: int = 1
     job_deadline_seconds: int = 30 * 60
     session_ttl_seconds: int = 6 * 60 * 60
     result_grace_seconds: int = 10 * 60
@@ -56,7 +53,7 @@ class Settings:
     preview_default_rows: int = 50
     page_max_rows: int = 200
     progress_every_rows: int = 50
-    as_of_date: str = os.environ.get("NEURON_AS_OF", "2026-10-29")
+    as_of_date: str = "2026-10-29"
     # Classification is done by the teammates' HTTP services, not locally.
     classifier_urls: tuple[str, ...] = ()
     classifier_mode: str = "csv"  # csv (multipart CSV upload) | rows (JSON rows)
@@ -75,13 +72,10 @@ class Settings:
 
 def get_settings() -> Settings:
     return Settings(
-        repo_root=REPO_ROOT,
         data_dir=_env_path("NEURON_DATA_DIR", REPO_ROOT / "data"),
-        contracts_dir=_env_path("NEURON_CONTRACTS_DIR", REPO_ROOT / "contracts"),
         temp_dir=_env_path("NEURON_TEMP_DIR", Path(os.environ.get("TMPDIR", "/tmp"))),
         manual_max_bytes=_env_int("NEURON_MANUAL_MAX_BYTES", 1_000_000),
         bulk_max_bytes=_env_int("NEURON_BULK_MAX_BYTES", 10_000_000),
-        max_concurrent_jobs=_env_int("NEURON_MAX_CONCURRENT_JOBS", 1),
         job_deadline_seconds=_env_int("NEURON_JOB_DEADLINE_SECONDS", 30 * 60),
         session_ttl_seconds=_env_int("NEURON_SESSION_TTL_SECONDS", 6 * 60 * 60),
         result_grace_seconds=_env_int("NEURON_RESULT_GRACE_SECONDS", 10 * 60),
@@ -90,6 +84,7 @@ def get_settings() -> Settings:
         preview_default_rows=_env_int("NEURON_PREVIEW_DEFAULT_ROWS", 50),
         page_max_rows=_env_int("NEURON_PAGE_MAX_ROWS", 200),
         progress_every_rows=_env_int("NEURON_PROGRESS_EVERY_ROWS", 50),
+        as_of_date=os.environ.get("NEURON_AS_OF", "2026-10-29"),
         classifier_urls=_env_urls(),
         classifier_mode=os.environ.get("NEURON_CLASSIFIER_MODE", "csv"),
         classifier_field_name=os.environ.get("NEURON_CLASSIFIER_FIELD_NAME", "file"),

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-from pathlib import Path
 from typing import Any
 
 from fastapi import APIRouter, Depends, Request
@@ -16,7 +15,6 @@ from .stores import (
     ApiState,
     JobRecord,
     SessionRecord,
-    job_json,
 )
 from .utils import (
     iter_file_chunks,
@@ -32,13 +30,6 @@ RESULT_CONTENT_TYPE = "text/csv; charset=utf-8"
 
 def get_state(request: Request) -> ApiState:
     return request.app.state.n5
-
-
-def _owned_job(state: ApiState, session: SessionRecord, job_id: str) -> JobRecord:
-    job = state.jobs.get(job_id)
-    if job is None or job.session_id != session.id:
-        raise ApiError(404, "NOT_FOUND", "Job not found.")
-    return job
 
 
 def _require_terminal(job: JobRecord) -> None:
@@ -114,7 +105,7 @@ async def result_summary(
     session: SessionRecord = Depends(require_session),
 ) -> dict[str, Any]:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     _require_terminal(job)
     errors = _normalized_errors(job)
     ready = _result_ready(job)
@@ -156,7 +147,7 @@ async def result_preview(
     session: SessionRecord = Depends(require_session),
 ) -> dict[str, Any]:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     _require_result(job)
     resolved_offset, resolved_limit = parse_pagination(offset, limit, state.settings)
     assert job.outcome is not None
@@ -194,7 +185,7 @@ async def result_errors(
     session: SessionRecord = Depends(require_session),
 ) -> dict[str, Any]:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     _require_terminal(job)
     resolved_offset, resolved_limit = parse_pagination(offset, limit, state.settings)
     errors = _normalized_errors(job)
@@ -214,7 +205,7 @@ async def result_csv(
     session: SessionRecord = Depends(require_session),
 ) -> StreamingResponse:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     _require_result(job)
     return StreamingResponse(
         iter_file_chunks(job.output_path),
