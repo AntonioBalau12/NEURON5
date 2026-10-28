@@ -66,7 +66,10 @@ def _masked_context(text: str, subject_span: tuple[int, int], value_span: tuple[
 def _value_spans_for(parser: TextFactParser, text: str):
     mentions = _entity_mentions(text, parser.lexicon)
     return mentions, _value_spans(text, mentions, parser.known_units,
-                                  exclude_calendar_days=parser.expanded_attribute_cues)
+                                  exclude_calendar_days=(parser.expanded_attribute_cues or parser.complete_date_spans),
+                                  protect_entity_numbers=parser.protect_entity_numbers,
+                                  complete_date_spans=parser.complete_date_spans,
+                                  complete_unit_spans=parser.complete_unit_spans)
 
 
 def _details_for(facts: Iterable[AtomicFact], text: str, row_id: str, method: str,
@@ -123,9 +126,15 @@ class ExpandedDeterministicExtractor(P1ParserAdapter):
     method = "expanded_deterministic"
 
     def __init__(self, lexicon: Lexicon, attribute_kinds: Mapping[str, str] | None = None,
-                 known_units: Iterable[str] = ()):
+                 known_units: Iterable[str] = (), *, protect_entity_numbers: bool = False,
+                 complete_date_spans: bool = False, align_attribute_values: bool = False,
+                 complete_unit_spans: bool = False):
         super().__init__(TextFactParser(lexicon, attribute_kinds, known_units,
-                                        expanded_attribute_cues=True))
+                                        expanded_attribute_cues=True,
+                                        protect_entity_numbers=protect_entity_numbers,
+                                        complete_date_spans=complete_date_spans,
+                                        align_attribute_values=align_attribute_values,
+                                        complete_unit_spans=complete_unit_spans))
 
 
 @dataclass(frozen=True)
@@ -438,7 +447,11 @@ class HybridSemanticExtractor:
 
 def selected_semantic_extractor(lexicon: Lexicon, attribute_kinds: Mapping[str, str],
                                 known_units: Iterable[str], artifact_path: str | Path | None = None):
-    """Load the packaged selective hybrid; fall back to expanded deterministic parsing."""
+    """Load the selective hybrid with protected entity numbers and complete date/unit spans.
+
+    Cross-attribute reassignment stays opt-in: the grouped comparison found useful
+    recoveries but more false positives and no aggregate F1 gain.
+    """
     if artifact_path is None:
         artifact_path = Path(__file__).with_name("attribute_resolver.json")
     artifact_path = Path(artifact_path)
@@ -446,8 +459,18 @@ def selected_semantic_extractor(lexicon: Lexicon, attribute_kinds: Mapping[str, 
         resolver = AttributeResolver.load(artifact_path)
         kinds = dict(attribute_kinds) or resolver.attribute_kinds
         units = set(known_units) or resolver.known_units
-        deterministic = ExpandedDeterministicExtractor(lexicon, kinds, units)
+        deterministic = ExpandedDeterministicExtractor(
+            lexicon, kinds, units,
+            protect_entity_numbers=True,
+            complete_date_spans=True,
+            complete_unit_spans=True,
+        )
         parser = TextFactParser(lexicon, resolver.attribute_kinds, resolver.known_units)
         monetary_resolver = AttributeResolverExtractor(parser, resolver, allowed_value_kinds={"money"})
         return HybridSemanticExtractor(deterministic, monetary_resolver)
-    return ExpandedDeterministicExtractor(lexicon, attribute_kinds, known_units)
+    return ExpandedDeterministicExtractor(
+        lexicon, attribute_kinds, known_units,
+        protect_entity_numbers=True,
+        complete_date_spans=True,
+        complete_unit_spans=True,
+    )

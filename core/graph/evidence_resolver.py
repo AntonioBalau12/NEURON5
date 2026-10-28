@@ -118,22 +118,31 @@ class EvidenceResolver:
             return EvidenceQuery(EvidenceState.UNKNOWN, reason="unknown entity or attribute")
         excluded = set(exclude_evidence_ids)
         records = tuple(record for record in self.graph.facts_by_subject_attribute.get((self.graph.entity_key(entity.name), attribute), ())
-                        if record.source_row_id not in excluded and (record.observed_on == on_date or (record.valid_from is not None and record.valid_from <= on_date and (record.valid_to is None or on_date <= record.valid_to))))
+                        if record.source_row_id not in excluded and self._date_applies(record, on_date))
         supported = tuple(r for r in records if r.evidence_status == EvidenceState.VERIFIED_SUPPORT)
+        refuted = tuple(r for r in records if r.evidence_status == EvidenceState.VERIFIED_REFUTATION)
         candidates = tuple(r for r in records if r.evidence_status == EvidenceState.UNVERIFIED_CANDIDATE)
         conflicts = tuple(r for r in records if r.evidence_status == EvidenceState.CONFLICTING)
-        if conflicts:
+        same_proposition_conflict = any(self._same_value(left.fact.value, right.fact.value)
+                                         for left in supported for right in refuted)
+        if conflicts or same_proposition_conflict:
             status = EvidenceState.CONFLICTING
         elif supported:
             status = EvidenceState.VERIFIED_SUPPORT
+        elif refuted:
+            status = EvidenceState.VERIFIED_REFUTATION
         elif candidates:
             status = EvidenceState.UNVERIFIED_CANDIDATE
         else:
             return EvidenceQuery(EvidenceState.UNKNOWN, reason="no evidence at requested date")
-        return EvidenceQuery(status, supported, conflicts, candidates, "exact-date or explicit-interval evidence")
+        return EvidenceQuery(status, supported, refuted + conflicts, candidates,
+                             "exact-date or explicit-interval evidence")
 
     @staticmethod
     def _date_applies(record: FactRecord, on_date: date | None) -> bool:
+        # A refutation proves only that its exact proposition was false on its source date.
+        if record.evidence_status == EvidenceState.VERIFIED_REFUTATION:
+            return on_date is not None and record.observed_on == on_date
         if on_date is None:
             return True
         if record.observed_on == on_date:

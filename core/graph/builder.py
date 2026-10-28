@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import replace
 from datetime import date
 from functools import lru_cache
@@ -137,6 +138,29 @@ def _exact_fact_key(fact: AtomicFact) -> tuple[Any, ...]:
     return (fact.subject.casefold(), fact.attribute, fact.value.key())
 
 
+_NEGATION_MARKER = re.compile(
+    r"\b(?:not|no|never|none|nobody|nothing|neither|nor|without|cannot)\b|\w+n['’]t\b", re.I
+)
+_APPROXIMATION_MARKER = re.compile(
+    r"\b(?:about|around|roughly|approximately|approx\.?|nearly|almost|some|several|estimated|estimate|circa|ca\.?|close\s+to|more\s+or\s+less|or\s+so|give\s+or\s+take)\b|~|≈|±|[-‐‑‒–—]ish\b",
+    re.I,
+)
+
+
+def _exact_false_atom(row: EvidenceRecord, lexicon: Lexicon) -> AtomicFact | None:
+    """Return an exact atom only when the contract identifies it as the false proposition."""
+    if (row.label != "false" or row.parse_status != "ok" or row.date is None
+            or len(row.facts) != 1):
+        return None
+    fact = _canonical_fact(row.facts[0], lexicon)
+    if fact is None or fact.value.op is not None:
+        return None
+    # Negation and approximation can change which proposition the sentence states.
+    if _NEGATION_MARKER.search(row.text) or _APPROXIMATION_MARKER.search(row.text):
+        return None
+    return fact
+
+
 def build_graph(
     universe_rows: InputData | Iterable[EvidenceRecord] | Iterable[Mapping[str, Any]],
     lexicon: Lexicon | Mapping[str, Any] | str | Path | None = None,
@@ -232,7 +256,10 @@ def build_graph(
                                         for candidate in extracted.candidates),
         )
         true_form = row.label == "true" and has_valid_form
-        record_state = EvidenceState.VERIFIED_SUPPORT if true_form else EvidenceState.UNVERIFIED_CANDIDATE
+        exact_false = _exact_false_atom(row, resolved_lexicon) if has_valid_form else None
+        record_state = (EvidenceState.VERIFIED_SUPPORT if true_form else
+                        EvidenceState.VERIFIED_REFUTATION if exact_false is not None else
+                        EvidenceState.UNVERIFIED_CANDIDATE)
         primary_keys: set[tuple[Any, ...]] = set()
         for fact in primary_facts:
             canonical = _canonical_fact(fact, resolved_lexicon)
@@ -247,8 +274,8 @@ def build_graph(
                 source_row_id=row.row_id,
                 evidence_status=record_state,
                 parse_status=parse_status,
-                provenance=provenance,
-                confidence=1.0 if true_form else coverage,
+                provenance=("practice.false_single_atom_exact_refutation" if record_state == EvidenceState.VERIFIED_REFUTATION else provenance),
+                confidence=1.0 if record_state in {EvidenceState.VERIFIED_SUPPORT, EvidenceState.VERIFIED_REFUTATION} else coverage,
             # The source row itself is provenance, not independent supporting evidence.
             supporting_evidence=(),
             )
@@ -362,11 +389,23 @@ def _value_comparison_group(value: TypedValue) -> tuple[Any, ...]:
 def _attach_evidence_references(graph: TemporalKnowledgeGraph) -> None:
     for row_id, evidence in tuple(graph.evidence_by_id.items()):
         supporting: set[str] = set()
+        contradicting: set[str] = set()
         for fact in evidence.facts:
             records = graph.facts_by_key.get(_exact_fact_key(fact), ())
-            supporting.update(record.source_row_id for record in records
-                              if record.source_row_id != row_id and record.evidence_status == EvidenceState.VERIFIED_SUPPORT)
+            if evidence.label == "false":
+                contradicting.update(record.source_row_id for record in records
+                                     if record.source_row_id != row_id
+                                     and record.evidence_status == EvidenceState.VERIFIED_SUPPORT
+                                     and record.observed_on == evidence.observed_on)
+            else:
+                supporting.update(record.source_row_id for record in records
+                                  if record.source_row_id != row_id and record.evidence_status == EvidenceState.VERIFIED_SUPPORT)
+                contradicting.update(record.source_row_id for record in records
+                                     if record.source_row_id != row_id
+                                     and record.evidence_status == EvidenceState.VERIFIED_REFUTATION
+                                     and record.observed_on == evidence.observed_on)
         graph.evidence_by_id[row_id] = replace(
             evidence,
             supporting_evidence_ids=tuple(sorted(supporting)),
+            contradicting_evidence_ids=tuple(sorted(set(evidence.contradicting_evidence_ids) | contradicting)),
         )

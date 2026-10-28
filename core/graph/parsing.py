@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from datetime import date
 from typing import Iterable, Mapping
 
 from foundation import AtomicFact, EntityReference, Lexicon, TypedValue
@@ -32,6 +33,15 @@ _CURRENCY = {"€": "EUR", "$": "USD", "US$": "USD", "£": "GBP", "EUR": "EUR", 
 _MAGNITUDES = {"k": 1e3, "thousand": 1e3, "m": 1e6, "million": 1e6, "bn": 1e9, "billion": 1e9, "trillion": 1e12}
 _PERIOD = re.compile(r"(?:/\s*(?:mo|month|day|week|yr|year)|\bper\s+(?:annum|month|day|week|year)|\ba\s+(?:month|day|week|year)\b|\bmonthly\b|\bannually\b)", re.I)
 _MONTHS = {name.lower(): i for i, name in enumerate(("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"), 1)}
+_MONTH_ALIASES = {**_MONTHS, **{name[:3].lower(): value for name, value in _MONTHS.items()}}
+_MONTH_PATTERN = r"(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan\.?|Feb\.?|Mar\.?|Apr\.?|Jun\.?|Jul\.?|Aug\.?|Sep\.?|Sept?\.?|Oct\.?|Nov\.?|Dec\.?)"
+_DATE_PHRASE = re.compile(
+    rf"\b(?:(?P<day_first>\d{{1,2}})(?:st|nd|rd|th)?\s+(?P<month_first>{_MONTH_PATTERN})"
+    rf"|(?P<month_second>{_MONTH_PATTERN})\s+(?P<day_second>\d{{1,2}})(?:st|nd|rd|th)?)"
+    rf"(?:,?\s+(?P<year>\d{{4}}))\b|\b(?P<month_only>{_MONTH_PATTERN})\s+(?P<month_year>\d{{4}})\b",
+    re.I,
+)
+_ISO_DATE = re.compile(r"\b(?P<year>\d{4})-(?P<month>\d{2})(?:-(?P<day>\d{2}))?\b")
 
 
 def _number(raw: str, decimal_comma: bool = False) -> float | int:
@@ -80,6 +90,13 @@ def _singular(word: str) -> str:
     if lower.endswith("s") and not lower.endswith(("ss", "us", "is")):
         return lower[:-1]
     return word
+
+
+def _attribute_unit_match(attribute: str, value: TypedValue) -> bool:
+    if value.kind != "quantity" or not isinstance(value.unit, str):
+        return False
+    tokens = {_singular(token.casefold()) for token in re.findall(r"[A-Za-z]+", attribute.replace("_", " "))}
+    return _singular(value.unit.casefold()) in tokens
 
 
 def _entity_mentions(text: str, lexicon: Lexicon) -> list[tuple[int, int, EntityReference]]:
@@ -142,10 +159,48 @@ def _attribute_mentions(text: str, entity: EntityReference, expanded: bool = Fal
 
 
 def _value_spans(text: str, entity_mentions: list[tuple[int, int, EntityReference]],
-                 known_units: Mapping[str, str], *, exclude_calendar_days: bool = False) -> list[_SpanValue]:
+                 known_units: Mapping[str, str], *, exclude_calendar_days: bool = False,
+                 protect_entity_numbers: bool = False, complete_date_spans: bool = False,
+                 complete_unit_spans: bool = False) -> list[_SpanValue]:
     values: list[_SpanValue] = []
+    date_spans: list[tuple[int, int, TypedValue]] = []
+    if complete_date_spans:
+        for match in _DATE_PHRASE.finditer(text):
+            month_text = (match.group("month_first") or match.group("month_second")
+                          or match.group("month_only"))
+            month = _MONTH_ALIASES.get(re.sub(r"\.$", "", month_text).casefold()[:4])
+            if month is None:
+                month = _MONTH_ALIASES.get(re.sub(r"\.$", "", month_text).casefold()[:3])
+            year_text = match.group("year") or match.group("month_year")
+            if not month or not year_text:
+                continue
+            day_text = match.group("day_first") or match.group("day_second")
+            raw_date = f"{year_text}-{month:02d}"
+            if day_text:
+                day = int(day_text)
+                try:
+                    date(int(year_text), month, day)
+                except ValueError:
+                    continue
+                raw_date += f"-{day:02d}"
+            date_spans.append((match.start(), match.end(), TypedValue("date", raw_date)))
+        for match in _ISO_DATE.finditer(text):
+            year, month = int(match.group("year")), int(match.group("month"))
+            day_text = match.group("day")
+            try:
+                if day_text:
+                    date(year, month, int(day_text))
+                elif not 1 <= month <= 12:
+                    continue
+            except ValueError:
+                continue
+            date_spans.append((match.start(), match.end(), TypedValue("date", match.group())))
     for match in _NUMBER_RE.finditer(text):
         start, end = match.span()
+        if protect_entity_numbers and any(a <= start and end <= b for a, b, _ in entity_mentions):
+            continue
+        if any(a <= start and end <= b for a, b, _ in date_spans):
+            continue
         raw_number = match.group()
         before = text[max(0, start - 12):start]
         after = text[end:min(len(text), end + 50)]
@@ -159,7 +214,7 @@ def _value_spans(text: str, entity_mentions: list[tuple[int, int, EntityReferenc
         op = _operator_before(text, start) or _operator_after(text, end)
         if _is_approximate(text, start, end):
             continue
-        if exclude_calendar_days and re.match(r"\s*(?:st|nd|rd|th)?\s+(?:" + "|".join(_MONTHS) + r")\s+\d{4}\b", after, re.I):
+        if exclude_calendar_days and re.match(r"\s*(?:st|nd|rd|th)?\s+(?:" + _MONTH_PATTERN + r")\s+\d{4}\b", after, re.I):
             # The day in a written calendar date is not a counted quantity.
             continue
         around = text[max(0, start - 20):min(len(text), end + 50)]
@@ -216,28 +271,57 @@ def _value_spans(text: str, entity_mentions: list[tuple[int, int, EntityReferenc
             continue
         # Numeric values paired with a nearby counted noun or physical unit.
         unit_match = None
+        unit_match_index = None
+        fallback_unit_match = None
         words = list(re.finditer(r"[A-Za-z][A-Za-z0-9_]*\b", after))
         for index, word in enumerate(words[:4]):
             token = word.group()
             canonical = known_units.get(_singular(token).casefold())
             gap = after[:word.start()]
             modifiers = [x.casefold() for x in re.findall(r"[A-Za-z]+", gap)]
-            if canonical and len(modifiers) <= 2 and all(x in {"of", "our", "paying", "active", "premium", "total", "new", "free", "unique", "registered", "supported", "available", "listed", "concurrent", "included", "successful", "daily", "or", "more", "less", "million", "billion", "thousand", "k", "m", "bn"} for x in modifiers):
+            legacy_modifiers = {"of", "our", "paying", "active", "premium", "total", "new", "free", "unique", "registered", "supported", "available", "listed", "concurrent", "included", "successful", "daily", "or", "more", "less", "million", "billion", "thousand", "k", "m", "bn"}
+            blocked_modifiers = {"per", "or", "and", "but", "while", "whereas", "than", "at", "over", "under", "more", "less", "up", "down", "about", "around"}
+            comparative_unit = (blocked_modifiers.intersection(modifiers) == {"or", "more"}
+                                and bool(re.match(r"\s*or\s+more\b", after, re.I)))
+            if canonical and len(modifiers) <= 2 and (
+                (complete_unit_spans and (not blocked_modifiers.intersection(modifiers) or comparative_unit))
+                or (not complete_unit_spans and all(item in legacy_modifiers for item in modifiers))
+            ):
+                if (complete_unit_spans and unit_match_index is not None
+                        and unit_match_index > 0 and index > unit_match_index):
+                    # In a compound noun phrase, prefer the recognized head unit:
+                    # "data centre sites" -> "site", not the modifier "centre".
+                    unit_match = (word, canonical)
+                    break
                 unit_match = (word, canonical)
-                break
+                unit_match_index = index
+                if not complete_unit_spans or index == 0:
+                    break
             if index == 0 and not canonical and not modifiers and token.casefold() not in {"or", "more", "less", "than", "month", "monthly", "year", "annually", "week", "day", "per", "percent", "million", "billion", "trillion", "thousand", "k", "m", "bn"}:
-                unit_match = (word, _singular(token))
-                break
+                if complete_unit_spans:
+                    # Prefer a recognized unit a couple of words later ("data centre sites")
+                    # over treating the first noun as an unknown unit ("data").
+                    fallback_unit_match = (word, _singular(token))
+                else:
+                    unit_match = (word, _singular(token))
+                    break
+        if unit_match is None and fallback_unit_match is not None:
+            unit_match = fallback_unit_match
         if unit_match:
             word, unit = unit_match
             values.append(_SpanValue(TypedValue("quantity", number, unit=unit, op=op), start, end + word.end()))
-    # Date phrases such as "12 March 2026" and "March 2026".
-    for match in re.finditer(r"\b(?:(\d{1,2})\s+)?(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", text, re.I):
-        day, month_name, year = match.groups()
-        month = _MONTHS[month_name.casefold()]
-        raw = f"{year}-{month:02d}" + (f"-{int(day):02d}" if day else "")
-        op = _operator_before(text, match.start()) or _operator_after(text, match.end())
-        values.append(_SpanValue(TypedValue("date", raw, op=op), match.start(), match.end()))
+    if complete_date_spans:
+        for start, end, value in date_spans:
+            op = _operator_before(text, start) or _operator_after(text, end)
+            values.append(_SpanValue(TypedValue(value.kind, value.value, op=op), start, end))
+    else:
+        # Preserve the original P1.5 date grammar for baseline comparisons.
+        for match in re.finditer(r"\b(?:(\d{1,2})\s+)?(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", text, re.I):
+            day, month_name, year = match.groups()
+            month = _MONTHS[month_name.casefold()]
+            raw = f"{year}-{month:02d}" + (f"-{int(day):02d}" if day else "")
+            op = _operator_before(text, match.start()) or _operator_after(text, match.end())
+            values.append(_SpanValue(TypedValue("date", raw, op=op), match.start(), match.end()))
     # Name values are only extracted when a different lexicon entity is explicit.
     for start, end, entity in entity_mentions:
         values.append(_SpanValue(TypedValue("name", entity.name), start, end))
@@ -258,10 +342,16 @@ class TextFactParser:
     """Extract explicit fact candidates; extraction alone never verifies them."""
 
     def __init__(self, lexicon: Lexicon, attribute_kinds: Mapping[str, str] | None = None,
-                 known_units: Iterable[str] = (), *, expanded_attribute_cues: bool = False):
+                 known_units: Iterable[str] = (), *, expanded_attribute_cues: bool = False,
+                 protect_entity_numbers: bool = False, complete_date_spans: bool = False,
+                 align_attribute_values: bool = False, complete_unit_spans: bool = False):
         self.lexicon = lexicon
         self.attribute_kinds = dict(attribute_kinds or {})
         self.expanded_attribute_cues = expanded_attribute_cues
+        self.protect_entity_numbers = protect_entity_numbers
+        self.complete_date_spans = complete_date_spans
+        self.align_attribute_values = align_attribute_values
+        self.complete_unit_spans = complete_unit_spans
         self.known_units: dict[str, str] = {}
         for unit in sorted(set(known_units), key=str.casefold):
             self.known_units.setdefault(unit.casefold(), unit)
@@ -275,7 +365,10 @@ class TextFactParser:
         issues: list[str] = []
         mentions = _entity_mentions(text, self.lexicon)
         spans = _value_spans(text, mentions, self.known_units,
-                             exclude_calendar_days=self.expanded_attribute_cues)
+                             exclude_calendar_days=self.expanded_attribute_cues or self.complete_date_spans,
+                             protect_entity_numbers=self.protect_entity_numbers,
+                             complete_date_spans=self.complete_date_spans,
+                             complete_unit_spans=self.complete_unit_spans)
         for sentence_match in re.finditer(r"[^\n]+?(?:[.!?](?=\s|$)|$)", text):
             sentence = sentence_match.group()
             sentence_start = sentence_match.start()
@@ -285,7 +378,12 @@ class TextFactParser:
                 continue
             local_entity_starts = [a - sentence_start for a, _, _ in local_entities]
             boundaries = [0, len(sentence)]
-            for separator in re.finditer(r",\s*(?:(?:and|while|whereas|but)\s+)?|\b(?:and|while|whereas|but)\s+", sentence, re.I):
+            separator_pattern = r",\s*(?:(?:and|while|whereas|but)\s+)?|\b(?:and|while|whereas|but)\s+"
+            if self.complete_date_spans:
+                # Keep values in temporal subordinate clauses from inheriting
+                # unrelated attributes in the preceding clause.
+                separator_pattern += r"|\b(?:since|until|as\s+of)\s+"
+            for separator in re.finditer(separator_pattern, sentence, re.I):
                 if any(separator.end() <= position <= separator.end() + 40 for position in local_entity_starts):
                     boundaries.append(separator.end())
             boundaries = sorted(set(boundaries))
@@ -322,6 +420,51 @@ class TextFactParser:
                 attr_mentions = [(a + clause_start, b + clause_start, name, specificity)
                                  for a, b, name, specificity in nearest_attr.values()]
                 clause_values = [v for v in local_values if clause_start + sentence_start <= v.start < clause_end + sentence_start]
+                aligned_value_keys: set[tuple[int, int, tuple[object, ...]]] = set()
+                if self.align_attribute_values:
+                    assignments: dict[tuple[int, int, tuple[object, ...]], list[tuple[tuple[int, int, int], str, _SpanValue]]] = {}
+                    for attr_start, attr_end, attribute, specificity in attr_mentions:
+                        hint = self.attribute_kinds.get(attribute)
+                        cue_start, cue_end = attr_start - clause_start, attr_end - clause_start
+                        attr_text = clause[cue_start:cue_end].casefold().replace("_", " ").replace("-", " ")
+                        canonical_text = attribute.casefold().replace("_", " ").replace("-", " ")
+                        exact_cue = int(re.sub(r"\s+", " ", attr_text).strip() == re.sub(r"\s+", " ", canonical_text).strip())
+                        for value in clause_values:
+                            # Alignment is limited to counted/percent values. Names, dates,
+                            # and money keep the P1.5 nearest-cue behavior because their
+                            # clause-level associations were too permissive in validation.
+                            if value.value.kind not in {"quantity", "percent"}:
+                                continue
+                            if (hint is not None and value.value.kind != hint):
+                                continue
+                            if any(
+                                other_start < value.start < other_end and other.name != entity.name
+                                for other_start, other_end, other in local_entities
+                            ):
+                                continue
+                            unit_match = int(_attribute_unit_match(attribute, value.value))
+                            if not unit_match and not exact_cue:
+                                continue
+                            distance = _distance(attr_start, attr_end, value.start - sentence_start, value.end - sentence_start)
+                            key = (value.start, value.end, value.value.key())
+                            assignments.setdefault(key, []).append(((unit_match, exact_cue, specificity * 100 - distance), attribute, value))
+                    for choices in assignments.values():
+                        unit_matches = {item[1] for item in choices if item[0][0]}
+                        exact_matches = {item[1] for item in choices if item[0][1]}
+                        # If multiple attributes share a unit and no exact attribute cue
+                        # disambiguates them, leave the value to the established parser.
+                        if len(unit_matches) > 1 and not exact_matches:
+                            issues.append("ambiguous clause-local attribute/value alignment; retained legacy assignment")
+                            continue
+                        choices.sort(key=lambda item: (item[0], item[1]), reverse=True)
+                        best_score = choices[0][0]
+                        best = [item for item in choices if item[0] == best_score]
+                        if len({item[1] for item in best}) != 1:
+                            issues.append("ambiguous clause-local attribute/value alignment; retained legacy assignment")
+                            continue
+                        attribute, value = best[0][1], best[0][2]
+                        aligned_value_keys.add((value.start, value.end, value.value.key()))
+                        facts.append(AtomicFact(entity.name, attribute, value.value, text[entity_start:entity_end]))
                 for attr_start, attr_end, attribute, _specificity in attr_mentions:
                     if attribute in {"date", "version"} and not local_values:
                         continue
@@ -331,7 +474,8 @@ class TextFactParser:
                         if truth is not None:
                             facts.append(AtomicFact(entity.name, attribute, TypedValue("boolean", truth), entity.name))
                         continue
-                    possible = [v for v in clause_values if (hint is None or v.value.kind == hint)
+                    possible = [v for v in clause_values if (v.start, v.end, v.value.key()) not in aligned_value_keys
+                                and (hint is None or v.value.kind == hint)
                                 and not (v.value.kind == "name" and v.value.value == entity.name)]
                     # Avoid reusing values belonging to another explicit entity when the sentence has several.
                     owned = [v for v in possible if v.value.kind == "name" or not any(
