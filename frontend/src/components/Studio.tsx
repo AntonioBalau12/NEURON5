@@ -225,9 +225,12 @@ export default function Studio() {
 
               <button
                 onClick={() => setCurrentStep(2)}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-[#1d6dd7] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#2859b5] transition-all shadow-md shadow-[#1d6dd7]/20"
+                className="button-primary"
               >
-                <span>Proceed to Mascot Evaluation ➔</span>
+                <span className="btn_fill"></span>
+                <span className="button-text">
+                  Proceed to Mascot Evaluation ➔
+                </span>
               </button>
             </div>
           </div>
@@ -337,9 +340,12 @@ export default function Studio() {
 
               <button
                 onClick={() => alert('output.csv exported successfully conforming to strict machine contract.')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1d6dd7] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#2859b5] transition-all shadow-md shadow-[#1d6dd7]/20"
+                className="button-primary"
               >
-                <Download className="w-3.5 h-3.5" /> Export Certified output.csv
+                <span className="btn_fill"></span>
+                <span className="button-text">
+                  <Download className="w-3.5 h-3.5" /> Export Certified output.csv
+                </span>
               </button>
             </div>
           </div>
