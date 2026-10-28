@@ -201,7 +201,11 @@ def main() -> int:
             writer.writerows(claims_out)
             handle.flush()
             os.fsync(handle.fileno())
-        os.chmod(temp_name, 0o644)
+        try:
+            os.chmod(temp_name, 0o644)
+        except PermissionError:
+            # Some Windows-backed bind mounts do not support chmod.
+            pass
         os.replace(temp_name, OUTPUT)
     finally:
         if os.path.exists(temp_name):
