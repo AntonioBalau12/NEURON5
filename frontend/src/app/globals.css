@@ -29,22 +29,21 @@ html {
 }
 
 body {
-  background-color: var(--white-100);
-  color: var(--black-100);
+  background-color: #0c0d10;
+  color: #f8fafc;
   font-family: var(--font-figtree), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Background Dot Grid */
+/* Background Dot Grid: Black background with white dots */
 .dot-grid {
   position: fixed;
   inset: 0;
-  background-image: url('/dot-grid.svg');
+  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
   background-repeat: repeat;
   background-size: 48px 48px;
-  opacity: 0.55;
   pointer-events: none;
   z-index: 0;
 }

@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import JenkinsPipelineWorkflow from './JenkinsPipelineWorkflow';
+
 import {
   ArrowLeft,
   Download,
@@ -645,14 +647,6 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           </p>
           <div className="mt-0.5 flex flex-wrap items-center gap-2">
             <h3 className="font-display text-base font-bold text-[#202020]">Live run</h3>
-            {displayStatus ? (
-              <Badge tone={statusTone(displayStatus)}>{JOB_STATUS_LABEL[displayStatus]}</Badge>
-            ) : null}
-            {job ? <Badge mono tone="lime">{job.progress.stage}</Badge> : null}
-            <Badge tone={connectionTone}>
-              <StatusDot tone={connectionTone} pulse={connection === 'open'} />
-              {connectionLabel}
-            </Badge>
           </div>
         </div>
 
@@ -720,6 +714,14 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           ) : null}
 
           <WarningList warnings={job.warnings} className="mt-4" />
+
+          {/* Jenkins Architecture Workflow Diagram with Glowing Green Aura */}
+          <JenkinsPipelineWorkflow
+            stage={job?.progress?.stage}
+            percent={percent}
+            message={events[events.length - 1]?.message}
+            className="mt-4"
+          />
 
           <div className="mt-4 rounded-2xl border border-black/[0.08] bg-white p-4">
             <div className="flex flex-wrap items-center justify-between gap-2">

@@ -65,7 +65,7 @@
       --primary-100: #1d6dd7;
       --primary-200: #2859b5;
       --accent: #d7f13b;
-      --status-true: #10b981;
+      --status-true: #d7f13b;
       --status-false: #ef4444;
       --status-unsure: #f59e0b;
 
@@ -86,7 +86,7 @@
     html,
     body {
       width: 100%;
-      background-color: var(--white-100);
+      background-color: #0c0d10;
       color: var(--black-100);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
@@ -105,9 +105,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(252, 252, 252, 0.94);
+      background: rgba(12, 13, 16, 0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 100;
     }
 
@@ -124,11 +124,11 @@
     }
 
     .brand-logo .brand-text {
-      color: var(--black-100);
+      color: #ffffff;
     }
 
     .brand-logo .brand-number {
-      color: var(--primary-100);
+      color: #d7f13b;
       margin-left: 1px;
     }
 
@@ -150,7 +150,7 @@
     .dot-grid {
       position: absolute;
       inset: 0;
-      background-image: url('./dot-grid.svg');
+      background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
       background-repeat: repeat;
       background-size: 48px 48px;
       opacity: 0.55;
@@ -194,14 +194,14 @@
       border-radius: 999px;
       font-size: 0.8125rem;
       font-weight: 700;
-      color: #888;
+      color: #cbd5e1;
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .step-pill.active {
-      background: var(--black-100);
-      color: #fff;
+      background: #d7f13b;
+      color: #121212;
     }
 
     .step-pill.completed {
@@ -215,9 +215,9 @@
 
     /* Studio Box: Fixed Height viewport container */
     .studio-viewport {
-      width: min(980px, 94vw);
+      width: min(1040px, 95vw);
       height: calc(100vh - 280px);
-      max-height: 480px;
+      max-height: 520px;
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 24px;
@@ -226,12 +226,12 @@
       flex-direction: column;
       overflow: hidden;
       position: relative;
-      z-index: 5;
+      z-index: 25;
     }
 
     .studio-header {
       padding: 0.875rem 1.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       background: #fafafa;
       display: flex;
       align-items: center;
@@ -345,132 +345,518 @@
       border-color: var(--primary-100);
     }
 
-    /* STEP 2: Mascot Processing & Live Clipboard */
+            /* =========================================================
+       STEP 2: Jenkins-Style Architecture Workflow Diagram (Dark Theme, No Horizontal Scroll)
+       ========================================================= */
     .step2-content {
       display: flex;
       flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      position: relative;
+      gap: 0.6rem;
+    }
+
+    /* Main Diagram Canvas - NO HORIZONTAL SCROLL */
+    .jenkins-canvas-scroll {
+      width: 100%;
+      overflow: hidden;
+      padding: 0.25rem 0;
+      background: #090a0d;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .jenkins-canvas {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.25rem;
+      padding: 0.5rem 0.65rem;
+      box-sizing: border-box;
+    }
+
+    /* Nodes Base Dark Styling */
+    .flow-node {
+      background: #16181f;
+      border: 1.5px solid #334155;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: default;
+    }
+
+    /* Node Shapes */
+    .flow-node-pill {
+      border-radius: 9999px;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: 0.04em;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .flow-node-rect {
+      border-radius: 5px;
+      padding: 0.25rem 0.45rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .flow-node-skew {
+      transform: skewX(-12deg);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .flow-node-skew .skew-inner {
+      transform: skewX(12deg);
+    }
+
+    .flow-node-doc {
+      border-radius: 4px;
+      padding: 0.25rem 0.45rem;
+      text-align: left;
+      min-width: 75px;
+      border-radius: 6px;
+      position: relative;
+      background: #16181f;
+    }
+
+    .flow-node-doc::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      background: #334155;
+      border-bottom-left-radius: 2px;
+      border-left: 1px solid #475569;
+      border-bottom: 1px solid #475569;
+    }
+
+    /* Circular Badges */
+    .flow-circle-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 68px;
+      flex-shrink: 0;
+    }
+
+    .flow-circle-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0284c7;
+      color: #ffffff;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      text-align: center;
-      position: relative;
+      border: 2px solid #0369a1;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+      transition: all 0.35s ease;
     }
 
-    .floating-clipboard-box {
-      width: min(540px, 90%);
-      background: #ffffff;
-      border: 2px solid var(--primary-100);
-      border-radius: 16px;
-      padding: 1rem;
-      box-shadow: 0 10px 30px rgba(29, 109, 215, 0.12);
-      margin-bottom: 1rem;
-      animation: floatSmooth 3s ease-in-out infinite;
+    .flow-circle-badge.output-badge {
+      background: #0d9488;
+      border-color: #0f766e;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.4);
     }
 
-    @keyframes floatSmooth {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    .clipboard-tag {
-      font-size: 0.6875rem;
+    .flow-circle-title {
+      font-family: var(--font-display);
+      font-size: 0.625rem;
       font-weight: 800;
-      color: var(--primary-100);
+      color: #ffffff;
+      text-align: center;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
+    .flow-circle-subtitle {
+      font-size: 0.5rem;
+      color: #94a3b8;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Curved Pipes */
+    .pipe-svg-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pipe-svg-wrapper svg path {
+      stroke: #0284c7;
+      stroke-width: 6;
+      stroke-linecap: round;
+      fill: none;
+      transition: all 0.35s ease;
+    }
+
+    .pipe-svg-wrapper.pipe-output svg path {
+      stroke: #0d9488;
+    }
+
+    /* Vertical Flow Stack on Left */
+    .flow-stack-v {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      width: 100%;
+    }
+
+    .flow-arrow-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+    }
+
+    /* Horizontal Center Flow */
+    .jenkins-center-pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Catch/Finally Top Wire */
+    .catch-finally-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 10px;
+      margin-bottom: 2px;
+    }
+
+    .catch-wire-line {
+      height: 1.5px;
+      background: #334155;
+      flex: 1;
+    }
+
+    .catch-label-pill {
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #94a3b8;
+      background: #16181f;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 0 4px;
+      white-space: nowrap;
+    }
+
+    .stages-horizontal-track {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.2rem;
+      width: 100%;
+    }
+
+    .stage-v-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .stage-tag-label {
+      font-size: 0.5rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 1px;
+    }
+
+    .flow-stage-card {
+      border-radius: 5px;
+      padding: 0.25rem 0.4rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .stage-card-title {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .stage-card-sub {
+      font-size: 0.5rem;
+      color: #94a3b8;
+      line-height: 1.15;
+      margin-top: 1px;
+    }
+
+    .v-branch-line {
+      width: 1.5px;
+      height: 8px;
+      background: #334155;
+    }
+
+    /* Parallel Branch Bracket */
+    .parallel-container {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      margin-top: 0.25rem;
+      width: 100%;
+    }
+
+    .parallel-bracket {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      border-left: 1.5px solid #475569;
+      border-top: 1.5px solid #475569;
+      border-bottom: 1.5px solid #475569;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      padding: 1px 1px 1px 2px;
+    }
+
+    .parallel-bracket-text {
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      font-size: 0.44rem;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 0.4rem;
+      color: #94a3b8;
     }
 
-    .clipboard-sample-body {
-      font-family: monospace;
-      font-size: 0.8125rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 0.65rem;
-      border-radius: 8px;
-      text-align: left;
-      color: #1e293b;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .tech-chat-chips {
+    .parallel-stack {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      max-width: 600px;
-      margin-bottom: 0.75rem;
+      flex-direction: column;
+      gap: 0.15rem;
+      flex: 1;
+      min-width: 0;
     }
 
-    .chat-chip {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #334155;
-      display: inline-flex;
+    .parallel-card {
+      border-radius: 4px;
+      padding: 0.15rem 0.35rem;
+      font-size: 0.5rem;
+      color: #f8fafc;
+      text-align: left;
+    }
+
+    .parallel-card-title {
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .parallel-card-desc {
+      font-size: 0.45rem;
+      color: #94a3b8;
+      line-height: 1.1;
+    }
+
+    /* Connectors */
+    .h-connector-arrow {
+      display: flex;
       align-items: center;
-      gap: 0.35rem;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: all 0.3s ease;
+      justify-content: center;
+      margin-top: 18px;
+      color: #475569;
+      flex-shrink: 0;
     }
 
-    .chat-chip.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .h-connector-arrow svg path {
+      stroke: #475569;
+      transition: stroke 0.3s ease;
     }
 
-    .chat-chip.active {
-      background: #dbeafe;
-      border-color: var(--primary-100);
-      color: #1e40af;
+        /* ACTIVE STATE: PULSING GREEN AURA (#10b981) */
+    .flow-node.active {
+      border-color: #10b981 !important;
+      background: rgba(6, 40, 30, 0.85) !important;
+      box-shadow: 0 0 0 2px #10b981, 0 0 22px rgba(16, 185, 129, 0.8), inset 0 0 6px rgba(16, 185, 129, 0.2) !important;
+      animation: greenAuraPulse 1.2s ease-in-out infinite alternate !important;
+      transform: translateY(-1px);
+      z-index: 10;
     }
 
-    /* STEP 3: Results & Analytics */
+    .flow-circle-badge.active {
+      background: #10b981 !important;
+      color: #ffffff !important;
+      border-color: #34d399 !important;
+      box-shadow: 0 0 0 3px #10b981, 0 0 24px rgba(16, 185, 129, 0.85) !important;
+      animation: greenAuraPulse 1.2s ease-in-out infinite alternate !important;
+      transform: translateY(-1px);
+      z-index: 10;
+    }
+
+    .pipe-active svg path {
+      stroke: #10b981 !important;
+      filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+    }
+
+    .h-connector-arrow.active svg path,
+    .h-connector-arrow.completed svg path {
+      stroke: #10b981 !important;
+    }
+
+    /* COMPLETED STATE */
+    .flow-node.completed {
+      border-color: rgba(16, 185, 129, 0.7) !important;
+      background: rgba(6, 40, 30, 0.45) !important;
+      box-shadow: 0 1px 4px rgba(16, 185, 129, 0.2) !important;
+    }
+
+    .flow-node.completed .stage-card-title,
+    .flow-node.completed .parallel-card-title,
+    .flow-node.completed .node-title-clean {
+      color: #34d399 !important;
+    }
+
+    .flow-circle-badge.completed {
+      background: #059669 !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+    }
+
+    @keyframes greenAuraPulse {
+      0% {
+        box-shadow: 0 0 0 2px #10b981, 0 0 10px rgba(16, 185, 129, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 0 2.5px #10b981, 0 0 24px rgba(16, 185, 129, 0.85);
+      }
+    }
+
+    /* Footer Telemetry Bar Dark */
+    .pipeline-footer-console {
+      background: #090a0d;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .console-label {
+      font-size: 0.625rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+
+    .console-text {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #f1f5f9;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .console-stage-badge {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #1e293b;
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .console-stage-badge.running {
+      background: #064e3b;
+      color: #d7f13b;
+      border: 1px solid #d7f13b;
+    }
+
+    .console-progress-track {
+      width: 70px;
+      height: 5px;
+      border-radius: 999px;
+      background: #1e293b;
+      overflow: hidden;
+    }
+
+    .console-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #d7f13b;
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .console-percent {
+      font-family: monospace;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #ffffff;
+      min-width: 2rem;
+      text-align: right;
+    }
+
+    /* =========================================================
+       STEP 3: Results & Analytics Console Styles
+       ========================================================= */
     .step3-content {
       display: flex;
       flex-direction: column;
       height: 100%;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 50;
+      pointer-events: auto !important;
     }
 
     .metrics-banner {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0.5rem;
-      margin-bottom: 0.75rem;
     }
 
     .metric-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 0.65rem;
+      padding: 0.45rem 0.65rem;
       text-align: center;
     }
 
     .metric-value {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 900;
-      line-height: 1;
-      color: var(--black-100);
+      color: #0f172a;
     }
 
     .metric-desc {
-      font-size: 0.6875rem;
-      font-weight: 700;
+      font-size: 0.6rem;
       color: #64748b;
-      margin-top: 0.3rem;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .classified-table-box {
@@ -478,118 +864,61 @@
       overflow-y: auto;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      max-height: 180px;
-      margin-bottom: 0.75rem;
+      max-height: 220px;
     }
 
-    /* Buttons */
+    /* Primary and Secondary Buttons */
     .button-primary {
-      position: relative;
-      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 0.55rem 1.35rem;
-      background-color: var(--black-100);
+      background: #1d6dd7;
       color: #ffffff;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      font-weight: 600;
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
       border: none;
       cursor: pointer;
-    }
-
-    .button-primary .button-text {
+      box-shadow: 0 4px 14px rgba(29, 109, 215, 0.35);
+      transition: all 0.2s ease;
       position: relative;
-      z-index: 2;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+      z-index: 50;
+      pointer-events: auto !important;
     }
 
-    .button-primary .btn_fill {
-      position: absolute;
-      inset: auto 0% 0%;
-      width: 100%;
-      height: 0%;
-      background-color: var(--primary-200);
-      transition: height 300ms ease;
-      z-index: 1;
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(29, 109, 215, 0.5);
+      background: #1a5bb5;
     }
 
-    .button-primary:hover .btn_fill {
-      height: 100%;
-    }
-
-    .btn-secondary {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      padding: 0.45rem 0.85rem;
-      border-radius: 10px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: #334155;
-    }
-
-    .btn-secondary:hover {
-      background: #e2e8f0;
-    }
-
-    /* Deep Logs Drawer Overlay */
-    .logs-drawer {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .logs-drawer.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .logs-drawer-content {
-      width: min(880px, 94vw);
-      max-height: 70vh;
-      background: #141414;
-      color: #f8fafc;
-      border-radius: 20px 20px 0 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-
-    .logs-drawer.open .logs-drawer-content {
+    .button-primary:active {
       transform: translateY(0);
     }
 
-    .logs-drawer-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
+    .btn-secondary {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      padding: 0.45rem 1rem;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 50;
+      pointer-events: auto !important;
     }
 
-    .logs-drawer-body {
-      padding: 1.25rem 1.5rem;
-      font-family: monospace;
-      font-size: 0.8125rem;
-      line-height: 1.6;
-      overflow-y: auto;
-      color: #94a3b8;
+    .btn-secondary:hover {
+      background: #f1f5f9;
+      color: #0f172a;
     }
 
     /* Mascot Stage (Anchored at the bottom of the 100vh stage) */
@@ -603,10 +932,12 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      z-index: 10;
+      z-index: 0 !important;
       overflow: visible;
-      pointer-events: auto;
+      pointer-events: none !important;
     }
+
+    #mascot-canvas { pointer-events: auto; }
 
     .hero-mascot-canvas-container {
       width: 100%;
@@ -751,7 +1082,7 @@
       </div>
       <span class="step-divider">➔</span>
       <div class="step-pill" id="step-pill-2">
-        <span>2</span> <span>Mascot Evaluation</span>
+        <span>2</span> <span>Data Processing</span>
       </div>
       <span class="step-divider">➔</span>
       <div class="step-pill" id="step-pill-3">
@@ -824,115 +1155,289 @@
             <span style="font-size: 0.8125rem; color: #64748b;">5 rows staged for evaluation</span>
             <button class="button-primary" id="btn-proceed-step-2">
               <span class="btn_fill"></span>
-              <span class="button-text">Send Clipboard to Mascot ➔</span>
+              <span class="button-text">Start Pipeline Processing ➔</span>
             </button>
           </div>
         </div>
 
-        <!-- STEP 2: Mascot Thinking & Clipboard In-Progress -->
+                        <!-- STEP 2: Runtime Pipeline Workflow (Jenkins-Style Architecture) -->
         <div id="view-step-2" class="step2-content" style="display: none;">
-          <div class="floating-clipboard-box">
-            <div class="clipboard-tag">📎 Mascot Inspection Clipboard</div>
-            <div class="clipboard-sample-body" id="step2-sample-text">
-              Holdan started at Hooly on 12 January 2026.
-            </div>
-            <div style="font-size: 0.75rem; color: #64748b;">
-              Status: <strong>Mascot is parsing row vectors & temporal constraints...</strong>
+          
+
+
+          <!-- Main Diagram Canvas -->
+          <div class="jenkins-canvas-scroll">
+            <div class="jenkins-canvas">
+
+              <!-- LEFT: DEVELOPMENT / INPUT SOURCE + INLET PIPE + START FLOW -->
+              <div class="flow-circle-col" style="align-items: flex-end;">
+                <!-- Input Source Node (First Block) -->
+                <div class="flow-circle-badge" id="node-input-badge" title="Input Stream">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <div class="flow-circle-title">Input Source</div>
+                <div class="flow-circle-subtitle">Claims Stream</div>
+              </div>
+
+              <!-- Thick Curved Inlet Pipe -->
+              <div class="pipe-svg-wrapper" id="pipe-inlet-wrapper" style="margin-top: 10px;">
+                <svg width="48" height="42" viewBox="0 0 48 42" fill="none">
+                  <path d="M 4 8 L 24 8 A 14 14 0 0 1 38 22 L 38 40" stroke="#0284c7" stroke-width="8" stroke-linecap="round"/>
+                  <rect x="0" y="4" width="6" height="8" rx="1.5" fill="#0f172a" />
+                  <rect x="33" y="34" width="10" height="5" rx="1.5" fill="#0f172a" />
+                </svg>
+              </div>
+
+              <!-- Vertical Start Flow Stack -->
+              <div class="flow-stack-v" style="margin-top: 24px;">
+                <!-- Start Pill -->
+                <div class="flow-node flow-node-pill" id="node-start">
+                  <span>Start</span>
+                </div>
+
+                <div class="flow-arrow-down">
+                  <svg width="8" height="10" viewBox="0 0 8 10"><path d="M 4 0 L 4 7 M 1 5 L 4 8 L 7 5" stroke="#94a3b8" stroke-width="1.8" fill="none"/></svg>
+                </div>
+
+                <!-- Read Snapshot Rect -->
+                <div class="flow-node flow-node-rect" id="node-ingest">
+                  <div class="stage-card-title node-title-clean">Dataset Snapshot</div>
+                  <div class="stage-card-sub">5 Claims Loaded</div>
+                </div>
+
+                <div class="flow-arrow-down">
+                  <svg width="8" height="10" viewBox="0 0 8 10"><path d="M 4 0 L 4 7 M 1 5 L 4 8 L 7 5" stroke="#94a3b8" stroke-width="1.8" fill="none"/></svg>
+                </div>
+
+                <!-- Schema Parallelogram -->
+                <div class="flow-node flow-node-skew" id="node-schema">
+                  <div class="skew-inner">
+                    <div class="stage-card-title node-title-clean">Map Schema</div>
+                    <div class="stage-card-sub">id · text · date</div>
+                  </div>
+                </div>
+
+                <div class="flow-arrow-down">
+                  <svg width="8" height="10" viewBox="0 0 8 10"><path d="M 4 0 L 4 7 M 1 5 L 4 8 L 7 5" stroke="#94a3b8" stroke-width="1.8" fill="none"/></svg>
+                </div>
+
+                <!-- Workflow Start Pill -->
+                <div class="flow-node flow-node-pill" id="node-wf-start">
+                  <span>Workflow Start</span>
+                </div>
+              </div>
+
+              <!-- Arrow pointing from Workflow Start into Stage 1 -->
+              <div class="h-connector-arrow" id="conn-start-to-stage1" style="margin-top: 140px;">
+                <svg width="18" height="14" viewBox="0 0 18 14">
+                  <path d="M 0 7 L 14 7 M 10 3 L 15 7 L 10 11" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+
+              <!-- CENTER: HORIZONTAL PIPELINE & SUB-BRANCHES -->
+              <div class="jenkins-center-pipeline">
+
+                <!-- Top Catch/Finally Line -->
+                <div class="catch-finally-row" id="catch-finally-row">
+                  <span class="catch-label-pill">Generate on catch/finally</span>
+                  <div class="catch-wire-line"></div>
+                  <!-- Document Report Card -->
+                  <div class="flow-node flow-node-doc" id="node-report">
+                    <div class="stage-card-title node-title-clean">audit-metrics.json</div>
+                    <div class="stage-card-sub">Telemetry Report</div>
+                  </div>
+                </div>
+
+                <!-- Stages Row -->
+                <div class="stages-horizontal-track">
+
+                  <!-- STAGE 1: SCM Checkout equivalent (Parse & Clean) -->
+                  <div class="stage-v-col">
+                    <span class="stage-tag-label">Stage</span>
+                    <div class="flow-node flow-stage-card" id="node-stage-parse">
+                      <div class="stage-card-title node-title-clean">Parse & Clean</div>
+                      <div class="stage-card-sub">Header & Unicode</div>
+                    </div>
+                    
+                    <div class="v-branch-line"></div>
+
+                    <!-- Under Stage 1: Date Parser sub-card -->
+                    <div class="flow-node flow-node-rect" id="node-sub-parse" style="min-width: 90px;">
+                      <div class="stage-card-title node-title-clean">ISO Date Parser</div>
+                      <div class="stage-card-sub">Validate YYYY-MM-DD</div>
+                    </div>
+                  </div>
+
+                  <!-- Connector 1 -> 2 -->
+                  <div class="h-connector-arrow" id="conn-stage-1-2">
+                    <svg width="16" height="14" viewBox="0 0 16 14">
+                      <path d="M 0 7 L 12 7 M 8 3 L 13 7 L 8 11" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+                    </svg>
+                  </div>
+
+                  <!-- STAGE 2: Build/Launch equivalent (Feature Engine + Parallel Extractors) -->
+                  <div class="stage-v-col">
+                    <span class="stage-tag-label">Stage</span>
+                    <div class="flow-node flow-stage-card" id="node-stage-features">
+                      <div class="stage-card-title node-title-clean">Feature Engine</div>
+                      <div class="stage-card-sub">Signal Extraction</div>
+                    </div>
+
+                    <!-- Parallel Bracket & 3 Parallel Modules -->
+                    <div class="parallel-container">
+                      <div class="parallel-bracket">
+                        <span class="parallel-bracket-text">Parallel</span>
+                      </div>
+                      <div class="parallel-stack">
+                        <div class="flow-node parallel-card" id="node-feat-tfidf">
+                          <div class="parallel-card-title">TF-IDF N-Grams</div>
+                          <div class="parallel-card-desc">Word & Char (1,2)</div>
+                        </div>
+                        <div class="flow-node parallel-card" id="node-feat-lexicon">
+                          <div class="parallel-card-title">Lexicon Entities</div>
+                          <div class="parallel-card-desc">Entities & Relations</div>
+                        </div>
+                        <div class="flow-node parallel-card" id="node-feat-temporal">
+                          <div class="parallel-card-title">Temporal Deltas</div>
+                          <div class="parallel-card-desc">Date Sin/Cos Cycles</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Connector 2 -> 3 -->
+                  <div class="h-connector-arrow" id="conn-stage-2-3">
+                    <svg width="16" height="14" viewBox="0 0 16 14">
+                      <path d="M 0 7 L 12 7 M 8 3 L 13 7 L 8 11" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+                    </svg>
+                  </div>
+
+                  <!-- STAGE 3: Test equivalent (Model Inference + Parallel Evaluation -> Ruling Doc) -->
+                  <div class="stage-v-col">
+                    <span class="stage-tag-label">Stage</span>
+                    <div class="flow-node flow-stage-card" id="node-stage-inference">
+                      <div class="stage-card-title node-title-clean">Model Inference</div>
+                      <div class="stage-card-sub">LightGBM Prediction</div>
+                    </div>
+
+                    <!-- Parallel Evaluators & Ruling Sheet -->
+                    <div class="parallel-container">
+                      <div class="parallel-bracket">
+                        <span class="parallel-bracket-text">Parallel</span>
+                      </div>
+                      <div class="parallel-stack">
+                        <div class="flow-node parallel-card" id="node-infer-lgbm">
+                          <div class="parallel-card-title">3-Class LightGBM</div>
+                          <div class="parallel-card-desc">Probabilities</div>
+                        </div>
+                        <div class="flow-node parallel-card" id="node-infer-thresh">
+                          <div class="parallel-card-title">Threshold Policy</div>
+                          <div class="parallel-card-desc">Margin (τ = 0.50)</div>
+                        </div>
+                      </div>
+
+                      <div style="display: flex; align-items: center; color: #94a3b8; padding: 0 2px;">
+                        <svg width="10" height="16" viewBox="0 0 10 16"><path d="M 0 8 L 8 8 M 4 4 L 8 8 L 4 12" stroke="#94a3b8" stroke-width="1.8" fill="none"/></svg>
+                      </div>
+
+                      <!-- Ruling Document Sheet (like Test Results) -->
+                      <div class="flow-node flow-node-doc" id="node-ruling-doc">
+                        <div class="stage-card-title node-title-clean">Ruling Sheet</div>
+                        <div class="stage-card-sub">True / False / Unsure</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Connector 3 -> 4 -->
+                  <div class="h-connector-arrow" id="conn-stage-3-4">
+                    <svg width="16" height="14" viewBox="0 0 16 14">
+                      <path d="M 0 7 L 12 7 M 8 3 L 13 7 L 8 11" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+                    </svg>
+                  </div>
+
+                  <!-- STAGE 4: Deploy equivalent (Table Validate) -->
+                  <div class="stage-v-col">
+                    <span class="stage-tag-label">Stage</span>
+                    <div class="flow-node flow-stage-card" id="node-stage-deploy">
+                      <div class="stage-card-title node-title-clean">Table Validate</div>
+                      <div class="stage-card-sub">Atomic Publish</div>
+                    </div>
+
+                    <div class="v-branch-line"></div>
+
+                    <!-- Under Stage 4: Invariants sub-card -->
+                    <div class="flow-node flow-node-rect" id="node-sub-deploy" style="min-width: 90px;">
+                      <div class="stage-card-title node-title-clean">Invariants Check</div>
+                      <div class="stage-card-sub">Row Count Match</div>
+                    </div>
+                  </div>
+
+                  <!-- Connector 4 -> End -->
+                  <div class="h-connector-arrow" id="conn-stage-4-end">
+                    <svg width="16" height="14" viewBox="0 0 16 14">
+                      <path d="M 0 7 L 12 7 M 8 3 L 13 7 L 8 11" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+                    </svg>
+                  </div>
+
+                  <!-- WORKFLOW END PILL -->
+                  <div class="stage-v-col" style="margin-top: 18px;">
+                    <div class="flow-node flow-node-pill" id="node-wf-end">
+                      <span>Workflow End</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Thick Curved Outlet Pipe -->
+              <div class="pipe-svg-wrapper pipe-output" id="pipe-outlet-wrapper" style="margin-top: 24px;">
+                <svg width="48" height="42" viewBox="0 0 48 42" fill="none">
+                  <path d="M 4 8 L 24 8 A 14 14 0 0 1 38 22 L 38 40" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                  <rect x="0" y="4" width="6" height="8" rx="1.5" fill="#0f172a" />
+                  <rect x="33" y="34" width="10" height="5" rx="1.5" fill="#0f172a" />
+                </svg>
+              </div>
+
+              <!-- RIGHT: PRODUCTION / CERTIFIED OUTPUT (LAST BLOCK) -->
+              <div class="flow-circle-col" style="margin-top: 60px;">
+                <!-- Production Node (Last Block) -->
+                <div class="flow-circle-badge output-badge" id="node-output-badge" title="Certified Output">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <div class="flow-circle-title">Certified Output</div>
+                <div class="flow-circle-subtitle">result.csv Ready</div>
+              </div>
+
             </div>
           </div>
 
-          <!-- Accurate Technical Chat Chips -->
-          <div class="tech-chat-chips">
-            <div class="chat-chip" id="chip-1">🔎 Schema: 4 columns verified</div>
-            <div class="chat-chip" id="chip-2">⏱️ ISO Date Normalized: 2026-01-12</div>
-            <div class="chat-chip" id="chip-3">🏢 Entity Matched: Hooly Cloud (Subject)</div>
-            <div class="chat-chip" id="chip-4">⚖️ Checking Truth As-Of 2026-10-28</div>
-            <div class="chat-chip" id="chip-5">✨ 1,000 New Certified Claims Generated</div>
-          </div>
-
-          <div style="font-size: 0.8125rem; font-weight: 600; color: var(--primary-100);" id="step2-status-line">
-            Mascot is thinking...
+                    <!-- Single-Line Live Action Console Bar -->
+          <div class="pipeline-footer-console" style="background:#141518; border:1px solid #27272a; border-radius:12px; padding:0.5rem 0.85rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; box-shadow:0 4px 14px rgba(0,0,0,0.25);">
+            <div class="console-left" style="display:flex; align-items:center; gap:8px; min-width:0; flex:1;">
+              <span class="live-pulse-dot" style="position:relative; display:flex; width:10px; height:10px; flex-shrink:0;">
+                <span style="position:absolute; width:100%; height:100%; border-radius:50%; background:#34d399; opacity:0.75; animation:pulse 1.5s cubic-bezier(0,0,0.2,1) infinite;"></span>
+                <span style="position:relative; width:10px; height:10px; border-radius:50%; background:#10b981;"></span>
+              </span>
+              <span class="console-stage-badge running" id="pipeline-status-badge" style="font-family:var(--font-display); font-size:0.6rem; font-weight:800; letter-spacing:0.04em; padding:2px 8px; border-radius:999px; background:#064e3b; color:#34d399; border:1px solid #059669; white-space:nowrap; flex-shrink:0;">RUNNING</span>
+              <span style="color:#475569;">|</span>
+              <span class="console-text" id="pipeline-action-text" style="font-size:0.72rem; color:#f1f5f9; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Stage 1: Parsing ISO timestamps & normalizing unicode headers...</span>
+            </div>
+            <div class="console-right" style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+              <div class="console-progress-track" style="width:75px; height:6px; border-radius:999px; background:#27272a; overflow:hidden;">
+                <div class="console-progress-fill" id="pipeline-progress-bar" style="width:0%; height:100%; background:#10b981; border-radius:999px; transition:width 0.35s ease;"></div>
+              </div>
+              <span class="console-percent" id="pipeline-progress-text" style="font-family:monospace; font-size:0.75rem; font-weight:800; color:#34d399; min-width:2.2rem; text-align:right;">0%</span>
+            </div>
           </div>
         </div>
-
-        <!-- STEP 3: Results & Analytics -->
-        <div id="view-step-3" class="step3-content" style="display: none;">
-          <!-- Metrics -->
-          <div class="metrics-banner">
-            <div class="metric-box">
-              <div class="metric-value" style="color: var(--status-true);">100%</div>
-              <div class="metric-desc">Schema Compliance</div>
-            </div>
-            <div class="metric-box">
-              <div class="metric-value">3 / 1 / 1</div>
-              <div class="metric-desc">True / False / Unsure</div>
-            </div>
-            <div class="metric-box">
-              <div class="metric-value" style="color: var(--primary-100);">1,000</div>
-              <div class="metric-desc">Certified Claims</div>
-            </div>
-            <div class="metric-box">
-              <div class="metric-value">124 ms</div>
-              <div class="metric-desc">Execution Latency</div>
-            </div>
-          </div>
-
-          <!-- Classified Results Table -->
-          <div class="classified-table-box">
-            <table class="studio-table">
-              <thead>
-                <tr>
-                  <th style="width: 15%;">ID</th>
-                  <th style="width: 55%;">Sentence</th>
-                  <th style="width: 15%;">Date</th>
-                  <th style="width: 15%;">Ruling</th>
-                </tr>
-              </thead>
-              <tbody id="classified-tbody">
-                <!-- Dynamically filled -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Action Footer -->
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <button class="btn-secondary" id="btn-restart-stepper">
-              ↺ Edit Another Batch
-            </button>
-            <button class="button-primary" id="btn-download-output">
-              <span class="btn_fill"></span>
-              <span class="button-text">Export Certified output.csv ➔</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Anchored Mascot Stage (Always at bottom of body) -->
-    <div class="hero-mascot-wrapper">
-      <div class="hero-mascot-canvas-container" id="mascot-container">
-        <canvas id="mascot-canvas"></canvas>
-      </div>
-    </div>
-  </main>
-
-  <!-- Deep Logs Drawer Modal -->
-  <div class="logs-drawer" id="logs-drawer">
-    <div class="logs-drawer-content">
-      <div class="logs-drawer-header">
-        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">
-          ⚡ Live Arena Trace Telemetry
-        </h3>
-        <button class="btn-secondary" id="btn-close-logs" style="padding: 2px 8px;">&times;</button>
-      </div>
-      <div class="logs-drawer-body" id="logs-terminal-body">
-        <div>[11:04:10.100] [BOOT] NEURON5 Engine v1.0.0 initializing...</div>
-        <div>[11:04:10.125] [ENV] Runtime sandbox verified: Linux/amd64, User 10001, Network=None.</div>
-        <div>[11:04:10.200] [GRAPH] 62 lexicon nodes loaded, 321 attribute edges compiled.</div>
-      </div>
-    </div>
-  </div>
 
   <!-- QA DNA Style Inset Dark Blue Envelope Section with Scroll-Scrubbed Text Reveal -->
   <section id="introduction" class="section introduction scroll-dark-color">
@@ -1015,7 +1520,7 @@
       } else if (step === 2) {
         pill2.classList.add('active');
         view2.style.display = 'flex';
-        headerTitle.innerHTML = '<span>Step 2: Mascot In-Review & Inference</span>';
+        headerTitle.innerHTML = '<span>Step 2: Runtime Processing Pipeline</span>';
         runStep2Simulation();
       } else if (step === 3) {
         pill3.classList.add('active');
@@ -1036,36 +1541,157 @@
       goToStep(1);
     });
 
-    // Step 2 Simulation
-    function runStep2Simulation() {
-      const sampleText = currentRows[0] ? currentRows[0].text : 'Ingesting batch...';
-      document.getElementById('step2-sample-text').textContent = sampleText;
+            // Step 2 Simulation: Animating the Jenkins-Style Architecture Workflow
+        function runStep2Simulation() {
+      const actionText = document.getElementById('pipeline-action-text');
+      const statusBadge = document.getElementById('pipeline-status-badge');
+      const progressBar = document.getElementById('pipeline-progress-bar');
+      const progressText = document.getElementById('pipeline-progress-text');
 
-      const chips = [
-        document.getElementById('chip-1'),
-        document.getElementById('chip-2'),
-        document.getElementById('chip-3'),
-        document.getElementById('chip-4'),
-        document.getElementById('chip-5')
+      // The sequential stages of our Jenkins architecture workflow
+      const executionSteps = [
+        {
+          name: 'RUNNING',
+          action: 'Input: Ingesting dataset claims stream (5 claims loaded)...',
+          pct: 15,
+          activeNodes: ['node-input-badge', 'pipe-inlet-wrapper', 'node-start', 'node-ingest', 'node-schema', 'node-wf-start', 'conn-start-to-stage1'],
+          activePipes: ['pipe-inlet-wrapper']
+        },
+        {
+          name: 'RUNNING',
+          action: 'Stage 1: Parsing ISO timestamps, dates & normalizing unicode headers...',
+          pct: 35,
+          activeNodes: ['node-stage-parse', 'node-sub-parse', 'conn-stage-1-2'],
+          activePipes: []
+        },
+        {
+          name: 'RUNNING',
+          action: 'Stage 2: Extracting TF-IDF n-grams (1,2) & entity lexicon relations in parallel...',
+          pct: 60,
+          activeNodes: ['node-stage-features', 'node-feat-tfidf', 'node-feat-lexicon', 'node-feat-temporal', 'conn-stage-2-3'],
+          activePipes: []
+        },
+        {
+          name: 'RUNNING',
+          action: 'Stage 3: Evaluating 3-class LightGBM probabilities & margin threshold (tau=0.50)...',
+          pct: 80,
+          activeNodes: ['node-stage-inference', 'node-infer-lgbm', 'node-infer-thresh', 'node-ruling-doc', 'conn-stage-3-4'],
+          activePipes: []
+        },
+        {
+          name: 'RUNNING',
+          action: 'Stage 4: Checking table invariants, row count matching & atomic publish...',
+          pct: 92,
+          activeNodes: ['node-stage-deploy', 'node-sub-deploy', 'conn-stage-4-end'],
+          activePipes: []
+        },
+        {
+          name: 'RUNNING',
+          action: 'Telemetry: Compiling audit-metrics.json execution telemetry log...',
+          pct: 96,
+          activeNodes: ['catch-finally-row', 'node-report', 'node-wf-end', 'pipe-outlet-wrapper'],
+          activePipes: ['pipe-outlet-wrapper']
+        },
+        {
+          name: 'COMPLETED',
+          action: 'Certified CSV output published successfully.',
+          pct: 100,
+          activeNodes: ['node-output-badge'],
+          activePipes: ['pipe-outlet-wrapper']
+        }
       ];
 
-      chips.forEach(c => {
-        c.classList.remove('visible', 'active');
+      // Reset all elements
+      const allNodeIds = [
+        'node-input-badge', 'pipe-inlet-wrapper', 'node-start', 'node-ingest', 'node-schema', 'node-wf-start',
+        'conn-start-to-stage1', 'node-stage-parse', 'node-sub-parse', 'conn-stage-1-2',
+        'node-stage-features', 'node-feat-tfidf', 'node-feat-lexicon', 'node-feat-temporal', 'conn-stage-2-3',
+        'node-stage-inference', 'node-infer-lgbm', 'node-infer-thresh', 'node-ruling-doc', 'conn-stage-3-4',
+        'node-stage-deploy', 'node-sub-deploy', 'conn-stage-4-end', 'catch-finally-row', 'node-report',
+        'node-wf-end', 'pipe-outlet-wrapper', 'node-output-badge'
+      ];
+
+      allNodeIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.remove('active', 'completed', 'pipe-active');
+        }
       });
 
-      chips.forEach((chip, i) => {
-        setTimeout(() => {
-          chip.classList.add('visible', 'active');
-          appendLog(`STEP_${i+1}`, `Executed micro-action: ${chip.textContent}`);
-        }, 500 * (i + 1));
-      });
+      if (progressBar) progressBar.style.width = '0%';
+      if (progressText) progressText.textContent = '0%';
+      if (statusBadge) {
+        statusBadge.textContent = 'RUNNING';
+        statusBadge.style.background = '#064e3b';
+        statusBadge.style.color = '#34d399';
+      }
+      if (actionText) {
+        actionText.textContent = 'Initializing runtime processing pipeline...';
+      }
 
-      setTimeout(() => {
-        document.getElementById('step2-status-line').textContent = '✅ Analysis Complete! Transitioning to Certified Results...';
+      // Execute each step with pulsing glowing green aura
+      let delay = 350;
+
+      executionSteps.forEach((step, idx) => {
         setTimeout(() => {
-          goToStep(3);
-        }, 800);
-      }, 3400);
+          // Complete nodes from earlier steps
+          if (idx > 0) {
+            const prevStep = executionSteps[idx - 1];
+            prevStep.activeNodes.forEach(id => {
+              const el = document.getElementById(id);
+              if (el) {
+                el.classList.remove('active');
+                el.classList.add('completed');
+              }
+            });
+            prevStep.activePipes.forEach(id => {
+              const pipeEl = document.getElementById(id);
+              if (pipeEl) pipeEl.classList.remove('pipe-active');
+            });
+          }
+
+          // Activate current step nodes with vibrant glowing green aura
+          step.activeNodes.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+              el.classList.add('active');
+            }
+          });
+
+          step.activePipes.forEach(id => {
+            const pipeEl = document.getElementById(id);
+            if (pipeEl) pipeEl.classList.add('pipe-active');
+          });
+
+          if (statusBadge) {
+            statusBadge.textContent = step.name;
+            if (step.name === 'COMPLETED') {
+              statusBadge.style.background = '#065f46';
+              statusBadge.style.color = '#34d399';
+            }
+          }
+          if (actionText) actionText.textContent = step.action;
+          if (progressBar) progressBar.style.width = step.pct + '%';
+          if (progressText) progressText.textContent = step.pct + '%';
+
+          // When last step finishes, smoothly transition to Step 3 (Results)
+          if (idx === executionSteps.length - 1) {
+            setTimeout(() => {
+              step.activeNodes.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                  el.classList.remove('active');
+                  el.classList.add('completed');
+                }
+              });
+              setTimeout(() => {
+                goToStep(3);
+              }, 1100);
+            }, 800);
+          }
+        }, delay);
+        delay += 650;
+      });
     }
 
     function renderClassifiedResults() {
@@ -1107,7 +1733,45 @@
     }
 
     document.getElementById('btn-download-output').addEventListener('click', () => {
-      alert('output.csv generated in accordance with contracts/README.md! Ready for evaluation.');
+      // Build RFC-4180 compliant CSV string from currentRows
+      const col1 = document.getElementById('col-name-1')?.value.trim() || 'id';
+      const col2 = document.getElementById('col-name-2')?.value.trim() || 'text';
+      const col3 = document.getElementById('col-name-3')?.value.trim() || 'date';
+      const col4 = document.getElementById('col-name-4')?.value.trim() || 'label';
+      const headers = [col1, col2, col3, col4];
+
+      function escapeCsvCell(val) {
+        if (val === null || val === undefined) return '';
+        const str = String(val);
+        if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+          return '"' + str.replace(/"/g, '""') + '"';
+        }
+        return str;
+      }
+
+      const rows = currentRows.map(r => [
+        escapeCsvCell(r.id),
+        escapeCsvCell(r.text),
+        escapeCsvCell(r.date),
+        escapeCsvCell(r.label || 'true')
+      ].join(','));
+
+      const csvContent = [headers.join(','), ...rows].join('\r\n');
+
+      // Create downloadable blob with UTF-8 BOM
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'output.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      if (typeof appendLog === 'function') {
+        appendLog('OUTPUT', 'Exported ' + currentRows.length + ' certified claims to output.csv');
+      }
     });
 
     // Mascot Rive Runtime Setup

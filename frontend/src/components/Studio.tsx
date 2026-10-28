@@ -184,7 +184,7 @@ export default function Studio() {
   return (
     <section id="hero-stage" className="relative w-screen h-screen overflow-hidden flex flex-col items-center justify-start pt-20 z-10">
       {/* Background Dot Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-[0.14] pointer-events-none" />
 
       {/* ------------------------------------------------------------- */}
       {/* HERO CALL TO ACTION (Initial State before opening Studio)      */}
@@ -195,13 +195,13 @@ export default function Studio() {
           className="absolute top-28 sm:top-32 md:top-36 left-1/2 -translate-x-1/2 flex flex-col items-center text-center w-full max-w-2xl px-6 z-50 select-none animate-in fade-in duration-500 pointer-events-auto"
         >
           {/* Punchy Heading with DESIGN.md color tokens */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#202020] leading-[1.08] mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-white leading-[1.08] mb-4">
             Deterministic Engine for <br />
-            <span className="text-[#76910a]">Temporal Intelligence</span>
+            <span className="text-[#d7f13b]">Temporal Intelligence</span>
           </h1>
 
           {/* Intro description with DESIGN.md --black-0-7 */}
-          <p className="text-sm sm:text-base text-[#202020]/70 max-w-lg mb-8 leading-relaxed font-medium">
+          <p className="text-sm sm:text-base text-slate-300 max-w-lg mb-8 leading-relaxed font-medium">
             Verify temporal claim constraints, test multi-agent proposition truth values, and generate certified datasets in real time.
           </p>
 
@@ -229,7 +229,7 @@ export default function Studio() {
           <div className="flex items-center gap-2 animate-in fade-in duration-300">
             <nav
               aria-label="Progressive Workflow"
-              className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+              className="flex items-center gap-2 md:gap-3 bg-[#18181b] border border-white/10 rounded-full px-2.5 py-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
             >
               {STEPS.map((step, index) => {
                 const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
@@ -248,27 +248,17 @@ export default function Studio() {
                           ? 'bg-[#d7f13b] text-[#202020] shadow-sm shadow-[#d7f13b]/30'
                           : state === 'done'
                             ? 'text-[#76910a] hover:bg-[#d7f13b]/15'
-                            : 'text-[#202020]/70 hover:text-[#202020] hover:bg-black/[0.03]') +
+                            : 'text-slate-300 hover:text-white hover:bg-white/5') +
                         (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
                       }
                     >
-                      <span
-                        aria-hidden="true"
-                        className={
-                          'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
-                          (state === 'current'
-                            ? 'bg-black/15 text-[#202020]'
-                            : state === 'done'
-                              ? 'bg-[#d7f13b]/25 text-[#76910a]'
-                              : 'bg-black/[0.04] text-[#202020]/50')
-                        }
-                      >
-                        {state === 'done' ? <Check className="h-2.5 w-2.5" /> : step.number}
+                      <span aria-hidden="true" className="font-extrabold text-xs">
+                        {state === 'done' ? <Check className="inline h-3 w-3" /> : step.number}
                       </span>
                       <span>{step.label}</span>
                     </button>
                     {index < STEPS.length - 1 ? (
-                      <span className="text-black/30 text-xs">➔</span>
+                      <span className="text-white/30 text-xs">➔</span>
                     ) : null}
                   </React.Fragment>
                 );
@@ -278,7 +268,7 @@ export default function Studio() {
             <button
               onClick={handleCloseStudio}
               title="Minimize Studio"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 border border-black/[0.08] text-[11px] font-bold text-[#202020]/70 hover:text-[#202020] hover:bg-white shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#18181b] border border-white/10 text-[11px] font-bold text-slate-300 hover:text-white hover:bg-[#27272a] shadow-[0_2px_8px_rgba(0,0,0,0.03)] transition-all cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Minimize</span>
@@ -298,7 +288,7 @@ export default function Studio() {
           visibility: 'hidden',
           pointerEvents: isOpen ? 'auto' : 'none',
         }}
-        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-10 will-change-transform"
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-40 will-change-transform"
       >
         <div hidden={stage !== 1} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <DataStage

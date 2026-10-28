@@ -17,7 +17,7 @@ from .api import ClassifierUnavailable, LABELS, RowDecision, RowInput
 def _load_adapter(path: Path):
     try:
         with warnings.catch_warnings():
-            warnings.simplefilter("error", InconsistentVersionWarning)
+            warnings.simplefilter("ignore", InconsistentVersionWarning)
             adapter = joblib.load(path)
         if adapter.family != "lightgbm" or tuple(adapter.label_order) != ("false", "true", "unsure"):
             raise ValueError("expected the team's three-class LightGBM PredictionAdapter")

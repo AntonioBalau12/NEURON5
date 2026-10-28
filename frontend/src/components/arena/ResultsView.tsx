@@ -193,7 +193,7 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           {canDownload ? (
             <a
-              href={resultsApi.csvUrl(jobId)}
+              href={resultsApi.csvUrl(jobId)} download={`result-${jobId}.csv`}
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-transparent bg-[#d7f13b] px-3.5 py-2 text-xs font-bold tracking-wide text-[#202020] shadow-sm shadow-[#d7f13b]/30 transition-colors hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9ebc19]/40 focus-visible:ring-offset-1"
               title="Download the validated output CSV; the session cookie travels with this navigation"
             >
