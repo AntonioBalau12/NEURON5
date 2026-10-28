@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Check, ChevronRight } from 'lucide-react';
-import Mascot from './Mascot';
+import React, { useEffect, useRef, useState } from 'react';
+import { Check } from 'lucide-react';
+import Mascot, { MascotHandle } from './Mascot';
+import GorillaArmRig, { GorillaArmRigHandle } from './GorillaArmRig';
 import DataStage from './arena/DataStage';
 import ProcessingView from './arena/ProcessingView';
 import ResultsView from './arena/ResultsView';
@@ -29,6 +30,41 @@ export default function Studio() {
   const [jobId, setJobId] = useState<string | null>(null);
   const [resultReady, setResultReady] = useState(false);
   const [resetKey, setResetKey] = useState(0);
+  const [isPulling, setIsPulling] = useState(false);
+
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const armRigRef = useRef<GorillaArmRigHandle>(null);
+  const mascotRef = useRef<MascotHandle>(null);
+
+  // Constant Function: Triggers the gorilla arm bicep curl table drag animation
+  const triggerPullAnimation = (onComplete?: () => void) => {
+    if (isPulling) return;
+    if (armRigRef.current && viewportRef.current) {
+      setIsPulling(true);
+      (window as any).__isPullAnimationActive = true;
+      armRigRef.current.triggerPull(
+        viewportRef.current,
+        mascotRef.current?.container ?? null,
+        mascotRef.current?.canvas ?? null,
+        () => {
+          setIsPulling(false);
+          (window as any).__isPullAnimationActive = false;
+          if (onComplete) onComplete();
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).triggerPullAnimation = triggerPullAnimation;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).triggerPullAnimation;
+      }
+    };
+  }, [isPulling]);
 
   useEffect(() => {
     let alive = true;
@@ -79,16 +115,20 @@ export default function Studio() {
   }
 
   return (
-    <main className="relative z-10 flex min-h-0 w-full flex-1 flex-col items-center overflow-hidden pt-2">
-      <ol
-        aria-label="Run stages"
-        className="relative z-20 mb-2 flex shrink-0 flex-wrap items-center justify-center gap-2 rounded-full border border-black/[0.08] bg-white px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+    <section id="hero-stage" className="relative w-screen h-screen overflow-hidden flex flex-col items-center justify-start pt-20 z-10">
+      {/* Background Dot Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none" />
+
+      {/* Stepper Navigation Pills */}
+      <nav
+        aria-label="Progressive Workflow"
+        className="flex items-center gap-2 md:gap-3 bg-white border border-black/[0.08] rounded-full px-2 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-3 z-20"
       >
         {STEPS.map((step, index) => {
           const state = stage === step.number ? 'current' : stage > step.number ? 'done' : 'upcoming';
           const enabled = canOpen(step.number);
           return (
-            <li key={step.number} className="flex items-center gap-2">
+            <React.Fragment key={step.number}>
               <button
                 type="button"
                 onClick={() => goToStage(step.number)}
@@ -96,19 +136,19 @@ export default function Studio() {
                 aria-current={state === 'current' ? 'step' : undefined}
                 aria-disabled={!enabled}
                 className={
-                  'inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold transition-colors ' +
+                  'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
                   (state === 'current'
-                    ? 'bg-[#1d6dd7] text-white'
+                    ? 'bg-[#1d6dd7] text-white shadow-sm'
                     : state === 'done'
                       ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
-                      : 'text-[#202020]/45') +
-                  (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-60')
+                      : 'text-[#202020]/70 hover:text-black hover:bg-black/[0.03]') +
+                  (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
                 }
               >
                 <span
                   aria-hidden="true"
                   className={
-                    'inline-flex h-4 w-4 items-center justify-center rounded-full text-[9px] ' +
+                    'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
                     (state === 'current'
                       ? 'bg-white/20 text-white'
                       : state === 'done'
@@ -121,14 +161,18 @@ export default function Studio() {
                 <span>{step.label}</span>
               </button>
               {index < STEPS.length - 1 ? (
-                <ChevronRight className="h-3.5 w-3.5 text-black/20" aria-hidden="true" />
+                <span className="text-black/30 text-xs">➔</span>
               ) : null}
-            </li>
+            </React.Fragment>
           );
         })}
-      </ol>
+      </nav>
 
-      <section className="relative z-20 flex min-h-0 w-[94vw] max-w-[1280px] flex-1 flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+      {/* Studio Viewport Card Container */}
+      <div
+        ref={viewportRef}
+        className="w-[min(980px,94vw)] h-[calc(100vh-270px)] max-h-[500px] bg-white border border-black/[0.08] rounded-3xl shadow-[0_6px_24px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden relative z-30 will-change-transform"
+      >
         <div hidden={stage !== 1} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <DataStage
             key={resetKey}
@@ -156,14 +200,11 @@ export default function Studio() {
             <ResultsView key={'results-' + jobId} jobId={jobId} onNewRun={handleNewRun} />
           </div>
         ) : null}
-      </section>
-
-      <div
-        className="relative w-full shrink-0 overflow-hidden"
-        style={{ height: 'clamp(150px, 24vh, 280px)' }}
-      >
-        <Mascot />
       </div>
-    </main>
+
+      {/* Gorilla Skeletal Arm Rig & Anchored Mascot Stage */}
+      <GorillaArmRig ref={armRigRef} />
+      <Mascot ref={mascotRef} />
+    </section>
   );
 }
