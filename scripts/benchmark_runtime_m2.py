@@ -77,9 +77,13 @@ class PeakRSS:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    v2_default = ROOT / "ml/classical/results_m2_v2/model.joblib"
+    v1_default = ROOT / "ml/classical/results_m2_v1/model.joblib"
+    model_default = v2_default if v2_default.is_file() else v1_default
+
     parser.add_argument("--universe", type=Path, help="Use the actual runtime-shaped universe CSV")
     parser.add_argument("--rows", type=int, default=20_000, help="Synthetic row target when --universe is omitted")
-    parser.add_argument("--model", type=Path, default=ROOT / "ml/classical/results_m2_v1/model.joblib")
+    parser.add_argument("--model", type=Path, default=model_default)
     parser.add_argument("--practice", type=Path, default=ROOT / "data/practice.csv")
     parser.add_argument("--lexicon", type=Path, default=ROOT / "data/lexicon.json")
     parser.add_argument("--output-json", type=Path)
@@ -109,9 +113,11 @@ def main() -> int:
             if data.issues or data.lexicon is None:
                 raise ValueError("runtime input failed validation: " + "; ".join(data.issues[:20]))
 
+            timing_breakdown: dict[str, float] = {}
             t1 = time.perf_counter()
-            predictions = predict_unlabeled(data, str(args.model), str(args.practice))
+            predictions = predict_unlabeled(data, str(args.model), str(args.practice), timing_breakdown=timing_breakdown)
             report["graph_index_features_prediction_seconds"] = time.perf_counter() - t1
+            report.update(timing_breakdown)
             output_rows = []
             for row in data.rows:
                 if row.label is None:

@@ -214,6 +214,198 @@ class TestConfidenceCalibration(unittest.TestCase):
         self.assertGreaterEqual(conf, 0.75)
         self.assertLessEqual(conf, 0.92)
 
+    def test_verified_true_evidence_does_not_boost_false_confidence(self):
+        """Tier 1 safety: exact match of verified positive evidence must NEVER boost false."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.55, 0.40, 0.05])
+        retrieval_features = {
+            "exact_fact_match": 1,
+            "temporal_evidence_match": 1,
+            "retrieved_verified_count": 5,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertNotEqual(tier, "tier_1_verified_support")
+        if conf is not None:
+            self.assertLess(conf, 0.90)
+
+    def test_explicit_verified_refutation_can_support_false(self):
+        """Tier 1 safety: explicit refutation in graph evidence can boost false."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.65, 0.30, 0.05])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 3,
+            "verified_refutation": 1,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertEqual(label, "false")
+        self.assertEqual(tier, "tier_1_verified_refutation")
+        self.assertGreaterEqual(conf, 0.90)
+
+    def test_multifact_claim_partial_support_not_oververified(self):
+        """Claims with multiple facts must not be oververified if only one fact matches."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.10, 0.70, 0.20])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 2,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertEqual(label, "true")
+        self.assertEqual(tier, "tier_3_damped_confidence")
+        self.assertLess(conf, 0.90)
+
+    def test_incorrect_dates_and_numeric_values(self):
+        """When date/temporal match fails, Tier 1 cannot fire."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.10, 0.85, 0.05])
+        retrieval_features = {
+            "exact_fact_match": 1,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 4,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertNotEqual(tier, "tier_1_verified_support")
+        self.assertLessEqual(conf, 0.88)
+
+    def test_conflicting_evidence_preserves_lower_confidence(self):
+        """When evidence is conflicting or not exact, confidence is damped."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.20, 0.60, 0.20])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 1,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertLess(conf, 0.70)
+
+    def test_no_retrieved_evidence_fallback(self):
+        """When no evidence is retrieved, fallback damping (0.75) applies and low conf abstains."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.55, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.10, 0.54, 0.36])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 0,
+            "graph_lookup_success": 0,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertEqual(label, "unsure")
+        self.assertIsNone(conf)
+
+    def test_unverified_runtime_candidates_do_not_boost_confidence(self):
+        """Unverified candidates alone do not trigger Tier 1 verified support."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        raw_probs = np.array([0.15, 0.75, 0.10])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 0,
+            "retrieved_candidate_count": 5,
+            "graph_lookup_success": 1,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertNotEqual(tier, "tier_1_verified_support")
+
+    def test_competition_payoff_evaluator(self):
+        """Payoff rewards correct +conf, penalizes incorrect -conf, ignores unsure."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        probs = np.array([[0.1, 0.8, 0.1], [0.8, 0.1, 0.1], [0.33, 0.34, 0.33]])
+        y_true = ["true", "true", "true"]
+        retr = np.zeros((3, 8))
+        res = policy.evaluate(y_true, probs, retr)
+        self.assertAlmostEqual(res["competition_confidence_payoff"], 0.0, places=2)
+
+    def test_false_to_unsure_guardrail_behavior(self):
+        """Unverified false prediction with confidence < false_threshold abstains to unsure."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.60, calibration_mode="none")
+        raw_probs = np.array([0.55, 0.30, 0.15])
+        retrieval_features = {
+            "exact_fact_match": 0,
+            "temporal_evidence_match": 0,
+            "retrieved_verified_count": 0,
+            "graph_lookup_success": 0,
+        }
+        label, conf, tier, reason = policy.decide_single(raw_probs, retrieval_features)
+        self.assertEqual(label, "unsure")
+        self.assertIsNone(conf)
+        self.assertEqual(tier, "tier_2_false_guardrail")
+
+    def test_exact_agreement_offline_and_runtime_policies(self):
+        """Offline evaluation and runtime inference produce bitwise identical decisions."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        probs = np.array([[0.6, 0.3, 0.1], [0.1, 0.85, 0.05], [0.3, 0.35, 0.35]])
+        rf = [
+            {"exact_fact_match": 0, "temporal_evidence_match": 0, "retrieved_verified_count": 0, "graph_lookup_success": 0},
+            {"exact_fact_match": 1, "temporal_evidence_match": 1, "retrieved_verified_count": 3, "graph_lookup_success": 1},
+            {"exact_fact_match": 0, "temporal_evidence_match": 0, "retrieved_verified_count": 0, "graph_lookup_success": 0},
+        ]
+        single_res = [policy.decide_single(probs[i], rf[i]) for i in range(3)]
+        preds, confs, diag = policy.decide_batch(probs, rf)
+        for i in range(3):
+            self.assertEqual(single_res[i][0], preds[i])
+            self.assertEqual(single_res[i][1], confs[i])
+            self.assertEqual(single_res[i][2], diag[i]["tier"])
+
+    def test_model_serialization_and_reload(self):
+        """Joblib dump and reload preserves CalibratedDecisionPolicy."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        with tempfile.TemporaryDirectory() as temp:
+            p = Path(temp) / "model.joblib"
+            policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+            joblib.dump({"decision_policy": policy, "minimum_confidence": 0.50, "false_threshold": 0.52}, p)
+            loaded = joblib.load(p)
+            self.assertIn("decision_policy", loaded)
+            self.assertIsInstance(loaded["decision_policy"], CalibratedDecisionPolicy)
+
+    def test_full_fit_grouped_oof_leakage_prevention(self):
+        """Grouped folds across practice.csv have 0 leakage."""
+        from ml.classical.train_m2 import make_groups, load_inputs
+        from sklearn.model_selection import StratifiedGroupKFold
+        rows, lexicon, splits, folds = load_inputs()
+        groups = make_groups(rows)
+        y = np.array([r["label"].lower() for r in rows])
+        sgkf = StratifiedGroupKFold(n_splits=10, shuffle=True, random_state=42)
+        for fold_idx, (train_idx, val_idx) in enumerate(sgkf.split(rows, y, groups)):
+            train_grps = {groups[i] for i in train_idx}
+            val_grps = {groups[i] for i in val_idx}
+            self.assertEqual(len(train_grps.intersection(val_grps)), 0, f"Fold {fold_idx} leaks groups!")
+
+    def test_confidence_bounds_and_official_output_schema(self):
+        """Confidence for predicted true/false is bounded in [0.5, 1.0], unsure has no confidence."""
+        from ml.classical.decision_policy import CalibratedDecisionPolicy
+        np.random.seed(42)
+        policy = CalibratedDecisionPolicy(minimum_confidence=0.50, false_threshold=0.52, calibration_mode="none")
+        probs = np.random.dirichlet([1, 1, 1], size=100)
+        rf = [{"exact_fact_match": int(i % 3 == 0), "temporal_evidence_match": int(i % 3 == 0),
+               "retrieved_verified_count": i % 5, "graph_lookup_success": int(i % 2 == 0)} for i in range(100)]
+        preds, confs, _ = policy.decide_batch(probs, rf)
+        for label, conf in zip(preds, confs):
+            self.assertIn(label, ("true", "false", "unsure"))
+            if label in ("true", "false") and conf is not None:
+                self.assertGreaterEqual(conf, 0.50)
+                self.assertLessEqual(conf, 1.0)
+            elif label == "unsure":
+                self.assertIsNone(conf)
+
 
 if __name__ == "__main__":
     unittest.main()
