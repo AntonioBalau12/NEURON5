@@ -17,6 +17,7 @@ from typing import Any
 
 from ..config import Settings
 from ..engine.api import MappingSpec, ProcessOutcome
+from .errors import ApiError
 from .utils import iso_utc, utcnow
 
 ACTIVE_STATUSES = ("queued", "running", "finalizing")
@@ -236,6 +237,12 @@ class ApiState:
         if session is None or session.expires_at <= utcnow():
             return None
         return session
+
+    def owned_job(self, session: SessionRecord, job_id: str) -> JobRecord:
+        job = self.jobs.get(job_id)
+        if job is None or job.session_id != session.id:
+            raise ApiError(404, "NOT_FOUND", "Job not found.")
+        return job
 
     def active_job(self) -> JobRecord | None:
         if self.active_job_id is None:

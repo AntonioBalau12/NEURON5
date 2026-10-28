@@ -47,9 +47,10 @@ The Next.js dev server on `http://localhost:3000` talks to it directly; see
 | `NEURON_CLASSIFIER_RETRIES` | `0` | retries per endpoint (long requests are not retried by default) |
 | `NEURON_CLASSIFIER_TOKEN` | — | optional `Authorization: Bearer` token |
 | `NEURON_TEMP_DIR` | system temp | dataset snapshots, job outputs |
-| `NEURON_MAX_CONCURRENT_JOBS` | `1` | one active job at a time |
 | `NEURON_JOB_DEADLINE_SECONDS` | `1800` | job budget; `ARENA_DEADLINE` also caps it |
 | `NEURON_RESULT_GRACE_SECONDS` | `600` | result kept downloadable after completion |
+
+The API runs one global job at a time; this limit is fixed and has no environment setting.
 
 ## CLI (processor without HTTP, etapa B)
 
@@ -81,7 +82,6 @@ backend/
       mock_engine.py     in-process DEMO classifier (default when no URL is set)
       processor.py       snapshot -> remote request -> validated output table
       cli.py             standalone processor entry point
-      foundation.py      contract-first ingestion/lexicon helpers (ported from p0)
     mock_classifier.py   local demo stand-in for the teammates' service
   tests/                 engine + API + end-to-end tests
   docs/                  API_CONTRACT.md, DECISIONS.md

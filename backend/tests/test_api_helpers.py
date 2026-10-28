@@ -217,7 +217,7 @@ def install_fake(
 ) -> tuple[FakeEngine, FakeProcessor]:
     classifier = engine or FakeEngine()
     fake_processor = processor or FakeProcessor()
-    monkeypatch.setattr(jobs_module, "engine_factory", lambda data_dir=None: classifier)
+    monkeypatch.setattr(jobs_module, "engine_factory", lambda data_dir=None, *, settings=None: classifier)
     monkeypatch.setattr(jobs_module, "process_csv", fake_processor)
     return classifier, fake_processor
 

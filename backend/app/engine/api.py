@@ -7,9 +7,11 @@ change the dataclasses here without updating backend/docs/API_CONTRACT.md.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable, Protocol, Sequence
+from typing import Callable, Iterable, Protocol
+
+from ..config import Settings, get_settings
 
 #: Labels the contract allows. "unsafe" from the architecture plan does not
 #: exist in contracts/README.md and is never emitted; see docs/DECISIONS.md.
@@ -105,7 +107,21 @@ class Engine(Protocol):
         """Release resources."""
 
 
-def create_engine(data_dir: str | Path | None = None) -> Engine:  # noqa: ARG001
+def emit_event(emit: EventEmitter | None, event_type: str, **payload) -> None:
+    """Notify the caller without letting logging interrupt processing."""
+    if emit is None:
+        return
+    try:
+        emit(event_type, payload)
+    except Exception:  # pragma: no cover - logging must never break processing
+        pass
+
+
+def create_engine(
+    data_dir: str | Path | None = None,  # noqa: ARG001
+    *,
+    settings: Settings | None = None,
+) -> Engine:
     """Build the engine used by jobs.
 
     - NEURON_CLASSIFIER_URLS set  -> HTTP client for the teammates' service.
@@ -114,17 +130,25 @@ def create_engine(data_dir: str | Path | None = None) -> Engine:  # noqa: ARG001
 
     data_dir is kept for interface stability; classification context lives in
     the remote service, not in this container.
+    Jobs supply their application's settings; standalone callers read the
+    environment once when constructing the engine.
     """
-    from ..config import get_settings
-
-    settings = get_settings()
+    settings = settings if settings is not None else get_settings()
     if not settings.classifier_urls:
         from .mock_engine import MockClassifierEngine
 
         return MockClassifierEngine(delay_seconds=settings.mock_delay_seconds)
-    from .remote_engine import create_remote_engine_from_settings
+    from .remote_engine import RemoteClassifierEngine
 
-    return create_remote_engine_from_settings()
+    return RemoteClassifierEngine(
+        settings.classifier_urls,
+        mode=settings.classifier_mode,
+        field_name=settings.classifier_field_name,
+        timeout=settings.classifier_timeout_seconds,
+        retries=settings.classifier_retries,
+        token=settings.classifier_token,
+        as_of=settings.as_of_date,
+    )
 
 
 def process_csv(

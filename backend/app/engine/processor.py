@@ -17,29 +17,19 @@ CSV before publishing it. See docs/API_CONTRACT.md section 7.
 from __future__ import annotations
 
 import csv
-import io
 import os
 import tempfile
 import time
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
-from .api import EventEmitter, MappingSpec, ProcessOutcome, RowDecision, RowInput
+from .api import EventEmitter, MappingSpec, ProcessOutcome, RowDecision, RowInput, emit_event
 
 MAX_ERRORS = 2000
 
 
 class ProcessingError(RuntimeError):
     """Infrastructure error: the job cannot produce a valid output."""
-
-
-def _emit(emit: EventEmitter | None, event_type: str, **payload: Any) -> None:
-    if emit is None:
-        return
-    try:
-        emit(event_type, payload)
-    except Exception:  # pragma: no cover - logging must never break processing
-        pass
 
 
 def _error_entry(row_id: str, line_number: int | None, column: str | None, code: str, message: str) -> dict:
@@ -139,7 +129,7 @@ def _process_remote(
     as_of: str | None,
     started: float,
 ) -> ProcessOutcome:
-    _emit(emit, "progress.updated", processedRows=0, totalRows=None, counts={"true": 0, "false": 0, "unsure": 0, "fallback": 0},
+    emit_event(emit, "progress.updated", processedRows=0, totalRows=None, counts={"true": 0, "false": 0, "unsure": 0, "fallback": 0},
           message="Waiting for the classification service")
     result = engine.submit_dataset(
         input_path,
@@ -155,12 +145,12 @@ def _process_remote(
             handle.write(result.content)
             handle.flush()
             os.fsync(handle.fileno())
-        _emit(emit, "step.started", step="validate", component="processor", message="Validating the returned table")
+        emit_event(emit, "step.started", step="validate", component="processor", message="Validating the returned table")
         columns, rows = _validate_table(temp)
         if rows != result.total_rows:
             raise ProcessingError(f"remote table changed while being stored ({result.total_rows} -> {rows} rows)")
         _publish(temp, output_path)
-        _emit(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows} rows, {len(columns)} columns")
+        emit_event(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows} rows, {len(columns)} columns")
     except BaseException:
         try:
             temp.unlink(missing_ok=True)
@@ -171,7 +161,7 @@ def _process_remote(
     counts = result.counts or _counts_from_output(output_path, mapping.result_column)
     errors = list(result.errors)[:MAX_ERRORS]
     duration = time.time() - started
-    _emit(emit, "progress.updated", processedRows=rows, totalRows=rows, counts=counts,
+    emit_event(emit, "progress.updated", processedRows=rows, totalRows=rows, counts=counts,
           message=f"Received {rows} rows from the classification service")
     return ProcessOutcome(
         output_path=output_path,
@@ -188,14 +178,6 @@ def _process_remote(
 # --------------------------------------------------------------------------- #
 # Row mode: per-row Engine.classify, used by tests and diagnostic engines.
 # --------------------------------------------------------------------------- #
-def _read_header(handle: Any) -> list[str]:
-    reader = csv.reader(handle)
-    try:
-        return next(reader)
-    except StopIteration:
-        return []
-
-
 def _process_rows(
     input_path: Path,
     output_path: Path,
@@ -206,7 +188,7 @@ def _process_rows(
     progress_every: int,
     started: float,
 ) -> ProcessOutcome:
-    _emit(emit, "step.started", step="parse", component="processor", message="Reading dataset snapshot")
+    emit_event(emit, "step.started", step="parse", component="processor", message="Reading dataset snapshot")
     with open(input_path, "r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.reader(handle)
         try:
@@ -234,8 +216,8 @@ def _process_rows(
             with open(temp, "w", encoding="utf-8", newline="") as out_handle:
                 writer = csv.writer(out_handle, lineterminator="\n")
                 writer.writerow(out_columns)
-                _emit(emit, "step.completed", step="parse", component="processor", message=f"Parsed {len(columns)} columns")
-                _emit(emit, "step.started", step="classify", component="classifier", message="Classifying rows")
+                emit_event(emit, "step.completed", step="parse", component="processor", message=f"Parsed {len(columns)} columns")
+                emit_event(emit, "step.started", step="classify", component="classifier", message="Classifying rows")
                 for row in reader:
                     if not row:
                         continue
@@ -259,7 +241,7 @@ def _process_rows(
                     elif row_date and not _is_iso_date(row_date):
                         errors.append(_error_entry(row_id, line_number, mapping.date_column or "date", "INVALID_DATE", f"date {row_date!r} is not yyyy-mm-dd"))
                         if len(errors) <= MAX_ERRORS:
-                            _emit(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.date_column, code="INVALID_DATE",
+                            emit_event(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.date_column, code="INVALID_DATE",
                                   message=f"date {row_date!r} is not yyyy-mm-dd", level="WARN", component="processor", step="classify")
                         row_date = None
                     if decision is None:
@@ -278,7 +260,7 @@ def _process_rows(
                         counts["fallback"] += 1
                         if decision.error and len(errors) < MAX_ERRORS:
                             errors.append(_error_entry(row_id, line_number, mapping.text_column, decision.error, decision.reason or decision.error))
-                            _emit(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.text_column,
+                            emit_event(emit, "row.failed", rowId=row_id, lineNumber=line_number, column=mapping.text_column,
                                   code=decision.error, message=decision.reason or decision.error, level="WARN",
                                   component="classifier", step="classify")
                     else:
@@ -294,20 +276,20 @@ def _process_rows(
                     processed += 1
                     if progress_every and processed % progress_every == 0:
                         out_handle.flush()
-                        _emit(emit, "progress.updated", processedRows=processed, totalRows=None, counts=dict(counts),
+                        emit_event(emit, "progress.updated", processedRows=processed, totalRows=None, counts=dict(counts),
                               message=f"Processed {processed} rows")
                 if timed_out:
-                    _emit(emit, "log.recorded", level="WARN", component="processor", step="classify",
+                    emit_event(emit, "log.recorded", level="WARN", component="processor", step="classify",
                           message="Job deadline reached; remaining rows were written with the fallback label")
                 out_handle.flush()
                 os.fsync(out_handle.fileno())
-                _emit(emit, "step.completed", step="classify", component="classifier", message=f"Classified {total_rows} rows")
-            _emit(emit, "step.started", step="validate", component="processor", message="Validating output table")
+                emit_event(emit, "step.completed", step="classify", component="classifier", message=f"Classified {total_rows} rows")
+            emit_event(emit, "step.started", step="validate", component="processor", message="Validating output table")
             out_columns_check, rows_check = _validate_table(temp)
             if rows_check != total_rows:
                 raise ProcessingError(f"output row count mismatch ({rows_check} != {total_rows})")
             _publish(temp, output_path)
-            _emit(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows_check} rows")
+            emit_event(emit, "step.completed", step="validate", component="processor", message=f"Output valid: {rows_check} rows")
         except BaseException:
             try:
                 temp.unlink(missing_ok=True)
@@ -315,7 +297,7 @@ def _process_rows(
                 pass
             raise
 
-    _emit(emit, "progress.updated", processedRows=total_rows, totalRows=total_rows, counts=counts,
+    emit_event(emit, "progress.updated", processedRows=total_rows, totalRows=total_rows, counts=counts,
           message=f"Processed {total_rows} rows")
     return ProcessOutcome(
         output_path=output_path,

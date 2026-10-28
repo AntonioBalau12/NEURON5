@@ -48,7 +48,7 @@ def install_fake_service(monkeypatch, handler) -> None:
 
     transport = httpx.MockTransport(handler)
 
-    def factory(_data_dir):
+    def factory(_data_dir, *, settings=None):
         return RemoteClassifierEngine(
             ["http://classifier.test/classify"], mode="rows", transport=transport
         )

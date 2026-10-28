@@ -16,7 +16,6 @@ import json
 import os
 import sys
 import time
-from pathlib import Path
 
 from .api import MappingSpec, process_csv
 from .remote_engine import ClassifierUnavailable, RemoteClassifierEngine

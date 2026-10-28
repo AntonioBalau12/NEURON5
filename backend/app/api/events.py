@@ -46,13 +46,6 @@ def get_state(request: Request) -> ApiState:
     return request.app.state.n5
 
 
-def _owned_job(state: ApiState, session: SessionRecord, job_id: str) -> JobRecord:
-    job = state.jobs.get(job_id)
-    if job is None or job.session_id != session.id:
-        raise ApiError(404, "NOT_FOUND", "Job not found.")
-    return job
-
-
 def _record(
     state: ApiState,
     job: JobRecord,
@@ -295,7 +288,7 @@ async def list_events(
     session: SessionRecord = Depends(require_session),
 ) -> dict[str, Any]:
     state = get_state(request)
-    job = _owned_job(state, session, job_id)
+    job = state.owned_job(session, job_id)
     log = state.event_log(job.id)
     levels = _filter_values(request, "level")
     components = _filter_values(request, "component")

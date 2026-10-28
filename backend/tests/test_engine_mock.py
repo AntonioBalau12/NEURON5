@@ -4,11 +4,9 @@ from __future__ import annotations
 
 import csv
 import io
-import json
 from dataclasses import replace
 from pathlib import Path
 
-import pytest
 
 from app.engine.api import MappingSpec, create_engine
 from app.engine.mock_engine import (
