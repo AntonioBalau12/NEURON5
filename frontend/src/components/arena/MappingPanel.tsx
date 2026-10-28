@@ -150,7 +150,7 @@ export default function MappingPanel({
     <div className="mt-5 rounded-2xl border border-black/10 bg-white p-4 md:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-start gap-2.5">
-          <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#e6effa] text-[#1d6dd7]">
+          <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#d7f13b]/20 text-[#76910a]">
             <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
           </span>
           <div>
@@ -162,7 +162,7 @@ export default function MappingPanel({
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
-          {dataset.mapping?.autoDetected ? <Badge tone="blue">auto-detected</Badge> : null}
+          {dataset.mapping?.autoDetected ? <Badge tone="lime">auto-detected</Badge> : null}
           {confirmed ? (
             <Badge tone="green">confirmed</Badge>
           ) : (
@@ -185,8 +185,8 @@ export default function MappingPanel({
             onChange={(event) => setTextColumn(event.target.value)}
             aria-required="true"
             className={cx(
-              'w-full rounded-lg border bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:ring-2 focus:ring-[#1d6dd7]/15',
-              missingText ? 'border-red-400' : 'border-black/10 focus:border-[#1d6dd7]/50',
+              'w-full rounded-lg border bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:ring-2 focus:ring-[#9ebc19]/20',
+              missingText ? 'border-red-400' : 'border-black/10 focus:border-[#9ebc19]/50',
             )}
           >
             <option value="">Select a column…</option>
@@ -209,7 +209,7 @@ export default function MappingPanel({
             id="mapping-date-column"
             value={dateColumn}
             onChange={(event) => setDateColumn(event.target.value)}
-            className="w-full rounded-lg border border-black/10 bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15"
+            className="w-full rounded-lg border border-black/10 bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/20"
           >
             <option value="">— none —</option>
             {dataset.columns.map((column) => (
@@ -232,7 +232,7 @@ export default function MappingPanel({
             id="mapping-id-column"
             value={idColumn}
             onChange={(event) => setIdColumn(event.target.value)}
-            className="w-full rounded-lg border border-black/10 bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15"
+            className="w-full rounded-lg border border-black/10 bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/20"
           >
             <option value="">— none (r-&lt;index&gt;) —</option>
             {dataset.columns.map((column) => (
@@ -260,8 +260,8 @@ export default function MappingPanel({
             spellCheck={false}
             aria-invalid={!resultValid}
             className={cx(
-              'w-full rounded-lg border bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:ring-2 focus:ring-[#1d6dd7]/15',
-              resultValid ? 'border-black/10 focus:border-[#1d6dd7]/50' : 'border-red-400',
+              'w-full rounded-lg border bg-white px-2.5 py-2 font-mono text-[11px] text-[#202020] outline-none focus:ring-2 focus:ring-[#9ebc19]/20',
+              resultValid ? 'border-black/10 focus:border-[#9ebc19]/50' : 'border-red-400',
             )}
           />
           <p className="mt-1 text-[10px] text-black/35">

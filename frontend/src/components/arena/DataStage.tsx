@@ -49,7 +49,7 @@ export default function DataStage({
           onClick={() => setMode('manual')}
           className={cx(
             'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-bold transition-colors',
-            mode === 'manual' ? 'bg-[#1d6dd7] text-white shadow-sm' : 'text-black/55 hover:text-[#202020]',
+            mode === 'manual' ? 'bg-[#d7f13b] text-[#202020] shadow-sm shadow-[#d7f13b]/30' : 'text-black/55 hover:text-[#202020]',
           )}
         >
           <Table2 className="h-3.5 w-3.5" aria-hidden="true" /> Manual
@@ -61,7 +61,7 @@ export default function DataStage({
           onClick={() => setMode('bulk')}
           className={cx(
             'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-bold transition-colors',
-            mode === 'bulk' ? 'bg-[#1d6dd7] text-white shadow-sm' : 'text-black/55 hover:text-[#202020]',
+            mode === 'bulk' ? 'bg-[#d7f13b] text-[#202020] shadow-sm shadow-[#d7f13b]/30' : 'text-black/55 hover:text-[#202020]',
           )}
         >
           <UploadCloud className="h-3.5 w-3.5" aria-hidden="true" /> Bulk

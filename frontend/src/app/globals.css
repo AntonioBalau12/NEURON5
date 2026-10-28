@@ -12,9 +12,9 @@
   --black-0-1: rgba(0, 0, 0, 0.1);
   --neutral-100: #ebebeb;
   --neutral-200: #141414;
-  --primary-100: #1d6dd7;
-  --primary-200: #2859b5;
-  --primary-400: #263867;
+  --primary-100: #d7f13b;
+  --primary-200: #9ebc19;
+  --primary-400: #76910a;
   --accent: #d7f13b;
   --status-true: #10b981;
   --status-false: #ef4444;
@@ -60,7 +60,7 @@ body {
   justify-content: center;
   padding: 0.625rem 1.4rem;
   background-color: var(--primary-100);
-  color: #ffffff;
+  color: var(--black-100);
   border-radius: var(--border-12px);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -68,13 +68,13 @@ body {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(29, 109, 215, 0.25);
+  box-shadow: 0 4px 14px rgba(215, 241, 59, 0.35);
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .button-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(29, 109, 215, 0.35);
+  box-shadow: 0 6px 20px rgba(215, 241, 59, 0.5);
 }
 
 .button-primary:active {
@@ -110,7 +110,7 @@ body {
 }
 
 .button-primary.btn-dark .btn_fill {
-  background-color: var(--primary-200);
+  background-color: var(--primary-100);
 }
 
 /* Primate Skeleton Arm Rig (Bicep Curl Hierarchy) - Positioned behind mascot head */

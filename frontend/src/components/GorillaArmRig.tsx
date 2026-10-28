@@ -87,22 +87,26 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
       gsap.killTweensOf([viewportEl, rig, upperArm, forearm, hand, mascotContainerEl]);
 
       // Calculate off-screen reach and partial reveal geometry
-      const viewportRect = viewportEl.getBoundingClientRect();
-      const tableStartX = window.innerWidth - viewportRect.left + 100;
-      // Partial reveal position: left ~35% of the card is visible on screen
-      const partialTableX = Math.max(window.innerWidth * 0.34, 380);
+      // Uses natural offset independent of current transforms to prevent coordinate corruption
+      const cardWidth = viewportEl.offsetWidth || Math.min(window.innerWidth * 0.94, 980);
+      const naturalLeft = (window.innerWidth - cardWidth) / 2;
+      const tableStartX = window.innerWidth - naturalLeft + 80;
+      // Partial reveal position: left ~40% of the card is visible on screen
+      const partialTableX = Math.round(tableStartX * 0.44);
 
       const shoulderApproxX = window.innerWidth * 0.5 + 55;
       const targetReachDistance = window.innerWidth + 85 - shoulderApproxX;
       const baseReachLength = 560;
       const reachScale = Math.max(1.18, targetReachDistance / baseReachLength);
 
-      // Initialize table off-screen to the right
+      // Initialize table off-screen to the right (strictly on X axis, zero Y displacement, zero tilt)
+      viewportEl.style.visibility = 'visible';
       gsap.set(viewportEl, {
         x: tableStartX,
-        opacity: 0.95,
-        scale: 0.98,
-        rotation: 2.5,
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
       });
 
       // Initial state: Arm completely hidden below the bottom boundary
@@ -289,13 +293,15 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
         'step3_pullPart'
       );
 
-      // Table slides partially onto the screen
+      // Table slides partially onto the screen (strictly on X axis)
       tl.to(
         viewportEl,
         {
           x: partialTableX,
-          opacity: 0.98,
-          rotation: 1.4,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
           duration: 0.24,
           ease: 'smoothInOut',
         },
@@ -388,11 +394,12 @@ const GorillaArmRig = forwardRef<GorillaArmRigHandle, {}>((_props, ref) => {
         );
       }
 
-      // Table glides smoothly into center with cushioned cubic-bezier landing
+      // Table glides smoothly into center with cushioned cubic-bezier landing (strictly on X axis)
       tl.to(
         viewportEl,
         {
           x: 0,
+          y: 0,
           opacity: 1,
           scale: 1,
           rotation: 0,
