@@ -300,53 +300,81 @@ def gen_change(store: Store) -> list[Cand]:
             continue
         subject, attr = key
         changes = store.temporal.get_temporal_changes(subject, attr)
+        # flapping: a value that comes back after having been replaced is treated as noise
+        seq: list[TypedValue] = []
+        for o in sup:
+            if not seq or not same_value(o.value, seq[-1]):
+                seq.append(o.value)
+        flapping = any(same_value(seq[i], seq[j]) for i in range(len(seq)) for j in range(i + 2, len(seq)))
         for ch in changes:
             c = Cand("change", f"change|{subject}|{attr}|{ch.from_date}|{ch.to_date}", rule=f"change_rule={p.change_rule}")
             fv, tv = ch.from_value, ch.to_value
             c.form = {"subject": subject, "attribute": attr, "from": vdict(fv), "to": vdict(tv)}
             c.evidence = {"key": [subject, attr], "from_date": ch.from_date.isoformat(), "to_date": ch.to_date.isoformat(),
-                          "evidence_ids": list(ch.evidence_ids),
+                          "evidence_ids": list(ch.evidence_ids), "flapping": flapping,
                           "support": [_src(o, "support") for o in sup if o.row_id in ch.evidence_ids]}
-            pair = {o.row_id: o for o in sup if o.row_id in set(ch.evidence_ids)}
-            from_obs, to_obs = pair.get(ch.evidence_ids[0]), pair.get(ch.evidence_ids[-1])
-            if from_obs is None or to_obs is None or from_obs.on != ch.from_date or to_obs.on != ch.to_date:
-                c.reject("evidence", "change_endpoint_support_missing_or_date_mismatch")
+            status, why = store.engine_status("change", c.form)
+            c.engine = {"status": status, "reason": why}
+            if same_value(fv, tv):
+                c.reject("evidence", "endpoints_equivalent")
                 out.append(c)
                 continue
-            reason = verify_change_endpoints(store, key, from_obs, to_obs)
-            if reason:
-                c.reject("evidence", reason)
+            if fv.kind == "boolean" or tv.kind == "boolean":
+                c.reject("evidence", "boolean_change_not_generated")
                 out.append(c)
                 continue
-            c.verified = True
-            c.engine = {"status": EvidenceState.VERIFIED_SUPPORT.value,
-                        "reason": "change-specific verification: exact TRUE endpoints on strictly ordered dates"}
-            c.evidence["change_verification"] = {
-                "rule": "ordered_true_endpoints",
-                "support": [_src(from_obs, "from"), _src(to_obs, "to")],
-                "evidence_ids": [from_obs.row_id, to_obs.row_id],
-                "from_date": from_obs.on.isoformat(),
-                "to_date": to_obs.on.isoformat(),
-            }
-            c.flags.append("change_verified_by_ordered_true_endpoints")
-            c.confidence = 0.9
+            if status == EvidenceState.VERIFIED_SUPPORT.value:
+                c.verified = True
+            elif p.change_rule in ("corroborated", "safe_transition"):
+                reasons = []
+                if flapping:
+                    reasons.append("flapping_value_sequence")
+                def need(v: TypedValue) -> int:
+                    return 1 if (v.kind == "date" and isinstance(v.value, str) and len(v.value) == 10) else 2
+                nf, nt = len(_clean_rows(sup, fv)), len(_clean_rows(sup, tv))
+                if nf < need(fv):
+                    reasons.append(f"from_endpoint_uncorroborated({nf}<{need(fv)})")
+                if nt < need(tv):
+                    reasons.append(f"to_endpoint_uncorroborated({nt}<{need(tv)})")
+                if p.change_rule == "safe_transition":
+                    fr = [o for o in sup if same_value(o.value, fv)]
+                    to = [o for o in sup if same_value(o.value, tv)]
+                    if fr and to and not (min(o.on for o in fr) < max(o.on for o in to)):
+                        reasons.append("from_not_strictly_before_to")
+                    max_to_date = max(o.on for o in to) if to else None
+                    if max_to_date is not None:
+                        later = [o for o in store.obs.get(key, []) if o.on >= max_to_date and not same_value(o.value, tv)]
+                        if later:
+                            reasons.append("later_differing_observation")
+                if reasons:
+                    for r in reasons:
+                        c.reasons.append("evidence:" + r)
+                    c.status, c.stage = "rejected", "evidence"
+                    out.append(c)
+                    continue
+                c.verified = True
+                c.flags.append("safe_transition" if p.change_rule == "safe_transition" else "not_engine_verified:change_by_corroborated_pair")
+            else:
+                c.reject("evidence", "engine_change_candidate_only(observation dates do not establish a transition)")
+                out.append(c)
+                continue
+            c.confidence = 0.85 if p.change_rule == "safe_transition" else (0.8 if c.engine.get("status") != EvidenceState.VERIFIED_SUPPORT.value else 0.9)
             f, ferr = render.render_value(c.form["from"], store.names, p.allow_unlisted_names, attr)
             t, terr = render.render_value(c.form["to"], store.names, p.allow_unlisted_names, attr)
-            boolean_change = fv.kind == "boolean" and tv.kind == "boolean"
-            if boolean_change:
-                f = t = ""
-                ferr = terr = None
             if ferr or terr or f is None or t is None:
                 c.reject("render", ferr or terr or "value")
             else:
-                c.text = (render.boolean_change_text(subject, attr, bool(fv.value), bool(tv.value))
-                          if boolean_change else render.change_text(subject, attr, f, t))
+                if fv.kind == "date":
+                    # change sides state a date as a bare date, no preposition
+                    pass
+                if render.attr_has_unsafe_words(attr):
+                    c.reject("render", "attribute_words_unsafe:" + str(render.attr_has_unsafe_words(attr)))
+                else:
+                    c.text = render.change_text(subject, attr, f, t)
             out.append(c)
     return out
 
 
-# ------------------------------------------------------------------------------------------------
-# at_event
 # ------------------------------------------------------------------------------------------------
 def _event_date_state(store: Store, event: str) -> tuple[str | None, list[Obs], list[str]]:
     """Day of an event, from its verified date facts, or the reason it is not usable.

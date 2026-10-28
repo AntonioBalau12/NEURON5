@@ -19,15 +19,14 @@ from .ranker import RankedClaim, reported_confidence, score_candidate
 from .scheduler import AnytimeScheduler
 
 
-SAFE_STRATEGIES = ("fact", "compare", "relation", "at_event", "change")
+SAFE_STRATEGIES = ("fact", "compare", "change")
 
 
 class ClaimFactory:
     """Generate candidates only from TRUE-row form evidence in the P3 store.
 
-    Runtime-universe parser candidates remain UNVERIFIED and cannot support a
-    claim. P3's experimental `cross_date`, `safe_transition`, and
-    `relax_definitive` modes are deliberately not exposed here.
+    Runtime-universe parser candidates remain UNVERIFIED and cannot support a claim.
+    Generation uses the original P3 A+B+C strategies with the approved P3 policies.
     """
 
     def __init__(self, universe_csv: str | Path, lexicon_json: str | Path,
@@ -57,26 +56,46 @@ class ClaimFactory:
         result = store.asof_fact(key)
         if not result.accepted or result.last is None:
             return False
-        # Recency (including P3's strict-14-day heuristic) is not proof of
-        # persistence. Current-state claims require an observation on the
-        # contract as-of date, except for semantically immutable past event dates.
-        return result.immutable or (result.last.on == store.params.as_of and result.last.clean)
+        # P3's configured as-of policy already checks corroboration, blockers,
+        # volatility and freshness. Under relax_definitive it also admits its
+        # explicitly defined stable structural facts.
+        return result.accepted
 
     @staticmethod
     def _eligible(candidate: Any, store: Store) -> tuple[bool, str | None]:
         if not candidate.verified or candidate.status == "rejected":
             return False, "not_verified_by_p3"
-        if candidate.rule.startswith("change_rule=") and candidate.rule != "change_rule=engine":
+        if candidate.rule.startswith("change_rule=") and candidate.rule not in (
+            "change_rule=engine", "change_rule=safe_transition"
+        ):
             return False, "unsafe_change_strategy"
         if candidate.rule.startswith("relation_rule=") and candidate.rule != "relation_rule=engine":
             return False, "unsafe_relation_strategy"
         if "cross_attribute_compare" in candidate.flags:
-            return False, "cross_attribute_comparison"
+            # cross_date is the original P3 date-only mode. Permit only its
+            # immutable calendar-date comparisons; same_kind remains excluded.
+            if not (store.params.compare_scope == "cross_date"
+                    and candidate.evidence.get("scope") == "cross_attribute"
+                    and candidate.evidence.get("value_kind") == "date"):
+                return False, "cross_attribute_comparison"
         if candidate.type == "change":
             # Change uses its specific ordered-endpoint verifier: both values
             # were directly stated by clean, verified TRUE observations.
             proof = candidate.evidence.get("change_verification", {})
-            if (candidate.engine.get("status") != "VERIFIED_SUPPORT"
+            if candidate.rule == "change_rule=safe_transition":
+                # Original P3 proof: corroborated endpoint rows, no flapping,
+                # strict chronology, and no later differing observation.
+                evidence = candidate.evidence
+                ids = evidence.get("evidence_ids", [])
+                support = evidence.get("support", [])
+                support_ids = {item.get("row_id") for item in support if isinstance(item, dict)}
+                from_date, to_date = evidence.get("from_date", ""), evidence.get("to_date", "")
+                if ("safe_transition" not in candidate.flags or evidence.get("flapping") is True
+                        or not isinstance(ids, list) or len(set(ids)) < 2
+                        or not set(ids).issubset(support_ids)
+                        or not from_date or not to_date or from_date >= to_date):
+                    return False, "change_safe_transition_proof_missing"
+            elif (candidate.engine.get("status") != "VERIFIED_SUPPORT"
                     or proof.get("rule") != "ordered_true_endpoints"
                     or len(proof.get("evidence_ids", [])) < 2
                     or proof.get("from_date", "") >= proof.get("to_date", "")):
@@ -171,8 +190,8 @@ class ClaimFactory:
                  ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         started = time.monotonic()
         params = Params(min_support_rows=1, max_age_days=14, block_on_false_candidates=True,
-                        allow_unlisted_names=False, change_rule="engine", relation_rule="engine",
-                        compare_scope="same_attribute", staleness_rule="strict_14d")
+                        allow_unlisted_names=False, change_rule="safe_transition", relation_rule="engine",
+                        compare_scope="cross_date", staleness_rule="relax_definitive")
         store = Store(self.universe_csv, self.lexicon_json, params=params, reference_csv=self.practice_csv)
         store_seconds = time.monotonic() - started
         novelty = load_novelty_texts([self.universe_csv, self.practice_csv])

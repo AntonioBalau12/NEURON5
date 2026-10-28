@@ -202,6 +202,7 @@ def run(
         try:
             if manager.publish(inference_predictions, []):
                 predictions = inference_predictions
+                print(f"M2 inference completed: {len(inferred)} unlabeled rows")
             else:
                 print("classification checkpoint validation failed; keeping all-UNSURE checkpoint:",
                       *manager.last_validation[:30], sep="\n- ", file=sys.stderr)
@@ -228,7 +229,9 @@ def run(
             if candidates_path:
                 print("--candidates-json is not accepted for publication; candidates require P3 evidence provenance", file=sys.stderr)
             claims, metrics = factory.generate(on_checkpoint=checkpoint_claims)
-            print("claim factory:", json.dumps(metrics, sort_keys=True))
+            summary = {key: value for key, value in metrics.items()
+                       if key not in {"selected_claim_trace", "selected_shared_evidence_ids"}}
+            print("claim factory:", json.dumps(summary, sort_keys=True))
     except Exception as exc:
         print(f"claim generation failed; preserving the validated classification checkpoint: {exc}", file=sys.stderr)
         claims = []
