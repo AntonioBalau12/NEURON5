@@ -1,236 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI AGENT ARENA | POWERED BY NEURON5</title>
-  <link rel="icon" type="image/svg+xml" href="dot-grid.svg">
-  
-  <!-- Typography Styles -->
-  <style>
-    @font-face {
-      font-family: 'Creato Display';
-      src: url('./fonts/CreatoDisplay-Black.otf') format('opentype');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Creato Display';
-      src: url('./fonts/CreatoDisplay-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Creato Display';
-      src: url('./fonts/CreatoDisplay-Medium.otf') format('opentype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Creato Display';
-      src: url('./fonts/CreatoDisplay-Regular.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Figtree';
-      src: url('./fonts/Figtree-Variable.ttf') format('truetype');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
+  <title>AI AGENT ARENA</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    /* Design System Tokens */
-    :root {
-      --white-100: #fcfcfc;
-      --white-0-6: rgba(255, 255, 255, 0.6);
-      --black-100: #202020;
-      --black-0-7: rgba(0, 0, 0, 0.7);
-      --primary-100: #1d6dd7; /* QA DNA Electric Royal Blue */
-      --primary-200: #2859b5; /* QA DNA Sapphire Blue */
-      --accent: #d7f13b;
+    <!-- Typography Styles -->
+    <style>
+      @font-face {
+        font-family: 'Creato Display';
+        src: url('./fonts/CreatoDisplay-Black.otf') format('opentype');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
 
-      --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+      @font-face {
+        font-family: 'Creato Display';
+        src: url('./fonts/CreatoDisplay-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+      @font-face {
+        font-family: 'Creato Display';
+        src: url('./fonts/CreatoDisplay-Medium.otf') format('opentype');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: var(--white-100);
-      color: var(--black-100);
-      font-family: var(--font-body);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      user-select: none;
-    }
+      @font-face {
+        font-family: 'Creato Display';
+        src: url('./fonts/CreatoDisplay-Regular.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    /* Background Dot Grid Pattern */
-    .dot-grid {
-      position: absolute;
-      inset: 0;
-      background-image: url('./dot-grid.svg');
-      background-repeat: repeat;
-      background-size: 48px 48px;
-      opacity: 0.55;
-      pointer-events: none;
-      z-index: 0;
-    }
+      @font-face {
+        font-family: 'Figtree';
+        src: url('./fonts/Figtree-Variable.ttf') format('truetype');
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    /* Top Left Header (NEURON5 Branding) */
-    .top-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 2.25rem 4vw;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      z-index: 100;
-    }
+      /* Design System Tokens */
+      :root {
+        --white-100: #fcfcfc;
+        --white-0-6: rgba(255, 255, 255, 0.6);
+        --black-100: #202020;
+        --black-0-7: rgba(0, 0, 0, 0.7);
+        --primary-100: #1d6dd7;
+        /* QA DNA Electric Royal Blue */
+        --primary-200: #2859b5;
+        /* QA DNA Sapphire Blue */
+        --accent: #d7f13b;
 
-    .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      font-family: var(--font-display);
-      font-size: 1.875rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      cursor: default;
-    }
+        --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
 
-    .brand-logo .brand-text {
-      color: var(--black-100);
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    .brand-logo .brand-number {
-      color: var(--primary-100);
-      margin-left: 1px;
-    }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--white-100);
+        color: var(--black-100);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        user-select: none;
+      }
 
-    /* Centered Hero Stage */
-    .hero-stage {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-      padding: 0 1.5rem;
-    }
+      /* Background Dot Grid Pattern */
+      .dot-grid {
+        position: absolute;
+        inset: 0;
+        background-image: url('./dot-grid.svg');
+        background-repeat: repeat;
+        background-size: 48px 48px;
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: 0;
+      }
 
-    .hero-content {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transform: translateY(-8vh);
-      z-index: 5;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 5.5vw, 4.35rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      color: var(--black-100);
-      max-width: 90vw;
-    }
-
-    .hero-title .title-line {
-      display: block;
-    }
-
-    .hero-subtitle {
-      margin-top: 1.5rem;
-      font-family: var(--font-body);
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: var(--black-0-7);
-      letter-spacing: -0.01em;
-    }
-
-    /* Mascot Stage (Gorilla Peeking from Bottom) */
-    .hero-mascot-wrapper {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(440px, 45vw);
-      max-height: 42vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      z-index: 10;
-      overflow: visible;
-      pointer-events: auto;
-    }
-
-    .hero-mascot-canvas-container {
-      width: 100%;
-      aspect-ratio: 1;
-      position: relative;
-      /* Position so only forehead/eyes/sunglasses/nose peek over the bottom edge */
-      margin-bottom: -13.5%;
-      cursor: default;
-    }
-
-    #mascot-canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
+      /* Top Left Header (NEURON5 Branding) */
       .top-header {
-        padding: 1.5rem 5vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2.25rem 4vw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        z-index: 100;
       }
-      .brand-logo {
-        font-size: 1.5rem;
-      }
-      .hero-content {
-        transform: translateY(-10vh);
-      }
-      .hero-title {
-        font-size: clamp(1.85rem, 8vw, 2.75rem);
-      }
-      .hero-subtitle {
-        font-size: 1rem;
-        margin-top: 1rem;
-      }
-      .hero-mascot-wrapper {
-        width: min(340px, 80vw);
-        max-height: 38vh;
-      }
-      .hero-mascot-canvas-container {
-        margin-bottom: -15.5%;
-      }
-    }
-  </style>
 
-  <!-- Local Mascot Data & Rive Canvas Runtime -->
-  <script src="./mascot-asset.js"></script>
-  <script src="./rive.min.js"></script>
+      .brand-logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        font-family: var(--font-display);
+        font-size: 1.875rem;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        cursor: default;
+      }
+
+      .brand-logo .brand-text {
+        color: var(--black-100);
+      }
+
+      .brand-logo .brand-number {
+        color: var(--primary-100);
+        margin-left: 1px;
+      }
+
+      /* Centered Hero Stage */
+      .hero-stage {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        padding: 0 1.5rem;
+      }
+
+      .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-8vh);
+        z-index: 5;
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.25rem, 5.5vw, 4.35rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        text-transform: uppercase;
+        color: var(--black-100);
+        max-width: 90vw;
+      }
+
+      .hero-title .title-line {
+        display: block;
+      }
+
+      .hero-subtitle {
+        margin-top: 1.5rem;
+        font-family: var(--font-body);
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--black-0-7);
+        letter-spacing: -0.01em;
+      }
+
+      /* Mascot Stage (Gorilla Peeking from Bottom) */
+      .hero-mascot-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(440px, 45vw);
+        max-height: 42vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 10;
+        overflow: visible;
+        pointer-events: auto;
+      }
+
+      .hero-mascot-canvas-container {
+        width: 100%;
+        aspect-ratio: 1;
+        position: relative;
+        /* Position so only forehead/eyes/sunglasses/nose peek over the bottom edge */
+        margin-bottom: -13.5%;
+        cursor: default;
+      }
+
+      #mascot-canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .top-header {
+          padding: 1.5rem 5vw;
+        }
+
+        .brand-logo {
+          font-size: 1.5rem;
+        }
+
+        .hero-content {
+          transform: translateY(-10vh);
+        }
+
+        .hero-title {
+          font-size: clamp(1.85rem, 8vw, 2.75rem);
+        }
+
+        .hero-subtitle {
+          font-size: 1rem;
+          margin-top: 1rem;
+        }
+
+        .hero-mascot-wrapper {
+          width: min(340px, 80vw);
+          max-height: 38vh;
+        }
+
+        .hero-mascot-canvas-container {
+          margin-bottom: -15.5%;
+        }
+      }
+    </style>
+
+    <!-- Local Mascot Data & Rive Canvas Runtime -->
+    <script src="./mascot-asset.js"></script>
+    <script src="./rive.min.js"></script>
 </head>
+
 <body>
 
   <!-- Subtle Dot Grid Background Pattern -->
@@ -245,7 +260,7 @@
 
   <!-- Main Hero Stage -->
   <main class="hero-stage">
-    
+
     <!-- Title & Subtitle -->
     <div class="hero-content">
       <h1 class="hero-title">
@@ -325,7 +340,7 @@
 
       function dispatchPointer(x, y) {
         const rect = canvas.getBoundingClientRect();
-        
+
         // Dispatch synthetic pointermove to canvas so Rive state machine receives cursor position
         canvas.dispatchEvent(new PointerEvent('pointermove', {
           clientX: x,
@@ -354,4 +369,5 @@
     })();
   </script>
 </body>
+
 </html>
