@@ -263,7 +263,9 @@ class CandidateFactory:
         return dict(rrf), ids, {a:dict(v) for a,v in view_scores.items()}
 
     def generate(self, row_id: str, text: str, *, config: str = "R4", k: int = 5,
-                 collect_only: bool = False) -> tuple[list[Candidate], dict]:
+                 collect_only: bool = False,
+                 attribute_hints: Mapping[tuple[str, str], Mapping[str, float]] | None = None,
+                 value_span_hints: Iterable[ValueSpan] = ()) -> tuple[list[Candidate], dict]:
         """Return ranked hypotheses and explicit pre/post-cap counts."""
         if self._generation_started_at is None:
             self._generation_started_at = time.monotonic()
@@ -291,6 +293,16 @@ class CandidateFactory:
                                   exclude_calendar_days=True, protect_entity_numbers=True,
                                   complete_date_spans=True, complete_unit_spans=True)
         values = [ValueSpan(s.value, s.start, s.end) for s in raw_values]
+        # Optional adapters may add deterministic, claim-grounded typed spans.
+        # Reject any hint whose value is not the exact text inside its span.
+        for hint in value_span_hints:
+            valid_bounds = 0 <= hint.start < hint.end <= len(text)
+            literal_match = (valid_bounds and
+                             text[hint.start:hint.end].casefold() == str(hint.value.value).casefold())
+            boolean_relation = (valid_bounds and hint.value.kind == "boolean"
+                                and hint.method == "boolean_relation_polarity_span")
+            if literal_match or boolean_relation:
+                values.append(hint)
         # Preserve overlapping lexicon names as alternative name values too.
         values.extend(ValueSpan(TypedValue("name", entity.name), a, b, "lexicon_name_span")
                       for a, b, entity in entities)
@@ -372,6 +384,8 @@ class CandidateFactory:
                 # R1 retains a bounded shortlist; BM25 can introduce attributes
                 # outside it in R2 instead of merely reranking R1's same set.
                 attrs.update(a for a, _score in resolver_rank[:5])
+                evidence_hints = (attribute_hints or {}).get((entity.name, value.value.kind), {})
+                attrs.update(a for a in evidence_hints if a in compatible)
                 if use_templates:
                     # R4 asks the local-value and relation views in addition to full
                     # and masked claim retrieval; all records still map only to train forms.
@@ -408,6 +422,12 @@ class CandidateFactory:
                     if attr in resolver_scores:
                         cand.methods.add("tfidf_resolver_top20")
                         cand.scores["resolver"] = max(cand.scores.get("resolver", 0.0), resolver_scores[attr])
+                    if attr in evidence_hints:
+                        cand.methods.add("p2_evidence_attribute_link")
+                        cand.scores["p2_evidence_attribute_link"] = max(
+                            cand.scores.get("p2_evidence_attribute_link", 0.0),
+                            float(evidence_hints[attr]),
+                        )
                     if attr in bm_scores:
                         cand.methods.add("bm25_multiview")
                         cand.scores["bm25_rrf"] = max(cand.scores.get("bm25_rrf", 0.0), bm_scores[attr])
