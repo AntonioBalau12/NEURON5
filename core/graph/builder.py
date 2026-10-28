@@ -141,6 +141,8 @@ def build_graph(
     universe_rows: InputData | Iterable[EvidenceRecord] | Iterable[Mapping[str, Any]],
     lexicon: Lexicon | Mapping[str, Any] | str | Path | None = None,
     reference_evidence: InputData | Iterable[EvidenceRecord] | Iterable[Mapping[str, Any]] | None = None,
+    *,
+    extractor: Any | None = None,
 ) -> TemporalKnowledgeGraph:
     """Build indexed graph; text extraction always creates candidates, never truth."""
     issues: list[str] = []
@@ -190,9 +192,19 @@ def build_graph(
             if fact.value.kind in {"quantity", "duration"} and fact.value.unit:
                 known_units.add(fact.value.unit)
     parser = TextFactParser(resolved_lexicon, attribute_kinds, known_units)
+    if extractor is None:
+        from .semantic_extraction import selected_semantic_extractor
+        selected_extractor = selected_semantic_extractor(resolved_lexicon, attribute_kinds, known_units)
+    elif hasattr(extractor, "extract"):
+        selected_extractor = extractor
+    elif hasattr(extractor, "parse"):
+        from .semantic_extraction import P1ParserAdapter
+        selected_extractor = P1ParserAdapter(extractor)
+    else:
+        raise TypeError("extractor must provide extract(text, source_row_id) or parse(text)")
     graph = TemporalKnowledgeGraph(resolved_lexicon, entity_nodes(resolved_lexicon), issues=issues)
     for row in merged:
-        extracted = parser.parse(row.text)
+        extracted = selected_extractor.extract(row.text, row.row_id)
         form_facts = tuple(f for fact in row.facts if (f := _canonical_fact(fact, resolved_lexicon)) is not None)
         has_valid_form = bool(row.facts) and row.parse_status == "ok"
         if has_valid_form:
@@ -204,7 +216,7 @@ def build_graph(
             primary_facts = extracted.facts
             parse_status = extracted.status
             coverage = extracted.confidence
-            provenance = "deterministic_text_extraction"
+            provenance = f"semantic_extraction:{extracted.method}"
         extracted_facts = tuple(f for fact in extracted.facts if (f := _canonical_fact(fact, resolved_lexicon)) is not None)
         form_keys = {_exact_fact_key(fact) for fact in form_facts}
         all_evidence_facts = tuple({
@@ -216,6 +228,8 @@ def build_graph(
             row.row_id, row.text, row.label, row.date, all_evidence_facts,
             parse_status, coverage, provenance, tuple((*row.issues, *extracted.issues)),
             (row.row_id,) if row.label == "true" and has_valid_form else (),
+            extraction_candidates=tuple(replace(candidate, observed_on=row.date)
+                                        for candidate in extracted.candidates),
         )
         true_form = row.label == "true" and has_valid_form
         record_state = EvidenceState.VERIFIED_SUPPORT if true_form else EvidenceState.UNVERIFIED_CANDIDATE
@@ -250,8 +264,9 @@ def build_graph(
                 canonical, row.date, None, None, row.row_id,
                 EvidenceState.UNVERIFIED_CANDIDATE,
                 ParseStatus.FORM_GROUNDED if fact in form_facts else extracted.status,
-                "provided.form_fragment" if fact in form_facts else "deterministic_text_extraction",
-                0.5 if fact in form_facts else extracted.confidence,
+                "provided.form_fragment" if fact in form_facts else f"semantic_extraction:{extracted.method}",
+                0.5 if fact in form_facts else next((item.confidence for item in extracted.candidates
+                                                     if _exact_fact_key(item.fact) == _exact_fact_key(canonical)), extracted.confidence),
             ))
     _mark_same_day_conflicts(graph)
     _attach_evidence_references(graph)
@@ -265,6 +280,7 @@ def build_graph_from_paths(
     reference_csv: str | Path | None = None,
     *,
     use_packaged_practice: bool = True,
+    extractor: Any | None = None,
 ) -> TemporalKnowledgeGraph:
     """Convenience loader for the official runtime paths and local development."""
     universe = load_inputs(universe_csv, lexicon_json)
@@ -275,7 +291,7 @@ def build_graph_from_paths(
         if packaged.is_file():
             reference_csv = packaged
     references = load_inputs(reference_csv, lexicon_json) if reference_csv else None
-    return build_graph(universe, universe.lexicon, references)
+    return build_graph(universe, universe.lexicon, references, extractor=extractor)
 
 
 def _mark_same_day_conflicts(graph: TemporalKnowledgeGraph) -> None:

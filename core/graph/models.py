@@ -55,6 +55,20 @@ class FactRecord:
 
 
 @dataclass(frozen=True)
+class ExtractionCandidate:
+    fact: AtomicFact
+    source_row_id: str
+    method: str
+    confidence: float
+    span_start: int | None = None
+    span_end: int | None = None
+    ambiguous: bool = False
+    observed_on: date | None = None
+    subject_span_start: int | None = None
+    subject_span_end: int | None = None
+
+
+@dataclass(frozen=True)
 class GraphEvidence:
     source_row_id: str
     text: str
@@ -67,6 +81,7 @@ class GraphEvidence:
     issues: tuple[str, ...] = ()
     supporting_evidence_ids: tuple[str, ...] = ()
     contradicting_evidence_ids: tuple[str, ...] = ()
+    extraction_candidates: tuple[ExtractionCandidate, ...] = ()
 
 
 @dataclass(frozen=True)

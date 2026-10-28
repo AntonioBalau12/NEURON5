@@ -98,7 +98,7 @@ def _entity_mentions(text: str, lexicon: Lexicon) -> list[tuple[int, int, Entity
     return sorted(found)
 
 
-def _attribute_cues(attribute: str) -> tuple[str, ...]:
+def _attribute_cues(attribute: str, expanded: bool = False, distinctive_tokens: set[str] | None = None) -> tuple[str, ...]:
     words = attribute.replace("_", " ").split()
     if not words:
         return ()
@@ -107,13 +107,33 @@ def _attribute_cues(attribute: str) -> tuple[str, ...]:
     # Long attributes often use the final distinctive noun on the page.
     if len(words) > 1 and len(words[-1]) >= 5 and words[-1].casefold() not in {"other", "their", "about", "after", "before", "under", "since", "there", "which"}:
         cues.add(re.escape(words[-1]))
+    if expanded:
+        distinctive = distinctive_tokens or set()
+        for token in words:
+            lowered = token.casefold()
+            if len(lowered) < 4 or lowered not in distinctive:
+                continue
+            variants = {lowered}
+            if lowered.endswith("ies") and len(lowered) > 4:
+                variants.add(lowered[:-3] + "y")
+            elif lowered.endswith("s") and not lowered.endswith(("ss", "us", "is")):
+                variants.add(lowered[:-1])
+            for variant in variants:
+                cues.add(re.escape(variant))
     return tuple(sorted(cues, key=len, reverse=True))
 
 
-def _attribute_mentions(text: str, entity: EntityReference) -> list[tuple[int, int, str, int]]:
+def _attribute_mentions(text: str, entity: EntityReference, expanded: bool = False) -> list[tuple[int, int, str, int]]:
     mentions: list[tuple[int, int, str, int]] = []
+    token_attributes: dict[str, set[str]] = {}
+    if expanded:
+        for attribute in entity.attributes:
+            for token in attribute.replace("_", " ").split():
+                if len(token) >= 4:
+                    token_attributes.setdefault(token.casefold(), set()).add(attribute)
     for attribute in sorted(entity.attributes):
-        for cue in _attribute_cues(attribute):
+        distinctive = {token for token, attrs in token_attributes.items() if attrs == {attribute}}
+        for cue in _attribute_cues(attribute, expanded, distinctive):
             for match in re.finditer(r"(?<!\w)" + cue + r"(?!\w)", text, re.I):
                 word_count = len(attribute.split("_"))
                 mentions.append((match.start(), match.end(), attribute, word_count))
@@ -122,7 +142,7 @@ def _attribute_mentions(text: str, entity: EntityReference) -> list[tuple[int, i
 
 
 def _value_spans(text: str, entity_mentions: list[tuple[int, int, EntityReference]],
-                 known_units: Mapping[str, str]) -> list[_SpanValue]:
+                 known_units: Mapping[str, str], *, exclude_calendar_days: bool = False) -> list[_SpanValue]:
     values: list[_SpanValue] = []
     for match in _NUMBER_RE.finditer(text):
         start, end = match.span()
@@ -138,6 +158,9 @@ def _value_spans(text: str, entity_mentions: list[tuple[int, int, EntityReferenc
         number = _number(raw_number, decimal_comma=comma_decimal)
         op = _operator_before(text, start) or _operator_after(text, end)
         if _is_approximate(text, start, end):
+            continue
+        if exclude_calendar_days and re.match(r"\s*(?:st|nd|rd|th)?\s+(?:" + "|".join(_MONTHS) + r")\s+\d{4}\b", after, re.I):
+            # The day in a written calendar date is not a counted quantity.
             continue
         around = text[max(0, start - 20):min(len(text), end + 50)]
         magnitude_match = re.match(r"\s*(million|billion|trillion|thousand|bn|[kKmMbB])\b", after, re.I)
@@ -235,9 +258,10 @@ class TextFactParser:
     """Extract explicit fact candidates; extraction alone never verifies them."""
 
     def __init__(self, lexicon: Lexicon, attribute_kinds: Mapping[str, str] | None = None,
-                 known_units: Iterable[str] = ()):
+                 known_units: Iterable[str] = (), *, expanded_attribute_cues: bool = False):
         self.lexicon = lexicon
         self.attribute_kinds = dict(attribute_kinds or {})
+        self.expanded_attribute_cues = expanded_attribute_cues
         self.known_units: dict[str, str] = {}
         for unit in sorted(set(known_units), key=str.casefold):
             self.known_units.setdefault(unit.casefold(), unit)
@@ -250,7 +274,8 @@ class TextFactParser:
         facts: list[AtomicFact] = []
         issues: list[str] = []
         mentions = _entity_mentions(text, self.lexicon)
-        spans = _value_spans(text, mentions, self.known_units)
+        spans = _value_spans(text, mentions, self.known_units,
+                             exclude_calendar_days=self.expanded_attribute_cues)
         for sentence_match in re.finditer(r"[^\n]+?(?:[.!?](?=\s|$)|$)", text):
             sentence = sentence_match.group()
             sentence_start = sentence_match.start()
@@ -269,11 +294,30 @@ class TextFactParser:
                 clause_start = max((point for point in boundaries if point <= local_start), default=0)
                 clause_end = min((point for point in boundaries if point > local_start), default=len(sentence))
                 clause = sentence[clause_start:clause_end]
-                all_attr_mentions = _attribute_mentions(clause, entity)
+                all_attr_mentions = _attribute_mentions(clause, entity, self.expanded_attribute_cues)
+                # A lexicon name cannot simultaneously supply its attribute cue.
+                if self.expanded_attribute_cues:
+                    entity_spans_in_clause = [(a - sentence_start - clause_start, b - sentence_start - clause_start)
+                                              for a, b, _ in local_entities
+                                              if a < sentence_start + clause_end and b > sentence_start + clause_start]
+                    all_attr_mentions = [mention for mention in all_attr_mentions
+                                         if not any(mention[0] < end and mention[1] > start
+                                                    for start, end in entity_spans_in_clause)]
+                    exact_cues = set(_attribute_mentions(clause, entity, False))
+                    all_attr_mentions = [mention for mention in all_attr_mentions
+                                         if self.attribute_kinds.get(mention[2]) != "boolean" or mention in exact_cues]
                 nearest_attr: dict[str, tuple[int, int, str, int]] = {}
                 for mention in all_attr_mentions:
                     current = nearest_attr.get(mention[2])
-                    if current is None or _distance(local_start, local_end, mention[0], mention[1]) < _distance(local_start, local_end, current[0], current[1]):
+                    mention_start, mention_end = mention[0], mention[1]
+                    current_distance = _distance(local_start, local_end, current[0], current[1]) if current else None
+                    if self.expanded_attribute_cues:
+                        mention_start += clause_start
+                        mention_end += clause_start
+                        if current is not None:
+                            current_distance = _distance(local_start, local_end, current[0] + clause_start, current[1] + clause_start)
+                    candidate_distance = _distance(local_start, local_end, mention_start, mention_end)
+                    if current is None or candidate_distance < current_distance:
                         nearest_attr[mention[2]] = mention
                 attr_mentions = [(a + clause_start, b + clause_start, name, specificity)
                                  for a, b, name, specificity in nearest_attr.values()]
