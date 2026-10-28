@@ -13,6 +13,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 
 from ..engine.api import (
+    ClassifierUnavailable,
     Engine,
     MappingSpec,
     ProcessOutcome,
@@ -194,7 +195,7 @@ async def run_job(state: ApiState, job: JobRecord) -> None:
                 pass
 
         def work() -> ProcessOutcome:
-            engine = engine_factory(state.settings.data_dir, settings=state.settings)
+            engine = engine_factory(settings=state.settings)
             try:
                 return process_csv(
                     job.input_path,
@@ -216,35 +217,22 @@ async def run_job(state: ApiState, job: JobRecord) -> None:
             outcome = await asyncio.to_thread(work)
         except asyncio.CancelledError:
             raise
-        except Exception as exc:
-            # Classifier-service failures are infrastructure errors, distinct
-            # from a processor bug.  Match by class name so the API keeps its
-            # dependency on the frozen engine seam only, not on remote_engine.
-            failure_name = type(exc).__name__
-            if failure_name == "ClassifierUnavailable":
-                logger.warning("Classifier unavailable for job %s: %s", job.id, exc)
-                _finalize_failure(
-                    state,
-                    job,
-                    "CLASSIFIER_UNAVAILABLE",
-                    "The classification service is unavailable.",
-                )
-            elif failure_name == "ClassifierTimeout":
-                logger.warning("Classifier timed out for job %s: %s", job.id, exc)
-                _finalize_failure(
-                    state,
-                    job,
-                    "TIMEOUT",
-                    "The classification service did not answer in time.",
-                )
-            else:
-                logger.exception("Processor failed for job %s", job.id)
-                _finalize_failure(
-                    state,
-                    job,
-                    "PROCESSOR_ERROR",
-                    "The processor failed unexpectedly.",
-                )
+        except ClassifierUnavailable as exc:
+            logger.warning("Classifier unavailable for job %s: %s", job.id, exc)
+            _finalize_failure(
+                state,
+                job,
+                "CLASSIFIER_UNAVAILABLE",
+                "The local classification model could not be loaded.",
+            )
+        except Exception:
+            logger.exception("Processor failed for job %s", job.id)
+            _finalize_failure(
+                state,
+                job,
+                "PROCESSOR_ERROR",
+                "The processor failed unexpectedly.",
+            )
         else:
             if not isinstance(outcome, ProcessOutcome):
                 logger.error("Processor returned %r for job %s", type(outcome), job.id)

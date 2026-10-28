@@ -325,81 +325,45 @@ filename="result-<jobid>.csv"`, streamed in chunks. `409 JOB_NOT_READY` before c
 Available for a short grace period after completion (`result_grace_seconds`, 10 min);
 after cleanup the job and its artifacts are removed (`404 NOT_FOUND`).
 
-## 7. Processor behaviour and the remote classification service
+## 7. Processor behaviour and local classification
 
-The classification itself is owned by the teammates. This backend makes an HTTP
-request to their service(s) with the dataset payload and stores what comes back as
-the job result. There is **no local classifier and no LLM**.
+Jobs classify rows with the fitted local prototype at `backend/scripts/adapter.joblib`
+(SHA-256 `9200b1536c6df28609e4e8b36a3aaefc16a08cecf1278392d878f847d609fd2a`).
+The model path can be changed with `NEURON_MODEL_PATH`; the default is resolved from
+the backend package, so it does not depend on the process working directory. A loaded
+artifact is cached per process and path. Restart the backend after replacing an
+artifact at the same path. Model-load or artifact errors fail the job with
+`failureReason: "CLASSIFIER_UNAVAILABLE"`; no mock labels are generated.
 
-### Internal engine factory compatibility
+The local adapter uses the mapped text and date fields. Text must be nonempty and
+the date must be present and ISO `yyyy-mm-dd`. An empty sentence or missing/invalid
+date produces `unsure` plus a structured row error; the backend does not invent a
+date. A valid prediction is the model's argmax between `true` and `false`; if its
+probability is below `0.5`, the label is `unsure`. Confidence is used internally and
+is not serialized in the current API or CSV output.
 
-The backend factory is `create_engine(data_dir: str | Path | None = None, *,
-settings: Settings | None = None) -> Engine`. The optional positional `data_dir` keeps
-legacy standalone calls compatible. Calls that omit `settings` use `get_settings()`;
-application jobs pass their application's `Settings` explicitly so the selected adapter
-uses the configured classifier URLs, mode, multipart field name, timeout, retries, token,
-`as_of`, and DEMO delay. This is an internal construction detail and does not change the
-HTTP routes, request/response schemas, or the `Engine` dataclasses and
-`prepare/classify/close` protocol.
+### CSV output and mapping
 
-### Request
-When `NEURON_CLASSIFIER_URLS` is empty the backend uses the in-process **DEMO**
-classifier (`app/engine/mock_engine.py`): no HTTP request, placeholder labels, and a
-`WARN` "DEMO classifier" event in the job log. This mode exists so the frontend works
-with zero configuration; setting the URLs switches to the real service.
+The processor streams the dataset snapshot through the local row engine. It keeps
+all input columns in their original order, preserves every non-result cell (including
+`form` for the `id,text,date,label,form` practice schema), and overwrites the mapped
+result column. If the mapped result column did not exist, it appends that column.
+Rows remain in input order and the output has the same number of rows. These are the
+same output invariants checked before `resultAvailable` becomes true; no confidence
+column is added.
 
-Configured with `NEURON_CLASSIFIER_URLS` (comma-separated POST endpoints, tried in
-order on transport/5xx failures). Two payload modes:
+### Progress, errors and deadlines
 
-- `NEURON_CLASSIFIER_MODE=csv` (default): `multipart/form-data`, file field
-  `NEURON_CLASSIFIER_FIELD_NAME` (default `file`), filename = dataset snapshot name,
-  content-type `text/csv`; extra form fields `asOf` and `mapping` (JSON string).
-- `NEURON_CLASSIFIER_MODE=rows`: JSON
-  `{"asOf": "...", "mapping": {...}, "columns": [...], "rows": [{"col": "value", ...}, ...]}`.
+The existing job and event contracts remain unchanged. Row processing emits the
+existing `step.started`, `step.completed`, `progress.updated`, `row.failed`, and
+`log.recorded` events. Progress counts use `true`, `false`, `unsure`, and `fallback`;
+row errors appear through the existing errors endpoint and `row.failed` event shape.
 
-Optional `NEURON_CLASSIFIER_TOKEN` adds `Authorization: Bearer <token>`.
-Timeout: `NEURON_CLASSIFIER_TIMEOUT_SECONDS` (default 1800) capped by the job deadline.
-Long requests are not retried by default (`NEURON_CLASSIFIER_RETRIES=0`); a second
-endpoint in the list is only tried when the first fails at transport level or with 5xx.
-
-### Response
-The returned table is authoritative. Accepted shapes:
-
-- CSV bytes with `Content-Type: text/csv` (or `text/plain`),
-- JSON `{"csv": "<csv text>"}`,
-- JSON `{"columns": [...], "rows": [[...]]}`,
-- JSON `{"rows": [{"<original column>": ..., "label": "..."}]}` (full rows),
-- JSON `{"results": [{"id": "...", "label": "true|false|unsure", "confidence": 0.9}]}`
-  (narrow labels, merged by id into the snapshot: columns/order preserved, result
-  column filled or appended),
-- a JSON list of any of the above, or an object keyed by row id.
-
-Labels are normalised (`true/false/unsure`, `unknown/uncertain → unsure`). A row
-missing from a narrow-label answer, or with an unreadable label, gets `unsure` plus a
-structured error (`REMOTE_MISSING_RESULT`, `REMOTE_INVALID_LABEL`) instead of failing
-the whole job. The source is controlled by the teammates: when the service returns a
-complete table, the backend does not try to re-derive labels.
-
-### Failure semantics
-- Transport error / HTTP 4xx-5xx / timeout before any valid answer →
-  job `failed`, `failureReason` `CLASSIFIER_UNAVAILABLE` (no output is invented).
-- Deadline reached while waiting → job `failed`, `failureReason` `TIMEOUT`.
-- Response that is neither CSV nor a recognised JSON shape →
-  job `failed`, `failureReason` `INVALID_OUTPUT`.
-- A returned table that is not valid UTF-8 CSV with a header →
-  job `failed`, `failureReason` `INVALID_OUTPUT`.
-- The processor runs the request in a worker thread; the event loop, WebSocket
-  logs and job polling stay responsive. Events emitted while waiting:
-  `step.started` (remote), then `step.completed` with the row count, then `validate`.
-- Output CSV: the table returned by the service (or the snapshot merged with narrow
-  labels), stored atomically and validated (UTF-8, header, parseable rows) before
-  `resultAvailable` becomes true. It must keep the snapshot's row count and order and
-  contain the confirmed result column; a violation fails the job with `INVALID_OUTPUT`
-  (the remote engine's merge path is the adapter that guarantees this invariant).
-- `counts` in the job summary are derived from the result column (`label` or the
-  confirmed mapping result column); `fallback` counts unreadable labels. If the
-  service returns a table without any label column, counters are zero and the table
-  is still downloadable.
+The worker checks the job deadline between rows. If the deadline has expired, the
+remaining rows are written as `unsure` fallbacks, and the completed job includes the
+existing `TIMED_OUT_FALLBACK` warning. A running model inference is not interrupted
+mid-row. A missing or unloadable model is an infrastructure failure, not a row-level
+prediction and not a source of fallback labels.
 
 ## 8. Frontend behaviour required by this contract
 

@@ -1,24 +1,18 @@
-"""Standalone processor entry point (no HTTP API, no browser).
-
-Sends the CSV to the teammates' HTTP classification service and writes the
-returned table. Useful for etapa B validation and for debugging the remote
-integration without starting FastAPI.
-
-  python -m app.engine.cli --input ../data/practice.csv --output /tmp/out.csv \
-      --text-column text --date-column date --id-column id --result-column label \
-      --classifier-url http://127.0.0.1:8010/classify
-"""
+"""Run the local model over a CSV without starting FastAPI."""
 
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
 import json
 import os
+from pathlib import Path
 import sys
 import time
 
-from .api import MappingSpec, process_csv
-from .remote_engine import ClassifierUnavailable, RemoteClassifierEngine
+from ..config import get_settings
+from .api import ClassifierUnavailable, MappingSpec, create_engine, process_csv
+from .processor import ProcessingError
 
 
 def emit(event_type: str, payload: dict) -> None:
@@ -28,41 +22,45 @@ def emit(event_type: str, payload: dict) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="CSV -> classification service -> labelled CSV")
+    parser = argparse.ArgumentParser(description="CSV -> local LightGBM model -> labelled CSV")
     parser.add_argument("--input", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--model", type=Path, help="override NEURON_MODEL_PATH")
     parser.add_argument("--text-column", default="text")
     parser.add_argument("--date-column", default="date")
     parser.add_argument("--id-column", default="id")
     parser.add_argument("--result-column", default="label")
-    parser.add_argument("--classifier-url", action="append", default=[], help="repeatable; overrides env")
-    parser.add_argument("--classifier-mode", default=os.environ.get("NEURON_CLASSIFIER_MODE", "csv"), choices=["csv", "rows"])
-    parser.add_argument("--as-of", default=os.environ.get("NEURON_AS_OF", "2026-10-29"))
     parser.add_argument("--deadline-seconds", type=int, default=0, help="0 = no local deadline")
     args = parser.parse_args(argv)
-
-    urls = tuple(args.classifier_url) or tuple(
-        u.strip() for u in (os.environ.get("NEURON_CLASSIFIER_URLS") or os.environ.get("NEURON_CLASSIFIER_URL") or "").split(",") if u.strip()
-    )
-    if not urls:
-        print("no classifier URL: pass --classifier-url or set NEURON_CLASSIFIER_URLS", file=sys.stderr)
-        return 2
-
-    engine = RemoteClassifierEngine(urls, mode=args.classifier_mode, as_of=args.as_of)
+    if args.deadline_seconds < 0:
+        parser.error("--deadline-seconds must be non-negative")
+    deadlines = [time.time() + args.deadline_seconds] if args.deadline_seconds else []
+    if os.environ.get("ARENA_DEADLINE"):
+        try:
+            deadlines.append(float(os.environ["ARENA_DEADLINE"]))
+        except ValueError:
+            parser.error("ARENA_DEADLINE must be Unix seconds")
+    deadline = min(deadlines) if deadlines else None
+    settings = get_settings()
+    if args.model is not None:
+        settings = replace(settings, model_path=args.model)
     mapping = MappingSpec(
         text_column=args.text_column,
         date_column=args.date_column or None,
         id_column=args.id_column or None,
         result_column=args.result_column,
     )
-    deadline = time.time() + args.deadline_seconds if args.deadline_seconds else None
+    engine = None
     try:
-        outcome = process_csv(args.input, args.output, mapping, engine, deadline_epoch=deadline, emit=emit, as_of=args.as_of)
-    except ClassifierUnavailable as exc:
-        print(json.dumps({"ok": False, "error": "CLASSIFIER_UNAVAILABLE", "message": str(exc)}, ensure_ascii=False, indent=2))
+        engine = create_engine(settings=settings)
+        outcome = process_csv(args.input, args.output, mapping, engine, deadline_epoch=deadline, emit=emit)
+    except (ClassifierUnavailable, ProcessingError, OSError) as exc:
+        code = "CLASSIFIER_UNAVAILABLE" if isinstance(exc, ClassifierUnavailable) else "PROCESSOR_ERROR"
+        print(json.dumps({"ok": False, "error": code, "message": str(exc)}, ensure_ascii=False))
         return 1
     finally:
-        engine.close()
+        if engine is not None:
+            engine.close()
     print(json.dumps({
         "ok": outcome.valid,
         "output": str(outcome.output_path),

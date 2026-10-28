@@ -6,7 +6,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+BACKEND_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _env_int(name: str, default: int) -> int:
@@ -24,24 +24,9 @@ def _env_path(name: str, default: Path) -> Path:
     return Path(raw).expanduser().resolve() if raw else default
 
 
-def _env_urls() -> tuple[str, ...]:
-    raw = os.environ.get("NEURON_CLASSIFIER_URLS") or os.environ.get("NEURON_CLASSIFIER_URL") or ""
-    return tuple(u.strip() for u in raw.replace("\n", ",").split(",") if u.strip())
-
-
-def _env_float(name: str, default: float) -> float:
-    raw = os.environ.get(name)
-    if not raw:
-        return default
-    try:
-        return float(raw)
-    except ValueError:
-        return default
-
-
 @dataclass(frozen=True)
 class Settings:
-    data_dir: Path
+    model_path: Path
     temp_dir: Path
     manual_max_bytes: int = 1_000_000
     bulk_max_bytes: int = 10_000_000
@@ -54,15 +39,6 @@ class Settings:
     page_max_rows: int = 200
     progress_every_rows: int = 50
     as_of_date: str = "2026-10-29"
-    # Classification is done by the teammates' HTTP services, not locally.
-    classifier_urls: tuple[str, ...] = ()
-    classifier_mode: str = "csv"  # csv (multipart CSV upload) | rows (JSON rows)
-    classifier_field_name: str = "file"
-    classifier_timeout_seconds: float = 30 * 60
-    classifier_retries: int = 0
-    classifier_token: str | None = None
-    #: artificial delay of the in-process DEMO classifier (no URLs configured)
-    mock_delay_seconds: float = 1.0
     cookie_name: str = "n5_session"
     cors_origins: tuple[str, ...] = (
         "http://localhost:3000",
@@ -72,7 +48,7 @@ class Settings:
 
 def get_settings() -> Settings:
     return Settings(
-        data_dir=_env_path("NEURON_DATA_DIR", REPO_ROOT / "data"),
+        model_path=_env_path("NEURON_MODEL_PATH", BACKEND_ROOT / "scripts" / "adapter.joblib"),
         temp_dir=_env_path("NEURON_TEMP_DIR", Path(os.environ.get("TMPDIR", "/tmp"))),
         manual_max_bytes=_env_int("NEURON_MANUAL_MAX_BYTES", 1_000_000),
         bulk_max_bytes=_env_int("NEURON_BULK_MAX_BYTES", 10_000_000),
@@ -85,11 +61,4 @@ def get_settings() -> Settings:
         page_max_rows=_env_int("NEURON_PAGE_MAX_ROWS", 200),
         progress_every_rows=_env_int("NEURON_PROGRESS_EVERY_ROWS", 50),
         as_of_date=os.environ.get("NEURON_AS_OF", "2026-10-29"),
-        classifier_urls=_env_urls(),
-        classifier_mode=os.environ.get("NEURON_CLASSIFIER_MODE", "csv"),
-        classifier_field_name=os.environ.get("NEURON_CLASSIFIER_FIELD_NAME", "file"),
-        classifier_timeout_seconds=_env_float("NEURON_CLASSIFIER_TIMEOUT_SECONDS", 30 * 60),
-        classifier_retries=_env_int("NEURON_CLASSIFIER_RETRIES", 0),
-        classifier_token=os.environ.get("NEURON_CLASSIFIER_TOKEN") or None,
-        mock_delay_seconds=_env_float("NEURON_MOCK_DELAY_SECONDS", 1.0),
     )

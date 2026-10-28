@@ -1,4 +1,4 @@
-"""Processor tests: both remote (whole-dataset HTTP) and row-engine modes."""
+"""Processor tests for row-engine CSV handling."""
 
 from __future__ import annotations
 
@@ -6,12 +6,8 @@ import csv
 import time
 from pathlib import Path
 
-import httpx
-import pytest
-
 from app.engine.api import MappingSpec, RowDecision
 from app.engine.processor import process_csv
-from app.engine.remote_engine import ClassifierUnavailable, RemoteClassifierEngine
 
 MAPPING = MappingSpec(text_column="text", date_column="date", id_column="id", result_column="label")
 
@@ -110,18 +106,6 @@ def test_row_errors_do_not_stop_the_job(tmp_path):
     assert any(event_type == "progress.updated" for event_type, _ in events)
 
 
-def test_invalid_date_is_reported_and_the_row_still_classifies(tmp_path):
-    source = write_csv(tmp_path / "in.csv", ["id", "text", "date"], [
-        ["r-1", "true sentence", "not-a-date"],
-    ])
-    target = tmp_path / "out.csv"
-    engine = FakeEngine()
-    outcome = process_csv(source, target, MAPPING, engine)
-    assert outcome.counts["true"] == 1
-    assert outcome.errors[0]["code"] == "INVALID_DATE"
-    assert engine.calls[0].row_date is None
-
-
 def test_deadline_writes_fallback_rows_instead_of_hanging(tmp_path):
     source = write_csv(tmp_path / "in.csv", ["id", "text", "date"], [
         ["r-1", "true sentence", "2026-01-01"],
@@ -136,35 +120,3 @@ def test_deadline_writes_fallback_rows_instead_of_hanging(tmp_path):
     assert engine.calls == []
     _, rows = read_csv(target)
     assert [row["label"] for row in rows] == ["unsure", "unsure"]
-
-
-def test_remote_mode_stores_the_service_table(tmp_path):
-    source = write_csv(tmp_path / "in.csv", ["id", "text", "date", "label"], [
-        ["r-1", "true sentence", "2026-01-01", ""],
-        ["r-2", "false sentence", "2026-01-02", ""],
-    ])
-
-    def handler(request: httpx.Request) -> httpx.Response:
-        body = "id,text,date,label\nr-1,true sentence,2026-01-01,true\nr-2,false sentence,2026-01-02,false\n"
-        return httpx.Response(200, headers={"content-type": "text/csv"}, content=body.encode())
-
-    engine = RemoteClassifierEngine(["http://classifier.test/classify"], transport=httpx.MockTransport(handler))
-    target = tmp_path / "out.csv"
-    outcome = process_csv(source, target, MAPPING, engine)
-    assert outcome.valid is True
-    assert outcome.total_rows == 2
-    assert outcome.counts == {"true": 1, "false": 1, "unsure": 0, "fallback": 0}
-    _, rows = read_csv(target)
-    assert [row["label"] for row in rows] == ["true", "false"]
-
-
-def test_remote_mode_propagates_unavailable_service(tmp_path):
-    source = write_csv(tmp_path / "in.csv", ["id", "text", "date", "label"], [["r-1", "a", "2026-01-01", ""]])
-
-    def handler(request: httpx.Request) -> httpx.Response:
-        raise httpx.ConnectError("refused", request=request)
-
-    engine = RemoteClassifierEngine(["http://classifier.test/classify"], transport=httpx.MockTransport(handler))
-    with pytest.raises(ClassifierUnavailable):
-        process_csv(source, tmp_path / "out.csv", MAPPING, engine)
-    assert not (tmp_path / "out.csv").exists()

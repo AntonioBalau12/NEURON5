@@ -13,7 +13,7 @@ Scop: consemnarea diferențelor dintre plan (`frontend/public/PLAN_ARHITECTURA_A
 | Site static vechi (index.html, previewN.html, DESIGN.md) | rădăcină repo | nu se atinge |
 | Fundație Python deterministă (ingestie CSV, lexicon, valori tipizate, validare output) existentă pe `origin/codex/p0-contract-foundation` | `foundation.py` (branch) | copiată inițial în `backend/app/engine/foundation.py`; auditul cleanup-ului a confirmat că modulul nu este folosit de orchestrator |
 | Backend / API | **nu exista** | creat în `backend/` (FastAPI), conform cerinței utilizatorului |
-| Clasificator | **nu exista** pe `main` și **nu se construiește aici** | clasificarea este a colegilor: backend-ul trimite HTTP payload-ul datasetului către serverul lor și stochează răspunsul (date sau CSV). Claims = în afara scopului acestui build |
+| Clasificator | adaptorul local fitted din `backend/scripts/adapter.joblib` | prototip local LightGBM pentru etichetele `true`/`false`/`unsure`; nu generează claims |
 
 Constrângeri explicite de la utilizator: modificări doar în `frontend/` și `backend/` nou;
 fără commit-uri (doar branch-ul `feature/backend`); frontend deja pornit pe `localhost:3000`.
@@ -25,14 +25,17 @@ fără commit-uri (doar branch-ul `feature/backend`); frontend deja pornit pe `l
 `unsure`. Planul mai pomenește `unsafe`; **`unsafe` nu există în contract și nu se emite
 niciodată**. Rezolvare: pentru rândurile care nu pot fi clasificate (eroare tehnică, text gol,
 lipsă de dovezi) se folosește `unsure` + eroare structurată, exact cum permite contractul.
-Nu se mapează `unsure` la `false`.
+Nu se mapează `unsure` la `false`. În API-ul CSV curent confidence este folosit intern
+de model, dar nu se expune în răspunsuri sau în CSV; coloanele contractuale rămân
+neschimbate.
 
 ## D2 — Coloane de intrare și ieșire
 
 Contractul juraților fixează schema de input (`id,text,date,label`) și output
 `id,type,text,form,label,confidence`. Aplicația din plan e însă generică. Rezolvare pentru app:
 
-- mapping obligatoriu înainte de job: coloana text (obligatorie), coloana dată (opțională),
+- mapping obligatoriu înainte de job: coloana text (obligatorie), coloana dată (opțională
+  în UI, dar necesară modelului; lipsa ei produce `unsure` + eroare),
   coloana id (opțională, altfel rândurile primesc `r-<index>` stabil), coloana rezultat.
 - dacă coloana rezultat există, valorile ei sunt suprascrise în output; dacă nu există, se
   **adaugă** o coloană la final (permisiune explicită D2). CSV-ul original nu e modificat.
@@ -50,8 +53,7 @@ Echipa primește fișiere cu exact aceste cinci coloane, în această ordine (ex
   value}`; rândurile problematice nu blochează upload-ul, adaugă warning-ul
   `PRACTICE_ROW_ERRORS`;
 - coloana `form` este păstrată neatinsă atât în snapshot, cât și în output-ul final;
-  payload-ul către serviciul colegilor conține toate cele cinci câmpuri (modul `csv`
-  trimite fișierul, modul `rows` trimite obiecte cu toate coloanele);
+  clasificatorul folosește textul și data mapate;
 - CSV-urile generice rămân acceptate (`format: "generic"`, mapping confirmat manual).
 
 ## D3 — Semantica `unsafe`
@@ -74,77 +76,59 @@ Se păstrează schema logică și ordinea, nu identitatea byte-cu-byte: output-u
 `csv.writer` (quoting corect), aceleași coloane + eventuala coloană rezultat, aceleași
 valori logice, `\n` ca line terminator. Nu se normalizează conținutul celulelor.
 
-## D6 — Strategie de inferență: serviciul HTTP al colegilor
+## D6 — Strategie de inferență: adaptorul local fitted
 
-**Backend-ul nu clasifică nimic.** Colegii dețin motorul de clasificare; backend-ul este
-orchestrator + proxy: trimite datasetul (snapshot CSV prin multipart sau JSON `rows`) către
-unul sau mai multe endpoint-uri HTTP configurate prin `NEURON_CLASSIFIER_URLS` și așteaptă
-răspunsul, care poate fi CSV direct sau date (JSON) — vezi `docs/API_CONTRACT.md` §7.
-Răspunsul serviciului este tabelul autoritativ al jobului; când serviciul întoarce doar
-etichete înguste (`id` + `label`), backend-ul le îmbină cu snapshot-ul păstrând coloanele,
-ordinea și rândurile.
+Backend-ul folosește `backend/scripts/adapter.joblib`, prototipul local fitted
+(SHA-256 `9200b1536c6df28609e4e8b36a3aaefc16a08cecf1278392d878f847d609fd2a`). Calea
+implicită este `backend/scripts/adapter.joblib`; `NEURON_MODEL_PATH` o poate înlocui.
+Modelul este încărcat și memorat în cache per proces și cale; după înlocuirea artefactului
+la aceeași cale se repornește backend-ul. Artefactul lipsă sau imposibil de încărcat
+înseamnă eșecul jobului cu `CLASSIFIER_UNAVAILABLE`; nu există fallback mock/demo și nu
+se inventează etichete. Prototipul clasifică rândurile existente și nu generează claims.
 
-Consecințe:
-- nu există model real, lexicon sau inferență locală; `app/engine/remote_engine.py` este
-  clientul HTTP, `app/engine/processor.py` doar stochează și validează răspunsul.
-- pentru dezvoltare zero-config există un **mock intern DEMO** (`app/engine/mock_engine.py`):
-  dacă `NEURON_CLASSIFIER_URLS` lipsește, joburile primesc etichete-placeholder
-  deterministe, iar logul jobului conține avertismentul „DEMO classifier”. Setarea URL-ului
-  real comută automat pe clientul HTTP, fără schimbări de cod sau UI.
-- indisponibilitatea serviciului **nu** produce etichete inventate: jobul eșuează cu
-  `CLASSIFIER_UNAVAILABLE` (sau `TIMEOUT`), iar UI arată motivul.
-- pentru dezvoltare locală există `app/mock_classifier.py`, un stand-in care răspunde cu
-  etichete DEMO; se folosește doar până e pornit serviciul real și este marcat ca atare.
+Modelul cere text ne-gol și o dată ISO `yyyy-mm-dd`. Textul gol ori data lipsă/nevalidă
+produce `unsure` și eroare structurată, fără completarea datei. Pentru o intrare validă,
+eticheta este argmax între `true` și `false`; probabilitatea sub `0.5` produce `unsure`.
+Confidence rămâne internă: API-ul și CSV-ul păstrează contractul actual, fără câmp nou.
+
+Integrarea folosește procesarea locală pe rând și păstrează protocolul `Engine`,
+`RowDecision`, evenimentele de job și deadline-ul existent. Toate coloanele și rândurile
+CSV de intrare rămân în aceeași ordine; coloana rezultat mapată este suprascrisă sau
+adăugată la final, iar celelalte câmpuri (inclusiv `form`) se păstrează.
 
 ## Decizia de cleanup a orchestratorului
 
-Backend-ul rămâne orchestrator CSV: adaptoarele HTTP și DEMO, rutele orientate către
-frontend și contractele externe rămân neschimbate. Cleanup-ul elimină fundația Python
-nefolosită, schemele duplicate imbricate, setările fără efect și helpers/importurile
-nefolosite; contractele din rădăcina repository-ului
-rămân sursa de adevăr. `Engine` își păstrează dataclass-urile și protocolul
-`prepare/classify/close`, iar semnătura processor-ului rămâne neschimbată.
+Backend-ul rămâne orchestrator CSV în jurul modelului local: rutele orientate către
+frontend, sesiunile, rezultatele și contractele externe rămân neschimbate. `Engine`
+își păstrează dataclass-urile și protocolul `prepare/classify/close`, iar procesorul
+păstrează semantica de streaming, progres, erori pe rând și deadline. Fabrica de engine
+folosește setările aplicației; `NEURON_MODEL_PATH` selectează artefactul. Nu există
+setări de URL, mod, token sau retry pentru un serviciu classifier.
 
-Construcția adaptoarelor este centralizată în `create_engine`. Fabrica acceptă setările
-aplicației explicit pentru joburi, astfel încât URL-urile, modul și câmpul classifierului,
-timeout-ul, retry-urile, tokenul, `as_of` și întârzierea DEMO să provină din configurația
-aplicației. Apelurile standalone pot omite setările și folosesc `get_settings()`. Un singur
-job global per contract rămâne regula; nu există o setare de concurență configurabilă.
-`data_dir` este păstrat ca argument pozițional opțional pentru compatibilitatea apelurilor
-legacy. Singurul apel al helperului redundant
-`remote_engine.create_remote_engine_from_settings` este integrat direct în fabrică.
-
+Un singur job global per contract rămâne regula; nu există o setare de concurență
+configurabilă. Dataset snapshots și rezultatele joburilor continuă să folosească
+fișiere temporare, curățate la expirare.
 
 ## Abateri și lucruri neimplementate (conștient, în afara scopului acestui build)
 
-1. **Claims (exact 1.000 propoziții noi)** — cerute de jurați pentru rularea Docker, dar nu fac
-   obiectul planului / aplicației CSV și nu sunt expuse de API-ul din acest build. Rămâne pe
-   `backend/runner.py`-ul echipei din branch-ul p0 (candidate verificate extern).
+1. **Claims (exact 1.000 propoziții noi)** — cerute de jurați pentru rularea Docker, dar în
+   afara scope-ului aplicației CSV și neexpuse de API-ul din acest build. Prototipul local
+   clasifică rândurile furnizate și nu generează claims.
 2. **Dockerfile la rădăcină și scripts/check.sh** — interzise de constrângerea „doar
    `frontend/` și `backend/`”; nu se creează. Când se decide ambalarea, `backend/` are
    `requirements.txt` și instrucțiuni de rulare gata de copiat într-un Dockerfile.
-3. **Motor local de clasificare** — nu se implementează: aparține colegilor. Seam-ul
-   `app.engine.api.Engine` + `remote_engine.py` permit schimbarea endpoint-ului/payload-ului
-   fără atingerea API-ului sau a UI-ului.
-4. **Editor de coloane / redimensionare / duplicare coloane în Manual** — planul le cere;
+3. **Editor de coloane / redimensionare / duplicare coloane în Manual** — planul le cere;
    build-ul livrează CRUD de rânduri + undo/redo + paste TSV. Coloanele sunt fixe
    `id,text,date`. Se adaugă dacă rămâne timp / la cerere.
-5. **Search în loguri, pause/resume/cancel, upload reluabil, istoric permanent** — explicit
+4. **Search în loguri, pause/resume/cancel, upload reluabil, istoric permanent** — explicit
    excluse de plan (§1), nu se implementează.
-6. **Persistență** — niciuna, conform planului §1/§11; starea trăiește în RAM + fișiere
+5. **Persistență** — niciuna, conform planului §1/§11; starea trăiește în RAM + fișiere
    temporare curățate la expirare.
-7. **Autentificare** — doar sesiune anonimă izolată, conform planului §10.
-8. **Frontend dev server** — deja pornit pe 3000 de utilizator; nu se pornește altul. CORS
+6. **Autentificare** — doar sesiune anonimă izolată, conform planului §10.
+7. **Frontend dev server** — deja pornit pe 3000 de utilizator; nu se pornește altul. CORS
    permite exact originile de dezvoltare.
 
-## Întrebări deschise pentru echipă
+## Livrabile separate
 
-- **Contractul serviciului HTTP al colegilor**: URL-ul exact, metoda (multipart CSV vs JSON
-  `rows`), schema răspunsului și dacă răspunsul e CSV complet sau doar etichete. Se
-  configurează din env, fără cod: `NEURON_CLASSIFIER_URLS`, `NEURON_CLASSIFIER_MODE`,
-  `NEURON_CLASSIFIER_FIELD_NAME`, `NEURON_CLASSIFIER_TIMEOUT_SECONDS`,
-  `NEURON_CLASSIFIER_TOKEN`. Dacă payload-ul cerut diferă, se adaptează doar
-  `remote_engine.py`.
-- Eticheta de fallback pentru rândurile fără rezultat în răspunsul îngust: `unsure`
-  (conform contractului). Un rând lipsă nu oprește jobul, dar e raportat în `errors`.
-- Claims + Docker rămân livrabile separate înainte de freeze.
+- Claims și Docker rămân livrabile separate înainte de freeze. Acest migration note nu
+  pretinde că root Dockerfile-ul sau runner-ul de claims au fost implementați.
