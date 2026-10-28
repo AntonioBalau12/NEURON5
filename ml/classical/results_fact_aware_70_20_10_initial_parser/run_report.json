@@ -1,0 +1,238 @@
+{
+  "started_at": "2026-10-28T15:02:36+00:00",
+  "finished_at": "2026-10-28T15:10:14+00:00",
+  "elapsed_seconds": 458.04,
+  "python": "3.12.10",
+  "lightgbm": "4.6.0",
+  "dataset_counts": {
+    "train": 1328,
+    "validation": 379,
+    "test": 190
+  },
+  "label_counts": {
+    "train": {
+      "true": 1107,
+      "false": 194,
+      "unsure": 27
+    },
+    "validation": {
+      "true": 316,
+      "false": 55,
+      "unsure": 8
+    },
+    "test": {
+      "true": 158,
+      "false": 28,
+      "unsure": 4
+    }
+  },
+  "split_audit": {
+    "seed": 42,
+    "ratios_target": {
+      "train": 0.7,
+      "validation": 0.2,
+      "test": 0.1
+    },
+    "created_from": "data/practice.csv",
+    "rows": 1897,
+    "source_sha256": "c996f5477ce27d80fd5bf15d7cd8b737b295b2d31841b190bbcf661bd832d75f",
+    "split_counts": {
+      "train": 1328,
+      "validation": 379,
+      "test": 190
+    },
+    "label_counts": {
+      "train": {
+        "true": 1107,
+        "false": 194,
+        "unsure": 27
+      },
+      "validation": {
+        "true": 316,
+        "false": 55,
+        "unsure": 8
+      },
+      "test": {
+        "true": 158,
+        "false": 28,
+        "unsure": 4
+      }
+    },
+    "group_count": 1183,
+    "largest_group_rows": 13,
+    "group_size_p95": 4,
+    "grouping_edges": {
+      "identical_fact_signature": 713,
+      "normalized_text_duplicate": 27,
+      "near_duplicate_char_trigram_jaccard_ge_0_90": 32,
+      "near_duplicate_pairs": 32
+    },
+    "group_leakage_check": "zero grouped connected components cross splits",
+    "same_subject_attribute_history_cross_split": 165,
+    "same_subject_attribute_history_cross_fold": 335,
+    "cv_folds": {
+      "count": 10,
+      "train_rows_by_fold": [
+        127,
+        125,
+        133,
+        141,
+        133,
+        145,
+        129,
+        135,
+        130,
+        130
+      ],
+      "label_counts_by_fold": {
+        "0": {
+          "true": 108,
+          "false": 16,
+          "unsure": 3
+        },
+        "1": {
+          "true": 88,
+          "unsure": 1,
+          "false": 36
+        },
+        "2": {
+          "true": 116,
+          "false": 14,
+          "unsure": 3
+        },
+        "3": {
+          "true": 117,
+          "false": 19,
+          "unsure": 5
+        },
+        "4": {
+          "true": 111,
+          "false": 17,
+          "unsure": 5
+        },
+        "5": {
+          "true": 128,
+          "false": 17
+        },
+        "6": {
+          "true": 101,
+          "false": 24,
+          "unsure": 4
+        },
+        "7": {
+          "true": 118,
+          "false": 14,
+          "unsure": 3
+        },
+        "8": {
+          "true": 109,
+          "false": 19,
+          "unsure": 2
+        },
+        "9": {
+          "true": 111,
+          "false": 18,
+          "unsure": 1
+        }
+      },
+      "group_leakage_check": "zero grouped connected components cross folds"
+    },
+    "split_date_ranges": {
+      "train": {
+        "min": "2025-10-07",
+        "max": "2026-10-28"
+      },
+      "validation": {
+        "min": "2025-10-07",
+        "max": "2026-10-27"
+      },
+      "test": {
+        "min": "2025-10-07",
+        "max": "2026-10-24"
+      }
+    },
+    "notes": [
+      "practice form was used only for duplicate grouping and leakage audit and was not used as a model feature",
+      "duplicate text, near-duplicate text, and identical fact signatures are grouped; broad subject-attribute histories are audited separately because joining every row in a history creates giant groups that make target splits and 10-fold CV unusable",
+      "near-duplicate text is grouped at character-trigram Jaccard >= 0.90 after candidate generation",
+      "date is not used to stratify the random split; chronological ranges are reported for temporal-leakage review",
+      "the outer split balances class counts and target 70/20/10 sizes greedily at the group level; group sizes can cause deviation",
+      "the 10 grouped CV folds use outer training rows only; the outer test remains outside model selection",
+      "evidence from labeled rows is not used to construct features in this shared split"
+    ]
+  },
+  "weights_true_false_unsure": [
+    1,
+    3,
+    3
+  ],
+  "model_config": {
+    "family": "LightGBM",
+    "num_leaves": 15,
+    "n_estimators": 300,
+    "learning_rate": 0.05,
+    "min_child_samples": 20,
+    "reg_lambda": 1,
+    "n_jobs": 2,
+    "random_state": 42,
+    "weights_order": "true,false,unsure"
+  },
+  "feature_names": [
+    "entity_detected",
+    "attribute_detected",
+    "value_detected",
+    "parse_coverage",
+    "parsed_fact_count",
+    "negation_detected",
+    "entity_match",
+    "attribute_match",
+    "exact_value_match",
+    "value_difference",
+    "date_difference_days",
+    "verified_support_count",
+    "verified_refutation_count",
+    "candidate_evidence_count",
+    "conflict_count",
+    "temporal_compatibility",
+    "evidence_available",
+    "best_evidence_similarity",
+    "evidence_date_distance",
+    "independent_evidence_count"
+  ],
+  "validation_test_coverage": {
+    "validation": {
+      "rows": 379,
+      "parser_rows_with_fact": 97,
+      "parser_row_coverage": 0.2559366754617414,
+      "mean_parse_coverage": 0.16688654353562005,
+      "rows_with_graph_evidence": 12,
+      "graph_row_coverage": 0.0316622691292876
+    },
+    "test": {
+      "rows": 190,
+      "parser_rows_with_fact": 43,
+      "parser_row_coverage": 0.22631578947368422,
+      "mean_parse_coverage": 0.14912280701754385,
+      "rows_with_graph_evidence": 7,
+      "graph_row_coverage": 0.03684210526315789
+    }
+  },
+  "previous_macro_f1_reference": 0.3674,
+  "target_form_inference_usage": false,
+  "validation_test_evidence_usage": "Only text/date/id supplied to feature construction; labels/forms used after predictions for metrics and error review.",
+  "test_used_for_selection": false,
+  "graph_branch": "origin/feat/p1-temporal-graph; copied unchanged core/graph modules",
+  "limitations": [
+    "Graph has no VERIFIED_REFUTATION producer in inspected implementation; false-row forms remain unverified candidates, so measured verified_refutation_count is not evidence of negative truth.",
+    "Graph does not infer temporal state from observation dates; mutable fact features use exact observation dates or explicit intervals only.",
+    "Event-like attributes are identified by attribute-name heuristic for candidate comparison; value mismatch remains a numeric feature and never becomes a false label.",
+    "Parser is deterministic and partial; no NLI or fine-tuned NLP model used.",
+    "Broad entity-attribute histories cross folds per existing audit; exact/near duplicates and form signatures were grouped, but semantically related histories may occur in separate folds."
+  ],
+  "artifact_sizes_bytes": {
+    "A_text_baseline": 1251742,
+    "B_text_parser": 1253099,
+    "C_text_parser_graph": 1251811,
+    "D_graph_only": 1009327
+  }
+}

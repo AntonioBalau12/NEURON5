@@ -1,0 +1,120 @@
+{
+  "reference_row_id": "p-1",
+  "reference_split": "train",
+  "reference_label": "true",
+  "reference_fact_json": "[{\"subject\":\"Holdan\",\"attribute\":\"joined\",\"value\":{\"kind\":\"date\",\"value\":\"2026-01-12\"}}]",
+  "target_form_used": false,
+  "results": [
+    {
+      "claim_text": "Holdan joined Hooly on January 12, 2026.",
+      "claim_date": "2026-10-28",
+      "parsed_facts": [
+        {
+          "subject": "Holdan",
+          "attribute": "joined",
+          "value_kind": "date",
+          "value": "2026-01-12",
+          "unit": null,
+          "currency": null
+        }
+      ],
+      "features": {
+        "entity_detected": 1.0,
+        "attribute_detected": 1.0,
+        "value_detected": 1.0,
+        "parse_coverage": 0.5,
+        "parsed_fact_count": 1.0,
+        "negation_detected": 0.0,
+        "entity_match": 1.0,
+        "attribute_match": 1.0,
+        "exact_value_match": 1.0,
+        "value_difference": 0.0,
+        "date_difference_days": 0.0,
+        "verified_support_count": 2.0,
+        "verified_refutation_count": 0.0,
+        "candidate_evidence_count": 0.0,
+        "conflict_count": 0.0,
+        "temporal_compatibility": 1.0,
+        "evidence_available": 1.0,
+        "best_evidence_similarity": 0.8017837257372731,
+        "best_value_compatibility": 1.0,
+        "evidence_date_distance": 55,
+        "independent_evidence_count": 2.0
+      },
+      "retrieved_evidence": [
+        {
+          "evidence_id": "p-1",
+          "attribute": "joined",
+          "status": "VERIFIED_SUPPORT",
+          "observed_on": "2026-01-12",
+          "value_kind": "date",
+          "value": "2026-01-12"
+        },
+        {
+          "evidence_id": "p-46",
+          "attribute": "joined",
+          "status": "VERIFIED_SUPPORT",
+          "observed_on": "2026-09-03",
+          "value_kind": "date",
+          "value": "2026-01"
+        }
+      ]
+    },
+    {
+      "claim_text": "Holdan joined Hooly on January 13, 2026.",
+      "claim_date": "2026-10-28",
+      "parsed_facts": [
+        {
+          "subject": "Holdan",
+          "attribute": "joined",
+          "value_kind": "date",
+          "value": "2026-01-13",
+          "unit": null,
+          "currency": null
+        }
+      ],
+      "features": {
+        "entity_detected": 1.0,
+        "attribute_detected": 1.0,
+        "value_detected": 1.0,
+        "parse_coverage": 0.5,
+        "parsed_fact_count": 1.0,
+        "negation_detected": 0.0,
+        "entity_match": 1.0,
+        "attribute_match": 1.0,
+        "exact_value_match": 0.0,
+        "value_difference": 1.0,
+        "date_difference_days": 1.0,
+        "verified_support_count": 2.0,
+        "verified_refutation_count": 0.0,
+        "candidate_evidence_count": 0.0,
+        "conflict_count": 0.0,
+        "temporal_compatibility": 1.0,
+        "evidence_available": 1.0,
+        "best_evidence_similarity": 0.6681531047810609,
+        "best_value_compatibility": 0.5,
+        "evidence_date_distance": 55,
+        "independent_evidence_count": 2.0
+      },
+      "retrieved_evidence": [
+        {
+          "evidence_id": "p-1",
+          "attribute": "joined",
+          "status": "VERIFIED_SUPPORT",
+          "observed_on": "2026-01-12",
+          "value_kind": "date",
+          "value": "2026-01-12"
+        },
+        {
+          "evidence_id": "p-46",
+          "attribute": "joined",
+          "status": "VERIFIED_SUPPORT",
+          "observed_on": "2026-09-03",
+          "value_kind": "date",
+          "value": "2026-01"
+        }
+      ]
+    }
+  ],
+  "interpretation": "The correct paraphrase should parse and compare to the supported event date; a one-day mismatch is a numeric difference feature only, never an automatic FALSE label. This is a parser/feature demonstration, not a model prediction."
+}
