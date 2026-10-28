@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preview 2: Stepper Studio | AI Agent Arena (NEURON5)</title>
-  <link rel="icon" type="image/svg+xml" href="dot-grid.svg">
-  
+  <title>AI AGENT ARENA | POWERED BY NEURON5</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Smooth Scrolling (Lenis) CSS -->
+  <link rel="stylesheet" href="./lenis.css">
+
+  <!-- Typography Styles -->
   <style>
     @font-face {
       font-family: 'Creato Display';
@@ -14,6 +19,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: 'Creato Display';
       src: url('./fonts/CreatoDisplay-Bold.otf') format('opentype');
@@ -21,6 +27,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: 'Creato Display';
       src: url('./fonts/CreatoDisplay-Medium.otf') format('opentype');
@@ -28,6 +35,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: 'Creato Display';
       src: url('./fonts/CreatoDisplay-Regular.otf') format('opentype');
@@ -35,6 +43,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: 'Figtree';
       src: url('./fonts/Figtree-Variable.ttf') format('truetype');
@@ -43,11 +52,14 @@
       font-display: swap;
     }
 
+    /* Design System Tokens */
     :root {
       --white-100: #fcfcfc;
       --white-0-6: rgba(255, 255, 255, 0.6);
+      --white-0-1: rgba(255, 255, 255, 0.1);
       --black-100: #202020;
       --black-0-7: rgba(0, 0, 0, 0.7);
+      --black-0-1: rgba(0, 0, 0, 0.1);
       --neutral-100: #ebebeb;
       --neutral-200: #141414;
       --primary-100: #1d6dd7;
@@ -57,8 +69,8 @@
       --status-false: #ef4444;
       --status-unsure: #f59e0b;
 
-      --font-display: 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * {
@@ -71,6 +83,7 @@
       scroll-behavior: smooth;
     }
 
+    html,
     body {
       width: 100%;
       background-color: var(--white-100);
@@ -81,7 +94,7 @@
       overflow-x: hidden;
     }
 
-    /* Fixed Navigation Header */
+    /* Fixed Top Navigation Bar */
     .top-header {
       position: fixed;
       top: 0;
@@ -106,38 +119,31 @@
       font-size: 1.625rem;
       font-weight: 900;
       letter-spacing: -0.03em;
+      line-height: 1;
+      cursor: default;
+    }
+
+    .brand-logo .brand-text {
       color: var(--black-100);
     }
+
     .brand-logo .brand-number {
       color: var(--primary-100);
       margin-left: 1px;
     }
 
-    /* Pill View Switcher */
-    .preview-switcher {
+    .header-badge {
       display: inline-flex;
-      background: #ededed;
-      padding: 4px;
+      align-items: center;
+      gap: 0.4rem;
+      background: #e6effa;
+      color: var(--primary-100);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
       border-radius: 999px;
-      gap: 4px;
-    }
-
-    .switcher-link {
-      padding: 0.4rem 1rem;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--black-0-7);
-      text-decoration: none;
-      border-radius: 999px;
-      transition: all 0.2s ease;
-    }
-    .switcher-link:hover {
-      color: var(--black-100);
-    }
-    .switcher-link.active {
-      background: var(--black-100);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     /* Background Dot Grid */
@@ -147,13 +153,13 @@
       background-image: url('./dot-grid.svg');
       background-repeat: repeat;
       background-size: 48px 48px;
-      opacity: 0.5;
+      opacity: 0.55;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Primary Application Stage: 100vh Fixed Screen */
-    .app-stage {
+    /* Primary Application Stage: Fixed 100vh */
+    .hero-stage {
       position: relative;
       width: 100vw;
       height: 100vh;
@@ -162,23 +168,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 5rem;
+      padding-top: 5.25rem;
       z-index: 1;
     }
 
-    /* Stepper Header */
+    /* Stepper Navigation */
     .stepper-nav {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 999px;
       padding: 4px 6px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      margin-bottom: 0.75rem;
       z-index: 5;
     }
+
     .step-pill {
       display: inline-flex;
       align-items: center;
@@ -191,23 +198,26 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .step-pill.active {
       background: var(--black-100);
       color: #fff;
     }
+
     .step-pill.completed {
       color: var(--status-true);
     }
+
     .step-divider {
       color: #ccc;
       font-size: 0.75rem;
     }
 
-    /* Main Content Wrapper (Fixed Height) */
+    /* Studio Box: Fixed Height viewport container */
     .studio-viewport {
       width: min(980px, 94vw);
       height: calc(100vh - 280px);
-      max-height: 500px;
+      max-height: 480px;
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 24px;
@@ -220,16 +230,17 @@
     }
 
     .studio-header {
-      padding: 1rem 1.5rem;
+      padding: 0.875rem 1.5rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       background: #fafafa;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .studio-title {
       font-family: var(--font-display);
-      font-size: 1.125rem;
+      font-size: 1.05rem;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: -0.01em;
@@ -237,9 +248,10 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .studio-body {
       flex: 1;
-      padding: 1.25rem 1.5rem;
+      padding: 1rem 1.5rem;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -251,15 +263,18 @@
       flex-direction: column;
       height: 100%;
     }
+
     .schema-edit-row {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
       background: #f7f9fa;
-      padding: 0.5rem 0.85rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 12px;
+      flex-wrap: wrap;
     }
+
     .schema-input-badge {
       display: inline-flex;
       align-items: center;
@@ -271,14 +286,16 @@
       font-size: 0.75rem;
       font-weight: 600;
     }
+
     .schema-input-badge input {
       border: none;
       outline: none;
       font-family: inherit;
       font-size: inherit;
-      width: 60px;
+      width: 58px;
       font-weight: 700;
       color: var(--black-100);
+      background: transparent;
     }
 
     .table-container {
@@ -286,14 +303,16 @@
       overflow-y: auto;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
-      margin-bottom: 1rem;
-      max-height: 250px;
+      margin-bottom: 0.75rem;
+      max-height: 230px;
     }
+
     table.studio-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.8125rem;
     }
+
     table.studio-table th {
       background: #f8fafc;
       padding: 8px 12px;
@@ -305,10 +324,12 @@
       top: 0;
       z-index: 2;
     }
+
     table.studio-table td {
-      padding: 8px 12px;
+      padding: 6px 12px;
       border-bottom: 1px solid #f1f5f9;
     }
+
     table.studio-table input {
       width: 100%;
       border: 1px solid transparent;
@@ -318,6 +339,7 @@
       font-size: 0.8125rem;
       outline: none;
     }
+
     table.studio-table input:focus {
       background: #f0f7ff;
       border-color: var(--primary-100);
@@ -333,20 +355,28 @@
       text-align: center;
       position: relative;
     }
+
     .floating-clipboard-box {
       width: min(540px, 90%);
       background: #ffffff;
       border: 2px solid var(--primary-100);
       border-radius: 16px;
-      padding: 1.25rem;
+      padding: 1rem;
       box-shadow: 0 10px 30px rgba(29, 109, 215, 0.12);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       animation: floatSmooth 3s ease-in-out infinite;
     }
+
     @keyframes floatSmooth {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
     }
+
     .clipboard-tag {
       font-size: 0.6875rem;
       font-weight: 800;
@@ -355,16 +385,17 @@
       text-transform: uppercase;
       margin-bottom: 0.4rem;
     }
+
     .clipboard-sample-body {
       font-family: monospace;
       font-size: 0.8125rem;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      padding: 0.75rem;
+      padding: 0.65rem;
       border-radius: 8px;
       text-align: left;
       color: #1e293b;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       line-height: 1.4;
     }
 
@@ -374,8 +405,9 @@
       gap: 0.5rem;
       justify-content: center;
       max-width: 600px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
+
     .chat-chip {
       background: #f1f5f9;
       border: 1px solid #cbd5e1;
@@ -391,10 +423,12 @@
       transform: translateY(6px);
       transition: all 0.3s ease;
     }
+
     .chat-chip.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     .chat-chip.active {
       background: #dbeafe;
       border-color: var(--primary-100);
@@ -407,31 +441,35 @@
       flex-direction: column;
       height: 100%;
     }
+
     .metrics-banner {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 1rem;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
     }
+
     .metric-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 0.75rem;
+      padding: 0.65rem;
       text-align: center;
     }
+
     .metric-value {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 900;
       line-height: 1;
       color: var(--black-100);
     }
+
     .metric-desc {
       font-size: 0.6875rem;
       font-weight: 700;
       color: #64748b;
-      margin-top: 0.35rem;
+      margin-top: 0.3rem;
       text-transform: uppercase;
     }
 
@@ -440,18 +478,72 @@
       overflow-y: auto;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      max-height: 200px;
-      margin-bottom: 1rem;
+      max-height: 180px;
+      margin-bottom: 0.75rem;
     }
 
-    /* Sliding Fill Primary Button */
+    /* Animation Test Trigger Button */
+    .btn-test-anim {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(29, 109, 215, 0.08);
+      border: 1px solid var(--primary-100);
+      color: var(--primary-100);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 10px rgba(29, 109, 215, 0.15);
+      user-select: none;
+    }
+
+    .btn-test-anim:hover {
+      background: var(--primary-100);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(29, 109, 215, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-test-anim.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #141414;
+      box-shadow: 0 0 16px rgba(215, 241, 59, 0.45);
+      pointer-events: none;
+    }
+
+    /* Mascot Dynamic Arm Vector Container */
+    .mascot-pull-arm {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 480px;
+      height: 320px;
+      pointer-events: none;
+      z-index: 15;
+      transform-origin: 50px 300px;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .mascot-pull-arm svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* Buttons */
     .button-primary {
       position: relative;
       overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.6rem 1.4rem;
+      padding: 0.55rem 1.35rem;
       background-color: var(--black-100);
       color: #ffffff;
       border-radius: 12px;
@@ -460,6 +552,7 @@
       border: none;
       cursor: pointer;
     }
+
     .button-primary .button-text {
       position: relative;
       z-index: 2;
@@ -468,6 +561,7 @@
       align-items: center;
       gap: 0.4rem;
     }
+
     .button-primary .btn_fill {
       position: absolute;
       inset: auto 0% 0%;
@@ -477,6 +571,7 @@
       transition: height 300ms ease;
       z-index: 1;
     }
+
     .button-primary:hover .btn_fill {
       height: 100%;
     }
@@ -484,13 +579,14 @@
     .btn-secondary {
       background: #f1f5f9;
       border: 1px solid #cbd5e1;
-      padding: 0.5rem 1rem;
+      padding: 0.45rem 0.85rem;
       border-radius: 10px;
       font-size: 0.8125rem;
       font-weight: 600;
       cursor: pointer;
       color: #334155;
     }
+
     .btn-secondary:hover {
       background: #e2e8f0;
     }
@@ -499,7 +595,7 @@
     .logs-drawer {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(4px);
       z-index: 200;
       display: flex;
@@ -509,33 +605,38 @@
       pointer-events: none;
       transition: opacity 0.25s ease;
     }
+
     .logs-drawer.open {
       opacity: 1;
       pointer-events: auto;
     }
+
     .logs-drawer-content {
       width: min(880px, 94vw);
       max-height: 70vh;
       background: #141414;
       color: #f8fafc;
       border-radius: 20px 20px 0 0;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       transform: translateY(100%);
       transition: transform 0.3s ease;
     }
+
     .logs-drawer.open .logs-drawer-content {
       transform: translateY(0);
     }
+
     .logs-drawer-header {
       padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .logs-drawer-body {
       padding: 1.25rem 1.5rem;
       font-family: monospace;
@@ -545,7 +646,7 @@
       color: #94a3b8;
     }
 
-    /* Mascot Stage (Anchored at bottom) */
+    /* Mascot Stage (Anchored at the bottom of the 100vh stage) */
     .hero-mascot-wrapper {
       position: absolute;
       bottom: 0;
@@ -557,8 +658,10 @@
       justify-content: center;
       align-items: flex-end;
       z-index: 10;
+      overflow: visible;
       pointer-events: auto;
     }
+
     .hero-mascot-canvas-container {
       width: 100%;
       aspect-ratio: 1;
@@ -566,83 +669,74 @@
       margin-bottom: -15.5%;
       cursor: default;
     }
+
     #mascot-canvas {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* Below the Fold Marketing Space */
+    /* Marketing Space (Below the fold) */
     .marketing-section {
       width: 100%;
-      padding: 6rem 4vw;
-      background: #fcfcfc;
+      min-height: 80vh;
+      background: var(--black-100);
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      padding: 6rem 4vw;
       position: relative;
       z-index: 20;
-      border-top: 1px solid rgba(0,0,0,0.06);
     }
-    .marketing-card {
-      width: min(1200px, 94vw);
-      background: #202020;
-      border-radius: 40px;
-      padding: 4.5rem 4vw;
-      color: #fcfcfc;
-      position: relative;
-      overflow: hidden;
-    }
-    .marketing-tag {
-      display: inline-block;
-      color: var(--accent);
+
+    .marketing-title {
       font-family: var(--font-display);
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: -0.025em;
+      line-height: 1;
       margin-bottom: 1.25rem;
     }
-    .marketing-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      letter-spacing: -0.025em;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-    }
+
     .marketing-body {
-      font-size: 1.125rem;
+      color: var(--white-0-6);
+      font-size: 1.25rem;
+      max-width: 720px;
+      text-align: center;
       line-height: 1.6;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 800px;
-      margin-bottom: 2rem;
     }
   </style>
 
+  <!-- Local Mascot Data & Rive Canvas Runtime -->
   <script src="./mascot-asset.js"></script>
   <script src="./rive.min.js"></script>
+
+  <!-- Animation & Scroll Dependencies -->
+  <script src="./lenis.min.js"></script>
+  <script src="./gsap.min.js"></script>
+  <script src="./ScrollTrigger.min.js"></script>
+  <script src="./split-type.min.js"></script>
 </head>
+
 <body>
 
-  <!-- Top Fixed Header -->
+  <!-- Background Dot Grid Pattern -->
+  <div class="dot-grid"></div>
+
+  <!-- Header with NEURON5 Branding -->
   <header class="top-header">
-    <a href="preview2.html" class="brand-logo" aria-label="NEURON5 Home">
+    <a href="#" class="brand-logo" aria-label="NEURON5">
       <span class="brand-text">NEURON</span><span class="brand-number">5</span>
     </a>
-
-    <!-- Preview Switcher -->
-    <nav class="preview-switcher" aria-label="Layout Previews">
-      <a href="preview1.html" class="switcher-link">1. Command Deck</a>
-      <a href="preview2.html" class="switcher-link active">2. Stepper Studio</a>
-      <a href="preview3.html" class="switcher-link">3. Floating Deck</a>
-    </nav>
+    <span class="header-badge">AI Agent Arena</span>
   </header>
 
-  <!-- Stage: 100vh Fixed Screen for Interactive Engine -->
-  <main class="app-stage">
-    <div class="dot-grid"></div>
-
+  <!-- Fixed 100vh Application Stage -->
+  <main class="hero-stage" id="hero">
+    
     <!-- Stepper Navigation -->
     <nav class="stepper-nav" aria-label="Progressive Workflow">
       <div class="step-pill active" id="step-pill-1">
@@ -658,7 +752,7 @@
       </div>
     </nav>
 
-    <!-- Main Studio Box (Fixed Height Container) -->
+    <!-- Studio Box Container -->
     <section class="studio-viewport">
       
       <!-- Studio Header -->
@@ -666,14 +760,20 @@
         <h2 class="studio-title" id="studio-header-title">
           <span>Step 1: Schema Ingestion & Editing</span>
         </h2>
-        <div style="display: flex; gap: 0.5rem;">
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="btn-test-anim" id="btn-test-pull-anim" title="Trigger mascot table pull animation">
+            <span>🦾 Test Pull Animation</span>
+          </button>
+          <button class="btn-secondary" id="btn-load-samples-quick" style="font-size:0.75rem; padding: 0.35rem 0.75rem;">
+            ⚡ Load Sample CSV
+          </button>
           <button class="btn-secondary" id="btn-open-logs" style="font-size:0.75rem; padding: 0.35rem 0.75rem;">
             🔍 View Deep Logs
           </button>
         </div>
       </div>
 
-      <!-- Studio Body (Multi-step View) -->
+      <!-- Studio Body (3-Step View) -->
       <div class="studio-body">
         
         <!-- STEP 1: Table & Column Editor -->
@@ -703,8 +803,8 @@
             <table class="studio-table" id="stepper-table">
               <thead>
                 <tr>
-                  <th style="width: 15%;">ID</th>
-                  <th style="width: 55%;">Universe Statement</th>
+                  <th style="width: 14%;">ID</th>
+                  <th style="width: 56%;">Universe Statement</th>
                   <th style="width: 20%;">Date</th>
                   <th style="width: 10%;">Action</th>
                 </tr>
@@ -716,8 +816,8 @@
           </div>
 
           <!-- Bottom Action Bar -->
-          <div style="display: flex; justify-content: flex-end; align-items: center; gap: 1rem;">
-            <span style="font-size: 0.8125rem; color: #64748b;">Ready to hand off to Mascot Agent</span>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8125rem; color: #64748b;">5 rows staged for evaluation</span>
             <button class="button-primary" id="btn-proceed-step-2">
               <span class="btn_fill"></span>
               <span class="button-text">Send Clipboard to Mascot ➔</span>
@@ -805,6 +905,61 @@
       </div>
     </section>
 
+    <!-- Mascot Dynamic Pull Arm (Vector Geometry) -->
+    <div class="mascot-pull-arm" id="mascot-pull-arm" aria-hidden="true">
+      <svg viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gorilla-arm-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#144991" />
+            <stop offset="40%" stop-color="#1d6dd7" />
+            <stop offset="100%" stop-color="#2d7ce0" />
+          </linearGradient>
+          <linearGradient id="gorilla-knuckle-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#2c3038" />
+            <stop offset="100%" stop-color="#14161a" />
+          </linearGradient>
+          <filter id="arm-drop-shadow" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="3" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.3" />
+          </filter>
+        </defs>
+        <!-- Muscular Arm Main Path -->
+        <path d="M 50 300 C 65 230, 95 185, 175 145 C 235 115, 290 100, 370 82" 
+              stroke="url(#gorilla-arm-grad)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"
+              filter="url(#arm-drop-shadow)" />
+        <!-- Inner Lighting Sheen (Cybernetic depth) -->
+        <path d="M 85 270 C 110 215, 155 170, 230 130 C 275 108, 320 95, 360 82" 
+              stroke="#5ea2f5" stroke-width="14" stroke-linecap="round" opacity="0.55" />
+        <!-- Bicep & Forearm Accent Bulge -->
+        <path d="M 155 120 C 195 95, 250 80, 310 75 C 330 95, 315 125, 275 142 C 220 160, 165 150, 155 120 Z" 
+              fill="url(#gorilla-arm-grad)" />
+        <!-- Wrist band / Cybernetic lime accent ring -->
+        <rect x="305" y="72" width="10" height="42" rx="4" transform="rotate(-20 305 72)" fill="#d7f13b" opacity="0.95" />
+        <!-- Gorilla Palm -->
+        <circle cx="375" cy="80" r="28" fill="url(#gorilla-arm-grad)" />
+        <!-- Thumb (Opposable Grip) -->
+        <path d="M 355 105 C 368 126, 392 132, 408 116 C 416 108, 412 92, 395 82 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="400" cy="115" r="4.5" fill="#4a5568" />
+        <!-- Gorilla Claws / Grip Fingers Hooking over Table Edge -->
+        <!-- Finger 1 (Index) -->
+        <path d="M 385 62 C 405 44, 435 48, 448 68 C 454 80, 440 92, 424 88 C 406 84, 390 76, 385 62 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="440" cy="62" r="5" fill="#4a5568" />
+        <!-- Finger 2 (Middle Power Grip) -->
+        <path d="M 390 74 C 416 60, 452 65, 462 86 C 466 98, 452 110, 434 104 C 414 98, 398 88, 390 74 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="454" cy="80" r="5.5" fill="#4a5568" />
+        <!-- Finger 3 (Ring Finger) -->
+        <path d="M 386 90 C 408 82, 442 86, 450 105 C 454 117, 440 126, 424 118 C 406 110, 394 100, 386 90 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="442" cy="100" r="5" fill="#4a5568" />
+        <!-- Finger 4 (Pinky) -->
+        <path d="M 376 104 C 394 100, 424 106, 428 122 C 430 132, 416 138, 402 130 C 388 122, 382 112, 376 104 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="420" cy="120" r="4" fill="#4a5568" />
+      </svg>
+    </div>
+
     <!-- Anchored Mascot Stage (Always at bottom of body) -->
     <div class="hero-mascot-wrapper">
       <div class="hero-mascot-canvas-container" id="mascot-container">
@@ -830,18 +985,15 @@
     </div>
   </div>
 
-  <!-- Below the Fold Marketing Space -->
+  <!-- Marketing Space -->
   <section class="marketing-section" id="marketing">
-    <div class="marketing-card">
-      <span class="marketing-tag">Marketing Space</span>
-      <h2 class="marketing-heading">Continuous AI Verification Built for the Modern Enterprise</h2>
-      <p class="marketing-body">
-        QA DNA combines high-precision developer infrastructure aesthetics with rigorous temporal knowledge validation. Designed for engineers who demand absolute ground truth, zero hallucinations, and certified output tables conforming to strict machine contracts.
-      </p>
-    </div>
+    <h2 class="marketing-title reveal-type">Marketing space</h2>
+    <p class="marketing-body">
+      Autonomous quality engineering with deterministic temporal reasoning. QA DNA automates your critical flows with agentic precision, verified ground truth, and machine-certified schema outputs.
+    </p>
   </section>
 
-  <!-- Stepper Controller & Mascot Integration -->
+  <!-- Application Logic & Scripts -->
   <script>
     const ROWS = [
       { id: 'p-1', text: 'Holdan started at Hooly on 12 January 2026.', date: '2026-01-12', label: 'true' },
@@ -884,6 +1036,11 @@
         date: '2026-09-01',
         label: 'true'
       });
+      renderStepTable();
+    });
+
+    document.getElementById('btn-load-samples-quick').addEventListener('click', () => {
+      currentRows = JSON.parse(JSON.stringify(ROWS));
       renderStepTable();
     });
 
@@ -1054,6 +1211,223 @@
         }));
       }, { passive: true });
     })();
+
+    // =========================================================================
+    // Constant Function: Mascot Right-Arm Table Drag Animation
+    // Triggered by #btn-test-pull-anim or future incoming data event handlers
+    // =========================================================================
+    let isPullingTable = false;
+
+    const triggerPullAnimation = (onComplete) => {
+      if (isPullingTable) return;
+      isPullingTable = true;
+
+      const viewport = document.querySelector('.studio-viewport');
+      const arm = document.getElementById('mascot-pull-arm');
+      const mascotContainer = document.getElementById('mascot-container');
+      const testBtn = document.getElementById('btn-test-pull-anim');
+      const canvas = document.getElementById('mascot-canvas');
+
+      if (!viewport || !arm) {
+        isPullingTable = false;
+        return;
+      }
+
+      if (testBtn) {
+        testBtn.classList.add('active');
+        testBtn.innerHTML = '<span>🦾 Pulling Table...</span>';
+      }
+
+      // 1. Direct Mascot eyes toward incoming card (stage right)
+      if (canvas) {
+        canvas.dispatchEvent(new PointerEvent('pointermove', {
+          clientX: window.innerWidth * 0.9,
+          clientY: window.innerHeight * 0.42,
+          bubbles: true
+        }));
+      }
+
+      if (typeof gsap !== 'undefined') {
+        gsap.killTweensOf([viewport, arm, mascotContainer]);
+
+        // Place table off-screen to the right
+        const startX = Math.max(window.innerWidth * 0.72, 720);
+        gsap.set(viewport, {
+          x: startX,
+          opacity: 0.88,
+          scale: 0.98,
+          rotation: 2.2
+        });
+
+        // Initialize arm at mascot's right shoulder
+        gsap.set(arm, {
+          opacity: 0,
+          scale: 0.45,
+          rotation: -25,
+          x: 0,
+          y: 50
+        });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            isPullingTable = false;
+            if (testBtn) {
+              testBtn.classList.remove('active');
+              testBtn.innerHTML = '<span>🦾 Test Pull Animation</span>';
+            }
+            // Return mascot gaze forward
+            if (canvas) {
+              canvas.dispatchEvent(new PointerEvent('pointermove', {
+                clientX: window.innerWidth * 0.5,
+                clientY: window.innerHeight * 0.3,
+                bubbles: true
+              }));
+            }
+            if (typeof onComplete === 'function') {
+              onComplete();
+            }
+          }
+        });
+
+        // Step 1: Arm reaches out rapidly toward incoming table
+        tl.to(arm, {
+          opacity: 1,
+          scale: 1,
+          rotation: 18,
+          x: 160,
+          y: -30,
+          duration: 0.42,
+          ease: "power2.out"
+        });
+
+        // Mascot body leans right in anticipation
+        tl.to(mascotContainer, {
+          rotation: 2.5,
+          x: 14,
+          duration: 0.42,
+          ease: "power2.out"
+        }, "<");
+
+        // Step 2: Hand grips edge and initiates the heavy pull
+        tl.addLabel("pull", "+=0.06");
+
+        // Arm contracts as it drags table
+        tl.to(arm, {
+          x: -15,
+          y: 10,
+          rotation: -8,
+          scale: 0.96,
+          duration: 1.15,
+          ease: "power3.inOut"
+        }, "pull");
+
+        // Table slides smoothly in from right to center!
+        tl.to(viewport, {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1.15,
+          ease: "power3.inOut"
+        }, "pull");
+
+        // Mascot body exerts counter-force (leans left)
+        tl.to(mascotContainer, {
+          rotation: -4,
+          x: -16,
+          duration: 0.6,
+          ease: "power2.in"
+        }, "pull");
+
+        // Mascot straightens back up as table arrives
+        tl.to(mascotContainer, {
+          rotation: 0,
+          x: 0,
+          duration: 0.55,
+          ease: "elastic.out(1.15, 0.4)"
+        }, "pull+=0.6");
+
+        // Step 3: Landing snap & arm retraction
+        tl.addLabel("settle", "pull+=1.15");
+
+        // Crisp snap & micro-damping on table
+        tl.to(viewport, {
+          x: -8,
+          duration: 0.1,
+          ease: "power1.in"
+        }, "settle");
+
+        tl.to(viewport, {
+          x: 0,
+          duration: 0.3,
+          ease: "elastic.out(1.2, 0.45)",
+          boxShadow: "0 0 28px rgba(29, 109, 215, 0.35), 0 6px 24px rgba(0, 0, 0, 0.06)",
+          onComplete: () => {
+            gsap.to(viewport, {
+              boxShadow: "0 6px 24px rgba(0, 0, 0, 0.06)",
+              duration: 0.7
+            });
+          }
+        }, "settle+=0.1");
+
+        // Arm releases and retracts down out of view
+        tl.to(arm, {
+          opacity: 0,
+          y: 100,
+          scale: 0.5,
+          rotation: -30,
+          duration: 0.38,
+          ease: "power2.in"
+        }, "settle+=0.05");
+
+      } else {
+        // Direct fallback if GSAP is unavailable
+        viewport.style.transition = 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
+        viewport.style.transform = 'translateX(0)';
+        isPullingTable = false;
+        if (testBtn) {
+          testBtn.classList.remove('active');
+          testBtn.innerHTML = '<span>🦾 Test Pull Animation</span>';
+        }
+        if (typeof onComplete === 'function') onComplete();
+      }
+    };
+
+    // Expose constant function globally for future event handlers
+    window.triggerPullAnimation = triggerPullAnimation;
+
+    // Attach to test button
+    const btnTestPull = document.getElementById('btn-test-pull-anim');
+    if (btnTestPull) {
+      btnTestPull.addEventListener('click', () => {
+        triggerPullAnimation();
+      });
+    }
+
+    // Initialize Lenis Smooth Scroll & GSAP ScrollTrigger
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+        }
+      }
+    });
   </script>
 </body>
+
 </html>

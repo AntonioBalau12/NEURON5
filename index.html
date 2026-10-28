@@ -482,6 +482,60 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Animation Test Trigger Button */
+    .btn-test-anim {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(29, 109, 215, 0.08);
+      border: 1px solid var(--primary-100);
+      color: var(--primary-100);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 10px rgba(29, 109, 215, 0.15);
+      user-select: none;
+    }
+
+    .btn-test-anim:hover {
+      background: var(--primary-100);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(29, 109, 215, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-test-anim.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #141414;
+      box-shadow: 0 0 16px rgba(215, 241, 59, 0.45);
+      pointer-events: none;
+    }
+
+    /* Mascot Dynamic Arm Vector Container */
+    .mascot-pull-arm {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 480px;
+      height: 320px;
+      pointer-events: none;
+      z-index: 15;
+      transform-origin: 50px 300px;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .mascot-pull-arm svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
     /* Buttons */
     .button-primary {
       position: relative;
@@ -706,7 +760,10 @@
         <h2 class="studio-title" id="studio-header-title">
           <span>Step 1: Schema Ingestion & Editing</span>
         </h2>
-        <div style="display: flex; gap: 0.5rem;">
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="btn-test-anim" id="btn-test-pull-anim" title="Trigger mascot table pull animation">
+            <span>🦾 Test Pull Animation</span>
+          </button>
           <button class="btn-secondary" id="btn-load-samples-quick" style="font-size:0.75rem; padding: 0.35rem 0.75rem;">
             ⚡ Load Sample CSV
           </button>
@@ -847,6 +904,61 @@
 
       </div>
     </section>
+
+    <!-- Mascot Dynamic Pull Arm (Vector Geometry) -->
+    <div class="mascot-pull-arm" id="mascot-pull-arm" aria-hidden="true">
+      <svg viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gorilla-arm-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#144991" />
+            <stop offset="40%" stop-color="#1d6dd7" />
+            <stop offset="100%" stop-color="#2d7ce0" />
+          </linearGradient>
+          <linearGradient id="gorilla-knuckle-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#2c3038" />
+            <stop offset="100%" stop-color="#14161a" />
+          </linearGradient>
+          <filter id="arm-drop-shadow" x="-20%" y="-20%" width="150%" height="150%">
+            <feDropShadow dx="3" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.3" />
+          </filter>
+        </defs>
+        <!-- Muscular Arm Main Path -->
+        <path d="M 50 300 C 65 230, 95 185, 175 145 C 235 115, 290 100, 370 82" 
+              stroke="url(#gorilla-arm-grad)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"
+              filter="url(#arm-drop-shadow)" />
+        <!-- Inner Lighting Sheen (Cybernetic depth) -->
+        <path d="M 85 270 C 110 215, 155 170, 230 130 C 275 108, 320 95, 360 82" 
+              stroke="#5ea2f5" stroke-width="14" stroke-linecap="round" opacity="0.55" />
+        <!-- Bicep & Forearm Accent Bulge -->
+        <path d="M 155 120 C 195 95, 250 80, 310 75 C 330 95, 315 125, 275 142 C 220 160, 165 150, 155 120 Z" 
+              fill="url(#gorilla-arm-grad)" />
+        <!-- Wrist band / Cybernetic lime accent ring -->
+        <rect x="305" y="72" width="10" height="42" rx="4" transform="rotate(-20 305 72)" fill="#d7f13b" opacity="0.95" />
+        <!-- Gorilla Palm -->
+        <circle cx="375" cy="80" r="28" fill="url(#gorilla-arm-grad)" />
+        <!-- Thumb (Opposable Grip) -->
+        <path d="M 355 105 C 368 126, 392 132, 408 116 C 416 108, 412 92, 395 82 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="400" cy="115" r="4.5" fill="#4a5568" />
+        <!-- Gorilla Claws / Grip Fingers Hooking over Table Edge -->
+        <!-- Finger 1 (Index) -->
+        <path d="M 385 62 C 405 44, 435 48, 448 68 C 454 80, 440 92, 424 88 C 406 84, 390 76, 385 62 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="440" cy="62" r="5" fill="#4a5568" />
+        <!-- Finger 2 (Middle Power Grip) -->
+        <path d="M 390 74 C 416 60, 452 65, 462 86 C 466 98, 452 110, 434 104 C 414 98, 398 88, 390 74 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="454" cy="80" r="5.5" fill="#4a5568" />
+        <!-- Finger 3 (Ring Finger) -->
+        <path d="M 386 90 C 408 82, 442 86, 450 105 C 454 117, 440 126, 424 118 C 406 110, 394 100, 386 90 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="442" cy="100" r="5" fill="#4a5568" />
+        <!-- Finger 4 (Pinky) -->
+        <path d="M 376 104 C 394 100, 424 106, 428 122 C 430 132, 416 138, 402 130 C 388 122, 382 112, 376 104 Z" 
+              fill="url(#gorilla-knuckle-grad)" />
+        <circle cx="420" cy="120" r="4" fill="#4a5568" />
+      </svg>
+    </div>
 
     <!-- Anchored Mascot Stage (Always at bottom of body) -->
     <div class="hero-mascot-wrapper">
@@ -1099,6 +1211,198 @@
         }));
       }, { passive: true });
     })();
+
+    // =========================================================================
+    // Constant Function: Mascot Right-Arm Table Drag Animation
+    // Triggered by #btn-test-pull-anim or future incoming data event handlers
+    // =========================================================================
+    let isPullingTable = false;
+
+    const triggerPullAnimation = (onComplete) => {
+      if (isPullingTable) return;
+      isPullingTable = true;
+
+      const viewport = document.querySelector('.studio-viewport');
+      const arm = document.getElementById('mascot-pull-arm');
+      const mascotContainer = document.getElementById('mascot-container');
+      const testBtn = document.getElementById('btn-test-pull-anim');
+      const canvas = document.getElementById('mascot-canvas');
+
+      if (!viewport || !arm) {
+        isPullingTable = false;
+        return;
+      }
+
+      if (testBtn) {
+        testBtn.classList.add('active');
+        testBtn.innerHTML = '<span>🦾 Pulling Table...</span>';
+      }
+
+      // 1. Direct Mascot eyes toward incoming card (stage right)
+      if (canvas) {
+        canvas.dispatchEvent(new PointerEvent('pointermove', {
+          clientX: window.innerWidth * 0.9,
+          clientY: window.innerHeight * 0.42,
+          bubbles: true
+        }));
+      }
+
+      if (typeof gsap !== 'undefined') {
+        gsap.killTweensOf([viewport, arm, mascotContainer]);
+
+        // Place table off-screen to the right
+        const startX = Math.max(window.innerWidth * 0.72, 720);
+        gsap.set(viewport, {
+          x: startX,
+          opacity: 0.88,
+          scale: 0.98,
+          rotation: 2.2
+        });
+
+        // Initialize arm at mascot's right shoulder
+        gsap.set(arm, {
+          opacity: 0,
+          scale: 0.45,
+          rotation: -25,
+          x: 0,
+          y: 50
+        });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            isPullingTable = false;
+            if (testBtn) {
+              testBtn.classList.remove('active');
+              testBtn.innerHTML = '<span>🦾 Test Pull Animation</span>';
+            }
+            // Return mascot gaze forward
+            if (canvas) {
+              canvas.dispatchEvent(new PointerEvent('pointermove', {
+                clientX: window.innerWidth * 0.5,
+                clientY: window.innerHeight * 0.3,
+                bubbles: true
+              }));
+            }
+            if (typeof onComplete === 'function') {
+              onComplete();
+            }
+          }
+        });
+
+        // Step 1: Arm reaches out rapidly toward incoming table
+        tl.to(arm, {
+          opacity: 1,
+          scale: 1,
+          rotation: 18,
+          x: 160,
+          y: -30,
+          duration: 0.42,
+          ease: "power2.out"
+        });
+
+        // Mascot body leans right in anticipation
+        tl.to(mascotContainer, {
+          rotation: 2.5,
+          x: 14,
+          duration: 0.42,
+          ease: "power2.out"
+        }, "<");
+
+        // Step 2: Hand grips edge and initiates the heavy pull
+        tl.addLabel("pull", "+=0.06");
+
+        // Arm contracts as it drags table
+        tl.to(arm, {
+          x: -15,
+          y: 10,
+          rotation: -8,
+          scale: 0.96,
+          duration: 1.15,
+          ease: "power3.inOut"
+        }, "pull");
+
+        // Table slides smoothly in from right to center!
+        tl.to(viewport, {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1.15,
+          ease: "power3.inOut"
+        }, "pull");
+
+        // Mascot body exerts counter-force (leans left)
+        tl.to(mascotContainer, {
+          rotation: -4,
+          x: -16,
+          duration: 0.6,
+          ease: "power2.in"
+        }, "pull");
+
+        // Mascot straightens back up as table arrives
+        tl.to(mascotContainer, {
+          rotation: 0,
+          x: 0,
+          duration: 0.55,
+          ease: "elastic.out(1.15, 0.4)"
+        }, "pull+=0.6");
+
+        // Step 3: Landing snap & arm retraction
+        tl.addLabel("settle", "pull+=1.15");
+
+        // Crisp snap & micro-damping on table
+        tl.to(viewport, {
+          x: -8,
+          duration: 0.1,
+          ease: "power1.in"
+        }, "settle");
+
+        tl.to(viewport, {
+          x: 0,
+          duration: 0.3,
+          ease: "elastic.out(1.2, 0.45)",
+          boxShadow: "0 0 28px rgba(29, 109, 215, 0.35), 0 6px 24px rgba(0, 0, 0, 0.06)",
+          onComplete: () => {
+            gsap.to(viewport, {
+              boxShadow: "0 6px 24px rgba(0, 0, 0, 0.06)",
+              duration: 0.7
+            });
+          }
+        }, "settle+=0.1");
+
+        // Arm releases and retracts down out of view
+        tl.to(arm, {
+          opacity: 0,
+          y: 100,
+          scale: 0.5,
+          rotation: -30,
+          duration: 0.38,
+          ease: "power2.in"
+        }, "settle+=0.05");
+
+      } else {
+        // Direct fallback if GSAP is unavailable
+        viewport.style.transition = 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
+        viewport.style.transform = 'translateX(0)';
+        isPullingTable = false;
+        if (testBtn) {
+          testBtn.classList.remove('active');
+          testBtn.innerHTML = '<span>🦾 Test Pull Animation</span>';
+        }
+        if (typeof onComplete === 'function') onComplete();
+      }
+    };
+
+    // Expose constant function globally for future event handlers
+    window.triggerPullAnimation = triggerPullAnimation;
+
+    // Attach to test button
+    const btnTestPull = document.getElementById('btn-test-pull-anim');
+    if (btnTestPull) {
+      btnTestPull.addEventListener('click', () => {
+        triggerPullAnimation();
+      });
+    }
 
     // Initialize Lenis Smooth Scroll & GSAP ScrollTrigger
     window.addEventListener('DOMContentLoaded', () => {
