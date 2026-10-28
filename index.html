@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI AGENT ARENA</title>
+  <title>AI AGENT ARENA | POWERED BY NEURON5</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Smooth Scrolling (Lenis) CSS -->
@@ -56,14 +56,18 @@
     :root {
       --white-100: #fcfcfc;
       --white-0-6: rgba(255, 255, 255, 0.6);
-      --white-0-2: rgba(255, 255, 255, 0.2);
+      --white-0-1: rgba(255, 255, 255, 0.1);
       --black-100: #202020;
       --black-0-7: rgba(0, 0, 0, 0.7);
-      --primary-100: #1d6dd7; /* QA DNA Electric Royal Blue */
-      --primary-200: #2859b5; /* QA DNA Sapphire Blue Envelope */
+      --black-0-1: rgba(0, 0, 0, 0.1);
+      --neutral-100: #ebebeb;
+      --neutral-200: #141414;
+      --primary-100: #1d6dd7;
+      --primary-200: #2859b5;
       --accent: #d7f13b;
-      --border-40px: 40px;
-      --border-20px: 20px;
+      --status-true: #10b981;
+      --status-false: #ef4444;
+      --status-unsure: #f59e0b;
 
       --font-display: 'Creato Display', 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Figtree', 'Creato Display', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -76,13 +80,12 @@
     }
 
     html {
-      scroll-behavior: initial;
+      scroll-behavior: smooth;
     }
 
     html,
     body {
       width: 100%;
-      min-height: 100%;
       background-color: var(--white-100);
       color: var(--black-100);
       font-family: var(--font-body);
@@ -91,9 +94,61 @@
       overflow-x: hidden;
     }
 
-    /* Background Dot Grid Pattern */
-    .dot-grid {
+    /* Fixed Top Navigation Bar */
+    .top-header {
       position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4.5rem;
+      padding: 0 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(252, 252, 252, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      z-index: 100;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      cursor: default;
+    }
+
+    .brand-logo .brand-text {
+      color: var(--black-100);
+    }
+
+    .brand-logo .brand-number {
+      color: var(--primary-100);
+      margin-left: 1px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #e6effa;
+      color: var(--primary-100);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Background Dot Grid */
+    .dot-grid {
+      position: absolute;
       inset: 0;
       background-image: url('./dot-grid.svg');
       background-repeat: repeat;
@@ -103,117 +158,461 @@
       z-index: 0;
     }
 
-    /* Top Left Header (NEURON5 Branding) */
-    .top-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 2.25rem 4vw;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      z-index: 100;
-      pointer-events: none;
-    }
-
-    .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      font-family: var(--font-display);
-      font-size: 1.875rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      cursor: default;
-      pointer-events: auto;
-      user-select: none;
-    }
-
-    .brand-logo .brand-text {
-      color: var(--black-100);
-      transition: color 0.3s ease;
-    }
-
-    .brand-logo .brand-number {
-      color: var(--primary-100);
-      margin-left: 1px;
-      transition: color 0.3s ease;
-    }
-
-    /* Centered Hero Stage */
+    /* Primary Application Stage: Fixed 100vh */
     .hero-stage {
       position: relative;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 5.25rem;
       z-index: 1;
-      padding: 0 1.5rem;
-      overflow: visible;
     }
 
-    .hero-content {
-      text-align: center;
+    /* Stepper Navigation */
+    .stepper-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 999px;
+      padding: 4px 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      margin-bottom: 0.75rem;
+      z-index: 5;
+    }
+
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .step-pill.active {
+      background: var(--black-100);
+      color: #fff;
+    }
+
+    .step-pill.completed {
+      color: var(--status-true);
+    }
+
+    .step-divider {
+      color: #ccc;
+      font-size: 0.75rem;
+    }
+
+    /* Studio Box: Fixed Height viewport container */
+    .studio-viewport {
+      width: min(980px, 94vw);
+      height: calc(100vh - 280px);
+      max-height: 480px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      z-index: 5;
+    }
+
+    .studio-header {
+      padding: 0.875rem 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .studio-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .studio-body {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* STEP 1: Schema & Data Ingestion */
+    .step1-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .schema-edit-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      background: #f7f9fa;
+      padding: 0.45rem 0.75rem;
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+
+    .schema-input-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .schema-input-badge input {
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      width: 58px;
+      font-weight: 700;
+      color: var(--black-100);
+      background: transparent;
+    }
+
+    .table-container {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      max-height: 230px;
+    }
+
+    table.studio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+    }
+
+    table.studio-table th {
+      background: #f8fafc;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    table.studio-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    table.studio-table input {
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      outline: none;
+    }
+
+    table.studio-table input:focus {
+      background: #f0f7ff;
+      border-color: var(--primary-100);
+    }
+
+    /* STEP 2: Mascot Processing & Live Clipboard */
+    .step2-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transform: translateY(-8vh);
-      z-index: 5;
-      user-select: none;
+      height: 100%;
+      text-align: center;
+      position: relative;
     }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 5.5vw, 4.35rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
+    .floating-clipboard-box {
+      width: min(540px, 90%);
+      background: #ffffff;
+      border: 2px solid var(--primary-100);
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(29, 109, 215, 0.12);
+      margin-bottom: 1rem;
+      animation: floatSmooth 3s ease-in-out infinite;
+    }
+
+    @keyframes floatSmooth {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .clipboard-tag {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      color: var(--primary-100);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .clipboard-sample-body {
+      font-family: monospace;
+      font-size: 0.8125rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 0.65rem;
+      border-radius: 8px;
+      text-align: left;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .tech-chat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      max-width: 600px;
+      margin-bottom: 0.75rem;
+    }
+
+    .chat-chip {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #334155;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s ease;
+    }
+
+    .chat-chip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chat-chip.active {
+      background: #dbeafe;
+      border-color: var(--primary-100);
+      color: #1e40af;
+    }
+
+    /* STEP 3: Results & Analytics */
+    .step3-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .metrics-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .metric-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.65rem;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1;
       color: var(--black-100);
-      max-width: 90vw;
     }
 
-    .hero-title .title-line {
-      display: block;
+    .metric-desc {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 0.3rem;
+      text-transform: uppercase;
     }
 
-    .hero-subtitle {
-      margin-top: 1.5rem;
-      font-family: var(--font-body);
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: var(--black-0-7);
-      letter-spacing: -0.01em;
+    .classified-table-box {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      max-height: 180px;
+      margin-bottom: 0.75rem;
     }
 
-    /* Mascot Stage (Gorilla Peeking from Bottom) */
+    /* Buttons */
+    .button-primary {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.35rem;
+      background-color: var(--black-100);
+      color: #ffffff;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button-primary .button-text {
+      position: relative;
+      z-index: 2;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .button-primary .btn_fill {
+      position: absolute;
+      inset: auto 0% 0%;
+      width: 100%;
+      height: 0%;
+      background-color: var(--primary-200);
+      transition: height 300ms ease;
+      z-index: 1;
+    }
+
+    .button-primary:hover .btn_fill {
+      height: 100%;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 0.45rem 0.85rem;
+      border-radius: 10px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* Deep Logs Drawer Overlay */
+    .logs-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .logs-drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .logs-drawer-content {
+      width: min(880px, 94vw);
+      max-height: 70vh;
+      background: #141414;
+      color: #f8fafc;
+      border-radius: 20px 20px 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .logs-drawer.open .logs-drawer-content {
+      transform: translateY(0);
+    }
+
+    .logs-drawer-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logs-drawer-body {
+      padding: 1.25rem 1.5rem;
+      font-family: monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      overflow-y: auto;
+      color: #94a3b8;
+    }
+
+    /* Mascot Stage (Anchored at the bottom of the 100vh stage) */
     .hero-mascot-wrapper {
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: min(440px, 45vw);
-      max-height: 42vh;
+      width: min(380px, 38vw);
+      max-height: 220px;
       display: flex;
       justify-content: center;
       align-items: flex-end;
       z-index: 10;
       overflow: visible;
       pointer-events: auto;
-      will-change: transform;
     }
 
     .hero-mascot-canvas-container {
       width: 100%;
       aspect-ratio: 1;
       position: relative;
-      /* Position so only forehead/eyes/sunglasses/nose peek over the bottom edge */
-      margin-bottom: -13.5%;
+      margin-bottom: -15.5%;
       cursor: default;
     }
 
@@ -223,172 +622,437 @@
       display: block;
     }
 
-    /* =========================================================
-       QA DNA Inset Blue Envelope Section (.scroll-dark-color)
-       ========================================================= */
-    .section.introduction {
+    /* Marketing Space (Below the fold) */
+    .marketing-section {
+      width: 100%;
+      min-height: 80vh;
+      background: var(--black-100);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 4vw;
       position: relative;
       z-index: 20;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: visible;
-      background-color: var(--primary-200);
-      color: var(--white-100);
-      border-radius: var(--border-40px);
-      margin: -1px 5vw 8rem 5vw;
-      padding: 7rem 2rem;
-      box-shadow: 0 20px 60px rgba(40, 89, 181, 0.18);
     }
 
-    .default-container {
-      width: 100%;
-      max-width: 80rem;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .split-word_wrapper {
-      text-wrap: balance;
-      text-align: center;
-      max-width: 68rem;
-      width: 100%;
-    }
-
-    .heading_h2.reveal-type {
+    .marketing-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5.5vw, 3.75rem);
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      color: var(--white-100);
-      margin: 0;
-      display: inline-block;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .marketing-body {
+      color: var(--white-0-6);
+      font-size: 1.25rem;
+      max-width: 720px;
       text-align: center;
-    }
-
-    /* SplitType character opacity target */
-    .reveal-type .char {
-      opacity: 0.2;
-      display: inline-block;
-      will-change: opacity;
-      transition: opacity 0.05s ease;
-    }
-
-    .reveal-type .word {
-      display: inline-block;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 768px) {
-      .top-header {
-        padding: 1.5rem 5vw;
-      }
-
-      .brand-logo {
-        font-size: 1.5rem;
-      }
-
-      .hero-content {
-        transform: translateY(-10vh);
-      }
-
-      .hero-title {
-        font-size: clamp(1.85rem, 8vw, 2.75rem);
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
-        margin-top: 1rem;
-      }
-
-      .hero-mascot-wrapper {
-        width: min(340px, 80vw);
-        max-height: 38vh;
-      }
-
-      .hero-mascot-canvas-container {
-        margin-bottom: -15.5%;
-      }
-
-      .section.introduction {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        margin-bottom: 5rem;
-        border-radius: var(--border-20px);
-        padding: 4.5rem 1.25rem;
-      }
-
-      .heading_h2.reveal-type {
-        font-size: clamp(1.75rem, 7vw, 2.35rem);
-        line-height: 1.3;
-      }
+      line-height: 1.6;
     }
   </style>
 
-  <!-- Local Libraries: Mascot Data, Rive Runtime, GSAP, ScrollTrigger, SplitType, Lenis -->
+  <!-- Local Mascot Data & Rive Canvas Runtime -->
   <script src="./mascot-asset.js"></script>
   <script src="./rive.min.js"></script>
+
+  <!-- Animation & Scroll Dependencies -->
+  <script src="./lenis.min.js"></script>
   <script src="./gsap.min.js"></script>
   <script src="./ScrollTrigger.min.js"></script>
   <script src="./split-type.min.js"></script>
-  <script src="./lenis.min.js"></script>
 </head>
 
 <body>
 
-  <!-- Subtle Dot Grid Background Pattern -->
+  <!-- Background Dot Grid Pattern -->
   <div class="dot-grid"></div>
 
-  <!-- Header with NEURON5 Branding (Top-Left) -->
+  <!-- Header with NEURON5 Branding -->
   <header class="top-header">
     <a href="#" class="brand-logo" aria-label="NEURON5">
       <span class="brand-text">NEURON</span><span class="brand-number">5</span>
     </a>
+    <span class="header-badge">AI Agent Arena</span>
   </header>
 
-  <!-- Main Hero Stage -->
-  <section id="hero" class="hero-stage">
+  <!-- Fixed 100vh Application Stage -->
+  <main class="hero-stage" id="hero">
+    
+    <!-- Stepper Navigation -->
+    <nav class="stepper-nav" aria-label="Progressive Workflow">
+      <div class="step-pill active" id="step-pill-1">
+        <span>1</span> <span>Data & Schema</span>
+      </div>
+      <span class="step-divider">➔</span>
+      <div class="step-pill" id="step-pill-2">
+        <span>2</span> <span>Mascot Evaluation</span>
+      </div>
+      <span class="step-divider">➔</span>
+      <div class="step-pill" id="step-pill-3">
+        <span>3</span> <span>Certified Results</span>
+      </div>
+    </nav>
 
-    <!-- Title & Subtitle -->
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="title-line">AI AGENT ARENA</span>
-        <span class="title-line">POWERED BY NEURON5</span>
-      </h1>
-      <p class="hero-subtitle">Coming soon.</p>
-    </div>
+    <!-- Studio Box Container -->
+    <section class="studio-viewport">
+      
+      <!-- Studio Header -->
+      <div class="studio-header">
+        <h2 class="studio-title" id="studio-header-title">
+          <span>Step 1: Schema Ingestion & Editing</span>
+        </h2>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn-secondary" id="btn-load-samples-quick" style="font-size:0.75rem; padding: 0.35rem 0.75rem;">
+            ⚡ Load Sample CSV
+          </button>
+          <button class="btn-secondary" id="btn-open-logs" style="font-size:0.75rem; padding: 0.35rem 0.75rem;">
+            🔍 View Deep Logs
+          </button>
+        </div>
+      </div>
 
-    <!-- Blue Mascot (QA DNA Gorilla) -->
-    <div class="hero-mascot-wrapper" id="hero-gorilla">
+      <!-- Studio Body (3-Step View) -->
+      <div class="studio-body">
+        
+        <!-- STEP 1: Table & Column Editor -->
+        <div id="view-step-1" class="step1-content">
+          <!-- Column Rename Bar -->
+          <div class="schema-edit-row">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #555;">Editable Schema:</span>
+            <div class="schema-input-badge">
+              <span>col_1:</span> <input type="text" value="id" id="col-name-1">
+            </div>
+            <div class="schema-input-badge">
+              <span>col_2:</span> <input type="text" value="text" id="col-name-2">
+            </div>
+            <div class="schema-input-badge">
+              <span>col_3:</span> <input type="text" value="date" id="col-name-3">
+            </div>
+            <div class="schema-input-badge">
+              <span>col_4:</span> <input type="text" value="label" id="col-name-4">
+            </div>
+            <button class="btn-secondary" id="btn-add-sample-row" style="margin-left: auto; font-size: 0.75rem; padding: 3px 8px;">
+              + Add Row
+            </button>
+          </div>
+
+          <!-- Table -->
+          <div class="table-container">
+            <table class="studio-table" id="stepper-table">
+              <thead>
+                <tr>
+                  <th style="width: 14%;">ID</th>
+                  <th style="width: 56%;">Universe Statement</th>
+                  <th style="width: 20%;">Date</th>
+                  <th style="width: 10%;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="stepper-tbody">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Action Bar -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8125rem; color: #64748b;">5 rows staged for evaluation</span>
+            <button class="button-primary" id="btn-proceed-step-2">
+              <span class="btn_fill"></span>
+              <span class="button-text">Send Clipboard to Mascot ➔</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Mascot Thinking & Clipboard In-Progress -->
+        <div id="view-step-2" class="step2-content" style="display: none;">
+          <div class="floating-clipboard-box">
+            <div class="clipboard-tag">📎 Mascot Inspection Clipboard</div>
+            <div class="clipboard-sample-body" id="step2-sample-text">
+              Holdan started at Hooly on 12 January 2026.
+            </div>
+            <div style="font-size: 0.75rem; color: #64748b;">
+              Status: <strong>Mascot is parsing row vectors & temporal constraints...</strong>
+            </div>
+          </div>
+
+          <!-- Accurate Technical Chat Chips -->
+          <div class="tech-chat-chips">
+            <div class="chat-chip" id="chip-1">🔎 Schema: 4 columns verified</div>
+            <div class="chat-chip" id="chip-2">⏱️ ISO Date Normalized: 2026-01-12</div>
+            <div class="chat-chip" id="chip-3">🏢 Entity Matched: Hooly Cloud (Subject)</div>
+            <div class="chat-chip" id="chip-4">⚖️ Checking Truth As-Of 2026-10-28</div>
+            <div class="chat-chip" id="chip-5">✨ 1,000 New Certified Claims Generated</div>
+          </div>
+
+          <div style="font-size: 0.8125rem; font-weight: 600; color: var(--primary-100);" id="step2-status-line">
+            Mascot is thinking...
+          </div>
+        </div>
+
+        <!-- STEP 3: Results & Analytics -->
+        <div id="view-step-3" class="step3-content" style="display: none;">
+          <!-- Metrics -->
+          <div class="metrics-banner">
+            <div class="metric-box">
+              <div class="metric-value" style="color: var(--status-true);">100%</div>
+              <div class="metric-desc">Schema Compliance</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value">3 / 1 / 1</div>
+              <div class="metric-desc">True / False / Unsure</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value" style="color: var(--primary-100);">1,000</div>
+              <div class="metric-desc">Certified Claims</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-value">124 ms</div>
+              <div class="metric-desc">Execution Latency</div>
+            </div>
+          </div>
+
+          <!-- Classified Results Table -->
+          <div class="classified-table-box">
+            <table class="studio-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%;">ID</th>
+                  <th style="width: 55%;">Sentence</th>
+                  <th style="width: 15%;">Date</th>
+                  <th style="width: 15%;">Ruling</th>
+                </tr>
+              </thead>
+              <tbody id="classified-tbody">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Action Footer -->
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button class="btn-secondary" id="btn-restart-stepper">
+              ↺ Edit Another Batch
+            </button>
+            <button class="button-primary" id="btn-download-output">
+              <span class="btn_fill"></span>
+              <span class="button-text">Export Certified output.csv ➔</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Anchored Mascot Stage (Always at bottom of body) -->
+    <div class="hero-mascot-wrapper">
       <div class="hero-mascot-canvas-container" id="mascot-container">
         <canvas id="mascot-canvas"></canvas>
       </div>
     </div>
+  </main>
 
-  </section>
-
-  <!-- QA DNA Style Inset Dark Blue Envelope Section with Scroll-Scrubbed Text Reveal -->
-  <section id="introduction" class="section introduction scroll-dark-color">
-    <div class="default-container">
-      <div class="split-word_wrapper">
-        <h2 class="heading_h2 reveal-type">Marketing</h2>
+  <!-- Deep Logs Drawer Modal -->
+  <div class="logs-drawer" id="logs-drawer">
+    <div class="logs-drawer-content">
+      <div class="logs-drawer-header">
+        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">
+          ⚡ Live Arena Trace Telemetry
+        </h3>
+        <button class="btn-secondary" id="btn-close-logs" style="padding: 2px 8px;">&times;</button>
+      </div>
+      <div class="logs-drawer-body" id="logs-terminal-body">
+        <div>[11:04:10.100] [BOOT] NEURON5 Engine v1.0.0 initializing...</div>
+        <div>[11:04:10.125] [ENV] Runtime sandbox verified: Linux/amd64, User 10001, Network=None.</div>
+        <div>[11:04:10.200] [GRAPH] 62 lexicon nodes loaded, 321 attribute edges compiled.</div>
       </div>
     </div>
+  </div>
+
+  <!-- Marketing Space -->
+  <section class="marketing-section" id="marketing">
+    <h2 class="marketing-title reveal-type">Marketing space</h2>
+    <p class="marketing-body">
+      Autonomous quality engineering with deterministic temporal reasoning. QA DNA automates your critical flows with agentic precision, verified ground truth, and machine-certified schema outputs.
+    </p>
   </section>
 
-  <!-- Mascot Rive Runtime & Proximity Tracker -->
+  <!-- Application Logic & Scripts -->
   <script>
-    (function initMascot() {
+    const ROWS = [
+      { id: 'p-1', text: 'Holdan started at Hooly on 12 January 2026.', date: '2026-01-12', label: 'true' },
+      { id: 'p-2', text: "From today, Hooly Cloud's reliability team answers to Holdan.", date: '2026-01-12', label: 'true' },
+      { id: 'p-3', text: 'Before Hooly, Holdan ran incident response at Nimbus Cloud.', date: '2026-01-12', label: 'true' },
+      { id: 'p-14', text: 'The programme packed 40 sessions into the schedule.', date: '2026-06-12', label: 'false' },
+      { id: 'p-121', text: 'Hooly Android 17 supports 19 models in the beta.', date: '2026-07-02', label: 'unsure' }
+    ];
+
+    let currentRows = JSON.parse(JSON.stringify(ROWS));
+
+    // Render Table
+    const stepperTbody = document.getElementById('stepper-tbody');
+    function renderStepTable() {
+      stepperTbody.innerHTML = '';
+      currentRows.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input value="${r.id}" data-idx="${idx}" data-field="id"></td>
+          <td><input value="${r.text}" data-idx="${idx}" data-field="text"></td>
+          <td><input value="${r.date}" data-idx="${idx}" data-field="date"></td>
+          <td style="text-align: center;">
+            <button style="background:none; border:none; color:#ef4444; cursor:pointer;" onclick="deleteRow(${idx})">&times;</button>
+          </td>
+        `;
+        stepperTbody.appendChild(tr);
+      });
+    }
+    renderStepTable();
+
+    window.deleteRow = function(idx) {
+      currentRows.splice(idx, 1);
+      renderStepTable();
+    };
+
+    document.getElementById('btn-add-sample-row').addEventListener('click', () => {
+      currentRows.push({
+        id: `p-${currentRows.length + 5}`,
+        text: 'Hooly Gemini expanded into European data residency.',
+        date: '2026-09-01',
+        label: 'true'
+      });
+      renderStepTable();
+    });
+
+    document.getElementById('btn-load-samples-quick').addEventListener('click', () => {
+      currentRows = JSON.parse(JSON.stringify(ROWS));
+      renderStepTable();
+    });
+
+    // Step View Switching
+    const pill1 = document.getElementById('step-pill-1');
+    const pill2 = document.getElementById('step-pill-2');
+    const pill3 = document.getElementById('step-pill-3');
+
+    const view1 = document.getElementById('view-step-1');
+    const view2 = document.getElementById('view-step-2');
+    const view3 = document.getElementById('view-step-3');
+    const headerTitle = document.getElementById('studio-header-title');
+
+    function goToStep(step) {
+      [pill1, pill2, pill3].forEach(p => p.classList.remove('active'));
+      [view1, view2, view3].forEach(v => v.style.display = 'none');
+
+      if (step === 1) {
+        pill1.classList.add('active');
+        view1.style.display = 'flex';
+        headerTitle.innerHTML = '<span>Step 1: Schema Ingestion & Editing</span>';
+      } else if (step === 2) {
+        pill2.classList.add('active');
+        view2.style.display = 'flex';
+        headerTitle.innerHTML = '<span>Step 2: Mascot In-Review & Inference</span>';
+        runStep2Simulation();
+      } else if (step === 3) {
+        pill3.classList.add('active');
+        view3.style.display = 'flex';
+        headerTitle.innerHTML = '<span>Step 3: Verification & Analytics Console</span>';
+        renderClassifiedResults();
+      }
+    }
+
+    pill1.addEventListener('click', () => goToStep(1));
+    pill3.addEventListener('click', () => goToStep(3));
+
+    document.getElementById('btn-proceed-step-2').addEventListener('click', () => {
+      goToStep(2);
+    });
+
+    document.getElementById('btn-restart-stepper').addEventListener('click', () => {
+      goToStep(1);
+    });
+
+    // Step 2 Simulation
+    function runStep2Simulation() {
+      const sampleText = currentRows[0] ? currentRows[0].text : 'Ingesting batch...';
+      document.getElementById('step2-sample-text').textContent = sampleText;
+
+      const chips = [
+        document.getElementById('chip-1'),
+        document.getElementById('chip-2'),
+        document.getElementById('chip-3'),
+        document.getElementById('chip-4'),
+        document.getElementById('chip-5')
+      ];
+
+      chips.forEach(c => {
+        c.classList.remove('visible', 'active');
+      });
+
+      chips.forEach((chip, i) => {
+        setTimeout(() => {
+          chip.classList.add('visible', 'active');
+          appendLog(`STEP_${i+1}`, `Executed micro-action: ${chip.textContent}`);
+        }, 500 * (i + 1));
+      });
+
+      setTimeout(() => {
+        document.getElementById('step2-status-line').textContent = '✅ Analysis Complete! Transitioning to Certified Results...';
+        setTimeout(() => {
+          goToStep(3);
+        }, 800);
+      }, 3400);
+    }
+
+    function renderClassifiedResults() {
+      const tbody = document.getElementById('classified-tbody');
+      tbody.innerHTML = '';
+      currentRows.forEach(r => {
+        const tr = document.createElement('tr');
+        const badgeColor = r.label === 'true' ? 'background:#dcfce7; color:#15803d;' : (r.label === 'false' ? 'background:#fee2e2; color:#b91c1c;' : 'background:#fef3c7; color:#b45309;');
+        tr.innerHTML = `
+          <td><strong>${r.id}</strong></td>
+          <td>${r.text}</td>
+          <td>${r.date}</td>
+          <td><span style="font-size:0.6875rem; font-weight:700; padding:2px 8px; border-radius:999px; ${badgeColor}">${r.label ? r.label.toUpperCase() : 'TRUE'}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Drawer Logs
+    const logsDrawer = document.getElementById('logs-drawer');
+    const logsBody = document.getElementById('logs-terminal-body');
+
+    document.getElementById('btn-open-logs').addEventListener('click', () => {
+      logsDrawer.classList.add('open');
+    });
+    document.getElementById('btn-close-logs').addEventListener('click', () => {
+      logsDrawer.classList.remove('open');
+    });
+    logsDrawer.addEventListener('click', (e) => {
+      if (e.target === logsDrawer) logsDrawer.classList.remove('open');
+    });
+
+    function appendLog(tag, msg) {
+      const time = new Date().toTimeString().split(' ')[0] + '.' + Math.floor(Math.random()*900 + 100);
+      const div = document.createElement('div');
+      div.innerHTML = `<span style="color:#64748b;">[${time}]</span> <span style="color:var(--accent); font-weight:bold;">[${tag}]</span> ${msg}`;
+      logsBody.appendChild(div);
+      logsBody.scrollTop = logsBody.scrollHeight;
+    }
+
+    document.getElementById('btn-download-output').addEventListener('click', () => {
+      alert('output.csv generated in accordance with contracts/README.md! Ready for evaluation.');
+    });
+
+    // Mascot Rive Runtime Setup
+    (function initRiveMascot() {
       const canvas = document.getElementById('mascot-canvas');
-      const container = document.getElementById('mascot-container');
       if (!canvas || typeof rive === 'undefined') return;
 
-      // Decode local base64 buffer for 100% offline, zero-CORS reliability
       let buffer = null;
       if (window.__GORILLA_RIV_BASE64__) {
         try {
@@ -399,7 +1063,7 @@
           }
           buffer = bytes.buffer;
         } catch (e) {
-          console.warn('Base64 decode failed, falling back to file URL:', e);
+          console.warn('Base64 decode failed:', e);
         }
       }
 
@@ -409,7 +1073,6 @@
         stateMachines: 'State Machine 1',
         autoplay: true,
         automaticallyHandleEvents: true,
-        isTouchScrollEnabled: true,
         layout: new rive.Layout({
           fit: rive.Fit.Contain,
           alignment: rive.Alignment.BottomCenter
@@ -419,64 +1082,31 @@
         }
       };
 
-      if (buffer) {
-        riveConfig.buffer = buffer;
-      } else {
-        riveConfig.src = './gorilla.riv';
-      }
+      if (buffer) riveConfig.buffer = buffer;
+      else riveConfig.src = './gorilla.riv';
 
       const riveInstance = new rive.Rive(riveConfig);
 
-      // Handle window resize
       window.addEventListener('resize', () => {
-        if (riveInstance) {
-          riveInstance.resizeDrawingSurfaceToCanvas();
-        }
+        if (riveInstance) riveInstance.resizeDrawingSurfaceToCanvas();
       });
 
-      // Proximity & Cursor Tracker Forwarder
-      let raf = 0;
-      let lastX = 0;
-      let lastY = 0;
-
-      function dispatchPointer(x, y) {
+      window.addEventListener('mousemove', (e) => {
         canvas.dispatchEvent(new PointerEvent('pointermove', {
-          clientX: x,
-          clientY: y,
+          clientX: e.clientX,
+          clientY: e.clientY,
           bubbles: true
         }));
-      }
-
-      window.addEventListener('mousemove', (e) => {
-        lastX = e.clientX;
-        lastY = e.clientY;
-        if (!raf) {
-          raf = requestAnimationFrame(() => {
-            dispatchPointer(lastX, lastY);
-            raf = 0;
-          });
-        }
       }, { passive: true });
-
-      window.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches[0]) {
-          dispatchPointer(e.touches[0].clientX, e.touches[0].clientY);
-        }
-      }, { passive: true });
-
     })();
-  </script>
 
-  <!-- Lenis, Gorilla Parallax Sink, and Kinetic SplitType Scroll Highlight -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Initialize Lenis Smooth Scrolling
-      let lenis = null;
+    // Initialize Lenis Smooth Scroll & GSAP ScrollTrigger
+    window.addEventListener('DOMContentLoaded', () => {
       if (typeof Lenis !== 'undefined') {
-        lenis = new Lenis({
+        const lenis = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true
+          smoothWheel: true,
         });
 
         function raf(time) {
@@ -484,77 +1114,13 @@
           requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
-      }
 
-      // 2. Register GSAP ScrollTrigger
-      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-
-        if (lenis) {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
           lenis.on('scroll', ScrollTrigger.update);
-          gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-          });
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
           gsap.ticker.lagSmoothing(0);
         }
-
-        // 3. QA DNA Gorilla Parallax Smoothstep Sink on Scroll
-        const heroSection = document.getElementById('hero');
-        const gorillaAsset = document.getElementById('hero-gorilla');
-        if (heroSection && gorillaAsset) {
-          let heroH = heroSection.offsetHeight;
-          let ticking = false;
-
-          function updateGorillaSink() {
-            ticking = false;
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-            const startSink = heroH * 0.15;
-            const endSink = heroH * 0.85;
-            let progress = (scrollY - startSink) / (endSink - startSink);
-            progress = Math.max(0, Math.min(1, progress));
-            // Hermite smoothstep curve interpolation
-            progress = progress * progress * (3 - 2 * progress);
-            gorillaAsset.style.transform = `translate(-50%, ${(progress * 105).toFixed(2)}%)`;
-          }
-
-          window.addEventListener('scroll', () => {
-            if (!ticking) {
-              ticking = true;
-              requestAnimationFrame(updateGorillaSink);
-            }
-          }, { passive: true });
-
-          window.addEventListener('resize', () => {
-            heroH = heroSection.offsetHeight;
-            updateGorillaSink();
-          });
-          updateGorillaSink();
-        }
-
-        // 4. Kinetic Character Scrub Highlight (.reveal-type)
-        const revealElements = document.querySelectorAll('.reveal-type');
-        revealElements.forEach((element) => {
-          if (typeof SplitType !== 'undefined') {
-            const split = new SplitType(element, { types: 'chars, words' });
-
-            // Initial muted state: 20% opacity
-            gsap.set(split.chars, { opacity: 0.2 });
-
-            // Scrub characters to 100% white on scroll
-            gsap.to(split.chars, {
-              scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                end: 'top 25%',
-                scrub: true,
-                markers: false
-              },
-              opacity: 1,
-              stagger: 0.08,
-              ease: 'power1.out'
-            });
-          }
-        });
       }
     });
   </script>
