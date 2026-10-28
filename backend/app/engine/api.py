@@ -106,11 +106,22 @@ class Engine(Protocol):
 
 
 def create_engine(data_dir: str | Path | None = None) -> Engine:  # noqa: ARG001
-    """Build the engine used by jobs: the teammates' HTTP classification service.
+    """Build the engine used by jobs.
+
+    - NEURON_CLASSIFIER_URLS set  -> HTTP client for the teammates' service.
+    - no URLs configured          -> in-process DEMO classifier so the frontend
+      works with zero setup (labels are placeholders, flagged in the job log).
 
     data_dir is kept for interface stability; classification context lives in
     the remote service, not in this container.
     """
+    from ..config import get_settings
+
+    settings = get_settings()
+    if not settings.classifier_urls:
+        from .mock_engine import MockClassifierEngine
+
+        return MockClassifierEngine(delay_seconds=settings.mock_delay_seconds)
     from .remote_engine import create_remote_engine_from_settings
 
     return create_remote_engine_from_settings()

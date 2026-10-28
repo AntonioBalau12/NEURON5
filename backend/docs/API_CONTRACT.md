@@ -80,6 +80,7 @@ All other endpoints below require a valid session cookie.
 {
   "id": "ds_0123456789abcdef0123456789abcdef",
   "mode": "manual",
+  "format": "practice",
   "createdAt": "2026-10-28T11:00:00Z",
   "byteSize": 1234,
   "encoding": "utf-8-sig",
@@ -106,6 +107,14 @@ All other endpoints below require a valid session cookie.
 }
 ```
 
+- `format`: `"practice"` when the header is exactly `id,text,date,label,form` (the
+  input files the team receives; order matters), `"manual"` for manual drafts,
+  `"generic"` otherwise. Practice format is validated row by row (id/text non-empty,
+  `date` = `yyyy-mm-dd`, `label` empty or true/false/unsure, `form` empty or a JSON
+  array of `{subject, attribute, value}`), its mapping is fixed to
+  `text/date/id/label` and **already confirmed**, so a job can start right after the
+  upload. The `form` column is preserved untouched in the output; malformed rows only
+  add the `PRACTICE_ROW_ERRORS` warning (the row-level engine errors still apply).
 - `rowCount` may be `null` when it cannot be computed within the upload budget.
 - `mapping` may be `null`; `mapping.confirmed` must be `true` before a job can start.
 - `warnings` holds stable warning codes: `AMBIGUOUS_DELIMITER`, `BOM_PRESENT`,
@@ -323,6 +332,11 @@ request to their service(s) with the dataset payload and stores what comes back 
 the job result. There is **no local classifier and no LLM**.
 
 ### Request
+When `NEURON_CLASSIFIER_URLS` is empty the backend uses the in-process **DEMO**
+classifier (`app/engine/mock_engine.py`): no HTTP request, placeholder labels, and a
+`WARN` "DEMO classifier" event in the job log. This mode exists so the frontend works
+with zero configuration; setting the URLs switches to the real service.
+
 Configured with `NEURON_CLASSIFIER_URLS` (comma-separated POST endpoints, tried in
 order on transport/5xx failures). Two payload modes:
 

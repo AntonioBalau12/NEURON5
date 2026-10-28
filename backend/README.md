@@ -9,19 +9,27 @@ delegated to the teammates' HTTP service.
 ```sh
 cd backend
 python -m pip install -r requirements.txt
-
-# 1) start the teammates' classification service and point the backend at it
-#    NEURON_CLASSIFIER_URLS=http://<their-host>:<port>/<path>
-#    (payload shape: see docs/API_CONTRACT.md section 7)
-
-# 2) while the real service is not available, use the local demo stand-in:
-python -m app.mock_classifier        # http://127.0.0.1:8010 (demo labels only)
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
+That is enough for the frontend: **without `NEURON_CLASSIFIER_URLS` the API
+classifies with the in-process DEMO classifier** (`app/engine/mock_engine.py`,
+keyword heuristic). Jobs succeed, results/logs/downloads work, and every job log
+carries the warning "DEMO classifier ... placeholders". `NEURON_MOCK_DELAY_SECONDS`
+(default 1.0) keeps stage 2 visible.
+
+When the teammates' service is ready, point the backend at it (no code change):
+
 ```sh
-# 3) start the API
-$env:NEURON_CLASSIFIER_URLS = "http://127.0.0.1:8010/classify"
+$env:NEURON_CLASSIFIER_URLS = "http://<their-host>:<port>/<path>"
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Optional: exercise the real HTTP client path against a stand-in:
+
+```sh
+python -m app.mock_classifier        # http://127.0.0.1:8010 (demo labels only)
+$env:NEURON_CLASSIFIER_URLS = "http://127.0.0.1:8010/classify"
 ```
 
 The Next.js dev server on `http://localhost:3000` talks to it directly; see
@@ -31,7 +39,8 @@ The Next.js dev server on `http://localhost:3000` talks to it directly; see
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `NEURON_CLASSIFIER_URLS` | — (required) | comma-separated POST endpoints, tried in order |
+| `NEURON_CLASSIFIER_URLS` | — | comma-separated POST endpoints, tried in order; empty = in-process DEMO classifier |
+| `NEURON_MOCK_DELAY_SECONDS` | `1.0` | artificial delay of the in-process DEMO classifier |
 | `NEURON_CLASSIFIER_MODE` | `csv` | `csv` = multipart upload, `rows` = JSON rows |
 | `NEURON_CLASSIFIER_FIELD_NAME` | `file` | multipart file field name |
 | `NEURON_CLASSIFIER_TIMEOUT_SECONDS` | `1800` | per-request timeout, capped by the job deadline |
@@ -69,6 +78,7 @@ backend/
     engine/
       api.py             Engine/MappingSpec/processor interface (frozen)
       remote_engine.py   HTTP client for the teammates' classifier (CSV or JSON)
+      mock_engine.py     in-process DEMO classifier (default when no URL is set)
       processor.py       snapshot -> remote request -> validated output table
       cli.py             standalone processor entry point
       foundation.py      contract-first ingestion/lexicon helpers (ported from p0)
