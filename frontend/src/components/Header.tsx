@@ -8,9 +8,11 @@ export default function Header() {
         <span className="text-[#1d6dd7] ml-[1px]">5</span>
       </a>
 
-      <div className="inline-flex items-center gap-1.5 bg-[#e6effa] text-[#1d6dd7] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-        <span className="w-2 h-2 rounded-full bg-[#1d6dd7] animate-pulse" />
-        AI Agent Arena
+      <div className="inline-flex items-center gap-2 bg-[#202020]/[0.04] border border-black/[0.08] text-[#202020] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        <span className="w-2 h-2 rounded-full bg-[#d7f13b] animate-pulse" />
+        <span>AI Agent Arena</span>
+        <span className="text-black/30 font-normal">|</span>
+        <span className="text-[#8fae0d] font-black">QA DNA</span>
       </div>
     </header>
   );

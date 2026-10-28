@@ -14,7 +14,7 @@ export default function MarketingSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     if (headingRef.current) {
-      const split = new SplitType(headingRef.current, { types: 'chars, words' });
+      const split = new SplitType(headingRef.current, { types: 'chars,words' });
 
       // Initial state: 20% opacity
       gsap.set(split.chars, { opacity: 0.2 });
