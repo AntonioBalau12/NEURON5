@@ -274,7 +274,12 @@ Event object:
 - `level` in TRACE/DEBUG/INFO/WARN/ERROR/FATAL.
 - `type` in job.started, step.started, step.completed, row.failed, progress.updated,
   log.recorded, job.completed, job.failed.
-- `data` is a flat JSON object; `row.failed` carries rowId, lineNumber, column, code.
+- `timestamp` is UTC; `sequenceId` increases for each event within the job.
+- `data` is a flat JSON object. Step events include mappings, input/output columns,
+  row and byte counts, durations and classification counts where available. Progress
+  includes throughput; row failures include rowId, lineNumber, column and code.
+  `log.recorded` preserves structured details. Failed jobs include errorType and
+  errorMessage when an exception caused the failure.
 - The terminal `job.completed`/`job.failed` event is emitted only after the output file is
   complete and validated. After it the server closes the socket normally.
 - Losing a WS connection never stops the job. A reconnect with `lastSequenceId` replays

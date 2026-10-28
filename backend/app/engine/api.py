@@ -21,7 +21,7 @@ EventEmitter = Callable[[str, dict], None]
 """Called by the processor with (event_type, payload).
 
 Allowed keys in payload: message (str), level (TRACE|DEBUG|INFO|WARN|ERROR|FATAL),
-step (str), component (str), and the per-type fields documented below.
+step (str), component (str), details (JSON object), and the per-type fields below.
 
 Allowed event types:
   step.started      step
