@@ -34,6 +34,7 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
           artboard: 'Cut Long',
           stateMachines: 'State Machine 1',
           autoplay: true,
+          automaticallyHandleEvents: true,
           layout: new rive.Layout({
             fit: rive.Fit.Contain,
             alignment: rive.Alignment.BottomCenter,
@@ -110,12 +111,12 @@ const Mascot = forwardRef<MascotHandle, {}>((_props, ref) => {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(380px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-none will-change-transform"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(380px,80vw)] md:w-[min(440px,45vw)] max-h-[38vh] md:max-h-[42vh] flex justify-center items-end z-10 pointer-events-auto will-change-transform"
     >
-      <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default pointer-events-none">
+      <div className="w-full aspect-square relative -mb-[15.5%] md:-mb-[13.5%] cursor-default pointer-events-auto">
         <canvas
           ref={canvasRef}
-          className="w-full h-full block pointer-events-none"
+          className="w-full h-full block pointer-events-auto"
         />
       </div>
     </div>
