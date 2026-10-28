@@ -9,7 +9,7 @@ export default function Header() {
         aria-label="NEURON5"
       >
         <span className="text-[#202020]">NEURON</span>
-        <span className="text-[#1d6dd7] ml-[1px]">5</span>
+        <span className="text-[#8fae0d] ml-[1px]">5</span>
       </a>
     </header>
   );

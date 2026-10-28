@@ -139,7 +139,7 @@ export default function BulkUpload({ dataset, sessionReady, onUploaded }: BulkUp
           <label
             className={cx(
               'inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#202020] px-3.5 py-2 text-xs font-bold text-white transition-colors hover:bg-black',
-              'focus-within:outline-none focus-within:ring-2 focus-within:ring-[#1d6dd7]/40 focus-within:ring-offset-2',
+              'focus-within:outline-none focus-within:ring-2 focus-within:ring-[#9ebc19]/40 focus-within:ring-offset-2',
               uploading && 'pointer-events-none opacity-60',
             )}
           >
@@ -161,7 +161,7 @@ export default function BulkUpload({ dataset, sessionReady, onUploaded }: BulkUp
           <div className="min-w-0 flex-1">
             {file ? (
               <div className="flex min-w-0 items-center gap-2">
-                <FileSpreadsheet className="h-4 w-4 shrink-0 text-[#1d6dd7]" aria-hidden="true" />
+                <FileSpreadsheet className="h-4 w-4 shrink-0 text-[#76910a]" aria-hidden="true" />
                 <span className="truncate font-mono text-[11px] text-[#202020]" title={file.name}>
                   {file.name}
                 </span>
@@ -180,7 +180,7 @@ export default function BulkUpload({ dataset, sessionReady, onUploaded }: BulkUp
               value={delimiterChoice}
               onChange={(event) => setDelimiterChoice(event.target.value as DelimiterChoice)}
               disabled={uploading}
-              className="min-w-[9rem] rounded-lg border border-black/10 bg-white px-2.5 py-1.5 text-[11px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15 disabled:opacity-50"
+              className="min-w-[9rem] rounded-lg border border-black/10 bg-white px-2.5 py-1.5 text-[11px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/15 disabled:opacity-50"
             >
               <option value="auto">Auto-detect</option>
               <option value=",">Comma (,)</option>
@@ -209,7 +209,7 @@ export default function BulkUpload({ dataset, sessionReady, onUploaded }: BulkUp
         {uploading ? (
           <div className="mt-3" role="progressbar" aria-label="Uploading CSV" aria-valuetext="Uploading">
             <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
-              <div className="h-full w-1/2 animate-pulse rounded-full bg-[#1d6dd7]" />
+              <div className="h-full w-1/2 animate-pulse rounded-full bg-[#d7f13b]" />
             </div>
             <p className="mt-1 text-[10px] text-black/40">Uploading and parsing on the server…</p>
           </div>

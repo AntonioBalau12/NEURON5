@@ -39,7 +39,7 @@ const ERROR_PAGE_SIZE = 10;
 function summaryTone(status: ResultSummary['status'] | undefined): BadgeTone {
   if (status === 'succeeded') return 'green';
   if (status === 'failed' || status === 'cancelled') return 'red';
-  return 'blue';
+  return 'lime';
 }
 
 function SummaryCard({
@@ -179,7 +179,7 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
     <div className="p-4 md:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-black/[0.08] pb-4">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#1d6dd7]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#76910a]">
             Stage 3 · Results
           </p>
           <div className="mt-0.5 flex flex-wrap items-center gap-2">
@@ -194,7 +194,7 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
           {canDownload ? (
             <a
               href={resultsApi.csvUrl(jobId)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-transparent bg-[#d7f13b] px-3.5 py-2 text-xs font-bold tracking-wide text-[#202020] shadow-sm shadow-[#d7f13b]/30 transition-colors hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d6dd7]/40 focus-visible:ring-offset-1"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-transparent bg-[#d7f13b] px-3.5 py-2 text-xs font-bold tracking-wide text-[#202020] shadow-sm shadow-[#d7f13b]/30 transition-colors hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9ebc19]/40 focus-visible:ring-offset-1"
               title="Download the validated output CSV; the session cookie travels with this navigation"
             >
               <Download className="h-3.5 w-3.5" aria-hidden="true" /> Download CSV
@@ -269,7 +269,7 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
           <div className="mt-4 rounded-2xl border border-black/[0.08] bg-[#fcfcfc]">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.08] p-3">
               <div className="flex flex-wrap items-center gap-2">
-                <FileText className="h-4 w-4 text-[#1d6dd7]" aria-hidden="true" />
+                <FileText className="h-4 w-4 text-[#76910a]" aria-hidden="true" />
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-black/50">
                   Output preview
                 </h4>
@@ -427,7 +427,7 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
                             key={errorsPage.offset + index}
                             className="align-top hover:bg-black/[0.015]"
                           >
-                            <td className="px-3 py-2 font-mono text-[10px] text-[#1d6dd7]">
+                            <td className="px-3 py-2 font-mono text-[10px] text-[#76910a]">
                               {rowError.rowId}
                             </td>
                             <td className="px-3 py-2 font-mono text-[10px] text-black/55">

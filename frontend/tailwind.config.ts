@@ -11,8 +11,9 @@ const config: Config = {
       colors: {
         "white-100": "#fcfcfc",
         "black-100": "#202020",
-        "primary-100": "#1d6dd7", // QA DNA Electric Blue
-        "primary-200": "#2859b5", // QA DNA Sapphire Blue
+        "primary-100": "#d7f13b", // Neon Lime
+        "primary-200": "#9ebc19", // DNA Olive Lime
+        "primary-400": "#76910a", // Deep Olive Lime
         "neutral-100": "#ebebeb",
         "neutral-200": "#141414",
         "accent": "#d7f13b", // QA DNA Chartreuse Lime

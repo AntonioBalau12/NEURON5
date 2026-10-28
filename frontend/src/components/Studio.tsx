@@ -197,7 +197,7 @@ export default function Studio() {
           {/* Punchy Heading with DESIGN.md color tokens */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-[#202020] leading-[1.08] mb-4">
             Deterministic Engine for <br />
-            <span className="text-[#1d6dd7]">Temporal Intelligence</span>
+            <span className="text-[#76910a]">Temporal Intelligence</span>
           </h1>
 
           {/* Intro description with DESIGN.md --black-0-7 */}
@@ -210,10 +210,10 @@ export default function Studio() {
             id="btn-launch-pipeline"
             onClick={handleOpenStudio}
             disabled={isPulling}
-            className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(29,109,215,0.28)] hover:shadow-[0_12px_32px_rgba(29,109,215,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer relative z-50 pointer-events-auto"
+            className="button-primary group !px-8 !py-3.5 !text-sm md:!text-base !rounded-full shadow-[0_8px_24px_rgba(215,241,59,0.38)] hover:shadow-[0_12px_32px_rgba(215,241,59,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer relative z-50 pointer-events-auto"
           >
             <span className="btn_fill" />
-            <span className="button-text inline-flex items-center gap-3 text-[#fcfcfc]">
+            <span className="button-text inline-flex items-center gap-3 text-[#202020]">
               <span className="font-bold tracking-wide">Launch Processing Arena</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </span>
@@ -245,9 +245,9 @@ export default function Studio() {
                       className={
                         'inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold transition-all ' +
                         (state === 'current'
-                          ? 'bg-[#1d6dd7] text-[#fcfcfc] shadow-sm'
+                          ? 'bg-[#d7f13b] text-[#202020] shadow-sm shadow-[#d7f13b]/30'
                           : state === 'done'
-                            ? 'text-[#1d6dd7] hover:bg-[#e6effa]'
+                            ? 'text-[#76910a] hover:bg-[#d7f13b]/15'
                             : 'text-[#202020]/70 hover:text-[#202020] hover:bg-black/[0.03]') +
                         (enabled ? ' cursor-pointer' : ' cursor-not-allowed opacity-50')
                       }
@@ -257,9 +257,9 @@ export default function Studio() {
                         className={
                           'inline-flex h-4 w-4 items-center justify-center rounded-full text-[10px] ' +
                           (state === 'current'
-                            ? 'bg-white/20 text-[#fcfcfc]'
+                            ? 'bg-black/15 text-[#202020]'
                             : state === 'done'
-                              ? 'bg-[#e6effa] text-[#1d6dd7]'
+                              ? 'bg-[#d7f13b]/25 text-[#76910a]'
                               : 'bg-black/[0.04] text-[#202020]/50')
                         }
                       >

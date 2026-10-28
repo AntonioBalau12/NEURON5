@@ -167,7 +167,7 @@ export default function ManualEditor({ active, sessionReady, onSaved }: ManualEd
                       placeholder="One sentence"
                       spellCheck={false}
                       autoComplete="off"
-                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#1d6dd7]/40 focus:bg-white focus:ring-2 focus:ring-[#1d6dd7]/10"
+                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#9ebc19]/40 focus:bg-white focus:ring-2 focus:ring-[#9ebc19]/15"
                     />
                   </td>
                   <td className="px-1.5 py-1">
@@ -181,7 +181,7 @@ export default function ManualEditor({ active, sessionReady, onSaved }: ManualEd
                       placeholder="yyyy-mm-dd"
                       spellCheck={false}
                       autoComplete="off"
-                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 font-mono text-[11px] text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#1d6dd7]/40 focus:bg-white focus:ring-2 focus:ring-[#1d6dd7]/10"
+                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 font-mono text-[11px] text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#9ebc19]/40 focus:bg-white focus:ring-2 focus:ring-[#9ebc19]/15"
                     />
                   </td>
                   <td className="px-1.5 py-1">
@@ -195,7 +195,7 @@ export default function ManualEditor({ active, sessionReady, onSaved }: ManualEd
                       placeholder="optional"
                       spellCheck={false}
                       autoComplete="off"
-                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 font-mono text-[11px] text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#1d6dd7]/40 focus:bg-white focus:ring-2 focus:ring-[#1d6dd7]/10"
+                      className="w-full rounded-md border border-transparent bg-transparent px-2 py-1.5 font-mono text-[11px] text-[#202020] outline-none transition placeholder:text-black/25 focus:border-[#9ebc19]/40 focus:bg-white focus:ring-2 focus:ring-[#9ebc19]/15"
                     />
                   </td>
                   <td className="px-2 py-2 text-center">
@@ -204,7 +204,7 @@ export default function ManualEditor({ active, sessionReady, onSaved }: ManualEd
                       onClick={() => deleteRow(row.key)}
                       aria-label={'Delete row ' + (rowIndex + 1)}
                       title="Delete row"
-                      className="rounded-md p-1.5 text-black/35 transition-colors hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d6dd7]/40"
+                      className="rounded-md p-1.5 text-black/35 transition-colors hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9ebc19]/40"
                     >
                       <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>

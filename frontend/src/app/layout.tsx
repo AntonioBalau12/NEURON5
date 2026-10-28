@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${creatoDisplay.variable} ${figtree.variable}`}>
-      <body className="antialiased selection:bg-[#1d6dd7] selection:text-white">
+      <body className="antialiased selection:bg-[#d7f13b] selection:text-[#202020]">
         <div className="dot-grid" />
         {children}
       </body>

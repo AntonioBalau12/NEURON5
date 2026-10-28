@@ -45,7 +45,7 @@ export default function MarketingSection() {
     <section
       ref={sectionRef}
       id="introduction"
-      className="relative z-20 flex flex-col justify-center items-center overflow-visible bg-[#2859b5] text-[#fcfcfc] rounded-[20px] md:rounded-[40px] -mt-[1px] mb-32 mx-4 md:mx-[5vw] py-20 md:py-28 px-6 shadow-[0_20px_60px_rgba(40,89,181,0.18)]"
+      className="relative z-20 flex flex-col justify-center items-center overflow-visible bg-[#181f05] text-[#fcfcfc] border border-[#d7f13b]/20 rounded-[20px] md:rounded-[40px] -mt-[1px] mb-32 mx-4 md:mx-[5vw] py-20 md:py-28 px-6 shadow-[0_20px_60px_rgba(215,241,59,0.12)]"
     >
       <div className="w-full max-w-[80rem] mx-auto flex flex-col items-center justify-center">
         <div className="w-full max-w-[68rem] text-center" style={{ textWrap: 'balance' }}>

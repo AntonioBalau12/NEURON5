@@ -15,12 +15,12 @@ type ButtonSize = 'sm' | 'md';
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
   primary:
-    'bg-[#1d6dd7] text-white hover:bg-[#2859b5] border border-transparent shadow-sm shadow-[#1d6dd7]/20',
+    'bg-[#d7f13b] text-[#202020] hover:bg-[#9ebc19] border border-transparent shadow-sm shadow-[#d7f13b]/30',
   secondary:
     'bg-white text-[#202020] border border-black/10 hover:bg-black/[0.03] disabled:hover:bg-white',
   accent:
     'bg-[#d7f13b] text-[#202020] border border-[#c8e22f] hover:brightness-95 shadow-sm shadow-[#d7f13b]/30',
-  ghost: 'bg-transparent text-[#1d6dd7] border border-transparent hover:bg-[#e6effa]',
+  ghost: 'bg-transparent text-[#76910a] border border-transparent hover:bg-[#d7f13b]/15',
   danger: 'bg-white text-red-600 border border-red-200 hover:bg-red-50',
   dark: 'bg-[#202020] text-white border border-transparent hover:bg-black',
 };
@@ -53,7 +53,7 @@ export function Button({
       aria-busy={loading || undefined}
       className={cx(
         'inline-flex items-center justify-center font-bold tracking-wide transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d6dd7]/40 focus-visible:ring-offset-1',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9ebc19]/50 focus-visible:ring-offset-1',
         'disabled:cursor-not-allowed disabled:opacity-50',
         BUTTON_VARIANTS[variant],
         BUTTON_SIZES[size],
@@ -73,7 +73,7 @@ export type BadgeTone = 'neutral' | 'blue' | 'green' | 'red' | 'amber' | 'lime';
 
 const BADGE_TONES: Record<BadgeTone, string> = {
   neutral: 'bg-black/[0.04] text-black/60 border-black/10',
-  blue: 'bg-[#e6effa] text-[#1d6dd7] border-[#1d6dd7]/20',
+  blue: 'bg-[#d7f13b]/20 text-[#76910a] border-[#9ebc19]/30',
   green: 'bg-emerald-50 text-emerald-700 border-emerald-500/25',
   red: 'bg-red-50 text-red-700 border-red-500/25',
   amber: 'bg-amber-50 text-amber-700 border-amber-500/25',
@@ -108,7 +108,7 @@ export function Badge({
 export function StatusDot({ tone = 'neutral', pulse = false }: { tone?: BadgeTone; pulse?: boolean }) {
   const color: Record<BadgeTone, string> = {
     neutral: 'bg-black/30',
-    blue: 'bg-[#1d6dd7]',
+    blue: 'bg-[#9ebc19]',
     green: 'bg-emerald-500',
     red: 'bg-red-500',
     amber: 'bg-amber-500',
@@ -369,10 +369,10 @@ export function DatasetMeta({ dataset }: { dataset: Dataset }) {
     <div className="mt-4 rounded-xl border border-black/[0.08] bg-[#fcfcfc] p-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#202020]">
-          <Database className="h-3.5 w-3.5 text-[#1d6dd7]" aria-hidden="true" />
+          <Database className="h-3.5 w-3.5 text-[#76910a]" aria-hidden="true" />
           Saved dataset
         </div>
-        <Badge tone={dataset.mode === 'manual' ? 'blue' : 'neutral'}>{dataset.mode}</Badge>
+        <Badge tone={dataset.mode === 'manual' ? 'lime' : 'neutral'}>{dataset.mode}</Badge>
       </div>
       <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] md:grid-cols-4">
         {items.map((item) => (

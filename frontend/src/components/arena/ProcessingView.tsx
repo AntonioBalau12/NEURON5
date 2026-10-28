@@ -49,7 +49,7 @@ type ConnectionState = 'connecting' | 'open' | 'reconnecting' | 'offline' | 'clo
 const LEVEL_CLASS: Record<EventLevel, string> = {
   TRACE: 'text-black/35',
   DEBUG: 'text-black/50',
-  INFO: 'text-[#1d6dd7]',
+  INFO: 'text-[#76910a]',
   WARN: 'text-amber-600',
   ERROR: 'text-red-600',
   FATAL: 'text-red-700 font-bold',
@@ -202,7 +202,7 @@ function addSorted(previous: string[], value: string): string[] {
 function statusTone(status: JobStatus): BadgeTone {
   if (status === 'succeeded') return 'green';
   if (status === 'failed' || status === 'cancelled') return 'red';
-  if (status === 'running' || status === 'finalizing') return 'blue';
+  if (status === 'running' || status === 'finalizing') return 'lime';
   return 'neutral';
 }
 
@@ -213,14 +213,14 @@ function CounterCard({
 }: {
   label: string;
   value: number | undefined;
-  tone: 'green' | 'red' | 'amber' | 'neutral' | 'blue';
+  tone: 'green' | 'red' | 'amber' | 'neutral' | 'lime';
 }) {
   const tones: Record<typeof tone, string> = {
     green: 'border-emerald-500/20 bg-emerald-50/70 text-emerald-800',
     red: 'border-red-500/20 bg-red-50/70 text-red-800',
     amber: 'border-amber-500/25 bg-amber-50/70 text-amber-800',
     neutral: 'border-black/10 bg-[#fcfcfc] text-black/60',
-    blue: 'border-[#1d6dd7]/20 bg-[#e6effa] text-[#1d6dd7]',
+    lime: 'border-[#9ebc19]/30 bg-[#d7f13b]/20 text-[#76910a]',
   };
   return (
     <div className={cx('rounded-xl border p-3', tones[tone])}>
@@ -640,7 +640,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
     <div className="p-4 md:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-black/[0.08] pb-4">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#1d6dd7]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#76910a]">
             Stage 2 · Processing
           </p>
           <div className="mt-0.5 flex flex-wrap items-center gap-2">
@@ -648,7 +648,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
             {displayStatus ? (
               <Badge tone={statusTone(displayStatus)}>{JOB_STATUS_LABEL[displayStatus]}</Badge>
             ) : null}
-            {job ? <Badge mono tone="blue">{job.progress.stage}</Badge> : null}
+            {job ? <Badge mono tone="lime">{job.progress.stage}</Badge> : null}
             <Badge tone={connectionTone}>
               <StatusDot tone={connectionTone} pulse={connection === 'open'} />
               {connectionLabel}
@@ -724,7 +724,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           <div className="mt-4 rounded-2xl border border-black/[0.08] bg-white p-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <ScrollText className="h-4 w-4 text-[#1d6dd7]" aria-hidden="true" />
+                <ScrollText className="h-4 w-4 text-[#76910a]" aria-hidden="true" />
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-black/50">Progress</h4>
               </div>
               <span className="font-mono text-[11px] text-black/55">
@@ -747,8 +747,8 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
             >
               <div
                 className={cx(
-                  'h-full rounded-full bg-[#1d6dd7] transition-[width] duration-500',
-                  percent === null && 'w-1/4 animate-pulse bg-[#1d6dd7]/60',
+                  'h-full rounded-full bg-[#d7f13b] transition-[width] duration-500',
+                  percent === null && 'w-1/4 animate-pulse bg-[#d7f13b]/60',
                 )}
                 style={percent !== null ? { width: percent + '%' } : undefined}
               />
@@ -782,7 +782,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
           <div className="mt-4 rounded-2xl border border-black/[0.08] bg-[#fcfcfc]">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.08] p-3">
               <div className="flex items-center gap-2">
-                <Terminal className="h-4 w-4 text-[#1d6dd7]" aria-hidden="true" />
+                <Terminal className="h-4 w-4 text-[#76910a]" aria-hidden="true" />
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-black/50">Event log</h4>
                 <span className="text-[10px] text-black/35">
                   {filteredEvents.length} shown / {events.length} in view
@@ -795,7 +795,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                   aria-label="Filter events by level"
                   value={levelFilter}
                   onChange={(event) => setLevelFilter(event.target.value)}
-                  className="rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15"
+                  className="rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/15"
                 >
                   <option value="">all levels</option>
                   {seenLevels.map((level) => (
@@ -809,7 +809,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                   aria-label="Filter events by type"
                   value={typeFilter}
                   onChange={(event) => setTypeFilter(event.target.value)}
-                  className="max-w-[10rem] rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15"
+                  className="max-w-[10rem] rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/15"
                 >
                   <option value="">all types</option>
                   {seenTypes.map((type) => (
@@ -823,7 +823,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                   aria-label="Filter events by component"
                   value={componentFilter}
                   onChange={(event) => setComponentFilter(event.target.value)}
-                  className="max-w-[10rem] rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#1d6dd7]/50 focus:ring-2 focus:ring-[#1d6dd7]/15"
+                  className="max-w-[10rem] rounded-lg border border-black/10 bg-white px-2 py-1.5 font-mono text-[10px] text-[#202020] outline-none focus:border-[#9ebc19]/50 focus:ring-2 focus:ring-[#9ebc19]/15"
                 >
                   <option value="">all components</option>
                   {seenComponents.map((component) => (
@@ -838,7 +838,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                     type="checkbox"
                     checked={autoScroll}
                     onChange={(event) => setAutoScroll(event.target.checked)}
-                    className="h-3 w-3 accent-[#1d6dd7]"
+                    className="h-3 w-3 accent-[#9ebc19]"
                   />
                   Auto-scroll
                 </label>
@@ -907,7 +907,7 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
                       </span>
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-baseline gap-x-2">
-                          <span className="text-[#1d6dd7]">{event.type}</span>
+                          <span className="text-[#76910a]">{event.type}</span>
                           <span className="text-black/30">{event.component}</span>
                           {event.step ? <span className="text-black/25">[{event.step}]</span> : null}
                           <time className="text-black/30" dateTime={event.timestamp}>
