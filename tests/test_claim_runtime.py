@@ -12,12 +12,13 @@ from unittest.mock import patch
 from core.claims.best_k import BestKPool
 from core.claims.checkpoint import CheckpointManager
 from core.claims.factory import ClaimFactory
+from core.claims.p3.contract import ContractChecker
 from core.claims.ranker import RankedClaim, reported_confidence, score_candidate
 from core.claims.scheduler import AnytimeScheduler
 from foundation import Lexicon, load_inputs, validate_claim_text
 from foundation import TypedValue
 from core.claims.p3.observations import Obs
-from core.claims.p3.rules import gen_change, gen_relation, verify_change_endpoints
+from core.claims.p3.rules import Cand, gen_change, gen_relation, verify_change_endpoints
 from core.claims.p3.store import Params, Store
 from core.claims.p3 import render, textcheck
 from core.claims.p3.textcheck import Names
@@ -76,14 +77,12 @@ class ClaimRuntimeTests(unittest.TestCase):
         candidate = SimpleNamespace(verified=False, status="pending")
         self.assertEqual(ClaimFactory._eligible(candidate, None), (False, "not_verified_by_p3"))
 
-    def test_current_fact_uses_final_p3_asof_acceptance_policy(self):
+    def test_current_fact_requires_asof_observation_or_immutable_event_date(self):
         from core.claims.p3.store import AsOf
         store = SimpleNamespace(params=SimpleNamespace(as_of=date(2026, 10, 29)))
         store.asof_fact = lambda _key: AsOf(
             ("Example", "status"), True, last=SimpleNamespace(on=date(2026, 10, 15), clean=True), immutable=False,
         )
-        self.assertTrue(ClaimFactory._is_asof_grounded(store, ("Example", "status")))
-        store.asof_fact = lambda _key: AsOf(("Example", "status"), False)
         self.assertFalse(ClaimFactory._is_asof_grounded(store, ("Example", "status")))
         store.asof_fact = lambda _key: AsOf(
             ("Example", "joined"), True, last=SimpleNamespace(on=date(2022, 1, 1), clean=True), immutable=True,
@@ -93,6 +92,49 @@ class ClaimRuntimeTests(unittest.TestCase):
             ("Example", "status"), True, last=SimpleNamespace(on=date(2026, 10, 29), clean=True), immutable=False,
         )
         self.assertTrue(ClaimFactory._is_asof_grounded(store, ("Example", "status")))
+
+    def test_contract_static_validation_cache_does_not_cache_novelty(self):
+        cache = {}
+        names = SimpleNamespace(resolve=lambda name: name if name == "Example" else None,
+                                mentions=lambda _text: [])
+        store = SimpleNamespace(lexicon=object(), names=names)
+        form = {"subject": "Example", "attribute": "status", "value": {"kind": "name", "value": "active"}}
+
+        class Validator:
+            def validate(self, _entry):
+                return []
+
+        with patch("core.claims.p3.contract.SchemaValidator", return_value=Validator()), \
+             patch("core.claims.p3.contract._validate_form_names"), \
+             patch("core.claims.p3.contract.textcheck.check_text", return_value=[]), \
+             patch("core.claims.p3.contract.validate_claim_text", return_value=[]), \
+             patch("core.claims.p3.contract._claim_semantic_key", return_value=None) as semantic_key:
+            first = ContractChecker(store, set(), cache)
+            accepted = Cand("fact", "first", form=form, text="Example is active.")
+            first.check(accepted)
+            self.assertEqual(accepted.status, "accepted")
+
+            second = ContractChecker(store, {"example is active"}, cache)
+            repeated = Cand("fact", "second", form=form, text="Example is active.")
+            second.check(repeated)
+            self.assertEqual(repeated.status, "rejected")
+            self.assertEqual(repeated.reasons[-1], "novelty:text_equals_an_input_row")
+            semantic_key.assert_called_once()
+
+    def test_date_comparison_verbs_cover_supported_event_attributes(self):
+        phrases = {
+            "beta_date": "started its beta",
+            "chair_since": "became chair",
+            "stable_release": "was released",
+            "stable_release_date": "was released",
+            "general_availability_date": "became generally available",
+            "latest_release_date": "had its latest release",
+        }
+        for attr, verb in phrases.items():
+            with self.subTest(attr=attr):
+                sentence, error = render.compare_text("Alpha", "Beta", attr, "gt", "date")
+                self.assertIsNone(error)
+                self.assertEqual(sentence, f"Alpha {verb} after Beta.")
 
     def test_event_date_precision_equivalence_is_not_a_reschedule_conflict(self):
         store = SimpleNamespace(support=lambda _key: [
