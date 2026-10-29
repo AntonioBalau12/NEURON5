@@ -342,7 +342,14 @@ def boolean_change_text(subject: str, attr: str, from_value: bool, to_value: boo
 
 COUNT_NOUN_PLURAL_ATTR = re.compile(r".*s$")
 DATE_VERB = {"date": "took place", "launched": "launched", "joined": "joined", "founded": "was founded", "released": "was released",
-             "opened": "opened", "announced": "was announced", "published": "was published"}
+             "opened": "opened", "announced": "was announced", "published": "was published",
+             # These date-valued attributes occur in the supplied practice evidence.
+             # Their clauses state the represented event directly, avoiding vague
+             # cross-attribute wording such as "has a date before ...".
+             "beta_date": "started its beta", "chair_since": "became chair",
+             "stable_release": "was released", "stable_release_date": "was released",
+             "general_availability_date": "became generally available",
+             "latest_release_date": "had its latest release"}
 DATE_PHRASE = {"gt": "after", "lt": "before", "eq": "on the same day as"}
 
 

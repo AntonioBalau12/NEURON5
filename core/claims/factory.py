@@ -19,7 +19,7 @@ from .ranker import RankedClaim, reported_confidence, score_candidate
 from .scheduler import AnytimeScheduler
 
 
-SAFE_STRATEGIES = ("fact", "compare", "change")
+SAFE_STRATEGIES = ("fact", "compare", "change", "at_event", "relation")
 
 
 class ClaimFactory:
@@ -56,10 +56,10 @@ class ClaimFactory:
         result = store.asof_fact(key)
         if not result.accepted or result.last is None:
             return False
-        # P3's configured as-of policy already checks corroboration, blockers,
-        # volatility and freshness. Under relax_definitive it also admits its
-        # explicitly defined stable structural facts.
-        return result.accepted
+        # Current mutable facts need an observation on the claim's as-of date;
+        # freshness within the 14-day window is not proof of persistence. P3
+        # may separately admit only attributes it explicitly marks immutable.
+        return result.immutable or result.last.on == store.params.as_of
 
     @staticmethod
     def _eligible(candidate: Any, store: Store) -> tuple[bool, str | None]:
@@ -139,30 +139,45 @@ class ClaimFactory:
         }
 
     @staticmethod
-    def _rank_candidates(store: Store, source: list[Any], novelty: set[str],
-                         max_claims: int) -> tuple[BestKPool, Counter[str], int]:
-        checker = ContractChecker(store, novelty)
+    def _rank_candidates(store: Store, source: list[tuple[str, Any]], novelty: set[str],
+                         max_claims: int,
+                         validation_cache: dict[str, tuple[tuple[tuple[str, str], ...], tuple[str, ...]]]
+                         ) -> tuple[BestKPool, Counter[str], int, dict[str, Any]]:
+        pass_started = time.perf_counter()
+        checker = ContractChecker(store, novelty, validation_cache)
         pool = BestKPool(max_claims)
         rejections: Counter[str] = Counter()
-        prepared: list[tuple[float, Any, tuple[Any, ...], tuple[str, ...], tuple[str, ...]]] = []
-        for candidate in deepcopy(source):
+        stages = Counter()
+        prepared: list[tuple[float, Any, tuple[Any, ...], tuple[str, ...], tuple[str, ...], str]] = []
+        for strategy, original in source:
+            t0 = time.perf_counter()
+            candidate = deepcopy(original)
+            stages["deepcopy_seconds"] += time.perf_counter() - t0
+            t0 = time.perf_counter()
             accepted, reason = ClaimFactory._eligible(candidate, store)
+            stages["eligible_seconds"] += time.perf_counter() - t0
             if not accepted:
                 rejections[reason or "ineligible"] += 1
                 continue
+            t0 = time.perf_counter()
             score, flags, evidence_ids = score_candidate(candidate)
             key = _claim_semantic_key(candidate.type, candidate.form, store.lexicon)
+            stages["score_and_semantic_key_seconds"] += time.perf_counter() - t0
             if key is None or candidate.form is None or candidate.text is None:
                 rejections["missing_semantic_identity_or_render"] += 1
                 continue
-            prepared.append((score, candidate, key, flags, evidence_ids))
+            prepared.append((score, candidate, key, flags, evidence_ids, strategy))
         # Strongest semantic representative reaches P3's stateful novelty and
         # duplicate checker first, so weaker renderings cannot block it.
+        t0 = time.perf_counter()
         prepared.sort(key=lambda x: (-x[0], x[1].type, x[1].ckey, x[1].text or ""))
-        for score, candidate, key, flags, evidence_ids in prepared:
+        stages["sort_seconds"] += time.perf_counter() - t0
+        for score, candidate, key, flags, evidence_ids, _strategy in prepared:
             original_confidence = float(candidate.confidence)
             candidate.confidence = 0.5
+            t0 = time.perf_counter()
             checked = checker.check(candidate)
+            stages["contract_checker_seconds"] += time.perf_counter() - t0
             if checked.status != "accepted":
                 why = checked.reasons[-1] if checked.reasons else "contract_rejected"
                 rejections[why.split(":", 1)[0]] += 1
@@ -179,25 +194,41 @@ class ClaimFactory:
                         temporal_assumptions.append("historically_volatile_attribute")
                     if entry.get("immutable_event_date") is True:
                         temporal_assumptions.append("immutable_past_event_date")
+            t0 = time.perf_counter()
             pool.add(RankedClaim(claim, key, evidence_ids, flags, score, checked.rule,
                                  checked.engine.get("status", ""), tuple(sorted(set(temporal_assumptions))),
                                  original_confidence))
-        return pool, rejections, len(prepared)
+            stages["best_k_add_seconds"] += time.perf_counter() - t0
+        stages.update(checker.timings)
+        diagnostics = {
+            "candidate_count": len(source), "eligible_count": len(prepared), "accepted_count": len(pool),
+            "elapsed_seconds": round(time.perf_counter() - pass_started, 6),
+            "timings": {key: round(float(value), 6) for key, value in stages.items()},
+            "rejections": dict(sorted(rejections.items())), "contract_counts": dict(checker.counts),
+        }
+        return pool, rejections, len(prepared), diagnostics
 
     def generate(self, strategies: tuple[str, ...] = SAFE_STRATEGIES,
                  max_claims: int = 1500,
                  on_checkpoint: Callable[[list[dict[str, Any]]], float | None] | None = None
                  ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-        started = time.monotonic()
+        started = time.perf_counter()
         params = Params(min_support_rows=1, max_age_days=14, block_on_false_candidates=True,
                         allow_unlisted_names=False, change_rule="safe_transition", relation_rule="engine",
                         compare_scope="cross_date", staleness_rule="relax_definitive")
         store = Store(self.universe_csv, self.lexicon_json, params=params, reference_csv=self.practice_csv)
-        store_seconds = time.monotonic() - started
+        store_seconds = time.perf_counter() - started
+        novelty_started = time.perf_counter()
         novelty = load_novelty_texts([self.universe_csv, self.practice_csv])
+        novelty_load_seconds = time.perf_counter() - novelty_started
         rejections: Counter[str] = Counter()
         stage_times: dict[str, float] = {}
-        all_candidates = []
+        strategy_phase_times: dict[str, float] = {}
+        all_candidates: list[tuple[str, Any]] = []
+        rank_passes: list[dict[str, Any]] = []
+        validation_cache: dict[str, tuple[tuple[tuple[str, str], ...], tuple[str, ...]]] = {}
+        callback_wall_seconds = 0.0
+        callback_reported_seconds = 0.0
         pool = BestKPool(max_claims)
         eligible_count = 0
         generators = self._strategies(store, strategies)
@@ -208,26 +239,64 @@ class ClaimFactory:
             if not self.scheduler.can_start(name):
                 rejections["deadline_skipped:" + name] += 1
                 continue
-            t0 = time.monotonic()
+            phase_started = time.perf_counter()
+            t0 = time.perf_counter()
             candidates = generators[name]()
-            all_candidates.extend(candidates)
+            stage_times[name] = time.perf_counter() - t0
+            all_candidates.extend((name, candidate) for candidate in candidates)
             if on_checkpoint is not None:
-                pool, rejections, eligible_count = self._rank_candidates(store, all_candidates, novelty, max_claims)
+                pool, rejections, eligible_count, pass_metrics = self._rank_candidates(
+                    store, all_candidates, novelty, max_claims, validation_cache)
+                pass_metrics["trigger_strategy"] = name
+                rank_passes.append(pass_metrics)
+                callback_started = time.perf_counter()
                 elapsed_for_callback = on_checkpoint([entry.claim for entry in pool.selected(1000)])
+                callback_wall_seconds += time.perf_counter() - callback_started
                 if isinstance(elapsed_for_callback, (int, float)):
+                    callback_reported_seconds += float(elapsed_for_callback)
                     self.scheduler.record_publication(float(elapsed_for_callback))
-            elapsed = time.monotonic() - t0
-            stage_times[name] = elapsed
-            self.scheduler.record(name, elapsed)
+            phase_elapsed = time.perf_counter() - phase_started
+            strategy_phase_times[name] = phase_elapsed
+            self.scheduler.record(name, phase_elapsed)
 
         if on_checkpoint is None:
-            pool, rejections, eligible_count = self._rank_candidates(store, all_candidates, novelty, max_claims)
+            pool, rejections, eligible_count, pass_metrics = self._rank_candidates(
+                store, all_candidates, novelty, max_claims, validation_cache)
+            pass_metrics["trigger_strategy"] = "final"
+            rank_passes.append(pass_metrics)
+        selection_started = time.perf_counter()
+        ordered_pool = pool.selected()
         selected = pool.selected(1000)
+        selection_seconds = time.perf_counter() - selection_started
         claims = [entry.claim for entry in selected]
+        reserve = ordered_pool[len(selected):]
         dependency_counts: Counter[str] = Counter(row for item in selected for row in item.evidence_ids)
+        candidate_audit: dict[str, dict[str, Counter[str]]] = {
+            "by_strategy": {}, "by_type": {}, "by_status": {}, "by_stage": {},
+            "by_rule": {}, "by_reason": {}, "by_primary_reason": {},
+            "by_strategy_reason": {}, "by_strategy_primary_reason": {}, "by_flag": {},
+        }
+        for strategy, candidate in all_candidates:
+            dimensions = {"by_strategy": strategy, "by_type": candidate.type, "by_status": candidate.status,
+                          "by_stage": candidate.stage, "by_rule": candidate.rule or "(none)"}
+            for bucket, value in dimensions.items():
+                candidate_audit[bucket].setdefault(value, Counter())["count"] += 1
+            for reason in candidate.reasons:
+                candidate_audit["by_reason"].setdefault(reason, Counter())["count"] += 1
+                candidate_audit["by_strategy_reason"].setdefault(
+                    f"{strategy}|{candidate.type}|{reason}", Counter())["count"] += 1
+            primary_reason = candidate.reasons[0] if candidate.reasons else f"{candidate.stage}:{candidate.status}"
+            candidate_audit["by_primary_reason"].setdefault(primary_reason, Counter())["count"] += 1
+            candidate_audit["by_strategy_primary_reason"].setdefault(
+                f"{strategy}|{candidate.type}|{primary_reason}", Counter())["count"] += 1
+            for flag in candidate.flags:
+                candidate_audit["by_flag"].setdefault(flag, Counter())["count"] += 1
+        reserve_by_type = Counter(item.claim["type"] for item in reserve)
         self.metrics = {
-            "store_seconds": store_seconds,
-            "generation_seconds_by_strategy": stage_times,
+            "store_seconds": round(store_seconds, 6),
+            "novelty_load_seconds": round(novelty_load_seconds, 6),
+            "generation_seconds_by_strategy": {key: round(value, 6) for key, value in stage_times.items()},
+            "strategy_phase_wall_seconds": {key: round(value, 6) for key, value in strategy_phase_times.items()},
             "generated_candidates": len(all_candidates),
             "eligible_before_contract": eligible_count,
             "distinct_contract_accepted": len(pool),
@@ -235,7 +304,26 @@ class ClaimFactory:
             "deficit_to_1000": max(0, 1000 - len(claims)),
             "rejections": dict(sorted(rejections.items())),
             "ranking_score_is_calibrated_probability": False,
-            "elapsed_seconds": time.monotonic() - started,
+            "elapsed_seconds": round(time.perf_counter() - started, 6),
+            "timing_profile": {
+                "rank_passes": rank_passes,
+                "ranked_candidate_evaluations": sum(item["candidate_count"] for item in rank_passes),
+                "repeated_candidate_evaluations": max(0, sum(item["candidate_count"] for item in rank_passes) - len(all_candidates)),
+                "selection_seconds": round(selection_seconds, 6),
+                "checkpoint_callback_wall_seconds": round(callback_wall_seconds, 6),
+                "checkpoint_reported_seconds": round(callback_reported_seconds, 6),
+            },
+            "candidate_audit": {name: {key: value["count"] for key, value in sorted(counts.items())}
+                                for name, counts in candidate_audit.items()},
+            "reserve": {
+                "count": len(reserve), "by_type": dict(sorted(reserve_by_type.items())),
+                "claims": [{"position": index + len(selected) + 1, "id": item.claim["id"],
+                            "type": item.claim["type"], "text": item.claim["text"], "rank_score": item.score,
+                            "evidence_ids": list(item.evidence_ids), "temporal_assumptions": list(item.temporal_assumptions),
+                            "risk_flags": list(item.risk_flags),
+                            "selection_note": "below top 1000 after deterministic dependency-penalized BestKPool selection"}
+                           for index, item in enumerate(reserve)],
+            },
             "enabled_strategies": list(strategies),
             "universe_row_count": len(store.rows),
             "evidence_source": "TRUE-labelled practice forms; runtime text candidates are not support",
