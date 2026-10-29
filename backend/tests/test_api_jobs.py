@@ -396,7 +396,7 @@ def test_bulk_semicolon_snapshot_runs_job(monkeypatch, tmp_path):
         assert job["counters"]["true"] == 1
         assert job["counters"]["false"] == 1
         preview = client.get(f"/api/v1/jobs/{job_id}/result/preview").json()
-        assert preview["columns"] == ["id", "text", "date", "label"]
+        assert preview["columns"] == ["id", "text", "date", "label", "confidence"]
         assert [row[3] for row in preview["rows"]] == ["true", "false"]
 
 
@@ -423,10 +423,10 @@ def test_job_appends_new_result_column(monkeypatch, tmp_path):
         job = wait_for_terminal(client, job_id)
         assert job["status"] == "succeeded", job
         preview = client.get(f"/api/v1/jobs/{job_id}/result/preview").json()
-        assert preview["columns"] == ["text", "date", "verdict"]
-        assert preview["rows"] == [["This yes happened", "2026-01-01", "true"]]
+        assert preview["columns"] == ["text", "date", "verdict", "confidence"]
+        assert preview["rows"] == [["This yes happened", "2026-01-01", "true", "0.9"]]
         csv_response = client.get(f"/api/v1/jobs/{job_id}/result.csv")
-        assert csv_response.text.splitlines()[0] == "text,date,verdict"
+        assert csv_response.text.splitlines()[0] == "text,date,verdict,confidence"
 
 
 def test_empty_dataset_produces_empty_result(monkeypatch, tmp_path):
@@ -449,12 +449,12 @@ def test_empty_dataset_produces_empty_result(monkeypatch, tmp_path):
         }
         assert job["resultAvailable"] is True
         preview = client.get(f"/api/v1/jobs/{job_id}/result/preview").json()
-        assert preview["columns"] == ["id", "text", "date", "label"]
+        assert preview["columns"] == ["id", "text", "date", "label", "confidence"]
         assert preview["rows"] == []
         assert preview["total"] == 0
         csv_response = client.get(f"/api/v1/jobs/{job_id}/result.csv")
         assert csv_response.status_code == 200
-        assert csv_response.text == "id,text,date,label\n"
+        assert csv_response.text == "id,text,date,label,confidence\n"
 
 
 def test_deadline_is_capped_by_arena_and_passed_to_processor(monkeypatch, tmp_path):

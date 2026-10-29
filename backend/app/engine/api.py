@@ -78,6 +78,7 @@ class MappingSpec:
     date_column: str | None = None
     id_column: str | None = None
     result_column: str = "label"
+    confidence_column: str | None = "confidence"
 
 
 @dataclass

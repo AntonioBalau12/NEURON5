@@ -357,6 +357,9 @@ async def create_job(
     expected_columns = list(dataset.columns)
     if mapping_spec.result_column not in expected_columns:
         expected_columns.append(mapping_spec.result_column)
+    conf_col = getattr(mapping_spec, "confidence_column", None) or "confidence"
+    if conf_col not in expected_columns:
+        expected_columns.append(conf_col)
     job = JobRecord(
         id=job_id,
         dataset_id=dataset.id,

@@ -108,7 +108,18 @@ def process_csv(
         date_index = column_index.get(mapping.date_column) if mapping.date_column else None
         id_index = column_index.get(mapping.id_column) if mapping.id_column else None
         result_index = column_index.get(mapping.result_column)
-        out_columns = list(columns) if result_index is not None else columns + [mapping.result_column]
+
+        confidence_col = getattr(mapping, "confidence_column", None) or "confidence"
+        confidence_index = column_index.get(confidence_col)
+
+        out_columns = list(columns)
+        if result_index is None:
+            result_index = len(out_columns)
+            out_columns.append(mapping.result_column)
+
+        if confidence_index is None:
+            confidence_index = len(out_columns)
+            out_columns.append(confidence_col)
 
         temp = _temp_path(output_path)
         counts = {"true": 0, "false": 0, "unsure": 0, "fallback": 0}
@@ -184,11 +195,18 @@ def process_csv(
                     else:
                         counts[decision.label if decision.label in ("true", "false", "unsure") else "fallback"] += 1
                     output_row = list(row)
+                    if len(output_row) < len(columns):
+                        output_row = output_row + [""] * (len(columns) - len(output_row))
+                    elif len(output_row) > len(columns):
+                        output_row = output_row[: len(columns)]
+                    while len(output_row) < len(out_columns):
+                        output_row.append("")
                     label = decision.label if decision.label in ("true", "false", "unsure") else "unsure"
-                    if result_index is None:
-                        output_row.append(label)
+                    output_row[result_index] = label
+                    if decision.confidence is not None and label != "unsure":
+                        output_row[confidence_index] = str(round(float(decision.confidence), 4))
                     else:
-                        output_row[result_index] = label
+                        output_row[confidence_index] = ""
                     writer.writerow(output_row)
                     total_rows += 1
                     processed += 1
