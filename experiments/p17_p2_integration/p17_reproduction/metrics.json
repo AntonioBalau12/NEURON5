@@ -1,0 +1,3378 @@
+{
+  "protocol": {
+    "dev_seed": "neuron5-p15-confirm-v2",
+    "confirmation_seed_predeclared": "neuron5-p17-confirm-v1",
+    "grouping": "connected shared subject-attribute histories OR normalized claim template",
+    "forms_used_for_generation": "training rows only; validation forms are passed only to scorer",
+    "labels_used_for_generation": false,
+    "evidence_state": "UNVERIFIED_CANDIDATE",
+    "candidate_caps": {
+      "per_row": 512,
+      "global": 1000000,
+      "deadline_seconds": "configurable; not set for evaluation"
+    },
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "schema_inventory": {
+    "canonical_entities": 62,
+    "unique_attribute_names": 321,
+    "compatible_subject_attribute_pairs": 514,
+    "compatible_subject_attribute_value_kind_triples_observed_in_practice": 514,
+    "lexicon_events": 13,
+    "min_attributes_per_entity": 1,
+    "median_attributes_per_entity": 8,
+    "max_attributes_per_entity": 32,
+    "practice_semantic_fact_count_all_labels": 2402,
+    "value_kinds_observed": {
+      "boolean": 174,
+      "date": 165,
+      "duration": 229,
+      "money": 268,
+      "name": 209,
+      "percent": 201,
+      "quantity": 1028,
+      "version": 128
+    }
+  },
+  "leakage_audit": {
+    "dev_reproduction": {
+      "training_rows": 1518,
+      "validation_rows": 379,
+      "shared_subject_attribute_histories": 0,
+      "shared_normalized_templates": 0,
+      "near_duplicate_pairs_token_jaccard_ge_0_85": 7,
+      "near_duplicate_examples": [
+        {
+          "validation_row_id": "p-340",
+          "training_row_id": "p-281",
+          "token_jaccard": 1.0
+        },
+        {
+          "validation_row_id": "p-460",
+          "training_row_id": "p-459",
+          "token_jaccard": 0.875
+        },
+        {
+          "validation_row_id": "p-468",
+          "training_row_id": "p-466",
+          "token_jaccard": 0.85714
+        },
+        {
+          "validation_row_id": "p-468",
+          "training_row_id": "p-467",
+          "token_jaccard": 0.85714
+        },
+        {
+          "validation_row_id": "p-723",
+          "training_row_id": "p-733",
+          "token_jaccard": 1.0
+        },
+        {
+          "validation_row_id": "p-723",
+          "training_row_id": "p-737",
+          "token_jaccard": 1.0
+        },
+        {
+          "validation_row_id": "p-723",
+          "training_row_id": "p-770",
+          "token_jaccard": 1.0
+        }
+      ],
+      "generation_fit_row_ids": "training IDs only; validation forms accessed only by scorer"
+    },
+    "new_grouped_confirmation": {
+      "training_rows": 1515,
+      "validation_rows": 382,
+      "shared_subject_attribute_histories": 0,
+      "shared_normalized_templates": 0,
+      "near_duplicate_pairs_token_jaccard_ge_0_85": 6,
+      "near_duplicate_examples": [
+        {
+          "validation_row_id": "p-340",
+          "training_row_id": "p-281",
+          "token_jaccard": 1.0
+        },
+        {
+          "validation_row_id": "p-465",
+          "training_row_id": "p-457",
+          "token_jaccard": 0.875
+        },
+        {
+          "validation_row_id": "p-465",
+          "training_row_id": "p-463",
+          "token_jaccard": 0.88889
+        },
+        {
+          "validation_row_id": "p-467",
+          "training_row_id": "p-468",
+          "token_jaccard": 0.85714
+        },
+        {
+          "validation_row_id": "p-584",
+          "training_row_id": "p-318",
+          "token_jaccard": 1.0
+        },
+        {
+          "validation_row_id": "p-585",
+          "training_row_id": "p-318",
+          "token_jaccard": 1.0
+        }
+      ],
+      "generation_fit_row_ids": "training IDs only; validation forms accessed only by scorer"
+    }
+  },
+  "splits": {
+    "dev_reproduction": {
+      "train_rows": 1518,
+      "validation_rows": 379,
+      "BM25_train_examples": {
+        "full_claim": 815,
+        "attribute_context": 815,
+        "local_value": 815,
+        "relationship": 19
+      },
+      "BM25_k": [
+        1,
+        3,
+        5,
+        10,
+        20
+      ],
+      "per_row_cap": 512,
+      "global_cap": 1000000,
+      "results": {
+        "R0": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 162,
+          "gold_recovered": 132,
+          "gold_missed": 299,
+          "false_positive_diagnostic": 30,
+          "oracle_candidate_recall": 0.3062645011600928,
+          "precision_diagnostic": 0.8148148148148148,
+          "f1_diagnostic": 0.4451939291736931,
+          "exact_full_rows": 95,
+          "exact_full_row_coverage": 0.25065963060686014,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 9
+        },
+        "R1": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1836,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1670,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.09041394335511982,
+          "f1_diagnostic": 0.14644905161005733,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@1": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1836,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1670,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.09041394335511982,
+          "f1_diagnostic": 0.14644905161005733,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@3": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1840,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1674,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.09021739130434783,
+          "f1_diagnostic": 0.14619110523998238,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@5": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1843,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1677,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.09007053716766142,
+          "f1_diagnostic": 0.14599824098504838,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@10": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1851,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1685,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.08968125337655321,
+          "f1_diagnostic": 0.14548641542506574,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@20": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1881,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1715,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.08825093035619351,
+          "f1_diagnostic": 0.14359861591695502,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R3@5": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 1851,
+          "gold_recovered": 166,
+          "gold_missed": 265,
+          "false_positive_diagnostic": 1685,
+          "oracle_candidate_recall": 0.3851508120649652,
+          "precision_diagnostic": 0.08968125337655321,
+          "f1_diagnostic": 0.14548641542506574,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@1": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2045,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1871,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08508557457212713,
+          "f1_diagnostic": 0.14054927302100162,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@3": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2048,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1874,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.0849609375,
+          "f1_diagnostic": 0.14037918515530456,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@5": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2048,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1874,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.0849609375,
+          "f1_diagnostic": 0.14037918515530456,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@10": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2062,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1888,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08438409311348205,
+          "f1_diagnostic": 0.13959085439229843,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@20": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2102,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1928,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08277830637488107,
+          "f1_diagnostic": 0.13738649822345045,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@1": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2045,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1871,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08508557457212713,
+          "f1_diagnostic": 0.14054927302100162,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@3": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2048,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1874,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.0849609375,
+          "f1_diagnostic": 0.14037918515530456,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@5": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2048,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1874,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.0849609375,
+          "f1_diagnostic": 0.14037918515530456,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@10": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2062,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1888,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08438409311348205,
+          "f1_diagnostic": 0.13959085439229843,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@20": {
+          "rows": 379,
+          "reference_facts": 431,
+          "unique_row_scoped_gold_facts": 431,
+          "candidate_count": 2102,
+          "gold_recovered": 174,
+          "gold_missed": 257,
+          "false_positive_diagnostic": 1928,
+          "oracle_candidate_recall": 0.4037122969837587,
+          "precision_diagnostic": 0.08277830637488107,
+          "f1_diagnostic": 0.13738649822345045,
+          "exact_full_rows": 11,
+          "exact_full_row_coverage": 0.029023746701846966,
+          "multi_fact_rows": 50,
+          "exact_multi_fact_rows": 1
+        }
+      },
+      "per_type": {
+        "R0": {
+          "boolean": {
+            "gold": 41,
+            "predicted": 2,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 4,
+            "tp": 4,
+            "fn": 36,
+            "precision": 1.0,
+            "recall": 0.1
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 18,
+            "precision": 1.0,
+            "recall": 0.1
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 30,
+            "tp": 28,
+            "fn": 33,
+            "precision": 0.9333333333333333,
+            "recall": 0.45901639344262296
+          },
+          "name": {
+            "gold": 17,
+            "predicted": 7,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 7,
+            "tp": 4,
+            "fn": 32,
+            "precision": 0.5714285714285714,
+            "recall": 0.1111111111111111
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 108,
+            "tp": 92,
+            "fn": 117,
+            "precision": 0.8518518518518519,
+            "recall": 0.44019138755980863
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R1": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 861,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11962833914053426,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R2@1": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 861,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11962833914053426,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R2@3": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 865,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11907514450867052,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R2@5": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 868,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11866359447004608,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R2@10": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 876,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11757990867579908,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R2@20": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 75,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.29333333333333333,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 905,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.1138121546961326,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R3@5": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 74,
+            "tp": 22,
+            "fn": 18,
+            "precision": 0.2972972972972973,
+            "recall": 0.55
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 101,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2871287128712871,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 876,
+            "tp": 103,
+            "fn": 106,
+            "precision": 0.11757990867579908,
+            "recall": 0.49282296650717705
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R4@1": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1049,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.10009532888465204,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R4@3": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1052,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09980988593155894,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R4@5": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1052,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09980988593155894,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R4@10": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1066,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09849906191369606,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R4@20": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 92,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.30434782608695654,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1105,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09502262443438914,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R5@1": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1049,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.10009532888465204,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R5@3": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1052,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09980988593155894,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R5@5": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1052,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09980988593155894,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R5@10": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 91,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.3076923076923077,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1066,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09849906191369606,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        },
+        "R5@20": {
+          "boolean": {
+            "predicted": 14,
+            "gold": 41,
+            "tp": 0,
+            "fn": 41,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 40,
+            "predicted": 92,
+            "tp": 28,
+            "fn": 12,
+            "precision": 0.30434782608695654,
+            "recall": 0.7
+          },
+          "duration": {
+            "gold": 20,
+            "predicted": 7,
+            "tp": 5,
+            "fn": 15,
+            "precision": 0.7142857142857143,
+            "recall": 0.25
+          },
+          "money": {
+            "gold": 61,
+            "predicted": 105,
+            "tp": 29,
+            "fn": 32,
+            "precision": 0.2761904761904762,
+            "recall": 0.47540983606557374
+          },
+          "name": {
+            "predicted": 744,
+            "gold": 17,
+            "tp": 0,
+            "fn": 17,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 36,
+            "predicted": 33,
+            "tp": 5,
+            "fn": 31,
+            "precision": 0.15151515151515152,
+            "recall": 0.1388888888888889
+          },
+          "quantity": {
+            "gold": 209,
+            "predicted": 1105,
+            "tp": 105,
+            "fn": 104,
+            "precision": 0.09502262443438914,
+            "recall": 0.5023923444976076
+          },
+          "version": {
+            "gold": 7,
+            "predicted": 2,
+            "tp": 2,
+            "fn": 5,
+            "precision": 1.0,
+            "recall": 0.2857142857142857
+          }
+        }
+      },
+      "relative_to_R0": {
+        "R1": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1674
+        },
+        "R2@1": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1674
+        },
+        "R2@3": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1678
+        },
+        "R2@5": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1681
+        },
+        "R2@10": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1689
+        },
+        "R2@20": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1719
+        },
+        "R3@5": {
+          "net_gold_recovered_delta": 34,
+          "newly_recovered_gold_facts": 34,
+          "candidate_count_delta": 1689
+        },
+        "R4@1": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1883
+        },
+        "R4@3": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1886
+        },
+        "R4@5": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1886
+        },
+        "R4@10": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1900
+        },
+        "R4@20": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1940
+        },
+        "R5@1": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1883
+        },
+        "R5@3": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1886
+        },
+        "R5@5": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1886
+        },
+        "R5@10": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1900
+        },
+        "R5@20": {
+          "net_gold_recovered_delta": 42,
+          "newly_recovered_gold_facts": 42,
+          "candidate_count_delta": 1940
+        }
+      },
+      "generation_seconds": {
+        "R0": 1.0104371000052197,
+        "R1": 1.664175999998406,
+        "R2@1": 6.511860200000228,
+        "R2@3": 6.5734089999969,
+        "R2@5": 6.162495399999898,
+        "R2@10": 6.3407776999956695,
+        "R2@20": 8.685087199999543,
+        "R3@5": 6.724963399996341,
+        "R4@1": 9.505172400000447,
+        "R4@3": 9.913272099998721,
+        "R4@5": 10.762903599999845,
+        "R4@10": 11.59178509999765,
+        "R4@20": 10.3969614000016,
+        "R5@1": 0.2855693000019528,
+        "R5@3": 0.1189855999982683,
+        "R5@5": 0.11478809999971418,
+        "R5@10": 0.15982079999957932,
+        "R5@20": 0.45683810000628
+      },
+      "generation_cpu_seconds": {
+        "R0": 0.890625,
+        "R1": 1.59375,
+        "R2@1": 5.765625,
+        "R2@3": 5.9375,
+        "R2@5": 5.640625,
+        "R2@10": 5.796875,
+        "R2@20": 8.25,
+        "R3@5": 6.171875,
+        "R4@1": 8.609375,
+        "R4@3": 9.25,
+        "R4@5": 9.734375,
+        "R4@10": 10.5625,
+        "R4@20": 9.46875,
+        "R5@1": 0.28125,
+        "R5@3": 0.109375,
+        "R5@5": 0.125,
+        "R5@10": 0.140625,
+        "R5@20": 0.375
+      }
+    },
+    "new_grouped_confirmation": {
+      "train_rows": 1515,
+      "validation_rows": 382,
+      "BM25_train_examples": {
+        "full_claim": 868,
+        "attribute_context": 868,
+        "local_value": 868,
+        "relationship": 16
+      },
+      "BM25_k": [
+        1,
+        3,
+        5,
+        10,
+        20
+      ],
+      "per_row_cap": 512,
+      "global_cap": 1000000,
+      "results": {
+        "R0": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 137,
+          "gold_recovered": 100,
+          "gold_missed": 329,
+          "false_positive_diagnostic": 37,
+          "oracle_candidate_recall": 0.2331002331002331,
+          "precision_diagnostic": 0.7299270072992701,
+          "f1_diagnostic": 0.3533568904593639,
+          "exact_full_rows": 79,
+          "exact_full_row_coverage": 0.20680628272251309,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 6
+        },
+        "R1": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1818,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1693,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06875687568756876,
+          "f1_diagnostic": 0.11125945705384958,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@1": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1818,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1693,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06875687568756876,
+          "f1_diagnostic": 0.11125945705384958,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@3": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1820,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1695,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06868131868131869,
+          "f1_diagnostic": 0.11116051578479326,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@5": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1822,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1697,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06860592755214051,
+          "f1_diagnostic": 0.11106175033318527,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@10": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1825,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1700,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.0684931506849315,
+          "f1_diagnostic": 0.11091393078970717,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R2@20": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1834,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1709,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06815703380588876,
+          "f1_diagnostic": 0.1104728236853734,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R3@5": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1822,
+          "gold_recovered": 125,
+          "gold_missed": 304,
+          "false_positive_diagnostic": 1697,
+          "oracle_candidate_recall": 0.2913752913752914,
+          "precision_diagnostic": 0.06860592755214051,
+          "f1_diagnostic": 0.11106175033318527,
+          "exact_full_rows": 8,
+          "exact_full_row_coverage": 0.020942408376963352,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@1": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@3": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@5": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@10": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1869,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1738,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07009095773140717,
+          "f1_diagnostic": 0.11401218450826806,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R4@20": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1878,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1747,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.06975505857294995,
+          "f1_diagnostic": 0.11356740355439965,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@1": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@3": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@5": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1865,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1734,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07024128686327077,
+          "f1_diagnostic": 0.1142109851787271,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@10": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1869,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1738,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.07009095773140717,
+          "f1_diagnostic": 0.11401218450826806,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        },
+        "R5@20": {
+          "rows": 382,
+          "reference_facts": 429,
+          "unique_row_scoped_gold_facts": 429,
+          "candidate_count": 1878,
+          "gold_recovered": 131,
+          "gold_missed": 298,
+          "false_positive_diagnostic": 1747,
+          "oracle_candidate_recall": 0.30536130536130535,
+          "precision_diagnostic": 0.06975505857294995,
+          "f1_diagnostic": 0.11356740355439965,
+          "exact_full_rows": 9,
+          "exact_full_row_coverage": 0.02356020942408377,
+          "multi_fact_rows": 43,
+          "exact_multi_fact_rows": 1
+        }
+      },
+      "per_type": {
+        "R0": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 1,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 6,
+            "tp": 6,
+            "fn": 22,
+            "precision": 1.0,
+            "recall": 0.21428571428571427
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 4,
+            "tp": 4,
+            "fn": 18,
+            "precision": 1.0,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 17,
+            "tp": 13,
+            "fn": 31,
+            "precision": 0.7647058823529411,
+            "recall": 0.29545454545454547
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 13,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 14,
+            "tp": 14,
+            "fn": 37,
+            "precision": 1.0,
+            "recall": 0.27450980392156865
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 82,
+            "tp": 63,
+            "fn": 125,
+            "precision": 0.7682926829268293,
+            "recall": 0.3351063829787234
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R1": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 767,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.09517601043024772,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R2@1": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 767,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.09517601043024772,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R2@3": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 769,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.09492847854356307,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R2@5": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 771,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.0946822308690013,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R2@10": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 774,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.09431524547803617,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R2@20": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 783,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.09323116219667944,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R3@5": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 49,
+            "tp": 13,
+            "fn": 15,
+            "precision": 0.2653061224489796,
+            "recall": 0.4642857142857143
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 5,
+            "tp": 4,
+            "fn": 18,
+            "precision": 0.8,
+            "recall": 0.18181818181818182
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 75,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.26666666666666666,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 771,
+            "tp": 73,
+            "fn": 115,
+            "precision": 0.0946822308690013,
+            "recall": 0.3882978723404255
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R4@1": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R4@3": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R4@5": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R4@10": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 802,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09226932668329177,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R4@20": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 811,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09124537607891492,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R5@1": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R5@3": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R5@5": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 798,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09273182957393483,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R5@10": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 802,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09226932668329177,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "R5@20": {
+          "boolean": {
+            "gold": 46,
+            "predicted": 3,
+            "tp": 0,
+            "fn": 46,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "date": {
+            "gold": 28,
+            "predicted": 58,
+            "tp": 16,
+            "fn": 12,
+            "precision": 0.27586206896551724,
+            "recall": 0.5714285714285714
+          },
+          "duration": {
+            "gold": 22,
+            "predicted": 8,
+            "tp": 6,
+            "fn": 16,
+            "precision": 0.75,
+            "recall": 0.2727272727272727
+          },
+          "money": {
+            "gold": 44,
+            "predicted": 60,
+            "tp": 15,
+            "fn": 29,
+            "precision": 0.25,
+            "recall": 0.3409090909090909
+          },
+          "name": {
+            "gold": 45,
+            "predicted": 859,
+            "tp": 0,
+            "fn": 45,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "percent": {
+            "gold": 51,
+            "predicted": 79,
+            "tp": 20,
+            "fn": 31,
+            "precision": 0.25316455696202533,
+            "recall": 0.39215686274509803
+          },
+          "quantity": {
+            "gold": 188,
+            "predicted": 811,
+            "tp": 74,
+            "fn": 114,
+            "precision": 0.09124537607891492,
+            "recall": 0.39361702127659576
+          },
+          "version": {
+            "gold": 5,
+            "tp": 0,
+            "predicted": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "relative_to_R0": {
+        "R1": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1681
+        },
+        "R2@1": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1681
+        },
+        "R2@3": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1683
+        },
+        "R2@5": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1685
+        },
+        "R2@10": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1688
+        },
+        "R2@20": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1697
+        },
+        "R3@5": {
+          "net_gold_recovered_delta": 25,
+          "newly_recovered_gold_facts": 25,
+          "candidate_count_delta": 1685
+        },
+        "R4@1": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R4@3": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R4@5": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R4@10": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1732
+        },
+        "R4@20": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1741
+        },
+        "R5@1": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R5@3": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R5@5": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1728
+        },
+        "R5@10": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1732
+        },
+        "R5@20": {
+          "net_gold_recovered_delta": 31,
+          "newly_recovered_gold_facts": 31,
+          "candidate_count_delta": 1741
+        }
+      },
+      "generation_seconds": {
+        "R0": 1.077261999998882,
+        "R1": 1.6960971000007703,
+        "R2@1": 5.9761882000020705,
+        "R2@3": 6.63655270000163,
+        "R2@5": 7.005265799998597,
+        "R2@10": 5.94900260000577,
+        "R2@20": 5.968188999999256,
+        "R3@5": 6.107352899998659,
+        "R4@1": 9.695690699998522,
+        "R4@3": 9.173693400000047,
+        "R4@5": 8.50759790000302,
+        "R4@10": 8.165749400002824,
+        "R4@20": 8.477695499997935,
+        "R5@1": 0.12412600000243401,
+        "R5@3": 0.08912200000486337,
+        "R5@5": 0.09021429999847896,
+        "R5@10": 0.09679360000154702,
+        "R5@20": 0.5723995999942417
+      },
+      "generation_cpu_seconds": {
+        "R0": 0.90625,
+        "R1": 1.578125,
+        "R2@1": 5.484375,
+        "R2@3": 5.828125,
+        "R2@5": 6.15625,
+        "R2@10": 5.328125,
+        "R2@20": 5.296875,
+        "R3@5": 5.46875,
+        "R4@1": 8.53125,
+        "R4@3": 8.28125,
+        "R4@5": 7.890625,
+        "R4@10": 7.453125,
+        "R4@20": 7.78125,
+        "R5@1": 0.125,
+        "R5@3": 0.078125,
+        "R5@5": 0.09375,
+        "R5@10": 0.09375,
+        "R5@20": 0.546875
+      }
+    }
+  }
+}

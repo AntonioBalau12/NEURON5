@@ -1,0 +1,29 @@
+{
+  "synthetic_scale": true,
+  "requested_rows": 20000,
+  "cpu_threads": 2,
+  "offline_code_path": true,
+  "input_load_seconds": 0.1735550999999873,
+  "graph_index_features_prediction_seconds": 1040.3777877,
+  "csv_output_seconds": 0.046191399999997884,
+  "rows": 20000,
+  "unlabeled_rows": 18103,
+  "output_bytes": 718222,
+  "output_columns": [
+    "id",
+    "type",
+    "text",
+    "form",
+    "label",
+    "confidence"
+  ],
+  "end_to_end_seconds": 1040.6966407999998,
+  "process_peak_rss_mib": 595.07,
+  "official_limits": {
+    "cpu_cores": 2,
+    "memory_mib": 6144,
+    "deadline_seconds": 1800,
+    "read_only_root": "not enforced outside Docker",
+    "offline": "no network calls in this benchmark path"
+  }
+}

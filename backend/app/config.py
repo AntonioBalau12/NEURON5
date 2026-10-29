@@ -48,7 +48,7 @@ class Settings:
 
 def get_settings() -> Settings:
     return Settings(
-        model_path=_env_path("NEURON_MODEL_PATH", BACKEND_ROOT / "scripts" / "adapter.joblib"),
+        model_path=_env_path("NEURON_MODEL_PATH", BACKEND_ROOT.parent / "ml/classical/results_m2_v2/model.joblib"),
         temp_dir=_env_path("NEURON_TEMP_DIR", Path(os.environ.get("TMPDIR", "/tmp"))),
         manual_max_bytes=_env_int("NEURON_MANUAL_MAX_BYTES", 1_000_000),
         bulk_max_bytes=_env_int("NEURON_BULK_MAX_BYTES", 10_000_000),

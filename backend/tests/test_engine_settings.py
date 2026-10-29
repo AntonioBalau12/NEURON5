@@ -9,12 +9,13 @@ from app.engine.local_engine import LocalModelEngine
 
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = BACKEND_ROOT / "scripts" / "adapter.joblib"
+FINAL_MODEL_PATH = BACKEND_ROOT.parent / "ml/classical/results_m2_v2/model.joblib"
 
 
 def test_model_path_defaults_to_bundled_artifact(monkeypatch):
     monkeypatch.delenv("NEURON_MODEL_PATH", raising=False)
 
-    assert get_settings().model_path == MODEL_PATH
+    assert get_settings().model_path == FINAL_MODEL_PATH
 
 
 def test_model_path_can_be_configured_from_environment(monkeypatch, tmp_path):

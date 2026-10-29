@@ -1,0 +1,1269 @@
+{
+  "status": "completed",
+  "branch_base": "origin/feat/p1-7-recall-candidate-expansion",
+  "created_at": "2026-10-28T21:04:43.984113+00:00",
+  "splits": {
+    "train": 1328,
+    "validation": 379,
+    "test": 190,
+    "grouped_cv_folds": 10
+  },
+  "protocol": {
+    "seed": 42,
+    "p2_split_manifest": "ml/shared/splits.csv",
+    "p2_cv_manifest": "ml/shared/cv10_folds.csv",
+    "training_forms_used_only_inside_each_allowed_training_partition": true,
+    "validation_test_forms_are_features": false,
+    "query_self_evidence_excluded": true,
+    "p1_attribute_resolver_json_used": false,
+    "candidate_evidence_state": "UNVERIFIED_CANDIDATE",
+    "retrieved_values_copied_to_claim_candidates": false,
+    "test_used_for_selection": false,
+    "shared_subject_attribute_history_cross_split": 0,
+    "near_duplicate_audit": "reported from P1.7 reproduction artifacts"
+  },
+  "selection": {
+    "parse_configuration": "E2",
+    "parse_criterion": "validation oracle triplet recall, then Recall@5, subject/attribute availability",
+    "classifier_configuration": "E2",
+    "classifier_criterion": "validation Macro-F1, then balanced accuracy, FALSE recall, UNSURE recall",
+    "lightgbm_hyperparameters": {
+      "num_leaves": 15,
+      "reg_lambda": 5,
+      "weighting": "balanced"
+    }
+  },
+  "p1_7_reproduction": "p17_reproduction/metrics.json",
+  "cv_parse_metrics": [
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E0",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 653,
+      "oracle_triplet_recall": 0.36934389140271495,
+      "subject_availability": 0.4807692307692308,
+      "attribute_availability": 0.38518099547511314,
+      "typed_value_availability": 0.3557692307692308,
+      "candidate_count": 777,
+      "mean_candidates_per_claim": 0.5850903614457831,
+      "median_candidates_per_claim": 0.0,
+      "p95_candidates_per_claim": 2.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 124,
+      "false_positive_growth_vs_E2": -8229,
+      "full_row_accuracy": 0.2868975903614458,
+      "oracle_recall_at_1": 0.3054298642533937,
+      "oracle_recall_at_3": 0.36142533936651583,
+      "oracle_recall_at_5": 0.3670814479638009,
+      "oracle_recall_at_10": 0.36934389140271495,
+      "oracle_recall_at_20": 0.36934389140271495,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 56, \"attribute\": 53, \"value\": 0, \"recall\": 0.0}, \"date\": {\"gold\": 146, \"subject\": 50, \"attribute\": 28, \"value\": 30, \"recall\": 0.2054794520547945}, \"duration\": {\"gold\": 162, \"subject\": 65, \"attribute\": 46, \"value\": 43, \"recall\": 0.2654320987654321}, \"money\": {\"gold\": 195, \"subject\": 128, \"attribute\": 115, \"value\": 121, \"recall\": 0.6205128205128205}, \"name\": {\"gold\": 138, \"subject\": 40, \"attribute\": 6, \"value\": 5, \"recall\": 0.036231884057971016}, \"percent\": {\"gold\": 137, \"subject\": 56, \"attribute\": 49, \"value\": 55, \"recall\": 0.40145985401459855}, \"quantity\": {\"gold\": 773, \"subject\": 416, \"attribute\": 372, \"value\": 362, \"recall\": 0.4683053040103493}, \"version\": {\"gold\": 91, \"subject\": 39, \"attribute\": 12, \"value\": 13, \"recall\": 0.14285714285714285}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E1",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 841,
+      "oracle_triplet_recall": 0.4756787330316742,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5220588235294118,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 8458,
+      "mean_candidates_per_claim": 6.368975903614458,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 20.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 7617,
+      "false_positive_growth_vs_E2": -736,
+      "full_row_accuracy": 0.01581325301204819,
+      "oracle_recall_at_1": 0.3416289592760181,
+      "oracle_recall_at_3": 0.43721719457013575,
+      "oracle_recall_at_5": 0.45588235294117646,
+      "oracle_recall_at_10": 0.46945701357466063,
+      "oracle_recall_at_20": 0.4751131221719457,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 82, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 73, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 129, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 21, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 469, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 13, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E2",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5316742081447964,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9225,
+      "mean_candidates_per_claim": 6.946536144578313,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 872,
+      "false_positive_candidates": 8353,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3421945701357466,
+      "oracle_recall_at_3": 0.43947963800904977,
+      "oracle_recall_at_5": 0.458710407239819,
+      "oracle_recall_at_10": 0.4762443438914027,
+      "oracle_recall_at_20": 0.48755656108597284,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 21, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E3",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5316742081447964,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9225,
+      "mean_candidates_per_claim": 6.946536144578313,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 8353,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3421945701357466,
+      "oracle_recall_at_3": 0.43947963800904977,
+      "oracle_recall_at_5": 0.458710407239819,
+      "oracle_recall_at_10": 0.4762443438914027,
+      "oracle_recall_at_20": 0.48755656108597284,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 21, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E4",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5316742081447964,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9225,
+      "mean_candidates_per_claim": 6.946536144578313,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 8353,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3421945701357466,
+      "oracle_recall_at_3": 0.43947963800904977,
+      "oracle_recall_at_5": 0.458710407239819,
+      "oracle_recall_at_10": 0.4762443438914027,
+      "oracle_recall_at_20": 0.48755656108597284,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 21, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E5",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5322398190045249,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9619,
+      "mean_candidates_per_claim": 7.243222891566265,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 8747,
+      "false_positive_growth_vs_E2": 394,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3421945701357466,
+      "oracle_recall_at_3": 0.43947963800904977,
+      "oracle_recall_at_5": 0.458710407239819,
+      "oracle_recall_at_10": 0.4762443438914027,
+      "oracle_recall_at_20": 0.48755656108597284,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 22, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E6",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 875,
+      "oracle_triplet_recall": 0.49490950226244346,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5345022624434389,
+      "typed_value_availability": 0.8342760180995475,
+      "candidate_count": 9649,
+      "mean_candidates_per_claim": 7.265813253012048,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 3,
+      "false_positive_candidates": 8774,
+      "false_positive_growth_vs_E2": 421,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3421945701357466,
+      "oracle_recall_at_3": 0.4411764705882353,
+      "oracle_recall_at_5": 0.4604072398190045,
+      "oracle_recall_at_10": 0.47794117647058826,
+      "oracle_recall_at_20": 0.48925339366515835,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 78, \"value\": 56, \"recall\": 0.4444444444444444}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 25, \"value\": 36, \"recall\": 0.2608695652173913}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 21, \"recall\": 0.23076923076923078}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E2_p17_r5_ranked",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5316742081447964,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9225,
+      "mean_candidates_per_claim": 6.946536144578313,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 8353,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.3167420814479638,
+      "oracle_recall_at_3": 0.42024886877828055,
+      "oracle_recall_at_5": 0.4490950226244344,
+      "oracle_recall_at_10": 0.47285067873303166,
+      "oracle_recall_at_20": 0.48755656108597284,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 21, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E5_evidence_ranked",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 872,
+      "oracle_triplet_recall": 0.49321266968325794,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5322398190045249,
+      "typed_value_availability": 0.8297511312217195,
+      "candidate_count": 9619,
+      "mean_candidates_per_claim": 7.243222891566265,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 8747,
+      "false_positive_growth_vs_E2": 394,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.23699095022624433,
+      "oracle_recall_at_3": 0.38574660633484165,
+      "oracle_recall_at_5": 0.4343891402714932,
+      "oracle_recall_at_10": 0.47171945701357465,
+      "oracle_recall_at_20": 0.48642533936651583,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 77, \"value\": 53, \"recall\": 0.42063492063492064}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 22, \"value\": 35, \"recall\": 0.2536231884057971}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 17, \"recall\": 0.18681318681318682}}"
+    },
+    {
+      "partition": "grouped_oof_cv",
+      "configuration": "E6_evidence_ranked",
+      "rows": 1328,
+      "gold_facts": 1768,
+      "gold_recovered": 875,
+      "oracle_triplet_recall": 0.49490950226244346,
+      "subject_availability": 0.6838235294117647,
+      "attribute_availability": 0.5345022624434389,
+      "typed_value_availability": 0.8342760180995475,
+      "candidate_count": 9649,
+      "mean_candidates_per_claim": 7.265813253012048,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 23.0,
+      "newly_recovered_gold_vs_E2": 3,
+      "false_positive_candidates": 8774,
+      "false_positive_growth_vs_E2": 421,
+      "full_row_accuracy": 0.015060240963855422,
+      "oracle_recall_at_1": 0.2341628959276018,
+      "oracle_recall_at_3": 0.38744343891402716,
+      "oracle_recall_at_5": 0.43608597285067874,
+      "oracle_recall_at_10": 0.47341628959276016,
+      "oracle_recall_at_20": 0.48812217194570134,
+      "per_value_kind": "{\"boolean\": {\"gold\": 126, \"subject\": 100, \"attribute\": 78, \"value\": 56, \"recall\": 0.4444444444444444}, \"date\": {\"gold\": 146, \"subject\": 108, \"attribute\": 88, \"value\": 144, \"recall\": 0.9863013698630136}, \"duration\": {\"gold\": 162, \"subject\": 108, \"attribute\": 76, \"value\": 125, \"recall\": 0.7716049382716049}, \"money\": {\"gold\": 195, \"subject\": 137, \"attribute\": 130, \"value\": 188, \"recall\": 0.9641025641025641}, \"name\": {\"gold\": 138, \"subject\": 81, \"attribute\": 25, \"value\": 36, \"recall\": 0.2608695652173913}, \"percent\": {\"gold\": 137, \"subject\": 69, \"attribute\": 59, \"value\": 137, \"recall\": 1.0}, \"quantity\": {\"gold\": 773, \"subject\": 517, \"attribute\": 475, \"value\": 768, \"recall\": 0.9935316946959897}, \"version\": {\"gold\": 91, \"subject\": 89, \"attribute\": 14, \"value\": 21, \"recall\": 0.23076923076923078}}"
+    }
+  ],
+  "validation_parse_metrics": [
+    {
+      "partition": "validation",
+      "configuration": "E0",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 170,
+      "oracle_triplet_recall": 0.39443155452436196,
+      "subject_availability": 0.4593967517401392,
+      "attribute_availability": 0.41067285382830626,
+      "typed_value_availability": 0.39211136890951276,
+      "candidate_count": 214,
+      "mean_candidates_per_claim": 0.5646437994722955,
+      "median_candidates_per_claim": 0.0,
+      "p95_candidates_per_claim": 2.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 44,
+      "false_positive_growth_vs_E2": -2111,
+      "full_row_accuracy": 0.29023746701846964,
+      "oracle_recall_at_1": 0.33178654292343385,
+      "oracle_recall_at_3": 0.3805104408352668,
+      "oracle_recall_at_5": 0.38979118329466356,
+      "oracle_recall_at_10": 0.39443155452436196,
+      "oracle_recall_at_20": 0.39443155452436196,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 9, \"attribute\": 9, \"value\": 0, \"recall\": 0.0}, \"date\": {\"gold\": 17, \"subject\": 3, \"attribute\": 2, \"value\": 2, \"recall\": 0.11764705882352941}, \"duration\": {\"gold\": 42, \"subject\": 14, \"attribute\": 8, \"value\": 8, \"recall\": 0.19047619047619047}, \"money\": {\"gold\": 44, \"subject\": 32, \"attribute\": 31, \"value\": 32, \"recall\": 0.7272727272727273}, \"name\": {\"gold\": 54, \"subject\": 6, \"attribute\": 1, \"value\": 1, \"recall\": 0.018518518518518517}, \"percent\": {\"gold\": 31, \"subject\": 12, \"attribute\": 11, \"value\": 12, \"recall\": 0.3870967741935484}, \"quantity\": {\"gold\": 191, \"subject\": 120, \"attribute\": 114, \"value\": 113, \"recall\": 0.5916230366492147}, \"version\": {\"gold\": 18, \"subject\": 2, \"attribute\": 1, \"value\": 1, \"recall\": 0.05555555555555555}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E1",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 201,
+      "oracle_triplet_recall": 0.46635730858468677,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.531322505800464,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2212,
+      "mean_candidates_per_claim": 5.836411609498681,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 15.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2011,
+      "false_positive_growth_vs_E2": -144,
+      "full_row_accuracy": 0.002638522427440633,
+      "oracle_recall_at_1": 0.35730858468677495,
+      "oracle_recall_at_3": 0.43387470997679817,
+      "oracle_recall_at_5": 0.45011600928074247,
+      "oracle_recall_at_10": 0.46635730858468677,
+      "oracle_recall_at_20": 0.46635730858468677,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 8, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 12, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 32, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E2",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2363,
+      "mean_candidates_per_claim": 6.2348284960422165,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 18.0,
+      "newly_recovered_gold_vs_E2": 208,
+      "false_positive_candidates": 2155,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.35962877030162416,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E3",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2363,
+      "mean_candidates_per_claim": 6.2348284960422165,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 18.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2155,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.35962877030162416,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E4",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2363,
+      "mean_candidates_per_claim": 6.2348284960422165,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 18.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2155,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.35962877030162416,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E5",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2451,
+      "mean_candidates_per_claim": 6.467018469656992,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2243,
+      "false_positive_growth_vs_E2": 88,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.35962877030162416,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E6",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7447795823665894,
+      "candidate_count": 2457,
+      "mean_candidates_per_claim": 6.482849604221636,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2249,
+      "false_positive_growth_vs_E2": 94,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.35962877030162416,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 7, \"recall\": 0.20588235294117646}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 7, \"recall\": 0.3888888888888889}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E2_p17_r5_ranked",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2363,
+      "mean_candidates_per_claim": 6.2348284960422165,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 18.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2155,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.3642691415313225,
+      "oracle_recall_at_3": 0.4361948955916473,
+      "oracle_recall_at_5": 0.4547563805104408,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E5_evidence_ranked",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7354988399071926,
+      "candidate_count": 2451,
+      "mean_candidates_per_claim": 6.467018469656992,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2243,
+      "false_positive_growth_vs_E2": 88,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.27610208816705334,
+      "oracle_recall_at_3": 0.41299303944315546,
+      "oracle_recall_at_5": 0.44547563805104406,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 6, \"recall\": 0.17647058823529413}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 4, \"recall\": 0.2222222222222222}}"
+    },
+    {
+      "partition": "validation",
+      "configuration": "E6_evidence_ranked",
+      "rows": 379,
+      "gold_facts": 431,
+      "gold_recovered": 208,
+      "oracle_triplet_recall": 0.48259860788863107,
+      "subject_availability": 0.7099767981438515,
+      "attribute_availability": 0.5475638051044084,
+      "typed_value_availability": 0.7447795823665894,
+      "candidate_count": 2457,
+      "mean_candidates_per_claim": 6.482849604221636,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 2249,
+      "false_positive_growth_vs_E2": 94,
+      "full_row_accuracy": 0.005277044854881266,
+      "oracle_recall_at_1": 0.2737819025522042,
+      "oracle_recall_at_3": 0.41299303944315546,
+      "oracle_recall_at_5": 0.44547563805104406,
+      "oracle_recall_at_10": 0.4779582366589327,
+      "oracle_recall_at_20": 0.48259860788863107,
+      "per_value_kind": "{\"boolean\": {\"gold\": 34, \"subject\": 30, \"attribute\": 20, \"value\": 7, \"recall\": 0.20588235294117646}, \"date\": {\"gold\": 17, \"subject\": 13, \"attribute\": 13, \"value\": 17, \"recall\": 1.0}, \"duration\": {\"gold\": 42, \"subject\": 20, \"attribute\": 13, \"value\": 27, \"recall\": 0.6428571428571429}, \"money\": {\"gold\": 44, \"subject\": 34, \"attribute\": 33, \"value\": 39, \"recall\": 0.8863636363636364}, \"name\": {\"gold\": 54, \"subject\": 30, \"attribute\": 11, \"value\": 5, \"recall\": 0.09259259259259259}, \"percent\": {\"gold\": 31, \"subject\": 18, \"attribute\": 15, \"value\": 31, \"recall\": 1.0}, \"quantity\": {\"gold\": 191, \"subject\": 143, \"attribute\": 130, \"value\": 188, \"recall\": 0.9842931937172775}, \"version\": {\"gold\": 18, \"subject\": 18, \"attribute\": 1, \"value\": 7, \"recall\": 0.3888888888888889}}"
+    }
+  ],
+  "cv_retrieval_metrics": [
+    {
+      "partition": "cv_fold_0",
+      "retriever": "P2_BM25",
+      "queries": 1328,
+      "judged_queries": 87,
+      "evidence_coverage": 1.0,
+      "self_evidence_excluded": true,
+      "temporal_compatibility": 0.007191265060240965,
+      "provenance_correctness": 1.0,
+      "recall_at_5": 0.9226053639846743,
+      "recall_at_10": 0.9938697318007663,
+      "mrr_at_10": 0.8195037401933952
+    },
+    {
+      "partition": "cv_fold_0",
+      "retriever": "P2_Hybrid",
+      "queries": 1328,
+      "judged_queries": 87,
+      "evidence_coverage": 1.0,
+      "self_evidence_excluded": true,
+      "temporal_compatibility": 0.007191265060240965,
+      "provenance_correctness": 1.0,
+      "recall_at_5": 0.8762452107279693,
+      "recall_at_10": 0.9450191570881227,
+      "mrr_at_10": 0.8103904397007845
+    }
+  ],
+  "validation_retrieval_metrics": [
+    {
+      "partition": "validation",
+      "retriever": "P2_BM25",
+      "queries": 379,
+      "judged_queries": 18,
+      "evidence_coverage": 1.0,
+      "self_evidence_excluded": true,
+      "temporal_compatibility": 0.0050131926121372026,
+      "provenance_correctness": 1.0,
+      "recall_at_5": 0.9074074074074073,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 0.7509259259259259
+    },
+    {
+      "partition": "validation",
+      "retriever": "P2_Hybrid",
+      "queries": 379,
+      "judged_queries": 18,
+      "evidence_coverage": 1.0,
+      "self_evidence_excluded": true,
+      "temporal_compatibility": 0.0050131926121372026,
+      "provenance_correctness": 1.0,
+      "recall_at_5": 0.9629629629629629,
+      "recall_at_10": 0.9629629629629629,
+      "mrr_at_10": 0.8009259259259259
+    }
+  ],
+  "classification": {
+    "legacy_p2_m2_validation": {
+      "rows": 379,
+      "accuracy": 0.7810026385224275,
+      "balanced_accuracy": 0.38788837744533944,
+      "macro_f1": 0.3938715395111003,
+      "classes": {
+        "false": {
+          "precision": 0.23333333333333334,
+          "recall": 0.12727272727272726,
+          "f1": 0.16470588235294117,
+          "support": 55
+        },
+        "true": {
+          "precision": 0.8396501457725948,
+          "recall": 0.9113924050632911,
+          "f1": 0.874051593323217,
+          "support": 316
+        },
+        "unsure": {
+          "precision": 0.16666666666666666,
+          "recall": 0.125,
+          "f1": 0.14285714285714285,
+          "support": 8
+        }
+      },
+      "confusion_matrix_labels": [
+        "false",
+        "true",
+        "unsure"
+      ],
+      "confusion_matrix": [
+        [
+          7,
+          48,
+          0
+        ],
+        [
+          23,
+          288,
+          5
+        ],
+        [
+          0,
+          7,
+          1
+        ]
+      ]
+    },
+    "legacy_p2_m2_test_post_selection": {
+      "rows": 190,
+      "accuracy": 0.7789473684210526,
+      "balanced_accuracy": 0.46202531645569617,
+      "macro_f1": 0.45166666666666666,
+      "classes": {
+        "false": {
+          "precision": 0.3181818181818182,
+          "recall": 0.25,
+          "f1": 0.28,
+          "support": 28
+        },
+        "true": {
+          "precision": 0.8641975308641975,
+          "recall": 0.8860759493670886,
+          "f1": 0.875,
+          "support": 158
+        },
+        "unsure": {
+          "precision": 0.16666666666666666,
+          "recall": 0.25,
+          "f1": 0.2,
+          "support": 4
+        }
+      },
+      "confusion_matrix_labels": [
+        "false",
+        "true",
+        "unsure"
+      ],
+      "confusion_matrix": [
+        [
+          7,
+          19,
+          2
+        ],
+        [
+          15,
+          140,
+          3
+        ],
+        [
+          0,
+          3,
+          1
+        ]
+      ],
+      "claim_groups": {
+        "exact_shared_signature": {
+          "rows": 0,
+          "macro_f1": null
+        },
+        "new_or_paraphrased_claim": {
+          "rows": 190,
+          "accuracy": 0.7789473684210526,
+          "balanced_accuracy": 0.46202531645569617,
+          "macro_f1": 0.45166666666666666,
+          "classes": {
+            "false": {
+              "precision": 0.3181818181818182,
+              "recall": 0.25,
+              "f1": 0.28,
+              "support": 28
+            },
+            "true": {
+              "precision": 0.8641975308641975,
+              "recall": 0.8860759493670886,
+              "f1": 0.875,
+              "support": 158
+            },
+            "unsure": {
+              "precision": 0.16666666666666666,
+              "recall": 0.25,
+              "f1": 0.2,
+              "support": 4
+            }
+          },
+          "confusion_matrix_labels": [
+            "false",
+            "true",
+            "unsure"
+          ],
+          "confusion_matrix": [
+            [
+              7,
+              19,
+              2
+            ],
+            [
+              15,
+              140,
+              3
+            ],
+            [
+              0,
+              3,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    "integrated_validation": [
+      {
+        "partition": "validation",
+        "configuration": "E2",
+        "feature_count": 2145,
+        "training_rows": 1328,
+        "rows": 379,
+        "accuracy": 0.762532981530343,
+        "balanced_accuracy": 0.3198695818948984,
+        "macro_f1": 0.3118256365990505,
+        "classes": {
+          "false": {
+            "precision": 0.10344827586206896,
+            "recall": 0.05454545454545454,
+            "f1": 0.07142857142857142,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8265895953757225,
+            "recall": 0.9050632911392406,
+            "f1": 0.8640483383685801,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            3,
+            52,
+            0
+          ],
+          [
+            26,
+            286,
+            4
+          ],
+          [
+            0,
+            8,
+            0
+          ]
+        ]
+      },
+      {
+        "partition": "validation",
+        "configuration": "E5",
+        "feature_count": 2145,
+        "training_rows": 1328,
+        "rows": 379,
+        "accuracy": 0.7598944591029023,
+        "balanced_accuracy": 0.30880322209436134,
+        "macro_f1": 0.29618473895582326,
+        "classes": {
+          "false": {
+            "precision": 0.03571428571428571,
+            "recall": 0.01818181818181818,
+            "f1": 0.024096385542168676,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8247126436781609,
+            "recall": 0.9082278481012658,
+            "f1": 0.8644578313253012,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            1,
+            53,
+            1
+          ],
+          [
+            27,
+            287,
+            2
+          ],
+          [
+            0,
+            8,
+            0
+          ]
+        ]
+      },
+      {
+        "partition": "validation",
+        "configuration": "E6",
+        "feature_count": 2145,
+        "training_rows": 1328,
+        "rows": 379,
+        "accuracy": 0.7651715039577837,
+        "balanced_accuracy": 0.3159186804756425,
+        "macro_f1": 0.30518270986107243,
+        "classes": {
+          "false": {
+            "precision": 0.07692307692307693,
+            "recall": 0.03636363636363636,
+            "f1": 0.04938271604938271,
+            "support": 55
+          },
+          "true": {
+            "precision": 0.8252148997134671,
+            "recall": 0.9113924050632911,
+            "f1": 0.8661654135338346,
+            "support": 316
+          },
+          "unsure": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          }
+        },
+        "confusion_matrix_labels": [
+          "false",
+          "true",
+          "unsure"
+        ],
+        "confusion_matrix": [
+          [
+            2,
+            53,
+            0
+          ],
+          [
+            24,
+            288,
+            4
+          ],
+          [
+            0,
+            8,
+            0
+          ]
+        ]
+      }
+    ],
+    "integrated_test_post_selection": {
+      "rows": 190,
+      "accuracy": 0.7789473684210526,
+      "balanced_accuracy": 0.4522302591922845,
+      "macro_f1": 0.4559876582211832,
+      "classes": {
+        "false": {
+          "precision": 0.2857142857142857,
+          "recall": 0.21428571428571427,
+          "f1": 0.24489795918367346,
+          "support": 28
+        },
+        "true": {
+          "precision": 0.8545454545454545,
+          "recall": 0.8924050632911392,
+          "f1": 0.8730650154798761,
+          "support": 158
+        },
+        "unsure": {
+          "precision": 0.25,
+          "recall": 0.25,
+          "f1": 0.25,
+          "support": 4
+        }
+      },
+      "confusion_matrix_labels": [
+        "false",
+        "true",
+        "unsure"
+      ],
+      "confusion_matrix": [
+        [
+          6,
+          21,
+          1
+        ],
+        [
+          15,
+          141,
+          2
+        ],
+        [
+          0,
+          3,
+          1
+        ]
+      ]
+    },
+    "integrated_test_confusion_matrix": [
+      [
+        6,
+        21,
+        1
+      ],
+      [
+        15,
+        141,
+        2
+      ],
+      [
+        0,
+        3,
+        1
+      ]
+    ]
+  },
+  "test_parse_metrics_post_selection": [
+    {
+      "partition": "test_post_selection",
+      "configuration": "E0",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 68,
+      "oracle_triplet_recall": 0.33497536945812806,
+      "subject_availability": 0.39408866995073893,
+      "attribute_availability": 0.33497536945812806,
+      "typed_value_availability": 0.33004926108374383,
+      "candidate_count": 77,
+      "mean_candidates_per_claim": 0.4052631578947368,
+      "median_candidates_per_claim": 0.0,
+      "p95_candidates_per_claim": 1.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 9,
+      "false_positive_growth_vs_E2": -1052,
+      "full_row_accuracy": 0.2894736842105263,
+      "oracle_recall_at_1": 0.3103448275862069,
+      "oracle_recall_at_3": 0.33497536945812806,
+      "oracle_recall_at_5": 0.33497536945812806,
+      "oracle_recall_at_10": 0.33497536945812806,
+      "oracle_recall_at_20": 0.33497536945812806,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 5, \"attribute\": 5, \"value\": 0, \"recall\": 0.0}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 0, \"value\": 0, \"recall\": 0.0}, \"duration\": {\"gold\": 25, \"subject\": 8, \"attribute\": 6, \"value\": 7, \"recall\": 0.28}, \"money\": {\"gold\": 29, \"subject\": 19, \"attribute\": 19, \"value\": 19, \"recall\": 0.6551724137931034}, \"name\": {\"gold\": 17, \"subject\": 1, \"attribute\": 0, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 7, \"attribute\": 6, \"value\": 7, \"recall\": 0.21212121212121213}, \"quantity\": {\"gold\": 64, \"subject\": 39, \"attribute\": 32, \"value\": 34, \"recall\": 0.53125}, \"version\": {\"gold\": 19, \"subject\": 0, \"attribute\": 0, \"value\": 0, \"recall\": 0.0}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E1",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 86,
+      "oracle_triplet_recall": 0.4236453201970443,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.45320197044334976,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1098,
+      "mean_candidates_per_claim": 5.778947368421052,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.549999999999983,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1012,
+      "false_positive_growth_vs_E2": -49,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.32019704433497537,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4187192118226601,
+      "oracle_recall_at_10": 0.4187192118226601,
+      "oracle_recall_at_20": 0.4236453201970443,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 42, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E2",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1148,
+      "mean_candidates_per_claim": 6.042105263157895,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.549999999999983,
+      "newly_recovered_gold_vs_E2": 87,
+      "false_positive_candidates": 1061,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.32019704433497537,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4187192118226601,
+      "oracle_recall_at_10": 0.4236453201970443,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E3",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1148,
+      "mean_candidates_per_claim": 6.042105263157895,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.549999999999983,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1061,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.32019704433497537,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4187192118226601,
+      "oracle_recall_at_10": 0.4236453201970443,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E4",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1148,
+      "mean_candidates_per_claim": 6.042105263157895,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.549999999999983,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1061,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.32019704433497537,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4187192118226601,
+      "oracle_recall_at_10": 0.4236453201970443,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E5",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1192,
+      "mean_candidates_per_claim": 6.273684210526316,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 20.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1105,
+      "false_positive_growth_vs_E2": 44,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.32019704433497537,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4187192118226601,
+      "oracle_recall_at_10": 0.4236453201970443,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E6",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 88,
+      "oracle_triplet_recall": 0.43349753694581283,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.4630541871921182,
+      "typed_value_availability": 0.7783251231527094,
+      "candidate_count": 1204,
+      "mean_candidates_per_claim": 6.336842105263158,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 20.0,
+      "newly_recovered_gold_vs_E2": 1,
+      "false_positive_candidates": 1116,
+      "false_positive_growth_vs_E2": 55,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.3251231527093596,
+      "oracle_recall_at_3": 0.4039408866995074,
+      "oracle_recall_at_5": 0.4236453201970443,
+      "oracle_recall_at_10": 0.42857142857142855,
+      "oracle_recall_at_20": 0.43349753694581283,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 4, \"value\": 1, \"recall\": 0.058823529411764705}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E2_p17_r5_ranked",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1148,
+      "mean_candidates_per_claim": 6.042105263157895,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 19.549999999999983,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1061,
+      "false_positive_growth_vs_E2": 0,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.29064039408866993,
+      "oracle_recall_at_3": 0.39901477832512317,
+      "oracle_recall_at_5": 0.4039408866995074,
+      "oracle_recall_at_10": 0.42857142857142855,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E5_evidence_ranked",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 87,
+      "oracle_triplet_recall": 0.42857142857142855,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.458128078817734,
+      "typed_value_availability": 0.7733990147783252,
+      "candidate_count": 1192,
+      "mean_candidates_per_claim": 6.273684210526316,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 20.0,
+      "newly_recovered_gold_vs_E2": 0,
+      "false_positive_candidates": 1105,
+      "false_positive_growth_vs_E2": 44,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.24630541871921183,
+      "oracle_recall_at_3": 0.3793103448275862,
+      "oracle_recall_at_5": 0.39901477832512317,
+      "oracle_recall_at_10": 0.42857142857142855,
+      "oracle_recall_at_20": 0.42857142857142855,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 3, \"value\": 0, \"recall\": 0.0}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    },
+    {
+      "partition": "test_post_selection",
+      "configuration": "E6_evidence_ranked",
+      "rows": 190,
+      "gold_facts": 203,
+      "gold_recovered": 88,
+      "oracle_triplet_recall": 0.43349753694581283,
+      "subject_availability": 0.6502463054187192,
+      "attribute_availability": 0.4630541871921182,
+      "typed_value_availability": 0.7783251231527094,
+      "candidate_count": 1204,
+      "mean_candidates_per_claim": 6.336842105263158,
+      "median_candidates_per_claim": 5.0,
+      "p95_candidates_per_claim": 20.0,
+      "newly_recovered_gold_vs_E2": 1,
+      "false_positive_candidates": 1116,
+      "false_positive_growth_vs_E2": 55,
+      "full_row_accuracy": 0.005263157894736842,
+      "oracle_recall_at_1": 0.2512315270935961,
+      "oracle_recall_at_3": 0.3842364532019704,
+      "oracle_recall_at_5": 0.4039408866995074,
+      "oracle_recall_at_10": 0.43349753694581283,
+      "oracle_recall_at_20": 0.43349753694581283,
+      "per_value_kind": "{\"boolean\": {\"gold\": 14, \"subject\": 10, \"attribute\": 8, \"value\": 6, \"recall\": 0.42857142857142855}, \"date\": {\"gold\": 2, \"subject\": 1, \"attribute\": 1, \"value\": 2, \"recall\": 1.0}, \"duration\": {\"gold\": 25, \"subject\": 18, \"attribute\": 13, \"value\": 22, \"recall\": 0.88}, \"money\": {\"gold\": 29, \"subject\": 20, \"attribute\": 19, \"value\": 29, \"recall\": 1.0}, \"name\": {\"gold\": 17, \"subject\": 8, \"attribute\": 4, \"value\": 1, \"recall\": 0.058823529411764705}, \"percent\": {\"gold\": 33, \"subject\": 10, \"attribute\": 6, \"value\": 33, \"recall\": 1.0}, \"quantity\": {\"gold\": 64, \"subject\": 46, \"attribute\": 43, \"value\": 64, \"recall\": 1.0}, \"version\": {\"gold\": 19, \"subject\": 19, \"attribute\": 0, \"value\": 1, \"recall\": 0.05263157894736842}}"
+    }
+  ],
+  "model_artifact": "models\\lightgbm_e2.joblib",
+  "model_bytes": 679906,
+  "elapsed_seconds_before_runtime_benchmark": 376.7919536000045,
+  "runtime_benchmark_pending": false,
+  "caveats": [
+    "The legacy M2 result is read from the preserved P2 branch artifact and is labeled separately.",
+    "Test metrics are diagnostics after validation-only selection.",
+    "Runtime of the 1,000 TRUE-claim generator is not part of this model-only benchmark yet."
+  ],
+  "runtime": {
+    "status": "measured",
+    "rows": 18000,
+    "workload": "repeated P2 test claim text, unique IDs; runtime input rows contain id/text/date only",
+    "wall_seconds": {
+      "candidate_factory_fit_semantic_resolver_and_bm25": 2.5250536000021384,
+      "graph_construction": 5.42034479999711,
+      "p2_bm25_index_construction": 1.4287038999973447,
+      "tfidf_feature_transform": 9.594704900002398,
+      "p1_7_candidate_extraction": 399.7309512999709,
+      "p2_hybrid_retrieval": 188.7272696006694,
+      "r6_evidence_guided_expansion_and_ranking": 0.12799039990932215,
+      "p1_6_temporal_alignment": 2.4806032005653833,
+      "structured_feature_extraction": 135.61420240018924,
+      "lightgbm_prediction": 0.4556529000037699,
+      "csv_output": 0.06735130000015488,
+      "end_to_end_sum": 746.1728283013072
+    },
+    "throughput_claims_per_second": 24.123097648808432,
+    "projected_seconds_18000": 746.1728283013072,
+    "projected_minutes_18000": 12.436213805021787,
+    "peak_rss_mb": 140.1796875,
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "cpu_threads": 2,
+    "classifier_variant": "E2",
+    "candidate_configuration": "E2",
+    "feature_count": 2145,
+    "candidate_feature_count": 31,
+    "prediction_csv": "runtime_predictions_18k.csv",
+    "generator_1000_true_claims_included": false,
+    "full_competition_30_minute_claim": false,
+    "total_duration_note": "Does not include generating and verifying the separate 1,000 TRUE claims."
+  }
+}

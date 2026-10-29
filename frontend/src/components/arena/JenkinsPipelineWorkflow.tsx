@@ -301,8 +301,8 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">TF-IDF N-Grams</div>
-                <div className="text-[8.5px] text-slate-400 leading-tight">Word & Char (1,2)</div>
+                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">Text & Date Features</div>
+                <div className="text-[8.5px] text-slate-400 leading-tight">TF-IDF + metadata</div>
               </div>
               <div
                 className={cx(
@@ -314,8 +314,8 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">Lexicon Entities</div>
-                <div className="text-[8.5px] text-slate-400 leading-tight">Entities & Relations</div>
+                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">Temporal Graph</div>
+                <div className="text-[8.5px] text-slate-400 leading-tight">Verified evidence</div>
               </div>
               <div
                 className={cx(
@@ -327,8 +327,8 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">Temporal Deltas</div>
-                <div className="text-[8.5px] text-slate-400 leading-tight">Date Sin/Cos Cycles</div>
+                <div className="text-[9.5px] font-bold text-white leading-tight whitespace-nowrap">BM25 Retrieval</div>
+                <div className="text-[8.5px] text-slate-400 leading-tight">Lexical evidence</div>
               </div>
             </div>
           </div>
@@ -356,7 +356,7 @@ export default function JenkinsPipelineWorkflow({
             style={isInferenceActive ? activeGreenGlowStyle : undefined}
           >
             <div className="font-display text-[10.5px] font-bold text-white leading-tight">Model Inference</div>
-            <div className="text-[9px] text-slate-400 leading-tight mt-0.5">LightGBM Engine</div>
+            <div className="text-[9px] text-slate-400 leading-tight mt-0.5">Calibrated M2 v2</div>
           </div>
 
           {/* Parallel Evaluators & Ruling Doc */}
@@ -379,7 +379,7 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">LightGBM 3-Class</div>
+                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">LightGBM + Policy</div>
                 <div className="text-[8px] text-slate-300 leading-tight">Probabilities</div>
               </div>
               <div
@@ -392,8 +392,8 @@ export default function JenkinsPipelineWorkflow({
                       : 'border-zinc-700 bg-[#16181f]'
                 )}
               >
-                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">Threshold Margin</div>
-                <div className="text-[8px] text-slate-300 leading-tight">Margin (τ=0.50)</div>
+                <div className="text-[9px] font-bold text-white leading-tight whitespace-nowrap">FALSE Guardrail</div>
+                <div className="text-[8px] text-slate-300 leading-tight">Selective abstention</div>
               </div>
             </div>
 
