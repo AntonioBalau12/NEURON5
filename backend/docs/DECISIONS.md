@@ -1,5 +1,11 @@
 # Etapa A — audit și decizii (D1–D6)
 
+> Actualizare integrare finală: deciziile de mai jos consemnează implementarea inițială.
+> Modelul implicit este acum `ml/classical/results_m2_v2/model.joblib`, cu graf temporal,
+> BM25 și politica M2 calibrată. Imaginea Docker include frontend-ul și graful de
+> referință preconstruit; modul `arena` folosește runner-ul final P3 anytime.
+> Adaptorul inițial rămâne disponibil doar prin configurare explicită.
+
 Scop: consemnarea diferențelor dintre plan (`frontend/public/PLAN_ARHITECTURA_API_CSV_OFFLINE.md`)
 și repository, înainte de implementare. Plan §0 cere explicit documentarea contradicțiilor.
 

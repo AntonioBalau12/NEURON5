@@ -332,8 +332,10 @@ after cleanup the job and its artifacts are removed (`404 NOT_FOUND`).
 
 ## 7. Processor behaviour and local classification
 
-Jobs classify rows with the fitted local prototype at `backend/scripts/adapter.joblib`
-(SHA-256 `9200b1536c6df28609e4e8b36a3aaefc16a08cecf1278392d878f847d609fd2a`).
+Jobs classify rows with the final calibrated M2 v2 artifact at
+`ml/classical/results_m2_v2/model.joblib`. It combines text/date features with
+reference-only temporal graph and BM25 retrieval. The Docker image prebuilds
+the reference graph; runtime query rows exclude their own source evidence IDs.
 The model path can be changed with `NEURON_MODEL_PATH`; the default is resolved from
 the backend package, so it does not depend on the process working directory. A loaded
 artifact is cached per process and path. Restart the backend after replacing an
@@ -343,9 +345,10 @@ artifact at the same path. Model-load or artifact errors fail the job with
 The local adapter uses the mapped text and date fields. Text must be nonempty and
 the date must be present and ISO `yyyy-mm-dd`. An empty sentence or missing/invalid
 date produces `unsure` plus a structured row error; the backend does not invent a
-date. A valid prediction is the model's argmax between `true` and `false`; if its
-probability is below `0.5`, the label is `unsure`. Confidence is used internally and
-is not serialized in the current API or CSV output.
+date. Valid rows use the artifact's serialized calibration, evidence-based confidence,
+FALSE guardrail and selective abstention policy. Confidence is used internally and
+is not serialized in the current API or CSV output. The previous local adapter
+remains supported through an explicit `NEURON_MODEL_PATH` override.
 
 ### CSV output and mapping
 

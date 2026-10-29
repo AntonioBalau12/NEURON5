@@ -18,6 +18,7 @@ from app.main import create_app
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = REPO_ROOT / "backend" / "scripts" / "adapter.joblib"
+FINAL_MODEL_PATH = REPO_ROOT / "ml/classical/results_m2_v2/model.joblib"
 
 SAMPLE_ROWS = [
     ["s-1", "Hooly AI Pro costs EUR 59 a month.", "2026-04-20", ""],
@@ -165,6 +166,24 @@ def test_missing_model_fails_the_job_honestly(tmp_path: Path):
         summary = client.get(f"/api/v1/jobs/{job_id}/result/summary")
         assert summary.status_code == 200
         assert summary.json()["failureReason"] == "CLASSIFIER_UNAVAILABLE"
+
+
+def test_final_m2_pipeline_runs_through_web_api(tmp_path: Path):
+    engine = LocalModelEngine(FINAL_MODEL_PATH)
+    assert len(engine.adapter.extractor.retriever.graph.entities) == 62
+    with make_client(tmp_path, model_path=FINAL_MODEL_PATH) as client:
+        client.post("/api/v1/sessions")
+        _, job_id = prepare_job(client)
+        terminal = wait_for_terminal(client, job_id)
+        assert terminal["status"] == "succeeded", terminal
+        output = client.get(f"/api/v1/jobs/{job_id}/result.csv")
+        assert output.status_code == 200
+        rows = list(csv.DictReader(io.StringIO(output.text)))
+        assert len(rows) == len(SAMPLE_ROWS)
+        assert [row["label"] for row in rows] == [
+            expected_label(engine, row[1], row[2]) for row in SAMPLE_ROWS
+        ]
+        assert terminal["counters"]["errors"] == 1
 
 
 def test_semicolon_bulk_is_normalised_before_local_classification(local_engine, tmp_path: Path):

@@ -1,8 +1,11 @@
 .git
-frontend
 node_modules
 **/node_modules
 **/.next
 **/.venv
 **/__pycache__
 *.py[cod]
+**/*.tsbuildinfo
+**/next-env.d.ts
+**/.env
+**/.env.*

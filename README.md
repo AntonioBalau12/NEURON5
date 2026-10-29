@@ -14,6 +14,65 @@ Open http://localhost:3000. Start the API separately using [backend/README.md](b
 For a production build, run `yarn build` followed by `yarn start` inside `frontend/`.
 The old static HTML previews, root Node server and duplicate assets have been removed.
 
+## Run the full application in Docker
+
+The image contains the production Next.js frontend, the FastAPI backend and the local model.
+From the repository root, build and start it with PowerShell:
+
+```powershell
+docker build --platform linux/amd64 -t neuron5:local .
+
+docker run --rm --init --name neuron5-local `
+  -e NEURON_MODE=web `
+  -p 127.0.0.1:3000:3000 `
+  -p 127.0.0.1:8000:8000 `
+  neuron5:local
+```
+
+Open http://localhost:3000 after both services report that they are ready.
+Stop any local frontend or backend using ports 3000 and 8000 before starting the container.
+Both services run inside the same container; no local Node.js or Python installation is required.
+The browser calls http://localhost:8000, so both port mappings are required.
+`NEXT_PUBLIC_API_BASE` can be overridden with `docker build --build-arg` when building a different deployment.
+
+To stop it from another terminal:
+
+```powershell
+docker stop neuron5-local
+```
+
+Without `NEURON_MODE=web`, the image defaults to competition mode (`arena`):
+it reads `/universe/universe.csv` and writes `/output/output.csv`, then exits.
+The existing `scripts/check.sh` command continues to use this mode without publishing web ports.
+
+## Final pipeline integration
+
+The ML, retrieval and claim-generation code was merged from
+`feat/p17-p2-p3-anytime-final` at commit `9c4c481c40c58fa568ef12afea1b91b1cff3f501`.
+The default model is `ml/classical/results_m2_v2/model.joblib` with its serialized
+calibration/abstention policy. Both the web classifier and `runner.py` use the
+same M2 inference implementation: text/date features, temporal graph and BM25 evidence.
+The previous adapter remains available through an explicit `NEURON_MODEL_PATH` override.
+Runtime dependencies pin scikit-learn 1.9.1, matching the final artifact. The older
+version described in the historical P3 integration report applies to previous models.
+
+During `docker build`, `scripts/build_reference_graph.py` populates
+`/app/artifacts/reference_graph.pkl` from the packaged practice dataset and lexicon.
+The snapshot preserves verified evidence, unverified candidates, dates and source IDs;
+its source fingerprints are checked before reuse. Local development builds the graph
+in memory when no matching snapshot exists. Only trusted, application-built snapshots
+may be supplied through `NEURON_GRAPH_SNAPSHOT`.
+
+M2 retrieval uses reference evidence only, matching the final model's calibration.
+Runtime query rows exclude their own evidence IDs. P3 separately builds its runtime
+graph from the mounted universe plus reference evidence; new unlabeled rows are never
+promoted to verified support by a prediction. Its anytime runner writes validated,
+atomic classification and claim checkpoints to `/output/output.csv`.
+
+The web API retains its mapped-input CSV output and runs M2 classification. Full P3
+claim generation runs in `arena` mode. It can publish fewer than 1,000 verified claims
+when evidence is insufficient; a successful partial run is not full competition compliance.
+
 ## [hype-arena.vercel.app](https://hype-arena.vercel.app/)
 
 ## The universe

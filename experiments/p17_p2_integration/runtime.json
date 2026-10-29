@@ -1,0 +1,36 @@
+{
+  "status": "measured",
+  "rows": 18000,
+  "workload": "repeated P2 test claim text, unique IDs; runtime input rows contain id/text/date only",
+  "wall_seconds": {
+    "candidate_factory_fit_semantic_resolver_and_bm25": 2.5250536000021384,
+    "graph_construction": 5.42034479999711,
+    "p2_bm25_index_construction": 1.4287038999973447,
+    "tfidf_feature_transform": 9.594704900002398,
+    "p1_7_candidate_extraction": 399.7309512999709,
+    "p2_hybrid_retrieval": 188.7272696006694,
+    "r6_evidence_guided_expansion_and_ranking": 0.12799039990932215,
+    "p1_6_temporal_alignment": 2.4806032005653833,
+    "structured_feature_extraction": 135.61420240018924,
+    "lightgbm_prediction": 0.4556529000037699,
+    "csv_output": 0.06735130000015488,
+    "end_to_end_sum": 746.1728283013072
+  },
+  "throughput_claims_per_second": 24.123097648808432,
+  "projected_seconds_18000": 746.1728283013072,
+  "projected_minutes_18000": 12.436213805021787,
+  "peak_rss_mb": 140.1796875,
+  "cpu_affinity": [
+    0,
+    1
+  ],
+  "cpu_threads": 2,
+  "classifier_variant": "E2",
+  "candidate_configuration": "E2",
+  "feature_count": 2145,
+  "candidate_feature_count": 31,
+  "prediction_csv": "runtime_predictions_18k.csv",
+  "generator_1000_true_claims_included": false,
+  "full_competition_30_minute_claim": false,
+  "total_duration_note": "Does not include generating and verifying the separate 1,000 TRUE claims."
+}

@@ -35,4 +35,5 @@ Thumbs.db
 # Python bytecode and caches
 __pycache__/
 *.py[cod]
+/artifacts/reference_graph.pkl
 
