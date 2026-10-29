@@ -48,4 +48,9 @@ done
 docker logs --tail 20 "$name" 2>&1 | sed 's/^/  | /'
 echo "exit code $(docker inspect -f '{{.State.ExitCode}}' "$name"), OOM killed: $(docker inspect -f '{{.State.OOMKilled}}' "$name")"
 
+if [ -f "$work/output/output.csv" ]; then
+	cp "$work/output/output.csv" "$root/output.csv"
+	echo "saved $root/output.csv"
+fi
+
 python3 "$root/scripts/check_output.py" "$work/output" "$root/data/practice.csv" "$work/universe/universe.csv"

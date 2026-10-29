@@ -17,6 +17,7 @@ from typing import Any, Callable
 from foundation import OUTPUT_COLUMNS, InputData, evidence_audit, load_inputs, validate_output
 from core.claims.checkpoint import CheckpointManager
 from core.claims.factory import ClaimFactory
+from core.graph.reference import preload_reference_graph
 
 
 def default_path(runtime: str, local: str) -> str:
@@ -108,6 +109,11 @@ def run(
     if any(not row.row_id for row in data.rows) or len({row.row_id for row in data.rows}) != len(data.rows):
         print("input has missing or duplicate row IDs; cannot produce unambiguous label rows", file=sys.stderr)
         return 2
+    try:
+        preload_reference_graph()
+    except Exception as exc:
+        print(f"reference graph initialization failed: {exc}", file=sys.stderr)
+        return 2
     audit = evidence_audit(data)
     print("evidence audit:", json.dumps(audit, sort_keys=True))
     packaged_practice = practice_path or str(Path(__file__).resolve().parent / "data" / "practice.csv")
@@ -133,6 +139,14 @@ def run(
             signal.signal(signal.SIGTERM, lambda _signum, _frame: stop_event.set())
         except (ValueError, OSError):  # signal handlers can only be installed on the main thread
             previous_handler = None
+    factory = None
+    try:
+        candidate_factory = ClaimFactory(universe, lexicon, packaged_practice, contract_dir, deadline,
+                                         stop_event=stop_event, publication_seconds=manager.last_elapsed)
+        candidate_factory.prepare()
+        factory = candidate_factory
+    except Exception as exc:
+        print(f"claim graph initialization failed; preserving classification output: {exc}", file=sys.stderr)
     inference_predictions = fallback_predictions.copy()
 
     def checkpoint_inference(partial: dict[str, tuple[str, float | None]]) -> None:
@@ -164,9 +178,6 @@ def run(
     claims: list[dict[str, Any]] = []
     # Publish a validated classification checkpoint before claim generation.
     # Generation failure or SIGTERM therefore leaves a complete label file.
-    factory = ClaimFactory(universe, lexicon, packaged_practice, contract_dir, deadline, stop_event=stop_event,
-                           publication_seconds=manager.last_elapsed)
-
     def checkpoint_claims(partial_claims: list[dict[str, Any]]) -> float:
         try:
             exact_partial = len(partial_claims) == 1000
@@ -178,7 +189,7 @@ def run(
         return manager.last_elapsed
 
     try:
-        if not stop_event.is_set() and (not deadline or time.time() < deadline):
+        if factory is not None and not stop_event.is_set() and (not deadline or time.time() < deadline):
             if candidates_path:
                 print("--candidates-json is not accepted for publication; candidates require P3 evidence provenance", file=sys.stderr)
             claims, metrics = factory.generate(on_checkpoint=checkpoint_claims)

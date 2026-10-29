@@ -45,6 +45,22 @@ Without `NEURON_MODE=web`, the image defaults to competition mode (`arena`):
 it reads `/universe/universe.csv` and writes `/output/output.csv`, then exits.
 The existing `scripts/check.sh` command continues to use this mode without publishing web ports.
 
+To run a custom CSV in `arena` mode, mount the file into the container and pass its
+container path with `--csv=...`. The CSV must have `id`, `text`, `date` and `label`
+columns. The packaged lexicon is used, and the result is written to `output/output.csv`:
+
+```powershell
+New-Item -ItemType Directory -Force .\output | Out-Null
+
+docker run --rm --init --name neuron5-custom `
+  --network none --read-only --tmpfs /tmp:rw,size=128m `
+  -v "${PWD}\input.csv:/input/input.csv:ro" `
+  -v "${PWD}\output:/output" `
+  neuron5:local --csv=/input/input.csv
+```
+
+In `web` mode, upload the CSV through the frontend instead; `--csv` is an `arena`-mode argument.
+
 ## Final pipeline integration
 
 The ML, retrieval and claim-generation code was merged from
@@ -62,6 +78,9 @@ The snapshot preserves verified evidence, unverified candidates, dates and sourc
 its source fingerprints are checked before reuse. Local development builds the graph
 in memory when no matching snapshot exists. Only trusted, application-built snapshots
 may be supplied through `NEURON_GRAPH_SNAPSHOT`.
+The web API preloads this reference graph during startup and retains it for the process
+lifetime. The arena runner preloads the same graph and builds its `/universe` P3 store
+once before inference, then reuses it throughout claim generation.
 
 M2 retrieval uses reference evidence only, matching the final model's calibration.
 Runtime query rows exclude their own evidence IDs. P3 separately builds its runtime

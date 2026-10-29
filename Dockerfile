@@ -40,4 +40,4 @@ RUN python -c "from pathlib import Path; from core.graph.reference import write_
 
 USER 10001
 EXPOSE 3000 8000
-CMD ["sh", "-c", "if [ \"$NEURON_MODE\" = web ]; then python -m uvicorn app.main:app --app-dir /app/backend --host 0.0.0.0 --port 8000 & exec node /app/frontend/server.js; else exec python /app/scripts/run_arena.py; fi"]
+ENTRYPOINT ["sh", "-c", "if [ \"$NEURON_MODE\" = web ]; then python -m uvicorn app.main:app --app-dir /app/backend --host 0.0.0.0 --port 8000 & exec node /app/frontend/server.js; else csv=/universe/universe.csv; lexicon=/universe/lexicon.json; for arg do case \"$arg\" in --csv=*) csv=${arg#--csv=}; lexicon=/app/data/lexicon.json;; *) echo \"unknown argument: $arg\" >&2; exit 2;; esac; done; python /app/runner.py --universe \"$csv\" --lexicon \"$lexicon\" --output /output/output.csv; status=$?; chmod 0644 /output/output.csv 2>/dev/null || true; exit \"$status\"; fi", "docker-entrypoint"]

@@ -5,10 +5,18 @@ from __future__ import annotations
 import asyncio
 import logging
 import shutil
+import sys
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.graph.reference import preload_reference_graph
 
 from .api import datasets, events, jobs, results, sessions
 from .api.errors import install_error_handlers, install_http_middleware
@@ -116,6 +124,7 @@ def create_app(settings_override: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        app.state.reference_graph = await asyncio.to_thread(preload_reference_graph)
         state.ensure_dirs()
         cleanup_task = asyncio.create_task(_cleanup_loop(state))
         app.state.cleanup_task = cleanup_task

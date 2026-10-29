@@ -27,6 +27,17 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ClaimRuntimeTests(unittest.TestCase):
+    def test_factory_prepares_the_runtime_store_once_for_generation(self):
+        factory = ClaimFactory("universe.csv", "lexicon.json", "practice.csv", "contracts")
+        with patch("core.claims.factory.Store") as store_constructor, \
+             patch("core.claims.factory.load_novelty_texts", return_value=set()), \
+             patch.object(factory, "_strategies", return_value={"fact": lambda: []}):
+            store = factory.prepare()
+            self.assertIs(factory.prepare(), store)
+            claims, _ = factory.generate(strategies=("fact",))
+        self.assertEqual(claims, [])
+        store_constructor.assert_called_once()
+
     def test_semantic_replacement_and_deterministic_best_k(self):
         pool = BestKPool(5)
         key = ("fact", "Example", "size")
