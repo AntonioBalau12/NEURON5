@@ -135,9 +135,15 @@ def test_practice_job_uses_local_model_and_preserves_schema(local_engine, tmp_pa
         output = client.get(f"/api/v1/jobs/{job_id}/result.csv")
         assert output.status_code == 200
         parsed = list(csv.DictReader(io.StringIO(output.text)))
-        assert list(parsed[0].keys()) == PRACTICE_COLUMNS
+        assert list(parsed[0].keys()) == list(PRACTICE_COLUMNS) + ["confidence"]
         source_forms = [row[4] for row in rows]
         assert [row["form"] for row in parsed] == source_forms
         assert [row["id"] for row in parsed] == ["p-1", "p-2", "p-3", "p-4"]
         assert [row["label"] for row in parsed] == expected
         assert parsed[1]["label"] != "stale"
+        for row in parsed:
+            if row["label"] == "unsure":
+                assert row["confidence"] == ""
+            else:
+                conf = float(row["confidence"])
+                assert 0.5 <= conf <= 1.0

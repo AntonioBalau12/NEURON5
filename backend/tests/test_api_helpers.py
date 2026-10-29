@@ -114,7 +114,19 @@ class FakeProcessor:
             if mapping.result_column in header
             else None
         )
-        out_header = list(header) if result_index is not None else list(header) + [mapping.result_column]
+        conf_col = getattr(mapping, "confidence_column", None) or "confidence"
+        conf_index = (
+            header.index(conf_col)
+            if conf_col in header
+            else None
+        )
+        out_header = list(header)
+        if result_index is None:
+            result_index = len(out_header)
+            out_header.append(mapping.result_column)
+        if conf_index is None:
+            conf_index = len(out_header)
+            out_header.append(conf_col)
         engine.prepare(())
         emit("step.completed", {"step": "parse", "durationMs": 1, "component": "processor"})
         emit("step.started", {"step": "classify", "component": "processor"})
@@ -152,12 +164,13 @@ class FakeProcessor:
                     },
                 )
             out_row = list(row)
-            if result_index is not None:
-                while len(out_row) <= result_index:
-                    out_row.append("")
-                out_row[result_index] = decision.label
+            while len(out_row) < len(out_header):
+                out_row.append("")
+            out_row[result_index] = decision.label
+            if decision.confidence is not None and decision.label != "unsure":
+                out_row[conf_index] = str(round(float(decision.confidence), 4))
             else:
-                out_row.append(decision.label)
+                out_row[conf_index] = ""
             out_rows.append(out_row)
             processed = index + 1
             if processed % max(1, progress_every) == 0:

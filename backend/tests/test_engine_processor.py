@@ -60,9 +60,10 @@ def test_row_mode_appends_result_column_and_preserves_order(tmp_path):
     assert outcome.total_rows == 3
     assert outcome.counts == {"true": 1, "false": 1, "unsure": 1, "fallback": 0}
     columns, rows = read_csv(target)
-    assert columns == ["id", "text", "date", "label"]
+    assert columns == ["id", "text", "date", "label", "confidence"]
     assert [row["id"] for row in rows] == ["r-1", "r-2", "r-3"]
     assert [row["label"] for row in rows] == ["true", "false", "unsure"]
+    assert [row["confidence"] for row in rows] == ["0.9", "0.8", ""]
 
 
 def test_row_mode_overwrites_existing_result_column(tmp_path):
@@ -72,8 +73,9 @@ def test_row_mode_overwrites_existing_result_column(tmp_path):
     target = tmp_path / "out.csv"
     process_csv(source, target, MAPPING, FakeEngine())
     columns, rows = read_csv(target)
-    assert columns == ["id", "text", "date", "label"]
+    assert columns == ["id", "text", "date", "label", "confidence"]
     assert rows[0]["label"] == "true"
+    assert rows[0]["confidence"] == "0.9"
 
 
 def test_quoted_newline_and_comma_values_survive(tmp_path):

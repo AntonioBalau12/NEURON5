@@ -175,6 +175,22 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
   const warnings = summary?.warnings ?? [];
   const counts = summary?.counts;
 
+  const confidenceColumnIndex =
+    preview?.columns.findIndex((col) => col.trim().toLowerCase() === 'confidence') ?? -1;
+  const labelColumnIndex =
+    preview?.columns.findIndex((col) => col.trim().toLowerCase() === 'label') ?? -1;
+
+  const validConfidences =
+    preview && confidenceColumnIndex >= 0
+      ? preview.rows
+          .map((row) => parseFloat(row[confidenceColumnIndex] ?? ''))
+          .filter((val) => !isNaN(val) && val >= 0.5 && val <= 1.0)
+      : [];
+  const avgConfidence =
+    validConfidences.length > 0
+      ? validConfidences.reduce((acc, curr) => acc + curr, 0) / validConfidences.length
+      : null;
+
   return (
     <div className="p-4 md:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-black/[0.08] pb-4">
@@ -251,10 +267,23 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
             />
           </div>
 
-          <div className="mt-3 grid grid-cols-3 gap-2">
+          <div className={cx('mt-3 grid gap-2', avgConfidence !== null ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-3')}>
             <CountCard label="true" value={counts?.true} tone="green" />
             <CountCard label="false" value={counts?.false} tone="red" />
             <CountCard label="unsure" value={counts?.unsure} tone="amber" />
+            {avgConfidence !== null ? (
+              <div className="rounded-xl border border-[#c8e22f]/50 bg-[#d7f13b]/10 p-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-black/45">Avg Confidence</p>
+                <div className="mt-0.5 flex items-baseline gap-1.5">
+                  <span className="font-display text-xl font-black text-[#202020]">
+                    {(avgConfidence * 100).toFixed(1)}%
+                  </span>
+                  <span className="font-mono text-[10px] text-black/40">
+                    ML calibrated
+                  </span>
+                </div>
+              </div>
+            ) : null}
           </div>
 
           {summary.failureReason ? (
@@ -303,15 +332,27 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
                         <th scope="col" className="w-12 border-b border-black/[0.08] px-3 py-2 font-semibold">
                           #
                         </th>
-                        {preview.columns.map((column) => (
-                          <th
-                            key={column}
-                            scope="col"
-                            className="border-b border-black/[0.08] px-3 py-2 font-semibold"
-                          >
-                            {column}
-                          </th>
-                        ))}
+                        {preview.columns.map((column) => {
+                          const isConf = column.trim().toLowerCase() === 'confidence';
+                          return (
+                            <th
+                              key={column}
+                              scope="col"
+                              className="border-b border-black/[0.08] px-3 py-2 font-semibold"
+                            >
+                              {isConf ? (
+                                <div className="inline-flex items-center gap-1.5">
+                                  <span>{column}</span>
+                                  <span className="rounded bg-[#76910a]/15 px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wider text-[#556905]">
+                                    ML
+                                  </span>
+                                </div>
+                              ) : (
+                                column
+                              )}
+                            </th>
+                          );
+                        })}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-black/[0.06]">
@@ -330,11 +371,75 @@ export default function ResultsView({ jobId, onNewRun }: ResultsViewProps) {
                           <td className="px-3 py-2 font-mono text-[10px] text-black/35">
                             {preview.offset + rowIndex + 1}
                           </td>
-                          {preview.columns.map((column, columnIndex) => (
-                            <td key={column} className="max-w-[28rem] px-3 py-2 text-black/75">
-                              <span className="line-clamp-3 break-words">{row[columnIndex] ?? ''}</span>
-                            </td>
-                          ))}
+                          {preview.columns.map((column, columnIndex) => {
+                            const isConfidence = columnIndex === confidenceColumnIndex;
+                            const isLabel = columnIndex === labelColumnIndex;
+                            const cellValue = row[columnIndex] ?? '';
+
+                            if (isConfidence) {
+                              const confFloat = parseFloat(cellValue);
+                              const hasConf = !isNaN(confFloat) && cellValue.trim() !== '';
+                              return (
+                                <td key={column} className="px-3 py-2 whitespace-nowrap">
+                                  {hasConf ? (
+                                    <div
+                                      className="inline-flex items-center gap-1.5"
+                                      title={`Calibrated ML Confidence: ${confFloat.toFixed(4)}`}
+                                    >
+                                      <span
+                                        className={cx(
+                                          'inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[11px] font-semibold',
+                                          confFloat >= 0.85
+                                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-500/25'
+                                            : 'bg-lime-50 text-[#556905] border border-[#c8e22f]/50',
+                                        )}
+                                      >
+                                        <span
+                                          className={cx(
+                                            'h-1.5 w-1.5 rounded-full',
+                                            confFloat >= 0.85 ? 'bg-emerald-500' : 'bg-[#9ebc19]',
+                                          )}
+                                        />
+                                        {(confFloat * 100).toFixed(1)}%
+                                      </span>
+                                      <span className="font-mono text-[10px] text-black/40">
+                                        ({confFloat.toFixed(4)})
+                                      </span>
+                                    </div>
+                                  ) : (
+                                    <span
+                                      className="font-mono text-[11px] text-black/30"
+                                      title="Null confidence (Unsure / below 0.5 threshold)"
+                                    >
+                                      null
+                                    </span>
+                                  )}
+                                </td>
+                              );
+                            }
+
+                            if (isLabel) {
+                              const tone: BadgeTone =
+                                cellValue === 'true'
+                                  ? 'green'
+                                  : cellValue === 'false'
+                                    ? 'red'
+                                    : cellValue === 'unsure'
+                                      ? 'amber'
+                                      : 'neutral';
+                              return (
+                                <td key={column} className="px-3 py-2 whitespace-nowrap">
+                                  <Badge tone={tone}>{cellValue}</Badge>
+                                </td>
+                              );
+                            }
+
+                            return (
+                              <td key={column} className="max-w-[28rem] px-3 py-2 text-black/75">
+                                <span className="line-clamp-3 break-words">{cellValue}</span>
+                              </td>
+                            );
+                          })}
                         </tr>
                       ))}
                     </tbody>

@@ -86,11 +86,12 @@ def test_result_summary_preview_errors_and_csv(monkeypatch, tmp_path):
         )
         assert preview.status_code == 200, preview.text
         page = preview.json()
-        assert page["columns"] == ["id", "text", "date", "label"]
+        assert page["columns"] == ["id", "text", "date", "label", "confidence"]
         assert page["total"] == 4
         assert page["offset"] == 0
         assert page["limit"] == 10
         assert [row[3] for row in page["rows"]] == ["true", "false", "unsure", "unsure"]
+        assert [row[4] for row in page["rows"]] == ["0.9", "0.75", "", ""]
 
         second_page = client.get(
             f"/api/v1/jobs/{job_id}/result/preview?offset=1&limit=2"
@@ -126,7 +127,7 @@ def test_result_summary_preview_errors_and_csv(monkeypatch, tmp_path):
             == f'attachment; filename="result-{job_id}.csv"'
         )
         parsed = list(csv.reader(io.StringIO(csv_response.text)))
-        assert parsed[0] == ["id", "text", "date", "label"]
+        assert parsed[0] == ["id", "text", "date", "label", "confidence"]
         assert len(parsed) == 5
         assert [row[3] for row in parsed[1:]] == ["true", "false", "unsure", "unsure"]
         assert [row[0] for row in parsed[1:]] == ["p-1", "p-2", "p-3", "p-4"]
