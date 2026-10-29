@@ -21,27 +21,23 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONPATH=/app:/app/backend
 
 WORKDIR /app
+COPY backend/requirements-runtime.txt /app/backend/requirements-runtime.txt
 RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 libstdc++6 \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /app/frontend/.next/cache \
-    && chown -R 10001:10001 /app/frontend
-COPY backend/requirements-runtime.txt /app/backend/requirements-runtime.txt
-RUN pip install --no-cache-dir -r /app/backend/requirements-runtime.txt
+    && pip install --no-cache-dir -r /app/backend/requirements-runtime.txt
 COPY --from=frontend-build /usr/local/bin/node /usr/local/bin/node
 COPY --from=frontend-build --chown=10001:10001 /app/frontend/.next/standalone/ /app/frontend/
 COPY --from=frontend-build --chown=10001:10001 /app/frontend/.next/static/ /app/frontend/.next/static/
 COPY --from=frontend-build --chown=10001:10001 /app/frontend/public/ /app/frontend/public/
 COPY backend /app/backend
-COPY data/practice.csv data/lexicon.json /app/data/
-COPY foundation.py runner.py /app/
+COPY data /app/data
 COPY core /app/core
-COPY ml/classical/*.py /app/ml/classical/
-COPY ml/classical/results_m2_v2/model.joblib /app/ml/classical/results_m2_v2/model.joblib
+COPY ml /app/ml
+COPY foundation.py runner.py /app/
 COPY contracts /app/contracts
-COPY scripts/build_reference_graph.py /app/scripts/build_reference_graph.py
-RUN python /app/scripts/build_reference_graph.py
-COPY scripts/start.py /app/scripts/start.py
+COPY scripts/run_arena.py /app/scripts/run_arena.py
+RUN python -c "from pathlib import Path; from core.graph.reference import write_reference_snapshot; print(write_reference_snapshot(Path('/app/artifacts/reference_graph.pkl'), Path('/app/data/practice.csv'), Path('/app/data/lexicon.json')))"
 
-EXPOSE 3000 8000
 USER 10001
-CMD ["python", "/app/scripts/start.py"]
+EXPOSE 3000 8000
+CMD ["sh", "-c", "if [ \"$NEURON_MODE\" = web ]; then python -m uvicorn app.main:app --app-dir /app/backend --host 0.0.0.0 --port 8000 & exec node /app/frontend/server.js; else exec python /app/scripts/run_arena.py; fi"]
