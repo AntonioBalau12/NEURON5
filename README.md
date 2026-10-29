@@ -16,34 +16,78 @@ The old static HTML previews, root Node server and duplicate assets have been re
 
 ## Run the full application in Docker
 
-The image contains the production Next.js frontend, the FastAPI backend and the local model.
-From the repository root, build and start it with PowerShell:
+The image contains the production Next.js frontend, FastAPI backend and local model.
+From the repository root, build and start both services with Docker Compose:
 
 ```powershell
-docker build --platform linux/amd64 -t neuron5:local .
-
-docker run --rm --init --name neuron5-local `
-  -e NEURON_MODE=web `
-  -p 127.0.0.1:3000:3000 `
-  -p 127.0.0.1:8000:8000 `
-  neuron5:local
+docker compose up --build
 ```
 
-Open http://localhost:3000 after both services report that they are ready.
+Open http://localhost:3000 after the frontend and API report that they are ready.
 Stop any local frontend or backend using ports 3000 and 8000 before starting the container.
-Both services run inside the same container; no local Node.js or Python installation is required.
-The browser calls http://localhost:8000, so both port mappings are required.
-`NEXT_PUBLIC_API_BASE` can be overridden with `docker build --build-arg` when building a different deployment.
+Compose runs both services in the same container in `web` mode and binds their ports to localhost.
+No local Node.js or Python installation is required. The frontend calls the API at http://localhost:8000.
 
-To stop it from another terminal:
+Stop the application with Ctrl+C, or run this from another terminal:
 
-```powershell
-docker stop neuron5-local
+```sh
+docker compose down
 ```
 
-Without `NEURON_MODE=web`, the image defaults to competition mode (`arena`):
+The image still defaults to competition mode (`arena`) when run outside Compose:
 it reads `/universe/universe.csv` and writes `/output/output.csv`, then exits.
-The existing `scripts/check.sh` command continues to use this mode without publishing web ports.
+The existing `scripts/check.sh` command continues to use arena mode without publishing web ports.
+
+## Competition and jury run
+
+Build the submission image from the repository root. The build may use the network;
+the competition run is offline:
+
+```sh
+docker build --platform linux/amd64 -t neuron5:submission .
+```
+
+For a local run with the jury's input files, place `universe.csv` and `lexicon.json`
+in `./universe/`. The output is written to `./output/output.csv`:
+
+```sh
+mkdir -p universe output
+chmod 755 universe
+chmod 777 output
+deadline=$(($(date +%s) + 30 * 60))
+
+docker run --rm --init --name neuron5-jury --platform linux/amd64 \
+  --network none --read-only --user 10001:10001 \
+  --cpus 2 --memory 6g --memory-swap 6g --pids-limit 256 \
+  --cap-drop ALL --security-opt no-new-privileges \
+  --tmpfs /tmp:rw,size=128m,mode=1777 \
+  -v "$PWD/universe:/universe:ro" -v "$PWD/output:/output" \
+  -e ARENA_DEADLINE="$deadline" \
+  neuron5:submission
+```
+
+The `chmod` commands prepare local host directories for the bind mounts: the input
+is readable, and the output is writable by container user `10001`. They do not
+change the image or make its read-only root filesystem writable. The official
+`scripts/check.sh` uses the same permissions for its temporary mounts; the jury
+provides its own mounts and permissions.
+
+The image runs in its default `arena` mode: it reads `/universe/universe.csv` and
+`/universe/lexicon.json`, then writes `/output/output.csv`. Do not set
+`NEURON_MODE=web` for the competition run. The run is limited to 30 minutes; at the
+deadline it receives `SIGTERM`, followed by a forced stop 10 seconds later.
+
+Before submission, run the repository checker from a Bash shell with Docker and
+Python 3 available. It builds an image when no tag is passed, hides every fifth
+practice label, runs offline with the competition resource limits, and validates
+the resulting table:
+
+```sh
+bash scripts/check.sh
+```
+
+The checker saves its result as `./output.csv`. It exercises the practice dataset;
+the jury run uses the full mounted universe.
 
 To run a custom CSV in `arena` mode, mount the file into the container and pass its
 container path with `--csv=...`. The CSV must have `id`, `text`, `date` and `label`

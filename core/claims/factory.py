@@ -19,7 +19,7 @@ from .ranker import RankedClaim, reported_confidence, score_candidate
 from .scheduler import AnytimeScheduler
 
 
-SAFE_STRATEGIES = ("fact", "compare", "change")
+SAFE_STRATEGIES = ("fact", "compare", "change", "at_event", "relation")
 
 
 class ClaimFactory:
@@ -69,10 +69,9 @@ class ClaimFactory:
         result = store.asof_fact(key)
         if not result.accepted or result.last is None:
             return False
-        # P3's configured as-of policy already checks corroboration, blockers,
-        # volatility and freshness. Under relax_definitive it also admits its
-        # explicitly defined stable structural facts.
-        return result.accepted
+        # Mutable facts need an observation on the claim's as-of date. A recent
+        # observation alone does not prove that the value still holds.
+        return result.immutable or result.last.on == store.params.as_of
 
     @staticmethod
     def _eligible(candidate: Any, store: Store) -> tuple[bool, str | None]:
@@ -153,8 +152,10 @@ class ClaimFactory:
 
     @staticmethod
     def _rank_candidates(store: Store, source: list[Any], novelty: set[str],
-                         max_claims: int) -> tuple[BestKPool, Counter[str], int]:
-        checker = ContractChecker(store, novelty)
+                         max_claims: int,
+                         validation_cache: dict[str, tuple[tuple[tuple[str, str], ...], tuple[str, ...]]] | None = None
+                         ) -> tuple[BestKPool, Counter[str], int]:
+        checker = ContractChecker(store, novelty, validation_cache)
         pool = BestKPool(max_claims)
         rejections: Counter[str] = Counter()
         prepared: list[tuple[float, Any, tuple[Any, ...], tuple[str, ...], tuple[str, ...]]] = []
@@ -208,6 +209,7 @@ class ClaimFactory:
         rejections: Counter[str] = Counter()
         stage_times: dict[str, float] = {}
         all_candidates = []
+        validation_cache: dict[str, tuple[tuple[tuple[str, str], ...], tuple[str, ...]]] = {}
         pool = BestKPool(max_claims)
         eligible_count = 0
         generators = self._strategies(store, strategies)
@@ -222,7 +224,8 @@ class ClaimFactory:
             candidates = generators[name]()
             all_candidates.extend(candidates)
             if on_checkpoint is not None:
-                pool, rejections, eligible_count = self._rank_candidates(store, all_candidates, novelty, max_claims)
+                pool, rejections, eligible_count = self._rank_candidates(
+                    store, all_candidates, novelty, max_claims, validation_cache)
                 elapsed_for_callback = on_checkpoint([entry.claim for entry in pool.selected(1000)])
                 if isinstance(elapsed_for_callback, (int, float)):
                     self.scheduler.record_publication(float(elapsed_for_callback))
@@ -231,7 +234,8 @@ class ClaimFactory:
             self.scheduler.record(name, elapsed)
 
         if on_checkpoint is None:
-            pool, rejections, eligible_count = self._rank_candidates(store, all_candidates, novelty, max_claims)
+            pool, rejections, eligible_count = self._rank_candidates(
+                store, all_candidates, novelty, max_claims, validation_cache)
         selected = pool.selected(1000)
         claims = [entry.claim for entry in selected]
         dependency_counts: Counter[str] = Counter(row for item in selected for row in item.evidence_ids)
