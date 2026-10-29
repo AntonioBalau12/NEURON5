@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT.md — AI Agent Arena (NEURON5)
 
-> **Purpose**: Single source of truth containing all research, design tokens, asset references, and technical specifications for the **AI Agent Arena** project. Load or reference this document in any future conversation to restore full project context instantly.
+> **Historical design reference**: This document describes the original static prototypes and migration plan. Those prototypes, root assets and the unused SplitType dependency were removed during repository cleanup. The running application is in `frontend/`, with assets in `frontend/public/` and the API in `backend/`. Use `README.md` and `backend/README.md` for current startup instructions; the examples and file inventory below are historical.
 
 ---
 
