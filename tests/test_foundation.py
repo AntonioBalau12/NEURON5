@@ -299,7 +299,8 @@ class OutputTests(unittest.TestCase):
                 def generate(self, *, on_checkpoint=None):
                     if on_checkpoint: on_checkpoint([])
                     return [], {"selected_claims": 0, "deficit_to_1000": 1000}
-            with patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
+            with patch("runner.preload_reference_graph"), \
+                 patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
                  patch("runner.ClaimFactory", EmptyFactory):
                 code = run(str(csv_path), str(lex_path), str(output), str(CONTRACTS))
             self.assertEqual(code, 0)
@@ -323,13 +324,38 @@ class OutputTests(unittest.TestCase):
             def interrupted_inference(_data, _model, _practice, *, progress, **kwargs):
                 progress({"u1": ("true", 0.8)})
                 raise RuntimeError("deadline reached after first batch")
-            with patch("runner.predict_unlabeled", side_effect=interrupted_inference), \
+            with patch("runner.preload_reference_graph"), \
+                 patch("runner.predict_unlabeled", side_effect=interrupted_inference), \
                  patch("runner.ClaimFactory", EmptyFactory):
                 self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS)), 0)
             with output.open(encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))
             self.assertEqual(rows[0]["label"], "true")
             self.assertEqual(rows[0]["confidence"], "0.8")
+
+    def test_runner_prepares_claim_graph_once_before_inference(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            csv_path, lex_path = write_fixture(folder, [record("u1", "unknown", "2026-01-01", "", [])])
+            events = []
+
+            class EmptyFactory:
+                def __init__(self, *args, **kwargs): pass
+                def prepare(self): events.append("prepare")
+                def generate(self, *, on_checkpoint=None):
+                    events.append("generate")
+                    if on_checkpoint: on_checkpoint([])
+                    return [], {"selected_claims": 0, "deficit_to_1000": 1000}
+
+            def infer(*args, **kwargs):
+                events.append("inference")
+                return {"u1": ("unsure", None)}
+
+            with patch("runner.preload_reference_graph"), \
+                 patch("runner.predict_unlabeled", side_effect=infer), \
+                 patch("runner.ClaimFactory", EmptyFactory):
+                self.assertEqual(run(str(csv_path), str(lex_path), str(folder / "output.csv"), str(CONTRACTS)), 0)
+            self.assertEqual(events, ["prepare", "inference", "generate"])
 
     def test_runner_handles_missing_inputs_and_ignores_unprovenanced_candidate_override(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -344,7 +370,8 @@ class OutputTests(unittest.TestCase):
                 def generate(self, *, on_checkpoint=None):
                     if on_checkpoint: on_checkpoint([])
                     return [], {"selected_claims": 0, "deficit_to_1000": 1000}
-            with patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
+            with patch("runner.preload_reference_graph"), \
+                 patch("runner.predict_unlabeled", side_effect=RuntimeError("model unavailable")), \
                  patch("runner.ClaimFactory", EmptyFactory):
                 self.assertEqual(run(str(csv_path), str(lex_path), str(output), str(CONTRACTS), str(empty)), 0)
             with patch.dict(os.environ, {"ARENA_DEADLINE": "1"}):

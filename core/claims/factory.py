@@ -40,6 +40,19 @@ class ClaimFactory:
         self.scheduler = AnytimeScheduler(deadline, clock, stop_event)
         self.scheduler.record_publication(publication_seconds)
         self.metrics: dict[str, Any] = {}
+        self.store: Store | None = None
+        self._store_seconds = 0.0
+
+    def prepare(self) -> Store:
+        """Build the runtime graph once and retain its store for this process run."""
+        if self.store is None:
+            started = time.monotonic()
+            params = Params(min_support_rows=1, max_age_days=14, block_on_false_candidates=True,
+                            allow_unlisted_names=False, change_rule="safe_transition", relation_rule="engine",
+                            compare_scope="cross_date", staleness_rule="relax_definitive")
+            self.store = Store(self.universe_csv, self.lexicon_json, params=params, reference_csv=self.practice_csv)
+            self._store_seconds = time.monotonic() - started
+        return self.store
 
     @staticmethod
     def _event_has_date_conflict(store: Store, event: str) -> bool:
@@ -188,12 +201,9 @@ class ClaimFactory:
                  max_claims: int = 1500,
                  on_checkpoint: Callable[[list[dict[str, Any]]], float | None] | None = None
                  ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        store = self.prepare()
         started = time.monotonic()
-        params = Params(min_support_rows=1, max_age_days=14, block_on_false_candidates=True,
-                        allow_unlisted_names=False, change_rule="safe_transition", relation_rule="engine",
-                        compare_scope="cross_date", staleness_rule="relax_definitive")
-        store = Store(self.universe_csv, self.lexicon_json, params=params, reference_csv=self.practice_csv)
-        store_seconds = time.monotonic() - started
+        store_seconds = self._store_seconds
         novelty = load_novelty_texts([self.universe_csv, self.practice_csv])
         rejections: Counter[str] = Counter()
         stage_times: dict[str, float] = {}
@@ -235,7 +245,7 @@ class ClaimFactory:
             "deficit_to_1000": max(0, 1000 - len(claims)),
             "rejections": dict(sorted(rejections.items())),
             "ranking_score_is_calibrated_probability": False,
-            "elapsed_seconds": time.monotonic() - started,
+            "elapsed_seconds": store_seconds + time.monotonic() - started,
             "enabled_strategies": list(strategies),
             "universe_row_count": len(store.rows),
             "evidence_source": "TRUE-labelled practice forms; runtime text candidates are not support",

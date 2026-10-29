@@ -209,6 +209,16 @@ def make_app(tmp_path: Path, **overrides: Any):
     return create_app(settings)
 
 
+def test_app_preloads_and_retains_reference_graph_during_lifespan(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    graph = object()
+    calls = []
+    monkeypatch.setattr("app.main.preload_reference_graph", lambda: calls.append(graph) or graph)
+    with TestClient(make_app(tmp_path)) as client:
+        assert client.app.state.reference_graph is graph
+        assert client.get("/openapi.json").status_code == 200
+    assert calls == [graph]
+
+
 def install_fake(
     monkeypatch: pytest.MonkeyPatch,
     *,

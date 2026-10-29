@@ -189,19 +189,24 @@ def build_graph(
         refs, ref_issues = _unwrap_rows(reference_evidence, resolved_lexicon)
         issues.extend(f"reference: {item}" for item in ref_issues)
 
-    # Runtime copies of practice rows have no forms. Match packaged reference
-    # forms only when identity, text, date, and label agree; do not duplicate IDs.
+    # Runtime copies of practice rows may hide their labels. Match packaged
+    # reference forms by exact identity, text, and date; retain the runtime
+    # label while keeping the reference label private to graph evidence.
     universe_by_id = {row.row_id: row for row in universe}
     reference_by_id = {row.row_id: row for row in refs}
     merged: list[EvidenceRecord] = []
     used_refs: set[str] = set()
+    reference_labels_by_id: dict[str, str | None] = {}
     for row in universe:
         ref = reference_by_id.get(row.row_id)
-        if ref and ref.text == row.text and ref.date == row.date and ref.label == row.label and ref.facts and not row.facts:
+        same_source = ref and ref.text == row.text and ref.date == row.date
+        compatible_label = ref and (row.label is None or ref.label == row.label)
+        if same_source and compatible_label and ref.facts and not row.facts:
             merged.append(replace(row, facts=ref.facts, parse_status=ref.parse_status, issues=tuple(dict.fromkeys((*row.issues, *ref.issues)))))
             used_refs.add(row.row_id)
+            reference_labels_by_id[row.row_id] = ref.label
         else:
-            if ref and (ref.text != row.text or ref.date != row.date or ref.label != row.label):
+            if ref and (not same_source or not compatible_label):
                 issues.append(f"reference evidence for {row.row_id} did not match runtime row and was not merged")
             merged.append(row)
     for ref in refs:
@@ -228,6 +233,8 @@ def build_graph(
         raise TypeError("extractor must provide extract(text, source_row_id) or parse(text)")
     graph = TemporalKnowledgeGraph(resolved_lexicon, entity_nodes(resolved_lexicon), issues=issues)
     for row in merged:
+        evidence_label = reference_labels_by_id.get(row.row_id, row.label)
+        has_reference_form = row.row_id in reference_labels_by_id
         extracted = selected_extractor.extract(row.text, row.row_id)
         form_facts = tuple(f for fact in row.facts if (f := _canonical_fact(fact, resolved_lexicon)) is not None)
         has_valid_form = bool(row.facts) and row.parse_status == "ok"
@@ -235,7 +242,7 @@ def build_graph(
             primary_facts = form_facts
             parse_status = ParseStatus.FORM_GROUNDED
             coverage = 1.0
-            provenance = "practice.form" if row.label is not None else "provided.form"
+            provenance = "practice.form" if has_reference_form or row.label is not None else "provided.form"
         else:
             primary_facts = extracted.facts
             parse_status = extracted.status
@@ -251,12 +258,13 @@ def build_graph(
         graph.evidence_by_id[row.row_id] = GraphEvidence(
             row.row_id, row.text, row.label, row.date, all_evidence_facts,
             parse_status, coverage, provenance, tuple((*row.issues, *extracted.issues)),
-            (row.row_id,) if row.label == "true" and has_valid_form else (),
+            (row.row_id,) if evidence_label == "true" and has_valid_form else (),
             extraction_candidates=tuple(replace(candidate, observed_on=row.date)
                                         for candidate in extracted.candidates),
         )
-        true_form = row.label == "true" and has_valid_form
-        exact_false = _exact_false_atom(row, resolved_lexicon) if has_valid_form else None
+        true_form = evidence_label == "true" and has_valid_form
+        false_evidence_row = replace(row, label=evidence_label) if evidence_label != row.label else row
+        exact_false = _exact_false_atom(false_evidence_row, resolved_lexicon) if has_valid_form else None
         record_state = (EvidenceState.VERIFIED_SUPPORT if true_form else
                         EvidenceState.VERIFIED_REFUTATION if exact_false is not None else
                         EvidenceState.UNVERIFIED_CANDIDATE)
