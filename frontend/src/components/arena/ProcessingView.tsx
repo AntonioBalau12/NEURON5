@@ -792,7 +792,13 @@ export default function ProcessingView({ jobId, onSucceeded, onBack }: Processin
             onPlaybackComplete={handlePlaybackComplete}
           />
 
-          <TemporalGraphPreview />
+          <TemporalGraphPreview
+            status={job?.status}
+            stage={progress?.stage}
+            processedRows={progress?.processedRows}
+            totalRows={progress?.totalRows}
+            counters={counts}
+          />
 
           <div className="mt-4 rounded-2xl border border-black/[0.08] bg-white p-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
