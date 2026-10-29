@@ -10,7 +10,7 @@ Scop: consemnarea diferențelor dintre plan (`frontend/public/PLAN_ARHITECTURA_A
 | Contractele juraților (input `/universe`, output `/output/output.csv`, imagine Docker, offline 2 CPU / 6 GiB / 30 min) | `contracts/`, `README.md`, `scripts/` | sursă de adevăr pentru limbajul de etichete și pentru ce înseamnă „sistemul rulează” |
 | Date de practică: 1.897 rânduri (`true` 1.581, `false` 277, `unsure` 39), coloane `id,text,date,label,form`; lexicon cu 62 subiecte + 13 evenimente | `data/` | suficiente pentru evaluare offline și pentru un KB determinist |
 | Frontend Next.js 15 App Router (TS, Tailwind), landing + mascotă Rive + `Studio.tsx` cu 3 pași **mock** (setTimeout, date hardcodate) | `frontend/` | se păstrează landing-ul; `Studio` se leagă la API-ul real |
-| Site static vechi (index.html, previewN.html, DESIGN.md) | rădăcină repo | nu se atinge |
+| Site static vechi (`index.html`, `previewN.html`) | disponibil în istoricul Git | eliminat ulterior prin curățarea repository-ului; `DESIGN.md` rămâne referință istorică |
 | Fundație Python deterministă (ingestie CSV, lexicon, valori tipizate, validare output) existentă pe `origin/codex/p0-contract-foundation` | `foundation.py` (branch) | copiată inițial în `backend/app/engine/foundation.py`; auditul cleanup-ului a confirmat că modulul nu este folosit de orchestrator |
 | Backend / API | **nu exista** | creat în `backend/` (FastAPI), conform cerinței utilizatorului |
 | Clasificator | adaptorul local fitted din `backend/scripts/adapter.joblib` | prototip local LightGBM pentru etichetele `true`/`false`/`unsure`; nu generează claims |

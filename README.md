@@ -1,5 +1,19 @@
 # Hype Arena starter
 
+## Run the NEURON5 frontend
+
+The application lives in `frontend/`. From the repository root:
+
+```sh
+cd frontend
+yarn install --frozen-lockfile
+yarn dev
+```
+
+Open http://localhost:3000. Start the API separately using [backend/README.md](backend/README.md).
+For a production build, run `yarn build` followed by `yarn start` inside `frontend/`.
+The old static HTML previews, root Node server and duplicate assets have been removed.
+
 ## [hype-arena.vercel.app](https://hype-arena.vercel.app/)
 
 ## The universe

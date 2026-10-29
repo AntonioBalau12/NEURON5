@@ -1,5 +1,7 @@
 # QA DNA Design System Specification & Hackathon Implementation Guide
 
+> Historical design reference. Examples below describe prototype techniques; they are not the current dependency list. Static prototypes and vendored runtimes were removed during cleanup. The current application and its dependencies are in `frontend/`.
+
 > Extracted and reverse-engineered directly from **https://www.qadna.co/**.  
 > Includes design tokens, fluid typography, component rules, CSS keyframes, GSAP ScrollTriggers, 3D card tilt physics, and Lenis smooth-scroll setup.
 
